@@ -26,17 +26,17 @@ const AnswerGrid = ({ answers, focusedSlot }: AnswerGridProps) => {
             key={answer.rank}
             className={`p-5 transition-all duration-150 rounded-2xl ${
               isCorrect
-                ? "bg-card border-[2px] border-gold shadow-md animate-bounce-in"
+                ? "bg-card border-[2px] border-success shadow-md animate-bounce-in"
                 : isFocused
-                ? "bg-card border-[2px] border-danger-light shadow-sm animate-shake"
+                ? "bg-card border-[2px] border-danger shadow-sm animate-shake"
                 : isLocked
-                ? "bg-card border-[2px] border-secondary shadow-sm"
-                : "bg-card border-[2px] border-secondary shadow-sm"
-            }`}
+                ? "bg-card border-[2px] border-border shadow-sm"
+                : "bg-card border-[2px] border-border shadow-sm"
+            } ${!isLocked && !isCorrect && !isFocused ? 'hover:ring-2 hover:ring-purple' : ''}`}
           >
             <div className="flex items-center gap-3">
               {/* Left badge for rank */}
-              <div className="flex items-center justify-center min-w-[32px] h-8 px-2 rounded-lg bg-primary/10 text-primary font-bold text-sm">
+              <div className="flex items-center justify-center min-w-[32px] h-8 px-2 rounded-lg bg-badge-lavender text-badge-text font-bold text-sm">
                 #{answer.rank}
               </div>
               
@@ -45,18 +45,18 @@ const AnswerGrid = ({ answers, focusedSlot }: AnswerGridProps) => {
                 {answer.playerName ? (
                   <>
                     {isCorrect && (
-                      <CheckCircle2 className="h-5 w-5 text-gold flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
+                      <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
                     )}
                     <span className={`font-semibold text-[15px] truncate ${
-                      isCorrect ? "text-slate-800" : "text-card-foreground"
+                      isCorrect ? "text-text-primary" : "text-text-primary"
                     }`}>
                       {answer.playerName}
                     </span>
                   </>
                 ) : (
                   <>
-                    <Lock className="h-5 w-5 flex-shrink-0 text-muted-foreground" style={{ strokeWidth: '1.5px' }} />
-                    <span className="text-[15px] text-muted-foreground truncate">Rank #{answer.rank}</span>
+                    <Lock className="h-5 w-5 flex-shrink-0 text-icon-muted" style={{ strokeWidth: '1.5px' }} />
+                    <span className="text-[15px] text-text-secondary truncate">Rank #{answer.rank}</span>
                   </>
                 )}
               </div>

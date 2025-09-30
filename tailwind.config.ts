@@ -19,15 +19,18 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        purple: {
+          DEFAULT: "hsl(var(--purple))",
+          hover: "hsl(var(--purple-hover))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          foreground: "hsl(var(--accent-gold-foreground))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
           hover: "hsl(var(--primary-hover))",
-        },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          foreground: "hsl(var(--gold-foreground))",
-          hover: "hsl(var(--gold-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -58,16 +61,25 @@ export default {
           DEFAULT: "hsl(var(--success))",
           foreground: "hsl(var(--success-foreground))",
         },
-        warning: {
-          DEFAULT: "hsl(var(--warning))",
-        },
         danger: {
           DEFAULT: "hsl(var(--danger))",
-          light: "hsl(var(--danger-light))",
+          foreground: "hsl(var(--danger-foreground))",
         },
-        slate: {
-          200: "hsl(220 13% 91%)",
-          800: "hsl(215 25% 27%)",
+        badge: {
+          lavender: "hsl(var(--badge-lavender))",
+          text: "hsl(var(--badge-text))",
+        },
+        nav: {
+          DEFAULT: "hsl(var(--nav-default))",
+          hover: "hsl(var(--nav-hover))",
+        },
+        text: {
+          primary: "hsl(var(--text-primary))",
+          secondary: "hsl(var(--text-secondary))",
+          onDark: "hsl(var(--text-on-dark))",
+        },
+        icon: {
+          muted: "hsl(var(--icon-muted))",
         },
       },
       borderRadius: {

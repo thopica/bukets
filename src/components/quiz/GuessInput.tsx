@@ -35,7 +35,7 @@ const GuessInput = ({ onGuess, disabled = false }: GuessInputProps) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="relative">
-        <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" style={{ strokeWidth: '1.5px' }} />
+        <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-icon-muted" style={{ strokeWidth: '1.5px' }} />
         <Input
           ref={inputRef}
           value={guess}
@@ -43,7 +43,7 @@ const GuessInput = ({ onGuess, disabled = false }: GuessInputProps) => {
           onKeyDown={handleKeyDown}
           placeholder="Type an NBA player name..."
           disabled={disabled}
-          className="pl-14 h-14 text-[18px] text-card-foreground bg-card border-secondary rounded-full shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:border-primary transition-all duration-150 placeholder:text-muted-foreground"
+          className="pl-14 h-14 text-[18px] text-text-primary bg-card border-border rounded-full shadow-sm focus:ring-2 focus:ring-purple focus:ring-offset-2 focus:border-purple transition-all duration-150 placeholder:text-icon-muted"
         />
       </div>
     </form>

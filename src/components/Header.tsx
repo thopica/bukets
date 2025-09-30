@@ -26,12 +26,10 @@ const Header = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   
   useEffect(() => {
-    // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
     });
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
@@ -73,8 +71,8 @@ const Header = () => {
           to={link.path}
           className={`${
             isActive(link.path)
-              ? "text-primary font-semibold"
-              : "text-muted-foreground hover:text-card-foreground"
+              ? "text-nav-hover font-semibold border-b-2 border-purple"
+              : "text-nav hover:text-nav-hover"
           } transition-colors text-sm ${mobile ? "block py-2 text-base" : ""}`}
         >
           {link.label}
@@ -84,11 +82,11 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-card/80 backdrop-blur-lg shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background backdrop-blur-lg shadow-sm">
       <div className="container flex h-16 items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <Trophy className="h-5 w-5 text-primary" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-base font-semibold text-card-foreground">NBA Daily Quiz</span>
+          <Trophy className="h-5 w-5 text-purple" style={{ strokeWidth: '1.5px' }} />
+          <span className="text-base font-semibold text-foreground">NBA Daily Quiz</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -104,16 +102,16 @@ const Header = () => {
                 <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                   <Avatar className="h-10 w-10">
                     <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email} />
-                    <AvatarFallback>
+                    <AvatarFallback className="bg-badge-lavender text-badge-text">
                       {user.email?.charAt(0).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent align="end" className="w-56 bg-card">
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">
+                    <p className="text-sm font-medium leading-none text-card-foreground">
                       {user.user_metadata?.display_name || user.email?.split('@')[0]}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground">
@@ -138,7 +136,7 @@ const Header = () => {
               variant="secondary" 
               size="sm" 
               onClick={() => navigate("/auth")} 
-              className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold rounded-full h-10 px-6 focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="bg-purple hover:bg-purple-hover text-primary-foreground font-semibold rounded-full h-10 px-6 focus:ring-2 focus:ring-purple focus:ring-offset-2"
             >
               Sign in
             </Button>
@@ -148,11 +146,11 @@ const Header = () => {
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="hover:bg-muted rounded-lg">
+            <Button variant="ghost" size="icon" className="hover:bg-card/10 rounded-lg text-foreground">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent>
+          <SheetContent className="bg-card">
             <nav className="flex flex-col gap-4 mt-8">
               <NavLinks mobile />
               {user ? (
@@ -161,15 +159,19 @@ const Header = () => {
                     <User className="mr-2 h-4 w-4" />
                     Account
                   </Button>
-                  <Button variant="secondary" className="mt-4" onClick={handleSignOut}>
+                  <Button 
+                    variant="secondary" 
+                    className="mt-4 rounded-full h-10 px-6 bg-purple hover:bg-purple-hover text-primary-foreground font-semibold" 
+                    onClick={handleSignOut}
+                  >
                     <LogOut className="mr-2 h-4 w-4" />
-                    Sign Out
+                    Sign out
                   </Button>
                 </>
               ) : (
                 <Button 
                   variant="secondary" 
-                  className="mt-4 rounded-full h-10 px-6 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold" 
+                  className="mt-4 rounded-full h-10 px-6 bg-purple hover:bg-purple-hover text-primary-foreground font-semibold" 
                   onClick={() => navigate("/auth")}
                 >
                   Sign in

@@ -8,68 +8,83 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Nubank-inspired purple/gold harmony */
-    --background: 222 47% 11%; /* #0F172A slate-900 */
-    --foreground: 210 40% 98%;
+    /* Lakers-inspired color system */
+    --purple: 270 63% 32%; /* #552583 Lakers Purple */
+    --purple-hover: 270 58% 30%; /* #4A1F78 darker purple */
+    --gold: 45 97% 58%; /* #FDB927 Lakers Gold */
+    
+    --background: 217 52% 9%; /* #0B1220 dark canvas */
+    --foreground: 0 0% 100%; /* #FFFFFF on dark */
 
     --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 222 47% 11%;
-    --card-muted: 248 6% 97%; /* #F8FAFC */
+    --card-foreground: 217 52% 9%; /* #0B1220 primary text */
+    --card-muted: 210 25% 97%; /* #F6F7F9 muted surface */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 217 52% 9%;
 
-    /* Purple - primary brand */
-    --primary: 262 83% 58%; /* #7C3AED purple-600 */
+    /* Primary - Lakers Purple */
+    --primary: 270 63% 32%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 262 83% 48%;
+    --primary-hover: 270 58% 30%;
     
-    /* Gold - accent and success states */
-    --gold: 45 93% 58%; /* #F5C542 warm gold */
-    --gold-foreground: 222 47% 11%;
-    --gold-hover: 45 93% 48%;
+    /* Accent - Lakers Gold */
+    --accent-gold: 45 97% 58%;
+    --accent-gold-foreground: 217 52% 9%;
+    
+    /* Text colors */
+    --text-primary: 217 52% 9%; /* #0B1220 */
+    --text-secondary: 215 16% 47%; /* #64748B labels */
+    --text-on-dark: 0 0% 100%; /* #FFFFFF */
+    
+    /* Icons and borders */
+    --icon-muted: 214 15% 66%; /* #94A3B8 */
+    --border: 220 13% 91%; /* #E5E7EB */
+    --border-muted: 220 13% 91%;
+    
+    /* Badge */
+    --badge-lavender: 270 100% 94%; /* #EEE1FF */
+    --badge-text: 270 63% 32%; /* #552583 */
+    
+    /* Progress */
+    --progress-track: 220 13% 91%; /* #E5E7EB */
     
     /* State colors */
-    --success: 45 93% 58%; /* Gold for success */
-    --success-foreground: 222 47% 11%;
-    --warning: 38 92% 50%; /* amber-400 */
-    --danger: 0 72% 51%; /* #EF4444 rose-500 */
-    --danger-light: 0 86% 65%; /* rose-400 */
+    --success: 142 71% 45%; /* #22C55E */
+    --success-foreground: 0 0% 100%;
+    --danger: 0 84% 60%; /* #EF4444 */
+    --danger-foreground: 0 0% 100%;
+    
+    /* Navigation */
+    --nav-default: 214 32% 85%; /* #CBD5E1 */
+    --nav-hover: 0 0% 100%;
 
-    --secondary: 220 13% 91%; /* slate-200 */
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 220 13% 91%;
+    --secondary-foreground: 217 52% 9%;
 
-    --muted: 220 13% 91%;
+    --muted: 210 25% 97%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 262 83% 58%;
+    --accent: 270 63% 32%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%; /* slate-200 */
     --input: 220 13% 91%;
-    --ring: 262 83% 58%; /* purple-500 */
+    --ring: 270 63% 32%; /* Lakers Purple for focus */
 
-    --radius: 1rem; /* 16px for cards */
+    --radius: 1rem;
 
-    /* Shadows - simple scale */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
-    /* Animations */
     --transition-smooth: all 0.15s ease-out;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 16%;
-    --card-foreground: 210 40% 98%;
-    --card-muted: 222 47% 14%;
-    --primary: 270 91% 65%;
-    --primary-hover: 270 91% 55%;
+    --background: 217 52% 9%;
+    --foreground: 0 0% 100%;
   }
 }
 
@@ -81,10 +96,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: radial-gradient(ellipse at top, hsl(262 83% 58% / 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom right, hsl(45 93% 58% / 0.06) 0%, transparent 50%),
-                linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(222 47% 8%) 100%);
-    background-attachment: fixed;
+    background-color: #0B1220;
   }
 
   /* Tabular numbers for timers */
