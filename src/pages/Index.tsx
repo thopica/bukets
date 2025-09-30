@@ -7,6 +7,7 @@ import GuessInput from "@/components/quiz/GuessInput";
 import ScoreStrip from "@/components/quiz/ScoreStrip";
 import HintBar from "@/components/quiz/HintBar";
 import ResultsModal from "@/components/quiz/ResultsModal";
+import OverallTimer from "@/components/quiz/OverallTimer";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
@@ -48,13 +49,15 @@ const Index = () => {
   const [hintsUsed, setHintsUsed] = useState(0);
   const [currentHint, setCurrentHint] = useState<string | undefined>();
   const [timeRemaining, setTimeRemaining] = useState(24);
+  const [overallTimeRemaining, setOverallTimeRemaining] = useState(160); // 2:40 minutes
   const [showResults, setShowResults] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
 
   const maxHints = 3;
+  const totalQuizTime = 160; // 2:40 minutes in seconds
 
-  // Timer countdown
+  // Per-player timer countdown
   useEffect(() => {
     if (isCompleted || timeRemaining === 0) return;
 
@@ -71,6 +74,29 @@ const Index = () => {
 
     return () => clearInterval(timer);
   }, [timeRemaining, isCompleted, currentPlayerIndex]);
+
+  // Overall quiz timer countdown
+  useEffect(() => {
+    if (isCompleted || overallTimeRemaining === 0) return;
+
+    const overallTimer = setInterval(() => {
+      setOverallTimeRemaining((prev) => {
+        if (prev <= 1) {
+          // End quiz when overall time is up
+          setIsCompleted(true);
+          toast.error("Time's up! Quiz ended", {
+            description: "The overall time limit has been reached",
+            duration: 5000,
+          });
+          setTimeout(() => setShowResults(true), 1500);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(overallTimer);
+  }, [overallTimeRemaining, isCompleted]);
 
   const handleTimeUp = () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
@@ -197,6 +223,11 @@ const Index = () => {
           title={QUIZ_DATA.title}
           description={QUIZ_DATA.description}
           date={QUIZ_DATA.date}
+        />
+
+        <OverallTimer
+          timeRemaining={overallTimeRemaining}
+          totalTime={totalQuizTime}
         />
 
         <ScoreStrip
