@@ -46,57 +46,61 @@ const ResultsModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-2xl">
-            <Trophy className="h-6 w-6 text-secondary" />
-            Quiz Complete!
+      <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto bg-card rounded-2xl border-0 shadow-md">
+        <DialogHeader className="space-y-3">
+          <DialogTitle className="flex items-center gap-2 text-3xl font-bold text-card-foreground">
+            <Trophy className="h-7 w-7 text-primary" style={{ strokeWidth: '1.5px' }} />
+            Quiz complete!
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-[15px] text-muted-foreground">
             You scored {correctCount} out of {totalCount} correct
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4">
-          <Card className="p-4 bg-gradient-to-r from-primary/10 to-secondary/10">
-            <div className="grid grid-cols-3 gap-4 text-center">
+        <div className="space-y-6 pt-4">
+          {/* Stats card */}
+          <Card className="p-6 bg-card-muted border-0 rounded-2xl shadow-sm">
+            <div className="grid grid-cols-3 gap-6 text-center">
               <div>
-                <p className="text-2xl font-bold">{score}</p>
-                <p className="text-xs text-muted-foreground">Final Score</p>
+                <p className="text-3xl font-bold text-card-foreground mb-1">{score}</p>
+                <p className="text-[15px] text-muted-foreground">Final score</p>
               </div>
               <div>
-                <p className="text-2xl font-bold">{correctCount}/{totalCount}</p>
-                <p className="text-xs text-muted-foreground">Correct</p>
+                <p className="text-3xl font-bold text-card-foreground mb-1">{correctCount}/{totalCount}</p>
+                <p className="text-[15px] text-muted-foreground">Correct</p>
               </div>
               <div>
-                <p className="text-2xl font-bold">🔥{streak}</p>
-                <p className="text-xs text-muted-foreground">Day Streak</p>
+                <p className="text-3xl font-bold text-card-foreground mb-1">🔥{streak}</p>
+                <p className="text-[15px] text-muted-foreground">Day streak</p>
               </div>
             </div>
           </Card>
 
-          <div className="space-y-2">
-            <h3 className="font-semibold">Answers</h3>
+          {/* Answers section */}
+          <div className="space-y-3">
+            <h3 className="font-semibold text-base text-card-foreground">Answers</h3>
             {answers.map((answer) => (
               <Card
                 key={answer.rank}
-                className={`p-3 ${
-                  answer.isCorrect ? "bg-success/10 border-success" : "bg-destructive/10 border-destructive"
+                className={`p-4 border-[2px] rounded-2xl shadow-sm ${
+                  answer.isCorrect 
+                    ? "bg-success/5 border-success" 
+                    : "bg-danger/5 border-danger"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   {answer.isCorrect ? (
-                    <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
                   ) : (
-                    <XCircle className="h-5 w-5 text-destructive flex-shrink-0" />
+                    <XCircle className="h-5 w-5 text-danger flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
                   )}
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold">#{answer.rank}</span>
-                      <span>{answer.correctName}</span>
+                      <span className="font-bold text-[15px] text-card-foreground">#{answer.rank}</span>
+                      <span className="font-semibold text-[15px] text-card-foreground">{answer.correctName}</span>
                     </div>
                     {!answer.isCorrect && answer.userGuess && (
-                      <p className="text-sm text-muted-foreground">Your guess: {answer.userGuess}</p>
+                      <p className="text-sm text-muted-foreground mt-1">Your guess: {answer.userGuess}</p>
                     )}
                   </div>
                 </div>
@@ -104,12 +108,20 @@ const ResultsModal = ({
             ))}
           </div>
 
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={handleShare} className="flex-1">
-              <Share2 className="mr-2 h-4 w-4" />
-              Share Results
+          {/* Action buttons */}
+          <div className="flex gap-3 pt-2">
+            <Button 
+              variant="outline" 
+              onClick={handleShare} 
+              className="flex-1 h-12 rounded-full border-secondary bg-card hover:bg-card-muted text-card-foreground font-semibold focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              <Share2 className="mr-2 h-5 w-5" style={{ strokeWidth: '1.5px' }} />
+              Share results
             </Button>
-            <Button onClick={() => onOpenChange(false)} className="flex-1">
+            <Button 
+              onClick={() => onOpenChange(false)} 
+              className="flex-1 h-12 rounded-full bg-primary hover:bg-primary-hover text-primary-foreground font-semibold shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
               Close
             </Button>
           </div>
