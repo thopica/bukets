@@ -1,0 +1,116 @@
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Card } from "@/components/ui/card";
+import { Trophy, Target, Lightbulb, Timer, Flame, Share2 } from "lucide-react";
+
+const HowToPlay = () => {
+  const features = [
+    {
+      icon: <Target className="h-8 w-8 text-primary" />,
+      title: "Daily Challenge",
+      description: "One quiz per day unlocks at midnight in your local timezone. Each quiz asks you to identify the top 6 players for a specific NBA statistic.",
+    },
+    {
+      icon: <Trophy className="h-8 w-8 text-secondary" />,
+      title: "Scoring System",
+      description: "Earn +3 points for each correct answer. Speed matters: guess within 10 seconds for +2 bonus points, 10-15 seconds for +1 point. Get it in the last second for a BUZZER BEATER!",
+    },
+    {
+      icon: <Timer className="h-8 w-8 text-warning" />,
+      title: "Time Pressure",
+      description: "You have 24 seconds per player. After 3 incorrect guesses, you lose 1 point and the answer is revealed automatically.",
+    },
+    {
+      icon: <Lightbulb className="h-8 w-8 text-primary-light" />,
+      title: "Hints Available",
+      description: "Stuck? Use up to 3 hints per quiz. Each hint costs -0.5 points but gives you valuable clues about the player's career, team, or achievements.",
+    },
+    {
+      icon: <Flame className="h-8 w-8 text-orange-500" />,
+      title: "Build Your Streak",
+      description: "Complete quizzes on consecutive days to build your streak. Get all 6 correct (hints allowed) to maintain your streak. Missing a day breaks it!",
+    },
+    {
+      icon: <Share2 className="h-8 w-8 text-success" />,
+      title: "Share & Compete",
+      description: "After completing a quiz, share your spoiler-free results with friends. Climb the leaderboards across today, weekly, monthly, 82-day, and all-time rankings.",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main className="container max-w-4xl mx-auto px-4 py-8">
+        <div className="space-y-8">
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl md:text-5xl font-bold">How to Play</h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Test your NBA knowledge with daily stat-based quizzes. Can you name the greatest players in basketball history?
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {features.map((feature, index) => (
+              <Card key={index} className="p-6 hover:shadow-lg transition-all">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">{feature.icon}</div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="p-6 bg-gradient-to-r from-primary/10 to-secondary/10 border-2">
+            <h2 className="text-2xl font-bold mb-4">Scoring Breakdown</h2>
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between items-center">
+                <span>Correct answer</span>
+                <span className="font-bold text-success">+3 points</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span>Speed bonus (0-9.99s)</span>
+                <span className="font-bold text-success">+2 points</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span>Speed bonus (10-14.99s)</span>
+                <span className="font-bold text-success">+1 point</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span>Hint used</span>
+                <span className="font-bold text-destructive">-0.5 points</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span>3 wrong guesses per player</span>
+                <span className="font-bold text-destructive">-1 point</span>
+              </div>
+              <div className="flex justify-between items-center border-t pt-3 mt-3">
+                <span className="font-bold">Maximum possible score</span>
+                <span className="font-bold text-primary">30 points (6 players × 5 points)</span>
+              </div>
+            </div>
+          </Card>
+
+          <div className="text-center">
+            <p className="text-muted-foreground mb-4">Ready to test your knowledge?</p>
+            <a
+              href="/"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-light shadow-md hover:shadow-lg h-12 px-8 transition-all"
+            >
+              Play Today's Quiz
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default HowToPlay;

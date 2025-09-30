@@ -1,12 +1,257 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import QuizCard from "@/components/quiz/QuizCard";
+import AnswerGrid from "@/components/quiz/AnswerGrid";
+import GuessInput from "@/components/quiz/GuessInput";
+import ScoreStrip from "@/components/quiz/ScoreStrip";
+import HintBar from "@/components/quiz/HintBar";
+import ResultsModal from "@/components/quiz/ResultsModal";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+
+// Dummy data for v1
+const QUIZ_DATA = {
+  title: "All-Time Scoring Leaders",
+  description: "Name the top 6 scorers in NBA history (regular season)",
+  date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+  answers: [
+    { rank: 1, name: "LeBron James", aliases: ["lebron", "lbj", "king james"] },
+    { rank: 2, name: "Kareem Abdul-Jabbar", aliases: ["kareem", "abdul jabbar", "abdul-jabbar"] },
+    { rank: 3, name: "Karl Malone", aliases: ["malone", "mailman"] },
+    { rank: 4, name: "Kobe Bryant", aliases: ["kobe", "black mamba"] },
+    { rank: 5, name: "Michael Jordan", aliases: ["mj", "jordan", "goat"] },
+    { rank: 6, name: "Dirk Nowitzki", aliases: ["dirk", "nowitzki"] },
+  ],
+  hints: [
+    { rank: 1, text: "Active player, entered league in 2003, plays for Lakers" },
+    { rank: 2, text: "Legendary Lakers center, famous for skyhook" },
+    { rank: 3, text: "Power forward nicknamed 'The Mailman'" },
+    { rank: 4, text: "Lakers icon, wore #24 and #8" },
+    { rank: 5, text: "6× Finals MVP with Chicago Bulls" },
+    { rank: 6, text: "German forward, Dallas Mavericks legend" },
+  ],
+};
 
 const Index = () => {
+  const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean }>>([
+    { rank: 1 },
+    { rank: 2 },
+    { rank: 3 },
+    { rank: 4 },
+    { rank: 5 },
+    { rank: 6 },
+  ]);
+  
+  const [score, setScore] = useState(0);
+  const [streak, setStreak] = useState(3);
+  const [hintsUsed, setHintsUsed] = useState(0);
+  const [currentHint, setCurrentHint] = useState<string | undefined>();
+  const [timeRemaining, setTimeRemaining] = useState(24);
+  const [showResults, setShowResults] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+
+  const maxHints = 3;
+
+  // Timer countdown
+  useEffect(() => {
+    if (isCompleted || timeRemaining === 0) return;
+
+    const timer = setInterval(() => {
+      setTimeRemaining((prev) => {
+        if (prev <= 1) {
+          // Auto-reveal and move to next if time runs out
+          handleTimeUp();
+          return 24;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeRemaining, isCompleted, currentPlayerIndex]);
+
+  const handleTimeUp = () => {
+    const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
+    if (unansweredIndex !== -1) {
+      const correctAnswer = QUIZ_DATA.answers[unansweredIndex];
+      const newAnswers = [...userAnswers];
+      newAnswers[unansweredIndex] = {
+        rank: correctAnswer.rank,
+        playerName: correctAnswer.name,
+        isCorrect: false,
+      };
+      setUserAnswers(newAnswers);
+      toast.error("Time's up! Player revealed");
+    }
+  };
+
+  const normalizeGuess = (guess: string) => {
+    return guess.toLowerCase().trim().replace(/[^a-z\s]/g, '');
+  };
+
+  const checkGuess = (guess: string) => {
+    const normalized = normalizeGuess(guess);
+    
+    for (const answer of QUIZ_DATA.answers) {
+      const isMatch = 
+        normalizeGuess(answer.name) === normalized ||
+        answer.aliases.some(alias => normalizeGuess(alias) === normalized);
+      
+      if (isMatch) {
+        const alreadyFound = userAnswers.find(
+          (a) => a.isCorrect && normalizeGuess(a.playerName || '') === normalizeGuess(answer.name)
+        );
+        
+        if (alreadyFound) {
+          toast.info("You already found this player!");
+          return null;
+        }
+        
+        return answer;
+      }
+    }
+    
+    return null;
+  };
+
+  const calculateTimeBonus = () => {
+    if (timeRemaining >= 15) return 2;
+    if (timeRemaining >= 10) return 1;
+    return 0;
+  };
+
+  const handleGuess = (guess: string) => {
+    const matchedAnswer = checkGuess(guess);
+    
+    if (matchedAnswer) {
+      const timeBonus = calculateTimeBonus();
+      const pointsEarned = 3 + timeBonus;
+      
+      const newAnswers = [...userAnswers];
+      const index = matchedAnswer.rank - 1;
+      newAnswers[index] = {
+        rank: matchedAnswer.rank,
+        playerName: matchedAnswer.name,
+        isCorrect: true,
+      };
+      
+      setUserAnswers(newAnswers);
+      setScore((prev) => prev + pointsEarned);
+      setTimeRemaining(24);
+      setCurrentHint(undefined);
+      
+      if (timeRemaining >= 23) {
+        toast.success("🏀 BUZZER BEATER! +" + pointsEarned + " points", {
+          duration: 3000,
+        });
+      } else {
+        toast.success(`Correct! +${pointsEarned} points (${timeBonus > 0 ? `+${timeBonus} time bonus` : 'no time bonus'})`);
+      }
+      
+      // Check if all answered
+      const allCorrect = newAnswers.every((a) => a.isCorrect);
+      if (allCorrect) {
+        setIsCompleted(true);
+        setTimeout(() => setShowResults(true), 1000);
+      }
+    } else {
+      toast.error("Not found. Try again!");
+    }
+  };
+
+  const handleRequestHint = () => {
+    if (hintsUsed >= maxHints || currentHint) return;
+    
+    const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
+    if (unansweredIndex !== -1) {
+      const hint = QUIZ_DATA.hints[unansweredIndex];
+      setCurrentHint(hint.text);
+      setHintsUsed((prev) => prev + 1);
+      setScore((prev) => Math.max(0, prev - 0.5));
+      toast.info("Hint revealed! -0.5 points");
+    }
+  };
+
+  const getResultsData = () => {
+    return QUIZ_DATA.answers.map((answer) => {
+      const userAnswer = userAnswers.find((a) => a.rank === answer.rank);
+      return {
+        rank: answer.rank,
+        correctName: answer.name,
+        userGuess: userAnswer?.playerName,
+        isCorrect: userAnswer?.isCorrect || false,
+      };
+    });
+  };
+
+  const correctCount = userAnswers.filter((a) => a.isCorrect).length;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main className="container max-w-4xl mx-auto px-4 py-8 space-y-6">
+        <QuizCard
+          title={QUIZ_DATA.title}
+          description={QUIZ_DATA.description}
+          date={QUIZ_DATA.date}
+        />
+
+        <ScoreStrip
+          score={score}
+          streak={streak}
+          hintsUsed={hintsUsed}
+          maxHints={maxHints}
+          timeRemaining={timeRemaining}
+        />
+
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="md:col-span-2 space-y-4">
+            <AnswerGrid answers={userAnswers} />
+          </div>
+
+          <div className="space-y-4">
+            <HintBar
+              currentHint={currentHint}
+              hintsRemaining={maxHints - hintsUsed}
+              onRequestHint={handleRequestHint}
+              onDismissHint={() => setCurrentHint(undefined)}
+            />
+
+            {isCompleted && (
+              <Button
+                onClick={() => setShowResults(true)}
+                variant="secondary"
+                className="w-full"
+              >
+                View Results
+              </Button>
+            )}
+          </div>
+        </div>
+
+        <GuessInput onGuess={handleGuess} disabled={isCompleted} />
+
+        {!isCompleted && (
+          <p className="text-center text-sm text-muted-foreground">
+            Press Enter or click Submit to guess a player
+          </p>
+        )}
+      </main>
+
+      <ResultsModal
+        open={showResults}
+        onOpenChange={setShowResults}
+        score={score}
+        correctCount={correctCount}
+        totalCount={6}
+        streak={streak}
+        answers={getResultsData()}
+      />
+
+      <Footer />
     </div>
   );
 };
