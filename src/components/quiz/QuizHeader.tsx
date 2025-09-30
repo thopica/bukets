@@ -44,7 +44,7 @@ const QuizHeader = ({
           <Trophy className="h-4 w-4 text-primary flex-shrink-0" />
           <div className="min-w-0">
             <h2 className="text-lg font-bold text-foreground truncate">{title}</h2>
-            <p className="text-xs text-muted-foreground truncate">{description}</p>
+            <h1 className="text-xs text-muted-foreground truncate">{description}</h1>
           </div>
         </div>
         <div className="flex items-center gap-1 text-xs text-muted-foreground whitespace-nowrap">
