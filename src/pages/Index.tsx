@@ -229,6 +229,8 @@ const Index = () => {
           playerTimeRemaining={timeRemaining}
         />
 
+        <GuessInput onGuess={handleGuess} disabled={isCompleted} />
+
         <div className="grid md:grid-cols-[1fr_280px] gap-3 flex-1 overflow-hidden">
           <div className="flex flex-col gap-3 overflow-y-auto">
             <AnswerGrid answers={userAnswers} />
@@ -253,8 +255,6 @@ const Index = () => {
             )}
           </div>
         </div>
-
-        <GuessInput onGuess={handleGuess} disabled={isCompleted} />
       </main>
 
       <ResultsModal
