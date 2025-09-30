@@ -9,22 +9,18 @@ interface QuizCardProps {
 
 const QuizCard = ({ title, description, date }: QuizCardProps) => {
   return (
-    <Card className="p-6 bg-gradient-to-br from-card to-muted/20 border-2 shadow-lg">
-      <div className="flex flex-col gap-4">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-secondary" />
-            <span className="text-sm font-medium text-muted-foreground">Daily Challenge</span>
-          </div>
-          <div className="flex items-center gap-1 text-sm text-muted-foreground">
-            <Calendar className="h-4 w-4" />
-            <span>{date}</span>
+    <Card className="p-3 bg-gradient-to-br from-card to-muted/20 border-2">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 min-w-0">
+          <Trophy className="h-4 w-4 text-secondary flex-shrink-0" />
+          <div className="min-w-0">
+            <h2 className="text-lg font-bold truncate">{title}</h2>
+            <p className="text-xs text-muted-foreground truncate">{description}</p>
           </div>
         </div>
-        
-        <div>
-          <h2 className="text-2xl font-bold mb-2">{title}</h2>
-          <p className="text-muted-foreground">{description}</p>
+        <div className="flex items-center gap-1 text-xs text-muted-foreground whitespace-nowrap">
+          <Calendar className="h-3 w-3" />
+          <span>{date}</span>
         </div>
       </div>
     </Card>

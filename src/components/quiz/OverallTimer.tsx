@@ -18,17 +18,17 @@ const OverallTimer = ({ timeRemaining, totalTime }: OverallTimerProps) => {
   };
 
   return (
-    <div className="bg-card rounded-lg border-2 border-border p-4 shadow-md animate-fade-in">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <Clock className={`h-5 w-5 ${getTimerColor()}`} />
-          <span className="text-sm font-medium text-muted-foreground">Total Time</span>
+    <div className="bg-card rounded-lg border-2 border-border p-2 animate-fade-in">
+      <div className="flex items-center justify-between mb-1.5">
+        <div className="flex items-center gap-1.5">
+          <Clock className={`h-4 w-4 ${getTimerColor()}`} />
+          <span className="text-xs font-medium text-muted-foreground">Total Time</span>
         </div>
-        <div className={`text-2xl font-bold tabular-nums ${getTimerColor()}`}>
+        <div className={`text-xl font-bold tabular-nums ${getTimerColor()}`}>
           {minutes}:{seconds.toString().padStart(2, '0')}
         </div>
       </div>
-      <div className="relative h-2 w-full overflow-hidden rounded-full bg-secondary">
+      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-secondary">
         <div 
           className={`h-full transition-all duration-300 ${
             progressPercentage > 50 ? 'bg-success' :
@@ -39,7 +39,7 @@ const OverallTimer = ({ timeRemaining, totalTime }: OverallTimerProps) => {
         />
       </div>
       {timeRemaining <= 30 && (
-        <p className="text-xs text-destructive mt-2 text-center animate-pulse font-semibold">
+        <p className="text-[10px] text-destructive mt-1 text-center animate-pulse font-semibold">
           Hurry up! Time is running out!
         </p>
       )}

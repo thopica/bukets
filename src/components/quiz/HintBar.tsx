@@ -11,19 +11,19 @@ interface HintBarProps {
 
 const HintBar = ({ currentHint, hintsRemaining, onRequestHint, onDismissHint }: HintBarProps) => {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {currentHint && (
-        <Alert className="bg-warning/10 border-warning animate-slide-up">
-          <Lightbulb className="h-4 w-4 text-warning" />
+        <Alert className="bg-warning/10 border-warning animate-slide-up p-2.5">
+          <Lightbulb className="h-3.5 w-3.5 text-warning" />
           <AlertDescription className="flex items-start justify-between gap-2">
-            <span className="flex-1">{currentHint}</span>
+            <span className="flex-1 text-xs leading-snug">{currentHint}</span>
             <Button
               variant="ghost"
               size="icon"
-              className="h-6 w-6 -mt-1"
+              className="h-5 w-5 -mt-0.5"
               onClick={onDismissHint}
             >
-              <X className="h-4 w-4" />
+              <X className="h-3 w-3" />
             </Button>
           </AlertDescription>
         </Alert>
@@ -33,10 +33,11 @@ const HintBar = ({ currentHint, hintsRemaining, onRequestHint, onDismissHint }: 
         variant="outline"
         onClick={onRequestHint}
         disabled={hintsRemaining === 0 || !!currentHint}
-        className="w-full"
+        className="w-full h-9 text-xs"
+        size="sm"
       >
-        <Lightbulb className="mr-2 h-4 w-4" />
-        Need a Hint? ({hintsRemaining} remaining)
+        <Lightbulb className="mr-1.5 h-3.5 w-3.5" />
+        Need a Hint? ({hintsRemaining} left)
       </Button>
     </div>
   );

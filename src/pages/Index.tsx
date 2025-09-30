@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import QuizCard from "@/components/quiz/QuizCard";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
 import GuessInput from "@/components/quiz/GuessInput";
@@ -215,10 +214,10 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
       
-      <main className="container max-w-4xl mx-auto px-4 py-8 space-y-6">
+      <main className="container max-w-5xl mx-auto px-3 py-3 flex-1 flex flex-col gap-3 overflow-hidden">
         <QuizCard
           title={QUIZ_DATA.title}
           description={QUIZ_DATA.description}
@@ -238,12 +237,12 @@ const Index = () => {
           timeRemaining={timeRemaining}
         />
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 space-y-4">
+        <div className="grid md:grid-cols-[1fr_280px] gap-3 flex-1 overflow-hidden">
+          <div className="flex flex-col gap-3 overflow-y-auto">
             <AnswerGrid answers={userAnswers} />
           </div>
 
-          <div className="space-y-4">
+          <div className="flex flex-col gap-3">
             <HintBar
               currentHint={currentHint}
               hintsRemaining={maxHints - hintsUsed}
@@ -264,12 +263,6 @@ const Index = () => {
         </div>
 
         <GuessInput onGuess={handleGuess} disabled={isCompleted} />
-
-        {!isCompleted && (
-          <p className="text-center text-sm text-muted-foreground">
-            Press Enter or click Submit to guess a player
-          </p>
-        )}
       </main>
 
       <ResultsModal
@@ -281,8 +274,6 @@ const Index = () => {
         streak={streak}
         answers={getResultsData()}
       />
-
-      <Footer />
     </div>
   );
 };

@@ -85,10 +85,10 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
-      <div className="container flex h-16 items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <Trophy className="h-6 w-6 text-secondary" />
-          <span className="text-xl font-bold">NBA Daily Quiz</span>
+      <div className="container flex h-12 items-center justify-between px-3">
+        <Link to="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+          <Trophy className="h-5 w-5 text-secondary" />
+          <span className="text-lg font-bold">NBA Daily Quiz</span>
         </Link>
 
         {/* Desktop Navigation */}
