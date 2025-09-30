@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
 interface GuessInputProps {
@@ -10,35 +9,48 @@ interface GuessInputProps {
 
 const GuessInput = ({ onGuess, disabled = false }: GuessInputProps) => {
   const [guess, setGuess] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Autofocus on mount
+    if (inputRef.current && !disabled) {
+      inputRef.current.focus();
+    }
+  }, [disabled]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (guess.trim()) {
       onGuess(guess.trim());
       setGuess("");
+      // Refocus after submission
+      setTimeout(() => inputRef.current?.focus(), 50);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      <div className="relative flex-1">
-        <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input
-          value={guess}
-          onChange={(e) => setGuess(e.target.value)}
-          placeholder="Type an NBA player name..."
-          disabled={disabled}
-          className="pl-9 h-10 text-sm bg-white shadow-md border-0 rounded-2xl"
-        />
-      </div>
-      <Button 
-        type="submit" 
-        disabled={disabled || !guess.trim()} 
-        className="h-10 px-6 rounded-2xl bg-primary hover:bg-primary-dark shadow-md"
-      >
-        Submit
-      </Button>
-    </form>
+    <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm -mx-6 px-6 py-3 shadow-sm">
+      <form onSubmit={handleSubmit}>
+        <div className="relative">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" style={{ strokeWidth: '1.5px' }} />
+          <Input
+            ref={inputRef}
+            value={guess}
+            onChange={(e) => setGuess(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Type an NBA player name..."
+            disabled={disabled}
+            className="pl-12 h-12 text-base bg-card border-border rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-150"
+          />
+        </div>
+      </form>
+    </div>
   );
 };
 

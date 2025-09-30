@@ -8,103 +8,67 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Modern purple-themed design system */
-    --background: 270 100% 98%;
-    --foreground: 270 15% 10%;
+    /* Refined neutral system with purple accent */
+    --background: 222 47% 11%; /* #0F172A slate-900 */
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 270 15% 10%;
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 222 47% 11%;
+    --card-muted: 210 40% 98%; /* #F8FAFC */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 270 15% 10%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Vibrant Purple - Primary brand color */
-    --primary: 270 91% 65%;
+    /* Purple accent - 600-700 range */
+    --primary: 270 91% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 270 91% 75%;
-    --primary-dark: 270 91% 55%;
+    --primary-hover: 270 91% 50%;
     
-    /* Orange - Accent color */
+    /* State colors */
     --secondary: 24 100% 65%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 270 20% 96%;
-    --muted-foreground: 270 10% 50%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 45%;
 
-    --accent: 270 91% 65%;
+    --accent: 270 91% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 270 15% 92%;
-    --input: 270 15% 92%;
-    --ring: 270 91% 65%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 270 91% 60%;
 
     --radius: 1rem;
 
-    /* Special states */
+    /* Result states */
     --success: 142 76% 45%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 55%;
-    --warning-foreground: 0 0% 100%;
+    --warning-foreground: 222 47% 11%;
+    --danger: 0 84% 60%;
+    --danger-foreground: 0 0% 100%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(270 91% 65%), hsl(280 91% 70%));
-    --gradient-background: linear-gradient(180deg, hsl(270 91% 65%), hsl(280 91% 60%));
-    --gradient-accent: linear-gradient(135deg, hsl(24 100% 65%), hsl(30 100% 70%));
-    
-    /* Shadows */
-    --shadow-elegant: 0 4px 20px -2px hsl(270 91% 65% / 0.15);
-    --shadow-glow: 0 0 40px hsl(270 91% 65% / 0.3);
+    /* Shadows - elevation scale */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.15s ease-out;
+    --transition-exit: all 0.15s ease-in;
   }
 
   .dark {
-    /* Dark theme - Purple inspired */
-    --background: 270 30% 8%;
-    --foreground: 0 0% 95%;
-
-    --card: 270 25% 12%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 270 25% 10%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 270 91% 70%;
-    --primary-foreground: 0 0% 100%;
-    --primary-light: 270 91% 80%;
-    --primary-dark: 270 91% 60%;
-
-    --secondary: 24 100% 70%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 270 20% 18%;
-    --muted-foreground: 270 10% 65%;
-
-    --accent: 270 91% 70%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 270 20% 22%;
-    --input: 270 20% 22%;
-    --ring: 270 91% 70%;
-
-    --success: 142 76% 50%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 92% 60%;
-    --warning-foreground: 0 0% 100%;
-
-    --gradient-primary: linear-gradient(135deg, hsl(270 91% 60%), hsl(280 91% 70%));
-    --gradient-background: linear-gradient(180deg, hsl(270 91% 60%), hsl(280 91% 55%));
-    --gradient-accent: linear-gradient(135deg, hsl(24 100% 60%), hsl(30 100% 70%));
-    
-    --shadow-elegant: 0 4px 24px -4px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 40px hsl(270 91% 70% / 0.4);
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 16%;
+    --card-foreground: 210 40% 98%;
+    --card-muted: 222 47% 14%;
+    --primary: 270 91% 65%;
+    --primary-hover: 270 91% 55%;
   }
 }
 
@@ -115,6 +79,20 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: radial-gradient(ellipse at top, hsl(270 91% 60% / 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(222 47% 8%) 100%);
+    background-attachment: fixed;
+  }
+
+  /* Tabular numbers for timers */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Focus ring utility */
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
   }
 }

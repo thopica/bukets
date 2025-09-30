@@ -11,33 +11,32 @@ interface HintBarProps {
 
 const HintBar = ({ currentHint, hintsRemaining, onRequestHint, onDismissHint }: HintBarProps) => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {currentHint && (
-        <Alert className="bg-warning/10 border-warning animate-slide-up p-2.5 rounded-2xl border-0 shadow-md">
-          <Lightbulb className="h-3.5 w-3.5 text-warning" />
-          <AlertDescription className="flex items-start justify-between gap-2">
-            <span className="flex-1 text-xs leading-snug text-foreground">{currentHint}</span>
+        <Alert className="bg-warning/10 border-warning/30 animate-slide-up p-4 rounded-xl shadow-sm">
+          <Lightbulb className="h-5 w-5 text-warning" style={{ strokeWidth: '1.5px' }} />
+          <AlertDescription className="flex items-start justify-between gap-3">
+            <span className="flex-1 text-sm leading-relaxed text-card-foreground">{currentHint}</span>
             <Button
               variant="ghost"
               size="icon"
-              className="h-5 w-5 -mt-0.5"
+              className="h-6 w-6 hover:bg-warning/20 rounded-lg"
               onClick={onDismissHint}
             >
-              <X className="h-3 w-3" />
+              <X className="h-4 w-4" />
             </Button>
           </AlertDescription>
         </Alert>
       )}
 
       <Button
-        variant="outline"
+        variant="ghost"
         onClick={onRequestHint}
         disabled={hintsRemaining === 0 || !!currentHint}
-        className="w-full h-9 text-xs bg-white hover:bg-muted border-0 shadow-md rounded-2xl"
-        size="sm"
+        className="w-full h-10 text-sm font-medium hover:bg-muted rounded-xl transition-all duration-150"
       >
-        <Lightbulb className="mr-1.5 h-3.5 w-3.5" />
-        Need a Hint? ({hintsRemaining} left)
+        <Lightbulb className="mr-2 h-5 w-5" style={{ strokeWidth: '1.5px' }} />
+        Need a hint? ({hintsRemaining} left)
       </Button>
     </div>
   );

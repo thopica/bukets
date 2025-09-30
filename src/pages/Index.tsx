@@ -50,6 +50,7 @@ const Index = () => {
   const [showResults, setShowResults] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+  const [incorrectGuess, setIncorrectGuess] = useState<number | null>(null);
 
   const maxHints = 3;
   const totalQuizTime = 160; // 2:40 minutes in seconds
@@ -164,6 +165,7 @@ const Index = () => {
       setScore((prev) => prev + pointsEarned);
       setTimeRemaining(24);
       setCurrentHint(undefined);
+      setIncorrectGuess(null);
       
       if (timeRemaining >= 23) {
         toast.success("🏀 BUZZER BEATER! +" + pointsEarned + " points", {
@@ -180,6 +182,12 @@ const Index = () => {
         setTimeout(() => setShowResults(true), 1000);
       }
     } else {
+      // Show shake animation on first unanswered slot
+      const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
+      if (unansweredIndex !== -1) {
+        setIncorrectGuess(unansweredIndex + 1);
+        setTimeout(() => setIncorrectGuess(null), 300);
+      }
       toast.error("Not found. Try again!");
     }
   };
@@ -212,10 +220,10 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary via-primary-dark to-primary-dark flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
       
-      <main className="container max-w-5xl mx-auto px-3 py-3 flex-1 flex flex-col gap-3 overflow-hidden">
+      <main className="container max-w-5xl mx-auto px-6 py-6 flex-1 flex flex-col gap-5 overflow-hidden">
         <QuizHeader
           title={QUIZ_DATA.title}
           description={QUIZ_DATA.description}
@@ -226,18 +234,22 @@ const Index = () => {
           streak={streak}
           hintsUsed={hintsUsed}
           maxHints={maxHints}
-          playerTimeRemaining={timeRemaining}
+          onSubmit={() => {
+            const input = document.querySelector('input[type="text"]') as HTMLInputElement;
+            if (input && input.value.trim()) {
+              handleGuess(input.value.trim());
+            }
+          }}
+          isDisabled={isCompleted}
         />
 
         <GuessInput onGuess={handleGuess} disabled={isCompleted} />
 
-        <div className="grid md:grid-cols-[1fr_280px] gap-3 flex-1 overflow-hidden">
-          <div className="flex flex-col gap-3 overflow-y-auto">
-            <AnswerGrid answers={userAnswers} />
-          </div>
+        <div className="flex-1 overflow-y-auto -mx-6 px-6">
+          <AnswerGrid answers={userAnswers} focusedSlot={incorrectGuess || undefined} />
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="space-y-3 pt-4 border-t border-border">
           <HintBar
             currentHint={currentHint}
             hintsRemaining={maxHints - hintsUsed}
@@ -249,7 +261,7 @@ const Index = () => {
             <Button
               onClick={() => setShowResults(true)}
               variant="secondary"
-              className="w-full bg-white text-primary hover:bg-muted shadow-md rounded-2xl"
+              className="w-full h-12 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold rounded-xl shadow-md"
             >
               View Results
             </Button>
