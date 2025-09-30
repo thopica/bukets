@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
-import QuizCard from "@/components/quiz/QuizCard";
+import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
 import GuessInput from "@/components/quiz/GuessInput";
-import ScoreStrip from "@/components/quiz/ScoreStrip";
 import HintBar from "@/components/quiz/HintBar";
 import ResultsModal from "@/components/quiz/ResultsModal";
-import OverallTimer from "@/components/quiz/OverallTimer";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
@@ -218,23 +216,17 @@ const Index = () => {
       <Header />
       
       <main className="container max-w-5xl mx-auto px-3 py-3 flex-1 flex flex-col gap-3 overflow-hidden">
-        <QuizCard
+        <QuizHeader
           title={QUIZ_DATA.title}
           description={QUIZ_DATA.description}
           date={QUIZ_DATA.date}
-        />
-
-        <OverallTimer
           timeRemaining={overallTimeRemaining}
           totalTime={totalQuizTime}
-        />
-
-        <ScoreStrip
           score={score}
           streak={streak}
           hintsUsed={hintsUsed}
           maxHints={maxHints}
-          timeRemaining={timeRemaining}
+          playerTimeRemaining={timeRemaining}
         />
 
         <div className="grid md:grid-cols-[1fr_280px] gap-3 flex-1 overflow-hidden">
