@@ -15,7 +15,7 @@ interface AnswerGridProps {
 
 const AnswerGrid = ({ answers }: AnswerGridProps) => {
   return (
-    <div className="grid gap-2">
+    <div className="grid grid-cols-2 gap-2">
       {answers.map((answer) => (
         <Card
           key={answer.rank}
