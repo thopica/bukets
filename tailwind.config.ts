@@ -55,11 +55,14 @@ export default {
         },
         warning: {
           DEFAULT: "hsl(var(--warning))",
-          foreground: "hsl(var(--warning-foreground))",
         },
         danger: {
           DEFAULT: "hsl(var(--danger))",
-          foreground: "hsl(var(--danger-foreground))",
+          light: "hsl(var(--danger-light))",
+        },
+        slate: {
+          200: "hsl(220 13% 91%)",
+          800: "hsl(215 25% 27%)",
         },
       },
       borderRadius: {

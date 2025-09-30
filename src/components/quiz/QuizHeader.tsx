@@ -41,64 +41,61 @@ const QuizHeader = ({
     return "bg-danger";
   };
 
-  const showWarning = progressPercentage <= 10;
-
   return (
-    <Card className="p-5 bg-card shadow-md border-0 rounded-2xl">
-      {/* Zone 1: Title row */}
-      <div className="flex items-start justify-between gap-4 mb-5">
+    <Card className="p-6 bg-card shadow-md border-0 rounded-2xl">
+      {/* Title row with Submit pill button */}
+      <div className="flex items-start justify-between gap-6 mb-6">
         <div className="flex-1 min-w-0">
-          <h2 className="text-base font-semibold text-card-foreground mb-1">{title}</h2>
-          <h1 className="text-2xl font-bold text-card-foreground leading-tight">{description}</h1>
+          <p className="text-[15px] text-muted-foreground mb-2">{title}</p>
+          <h1 className="text-[40px] font-bold text-card-foreground leading-tight">{description}</h1>
         </div>
         <Button 
           onClick={onSubmit}
           disabled={isDisabled}
-          className="bg-primary hover:bg-primary-hover text-primary-foreground px-6 h-10 rounded-xl font-semibold shadow-sm transition-all duration-150"
+          className="bg-primary hover:bg-primary-hover text-primary-foreground px-8 h-12 rounded-full font-semibold shadow-sm transition-all duration-150 focus:ring-2 focus:ring-primary focus:ring-offset-2"
         >
           Submit
         </Button>
       </div>
 
-      {/* Zone 2: Meta row - stat pills */}
-      <div className="flex flex-wrap items-center gap-3 mb-4">
-        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-card-muted rounded-lg">
+      {/* Stat pills on single row */}
+      <div className="flex flex-wrap items-center gap-3 mb-5">
+        <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
           <Calendar className="h-5 w-5 text-muted-foreground" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-sm text-card-foreground">{date}</span>
+          <span className="text-[15px] text-card-foreground">{date}</span>
         </div>
         
-        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-card-muted rounded-lg">
+        <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
           <Flame className="h-5 w-5 text-secondary" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-sm text-card-foreground font-medium">{streak} day streak</span>
+          <span className="text-[15px] text-card-foreground font-medium">{streak} day streak</span>
         </div>
         
-        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-card-muted rounded-lg">
+        <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
           <Lightbulb className="h-5 w-5 text-warning" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-sm text-card-foreground font-medium">{maxHints - hintsUsed} hints left</span>
+          <span className="text-[15px] text-card-foreground font-medium">{maxHints - hintsUsed} hints left</span>
         </div>
         
-        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-card-muted rounded-lg">
+        <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
           <Clock className="h-5 w-5 text-muted-foreground" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-sm text-card-foreground font-medium tabular-nums">
+          <span className="text-[15px] text-card-foreground font-medium tabular-nums">
             {minutesElapsed}:{secondsElapsed.toString().padStart(2, '0')} elapsed
           </span>
         </div>
       </div>
 
-      {/* Zone 3: Countdown progress bar */}
+      {/* Simple progress bar */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-muted-foreground">Time Remaining</span>
-          <span className={`text-sm font-bold tabular-nums ${
+          <span className="text-[15px] text-muted-foreground">Time remaining</span>
+          <span className={`text-[15px] font-semibold tabular-nums ${
             progressPercentage > 30 ? 'text-success' :
             progressPercentage > 10 ? 'text-warning' :
             'text-danger'
           }`}>
             {minutes}:{seconds.toString().padStart(2, '0')}
-            {showWarning && <span className="ml-2 text-danger animate-pulse">Time running out!</span>}
           </span>
         </div>
-        <div className="relative h-2 w-full overflow-hidden rounded-full bg-muted">
+        <div className="relative h-2 w-full overflow-hidden rounded-full bg-secondary">
           <div 
             className={`h-full transition-all duration-300 ${getProgressColor()}`}
             style={{ width: `${progressPercentage}%` }}

@@ -24,40 +24,40 @@ const AnswerGrid = ({ answers, focusedSlot }: AnswerGridProps) => {
         return (
           <Card
             key={answer.rank}
-            className={`p-4 transition-all duration-150 border rounded-2xl ${
+            className={`p-5 transition-all duration-150 rounded-2xl ${
               isCorrect
-                ? "bg-success/10 border-success shadow-md animate-bounce-in"
+                ? "bg-card border-[2px] border-success shadow-md animate-bounce-in"
                 : isFocused
-                ? "bg-card border-danger ring-2 ring-danger animate-shake"
+                ? "bg-card border-[2px] border-danger-light shadow-sm animate-shake"
                 : isLocked
-                ? "bg-card border-dashed border-border shadow-sm"
-                : "bg-card border-border shadow-sm"
+                ? "bg-card border-[2px] border-secondary shadow-sm"
+                : "bg-card border-[2px] border-secondary shadow-sm"
             }`}
           >
             <div className="flex items-center gap-3">
-              {/* Ranking badge */}
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary font-bold text-sm flex-shrink-0">
+              {/* Left badge for rank */}
+              <div className="flex items-center justify-center min-w-[32px] h-8 px-2 rounded-lg bg-card-muted text-card-foreground font-bold text-sm">
                 #{answer.rank}
               </div>
               
               {/* Content */}
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 min-w-0 flex items-center gap-2">
                 {answer.playerName ? (
-                  <div className="flex items-center gap-2">
+                  <>
                     {isCorrect && (
                       <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
                     )}
-                    <span className={`font-semibold text-sm truncate ${
-                      isCorrect ? "text-success" : "text-card-foreground"
+                    <span className={`font-semibold text-[15px] truncate ${
+                      isCorrect ? "text-slate-800" : "text-card-foreground"
                     }`}>
                       {answer.playerName}
                     </span>
-                  </div>
+                  </>
                 ) : (
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <Lock className="h-4 w-4 flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
-                    <span className="text-sm truncate">Rank #{answer.rank}</span>
-                  </div>
+                  <>
+                    <Lock className="h-5 w-5 flex-shrink-0 text-muted-foreground" style={{ strokeWidth: '1.5px' }} />
+                    <span className="text-[15px] text-muted-foreground truncate">Rank #{answer.rank}</span>
+                  </>
                 )}
               </div>
             </div>

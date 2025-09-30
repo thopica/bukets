@@ -223,7 +223,7 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
       
-      <main className="container max-w-5xl mx-auto px-6 py-6 flex-1 flex flex-col gap-5 overflow-hidden">
+      <main className="container max-w-5xl mx-auto px-6 py-6 flex-1 flex flex-col gap-6 overflow-hidden">
         <QuizHeader
           title={QUIZ_DATA.title}
           description={QUIZ_DATA.description}
@@ -245,28 +245,25 @@ const Index = () => {
 
         <GuessInput onGuess={handleGuess} disabled={isCompleted} />
 
-        <div className="flex-1 overflow-y-auto -mx-6 px-6">
+        <div className="flex-1 overflow-y-auto">
           <AnswerGrid answers={userAnswers} focusedSlot={incorrectGuess || undefined} />
         </div>
 
-        <div className="space-y-3 pt-4 border-t border-border">
-          <HintBar
-            currentHint={currentHint}
-            hintsRemaining={maxHints - hintsUsed}
-            onRequestHint={handleRequestHint}
-            onDismissHint={() => setCurrentHint(undefined)}
-          />
+        <HintBar
+          currentHint={currentHint}
+          hintsRemaining={maxHints - hintsUsed}
+          onRequestHint={handleRequestHint}
+          onDismissHint={() => setCurrentHint(undefined)}
+        />
 
-          {isCompleted && (
-            <Button
-              onClick={() => setShowResults(true)}
-              variant="secondary"
-              className="w-full h-12 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold rounded-xl shadow-md"
-            >
-              View Results
-            </Button>
-          )}
-        </div>
+        {isCompleted && (
+          <Button
+            onClick={() => setShowResults(true)}
+            className="w-full h-12 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold rounded-full shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          >
+            View results
+          </Button>
+        )}
       </main>
 
       <ResultsModal

@@ -85,10 +85,10 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-card/80 backdrop-blur-lg shadow-sm">
-      <div className="container flex h-14 items-center justify-between px-6">
+      <div className="container flex h-16 items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Trophy className="h-5 w-5 text-primary" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-lg font-bold text-card-foreground">NBA Daily Quiz</span>
+          <span className="text-base font-semibold text-card-foreground">NBA Daily Quiz</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -138,9 +138,9 @@ const Header = () => {
               variant="secondary" 
               size="sm" 
               onClick={() => navigate("/auth")} 
-              className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold rounded-lg h-9 px-4"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold rounded-full h-10 px-6 focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
-              Sign In
+              Sign in
             </Button>
           )}
         </div>
@@ -167,8 +167,12 @@ const Header = () => {
                   </Button>
                 </>
               ) : (
-                <Button variant="secondary" className="mt-4" onClick={() => navigate("/auth")}>
-                  Sign In
+                <Button 
+                  variant="secondary" 
+                  className="mt-4 rounded-full h-10 px-6 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold" 
+                  onClick={() => navigate("/auth")}
+                >
+                  Sign in
                 </Button>
               )}
             </nav>

@@ -8,57 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Refined neutral system with purple accent */
+    /* Nubank-inspired refined palette */
     --background: 222 47% 11%; /* #0F172A slate-900 */
     --foreground: 210 40% 98%;
 
     --card: 0 0% 100%; /* #FFFFFF */
     --card-foreground: 222 47% 11%;
-    --card-muted: 210 40% 98%; /* #F8FAFC */
+    --card-muted: 248 6% 97%; /* #F8FAFC */
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Purple accent - 600-700 range */
-    --primary: 270 91% 60%;
+    /* Purple - exact values */
+    --primary: 262 83% 58%; /* #7C3AED purple-600 */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 270 91% 50%;
+    --primary-hover: 262 83% 48%;
     
-    /* State colors */
-    --secondary: 24 100% 65%;
-    --secondary-foreground: 0 0% 100%;
+    /* State colors - exact values */
+    --success: 142 76% 45%; /* #22C55E green-500 */
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%; /* amber-400 */
+    --danger: 0 72% 51%; /* #EF4444 rose-500 */
+    --danger-light: 0 86% 65%; /* rose-400 */
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 20% 45%;
+    --secondary: 220 13% 91%; /* slate-200 */
+    --secondary-foreground: 222 47% 11%;
 
-    --accent: 270 91% 60%;
+    --muted: 220 13% 91%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 262 83% 58%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 270 91% 60%;
+    --border: 220 13% 91%; /* slate-200 */
+    --input: 220 13% 91%;
+    --ring: 262 83% 58%; /* purple-500 */
 
-    --radius: 1rem;
+    --radius: 1rem; /* 16px for cards */
 
-    /* Result states */
-    --success: 142 76% 45%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 92% 55%;
-    --warning-foreground: 222 47% 11%;
-    --danger: 0 84% 60%;
-    --danger-foreground: 0 0% 100%;
-
-    /* Shadows - elevation scale */
+    /* Shadows - simple scale */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     /* Animations */
     --transition-smooth: all 0.15s ease-out;
-    --transition-exit: all 0.15s ease-in;
   }
 
   .dark {
