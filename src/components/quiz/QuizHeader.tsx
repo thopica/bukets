@@ -36,7 +36,7 @@ const QuizHeader = ({
   const secondsElapsed = timeElapsed % 60;
   
   const getProgressColor = () => {
-    if (progressPercentage > 30) return "bg-success";
+    if (progressPercentage > 30) return "bg-gold";
     if (progressPercentage > 10) return "bg-warning";
     return "bg-danger";
   };
@@ -61,12 +61,12 @@ const QuizHeader = ({
       {/* Stat pills on single row */}
       <div className="flex flex-wrap items-center gap-3 mb-5">
         <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
-          <Calendar className="h-5 w-5 text-muted-foreground" style={{ strokeWidth: '1.5px' }} />
+          <Calendar className="h-5 w-5 text-primary" style={{ strokeWidth: '1.5px' }} />
           <span className="text-[15px] text-card-foreground">{date}</span>
         </div>
         
-        <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
-          <Flame className="h-5 w-5 text-secondary" style={{ strokeWidth: '1.5px' }} />
+        <div className="flex items-center gap-2 px-4 py-2 bg-gold/10 rounded-full border border-gold/20">
+          <Flame className="h-5 w-5 text-gold" style={{ strokeWidth: '1.5px' }} />
           <span className="text-[15px] text-card-foreground font-medium">{streak} day streak</span>
         </div>
         
@@ -88,7 +88,7 @@ const QuizHeader = ({
         <div className="flex items-center justify-between">
           <span className="text-[15px] text-muted-foreground">Time remaining</span>
           <span className={`text-[15px] font-semibold tabular-nums ${
-            progressPercentage > 30 ? 'text-success' :
+            progressPercentage > 30 ? 'text-gold' :
             progressPercentage > 10 ? 'text-warning' :
             'text-danger'
           }`}>

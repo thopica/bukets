@@ -84,13 +84,13 @@ const ResultsModal = ({
                 key={answer.rank}
                 className={`p-4 border-[2px] rounded-2xl shadow-sm ${
                   answer.isCorrect 
-                    ? "bg-success/5 border-success" 
+                    ? "bg-gold/5 border-gold" 
                     : "bg-danger/5 border-danger"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   {answer.isCorrect ? (
-                    <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
+                    <CheckCircle2 className="h-5 w-5 text-gold flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
                   ) : (
                     <XCircle className="h-5 w-5 text-danger flex-shrink-0" style={{ strokeWidth: '1.5px' }} />
                   )}
