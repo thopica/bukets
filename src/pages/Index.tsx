@@ -235,25 +235,25 @@ const Index = () => {
           <div className="flex flex-col gap-3 overflow-y-auto">
             <AnswerGrid answers={userAnswers} />
           </div>
+        </div>
 
-          <div className="flex flex-col gap-3">
-            <HintBar
-              currentHint={currentHint}
-              hintsRemaining={maxHints - hintsUsed}
-              onRequestHint={handleRequestHint}
-              onDismissHint={() => setCurrentHint(undefined)}
-            />
+        <div className="flex flex-col gap-3">
+          <HintBar
+            currentHint={currentHint}
+            hintsRemaining={maxHints - hintsUsed}
+            onRequestHint={handleRequestHint}
+            onDismissHint={() => setCurrentHint(undefined)}
+          />
 
-            {isCompleted && (
-              <Button
-                onClick={() => setShowResults(true)}
-                variant="secondary"
-                className="w-full bg-white text-primary hover:bg-muted shadow-md rounded-2xl"
-              >
-                View Results
-              </Button>
-            )}
-          </div>
+          {isCompleted && (
+            <Button
+              onClick={() => setShowResults(true)}
+              variant="secondary"
+              className="w-full bg-white text-primary hover:bg-muted shadow-md rounded-2xl"
+            >
+              View Results
+            </Button>
+          )}
         </div>
       </main>
 
