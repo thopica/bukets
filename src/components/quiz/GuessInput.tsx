@@ -43,7 +43,7 @@ const GuessInput = ({ onGuess, disabled = false }: GuessInputProps) => {
           onKeyDown={handleKeyDown}
           placeholder="Type an NBA player name..."
           disabled={disabled}
-          className="pl-14 h-14 text-[18px] bg-card border-secondary rounded-full shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:border-primary transition-all duration-150 placeholder:text-muted-foreground"
+          className="pl-14 h-14 text-[18px] text-card-foreground bg-card border-secondary rounded-full shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:border-primary transition-all duration-150 placeholder:text-muted-foreground"
         />
       </div>
     </form>
