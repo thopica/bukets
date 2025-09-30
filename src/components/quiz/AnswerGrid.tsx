@@ -19,10 +19,10 @@ const AnswerGrid = ({ answers }: AnswerGridProps) => {
       {answers.map((answer) => (
         <Card
           key={answer.rank}
-          className={`p-2.5 transition-all duration-300 ${
+          className={`p-2.5 transition-all duration-300 border-0 shadow-md rounded-2xl ${
             answer.isCorrect
-              ? "bg-success/10 border-success animate-bounce-in"
-              : "bg-card hover:bg-muted/50"
+              ? "bg-success/15 animate-bounce-in"
+              : "bg-white hover:bg-muted/30"
           }`}
         >
           <div className="flex items-center gap-3">
@@ -38,7 +38,7 @@ const AnswerGrid = ({ answers }: AnswerGridProps) => {
                   ) : (
                     <Circle className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                   )}
-                  <span className={`font-semibold text-sm truncate ${answer.isCorrect ? "text-success" : ""}`}>
+                  <span className={`font-semibold text-sm truncate ${answer.isCorrect ? "text-success" : "text-foreground"}`}>
                     {answer.playerName}
                   </span>
                 </div>

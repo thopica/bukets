@@ -18,7 +18,7 @@ const OverallTimer = ({ timeRemaining, totalTime }: OverallTimerProps) => {
   };
 
   return (
-    <div className="bg-card rounded-lg border-2 border-border p-2 animate-fade-in">
+    <div className="bg-white rounded-2xl border-0 shadow-lg p-2 animate-fade-in">
       <div className="flex items-center justify-between mb-1.5">
         <div className="flex items-center gap-1.5">
           <Clock className={`h-4 w-4 ${getTimerColor()}`} />
@@ -28,7 +28,7 @@ const OverallTimer = ({ timeRemaining, totalTime }: OverallTimerProps) => {
           {minutes}:{seconds.toString().padStart(2, '0')}
         </div>
       </div>
-      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted">
         <div 
           className={`h-full transition-all duration-300 ${
             progressPercentage > 50 ? 'bg-success' :

@@ -13,10 +13,10 @@ const HintBar = ({ currentHint, hintsRemaining, onRequestHint, onDismissHint }: 
   return (
     <div className="space-y-2">
       {currentHint && (
-        <Alert className="bg-warning/10 border-warning animate-slide-up p-2.5">
+        <Alert className="bg-warning/10 border-warning animate-slide-up p-2.5 rounded-2xl border-0 shadow-md">
           <Lightbulb className="h-3.5 w-3.5 text-warning" />
           <AlertDescription className="flex items-start justify-between gap-2">
-            <span className="flex-1 text-xs leading-snug">{currentHint}</span>
+            <span className="flex-1 text-xs leading-snug text-foreground">{currentHint}</span>
             <Button
               variant="ghost"
               size="icon"
@@ -33,7 +33,7 @@ const HintBar = ({ currentHint, hintsRemaining, onRequestHint, onDismissHint }: 
         variant="outline"
         onClick={onRequestHint}
         disabled={hintsRemaining === 0 || !!currentHint}
-        className="w-full h-9 text-xs"
+        className="w-full h-9 text-xs bg-white hover:bg-muted border-0 shadow-md rounded-2xl"
         size="sm"
       >
         <Lightbulb className="mr-1.5 h-3.5 w-3.5" />

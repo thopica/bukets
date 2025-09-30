@@ -214,7 +214,7 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-primary via-primary-dark to-primary-dark flex flex-col">
       <Header />
       
       <main className="container max-w-5xl mx-auto px-3 py-3 flex-1 flex flex-col gap-3 overflow-hidden">
@@ -254,7 +254,7 @@ const Index = () => {
               <Button
                 onClick={() => setShowResults(true)}
                 variant="secondary"
-                className="w-full"
+                className="w-full bg-white text-primary hover:bg-muted shadow-md rounded-2xl"
               >
                 View Results
               </Button>

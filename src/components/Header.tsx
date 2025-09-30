@@ -73,8 +73,8 @@ const Header = () => {
           to={link.path}
           className={`${
             isActive(link.path)
-              ? "text-primary font-semibold"
-              : "text-muted-foreground hover:text-foreground"
+              ? "text-white font-semibold"
+              : "text-white/80 hover:text-white"
           } transition-colors ${mobile ? "block py-2 text-lg" : ""}`}
         >
           {link.label}
@@ -84,11 +84,11 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/10 backdrop-blur-lg">
       <div className="container flex h-12 items-center justify-between px-3">
         <Link to="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-          <Trophy className="h-5 w-5 text-secondary" />
-          <span className="text-lg font-bold">NBA Daily Quiz</span>
+          <Trophy className="h-5 w-5 text-white" />
+          <span className="text-lg font-bold text-white">NBA Daily Quiz</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -134,7 +134,7 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button variant="secondary" size="sm" onClick={() => navigate("/auth")}>
+            <Button variant="secondary" size="sm" onClick={() => navigate("/auth")} className="bg-white text-primary hover:bg-white/90">
               Sign In
             </Button>
           )}
@@ -143,7 +143,7 @@ const Header = () => {
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>

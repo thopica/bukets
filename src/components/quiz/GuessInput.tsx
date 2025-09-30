@@ -28,10 +28,14 @@ const GuessInput = ({ onGuess, disabled = false }: GuessInputProps) => {
           onChange={(e) => setGuess(e.target.value)}
           placeholder="Type an NBA player name..."
           disabled={disabled}
-          className="pl-9 h-10 text-sm"
+          className="pl-9 h-10 text-sm bg-white shadow-md border-0 rounded-2xl"
         />
       </div>
-      <Button type="submit" disabled={disabled || !guess.trim()} className="h-10 px-6">
+      <Button 
+        type="submit" 
+        disabled={disabled || !guess.trim()} 
+        className="h-10 px-6 rounded-2xl bg-primary hover:bg-primary-dark shadow-md"
+      >
         Submit
       </Button>
     </form>

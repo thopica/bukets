@@ -11,21 +11,21 @@ interface ScoreStripProps {
 
 const ScoreStrip = ({ score, streak, hintsUsed, maxHints, timeRemaining }: ScoreStripProps) => {
   return (
-    <Card className="p-2 bg-gradient-to-r from-primary/5 to-secondary/5">
+    <Card className="p-2 bg-white shadow-lg border-0 rounded-2xl">
       <div className="grid grid-cols-4 gap-2">
         <div className="flex items-center gap-1.5">
           <Trophy className="h-4 w-4 text-secondary" />
           <div>
             <p className="text-[10px] text-muted-foreground">Score</p>
-            <p className="text-base font-bold">{score}</p>
+            <p className="text-base font-bold text-foreground">{score}</p>
           </div>
         </div>
 
         <div className="flex items-center gap-1.5">
-          <Flame className="h-4 w-4 text-orange-500" />
+          <Flame className="h-4 w-4 text-secondary" />
           <div>
             <p className="text-[10px] text-muted-foreground">Streak</p>
-            <p className="text-base font-bold">{streak}d</p>
+            <p className="text-base font-bold text-foreground">{streak}d</p>
           </div>
         </div>
 
@@ -33,7 +33,7 @@ const ScoreStrip = ({ score, streak, hintsUsed, maxHints, timeRemaining }: Score
           <Lightbulb className="h-4 w-4 text-warning" />
           <div>
             <p className="text-[10px] text-muted-foreground">Hints</p>
-            <p className="text-base font-bold">
+            <p className="text-base font-bold text-foreground">
               {maxHints - hintsUsed}/{maxHints}
             </p>
           </div>
@@ -43,7 +43,7 @@ const ScoreStrip = ({ score, streak, hintsUsed, maxHints, timeRemaining }: Score
           <Timer className="h-4 w-4 text-primary" />
           <div>
             <p className="text-[10px] text-muted-foreground">Time</p>
-            <p className="text-base font-bold">{timeRemaining}s</p>
+            <p className="text-base font-bold text-foreground">{timeRemaining}s</p>
           </div>
         </div>
       </div>
