@@ -100,7 +100,7 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
                     onKeyDown={(e) => handleKeyDown(e, answer.rank)}
                     placeholder="Player Name"
                     disabled={disabled}
-                    className="h-8 text-[15px] text-text-primary bg-transparent border-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-0 placeholder:text-text-secondary"
+                    className="h-9 text-[15px] text-text-primary bg-card-muted border border-border rounded-lg px-3 focus:ring-2 focus:ring-purple focus:border-purple transition-all duration-150 placeholder:text-text-secondary"
                   />
                 )}
               </div>
