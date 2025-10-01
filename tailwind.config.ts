@@ -19,14 +19,15 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        purple: {
-          DEFAULT: "hsl(var(--purple))",
-          hover: "hsl(var(--purple-hover))",
+        orange: {
+          DEFAULT: "hsl(var(--orange))",
+          hover: "hsl(var(--orange-hover))",
         },
         gold: {
           DEFAULT: "hsl(var(--gold))",
           foreground: "hsl(var(--accent-gold-foreground))",
         },
+        timerWarning: "hsl(var(--timer-warning))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

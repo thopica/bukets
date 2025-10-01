@@ -8,82 +8,87 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Nubank-inspired color system */
-    --purple: 271 81% 56%; /* #8B5CF6 Vibrant Purple */
-    --purple-hover: 271 91% 65%; /* #A78BFA lighter purple */
-    --gold: 45 97% 58%; /* #FDB927 Lakers Gold */
+    /* Basketball-inspired color system */
+    --orange: 17 100% 60%; /* #FF6B35 Basketball orange */
+    --orange-hover: 17 100% 63%; /* #FF8C42 lighter orange */
+    --gold: 43 93% 57%; /* #F7B32B Gold */
     
-    --background: 271 81% 56%; /* #8B5CF6 vibrant purple canvas */
-    --foreground: 0 0% 98%; /* #FAFAFA on dark */
+    --background: 232 58% 10%; /* #0A0E27 Dark court */
+    --foreground: 0 0% 100%; /* #FFFFFF */
 
-    --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 217 52% 12%; /* #0F1825 softer primary text */
-    --card-muted: 270 100% 98%; /* #FAF5FF very light purple */
+    --card: 231 37% 17%; /* #1A1F3A Surface */
+    --card-foreground: 0 0% 100%; /* #FFFFFF */
+    --card-muted: 231 37% 20%; /* Slightly lighter surface */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 217 52% 9%;
+    --popover: 231 37% 17%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Primary - Vibrant Purple */
-    --primary: 271 81% 56%;
+    /* Primary - Basketball Orange */
+    --primary: 17 100% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 271 91% 65%;
+    --primary-hover: 17 100% 63%;
     
     /* Accent - Gold */
-    --accent-gold: 45 97% 58%;
-    --accent-gold-foreground: 217 52% 9%;
+    --accent-gold: 43 93% 57%;
+    --accent-gold-foreground: 232 58% 10%;
     
     /* Text colors */
-    --text-primary: 217 52% 12%; /* #0F1825 softer primary */
-    --text-secondary: 215 16% 50%; /* #6B7280 softer labels */
-    --text-on-dark: 0 0% 98%; /* #FAFAFA softer white */
+    --text-primary: 0 0% 100%; /* #FFFFFF */
+    --text-secondary: 212 33% 78%; /* #B8C5D6 */
+    --text-on-dark: 0 0% 100%; /* #FFFFFF */
     
     /* Icons and borders */
-    --icon-muted: 214 15% 70%; /* #A1ADB8 softer icons */
-    --border: 220 13% 88%; /* #DFE1E5 softer border */
-    --border-muted: 220 13% 88%;
+    --icon-muted: 212 33% 78%; /* #B8C5D6 */
+    --border: 231 37% 25%; /* Slightly lighter than surface */
+    --border-muted: 231 37% 22%;
     
     /* Badge */
-    --badge-lavender: 270 100% 95%; /* #F3E8FF */
-    --badge-text: 271 81% 56%; /* #8B5CF6 */
+    --badge-lavender: 43 93% 57%; /* Gold */
+    --badge-text: 232 58% 10%; /* Dark text on gold */
     
     /* Progress */
-    --progress-track: 220 13% 91%; /* #E5E7EB */
+    --progress-track: 231 37% 25%;
     
     /* State colors */
-    --success: 142 71% 45%; /* #22C55E */
+    --success: 165 100% 43%; /* #00D9A5 */
     --success-foreground: 0 0% 100%;
-    --danger: 0 84% 60%; /* #EF4444 */
+    --danger: 354 100% 64%; /* #FF4757 */
     --danger-foreground: 0 0% 100%;
+    --timer-warning: 38 100% 51%; /* #FFA502 */
     
     /* Navigation */
-    --nav-default: 214 32% 85%; /* #CBD5E1 */
+    --nav-default: 212 33% 78%; /* #B8C5D6 */
     --nav-hover: 0 0% 100%;
 
-    --secondary: 220 13% 91%;
-    --secondary-foreground: 217 52% 9%;
+    --secondary: 204 100% 27%; /* #004E89 Deep navy */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 25% 97%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 231 37% 20%;
+    --muted-foreground: 212 33% 78%;
 
-    --accent: 271 81% 56%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 43 93% 57%;
+    --accent-foreground: 232 58% 10%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 354 100% 64%;
     --destructive-foreground: 0 0% 100%;
 
-    --input: 220 13% 91%;
-    --ring: 271 81% 56%; /* Vibrant Purple for focus */
+    --input: 231 37% 25%;
+    --ring: 17 100% 60%; /* Basketball orange for focus */
 
     --radius: 1rem;
 
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
 
     --transition-smooth: all 0.15s ease-out;
+    
+    /* Gradients */
+    --gradient-cta: linear-gradient(135deg, hsl(17, 100%, 60%) 0%, hsl(17, 100%, 63%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(165, 100%, 43%) 0%, hsl(165, 100%, 38%) 100%);
   }
 
   .dark {
-    --background: 271 81% 56%;
+    --background: 232 58% 10%;
     --foreground: 0 0% 100%;
   }
 }
@@ -94,9 +99,8 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply text-foreground;
+    @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: linear-gradient(to top, #FFFFFF 0%, #F3E8FF 25%, #DDD6FE 50%, #C4B5FD 75%, #A78BFA 100%);
     min-height: 100vh;
   }
 
