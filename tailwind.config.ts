@@ -95,10 +95,28 @@ export default {
           muted: "hsl(var(--icon-muted))",
         },
       },
+      spacing: {
+        '1': '4px',
+        '2': '8px',
+        '3': '12px',
+        '4': '16px',
+        '6': '24px',
+        '8': '32px',
+        '12': '48px',
+      },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        'button': 'var(--radius-button)',
+        'card': 'var(--radius-card)',
+        'input': 'var(--radius-input)',
+        'small': 'var(--radius-small)',
+        'lg': '16px',
+        'md': '12px',
+        'sm': '8px',
+      },
+      boxShadow: {
+        'elevated': 'var(--shadow-elevated)',
+        'floating': 'var(--shadow-floating)',
+        'pressed': 'var(--shadow-pressed)',
       },
       keyframes: {
         "accordion-down": {

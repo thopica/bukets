@@ -75,12 +75,19 @@ All colors MUST be HSL.
     --input: 231 37% 25%;
     --ring: 17 100% 60%; /* Basketball orange for focus */
 
-    --radius: 1rem;
+    /* Border Radius */
+    --radius-button: 12px;
+    --radius-card: 16px;
+    --radius-input: 8px;
+    --radius-small: 6px;
 
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    /* Shadows */
+    --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-floating: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --shadow-pressed: 0 2px 6px rgba(0, 0, 0, 0.1);
 
     --transition-smooth: all 0.15s ease-out;
+    --transition-hover: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Gradients */
     --gradient-cta: linear-gradient(135deg, hsl(17, 100%, 60%) 0%, hsl(17, 100%, 63%) 100%);
@@ -153,7 +160,29 @@ All colors MUST be HSL.
 
   /* Focus ring utility */
   *:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
+
+  /* Interactive states utility classes */
+  .interactive-hover {
+    @apply transition-all duration-200 hover:brightness-110 hover:scale-[1.02];
+  }
+
+  .interactive-active {
+    @apply active:brightness-90 active:scale-[0.98];
+  }
+
+  .interactive-disabled {
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Spacing utilities */
+  .space-4 { @apply gap-1; }
+  .space-8 { @apply gap-2; }
+  .space-12 { @apply gap-3; }
+  .space-16 { @apply gap-4; }
+  .space-24 { @apply gap-6; }
+  .space-32 { @apply gap-8; }
+  .space-48 { @apply gap-12; }
 }
