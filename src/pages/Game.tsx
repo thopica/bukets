@@ -231,6 +231,8 @@ const Index = () => {
             date={QUIZ_DATA.date}
             timeRemaining={overallTimeRemaining}
             totalTime={totalQuizTime}
+            playerTimeRemaining={timeRemaining}
+            playerTotalTime={24}
             score={score}
             streak={streak}
             hintsUsed={hintsUsed}
