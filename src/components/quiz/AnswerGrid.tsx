@@ -37,7 +37,8 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
   }, [lastGuessRank, answers]);
 
   return (
-    <div className="grid grid-cols-1 gap-2">
+    <div className="border-2 border-white rounded-xl p-4">
+      <div className="grid grid-cols-1 gap-2">
       {answers.map((answer) => {
         const isRevealed = !!answer.playerName;
         const isCorrect = answer.isCorrect;
@@ -89,6 +90,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
           </div>
         );
       })}
+      </div>
     </div>
   );
 };
