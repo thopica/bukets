@@ -218,11 +218,11 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col animate-slide-up pb-32">
+    <div className="min-h-screen bg-background flex flex-col animate-slide-up pb-28">
       <Header />
       
       {/* Mobile-Optimized Layout: 15% Header, 50% Grid, 35% Input */}
-      <main className="container max-w-2xl mx-auto px-4 py-4 flex-1 flex flex-col gap-4 overflow-y-auto">
+      <main className="container max-w-2xl mx-auto px-4 py-2 flex-1 flex flex-col gap-2 overflow-y-auto">
         {/* Question Header - 15% */}
         <div className="shrink-0">
           <QuizHeader

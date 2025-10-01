@@ -31,14 +31,14 @@ const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining =
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-background border-t-2 border-border p-4 shadow-floating z-50">
-      <div className="container max-w-2xl mx-auto space-y-3">
+    <div className="fixed bottom-0 left-0 right-0 bg-background border-t-2 border-border p-3 shadow-floating z-50">
+      <div className="container max-w-2xl mx-auto space-y-2">
         {/* Hint Overlay - Slides up */}
         {currentHint && (
-          <div className="p-4 bg-timerWarning/10 border-2 border-timerWarning rounded-xl animate-slide-up shadow-elevated">
-            <div className="flex items-start gap-3">
-              <Lightbulb className="h-5 w-5 text-timerWarning flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-foreground flex-1">
+          <div className="p-3 bg-timerWarning/10 border-2 border-timerWarning rounded-xl animate-slide-up shadow-elevated">
+            <div className="flex items-start gap-2">
+              <Lightbulb className="h-4 w-4 text-timerWarning flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-foreground flex-1">
                 <span className="font-semibold">Hint:</span> {currentHint}
               </p>
             </div>
@@ -53,7 +53,7 @@ const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining =
             onKeyDown={handleKeyDown}
             placeholder="Type player name..."
             disabled={disabled}
-            className="h-14 text-lg text-foreground bg-card border-2 border-border rounded-xl px-5 focus:ring-2 focus:ring-orange focus:border-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated"
+            className="h-12 text-base text-foreground bg-card border-2 border-border rounded-xl px-4 focus:ring-2 focus:ring-orange focus:border-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated"
             autoFocus
           />
           <Button
@@ -61,16 +61,16 @@ const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining =
             disabled={disabled || hintsRemaining === 0 || !!currentHint}
             variant="outline"
             size="lg"
-            className="h-14 px-4 rounded-xl shrink-0 border-2 border-timerWarning text-timerWarning hover:bg-timerWarning/10"
+            className="h-12 px-3 rounded-xl shrink-0 border-2 border-timerWarning text-timerWarning hover:bg-timerWarning/10"
             title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}
           >
-            <Lightbulb className="h-6 w-6" />
+            <Lightbulb className="h-5 w-5" />
           </Button>
           <Button
             onClick={handleSubmit}
             disabled={disabled || !input.trim()}
             size="lg"
-            className="h-14 px-8 rounded-xl shrink-0 font-bold text-base"
+            className="h-12 px-6 rounded-xl shrink-0 font-bold text-sm"
           >
             <Send className="h-5 w-5" />
           </Button>
