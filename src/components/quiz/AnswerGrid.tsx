@@ -158,7 +158,13 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
             {!answer.playerName && timers[answer.rank] !== undefined && (
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-border">
                 <div 
-                  className="h-full bg-danger transition-all duration-100"
+                  className={`h-full transition-all duration-100 ${
+                    timers[answer.rank] > 15 
+                      ? 'bg-success' 
+                      : timers[answer.rank] > 8 
+                      ? 'bg-[#F59E0B]' 
+                      : 'bg-danger'
+                  }`}
                   style={{ width: `${timerProgress}%` }}
                 />
               </div>
