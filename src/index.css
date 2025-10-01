@@ -101,7 +101,49 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
     min-height: 100vh;
+  }
+
+  /* Typography scale */
+  h1 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 32px;
+    line-height: 38px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .text-small {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .text-micro {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .font-medium {
+    font-weight: 500;
   }
 
   /* Tabular numbers for timers */

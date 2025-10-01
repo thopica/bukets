@@ -13,6 +13,18 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'system-ui', 'sans-serif'],
+        display: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Segoe UI', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+      },
+      fontSize: {
+        'h1': ['32px', { lineHeight: '38px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h2': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'body': ['16px', { lineHeight: '24px' }],
+        'small': ['14px', { lineHeight: '20px' }],
+        'micro': ['12px', { lineHeight: '16px' }],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
