@@ -8,7 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, XCircle, Share2, Trophy, TrendingUp, Clock, Lightbulb, Zap, Flame } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { haptics } from "@/lib/haptics";
 import { useNavigate } from "react-router-dom";
@@ -46,7 +46,6 @@ const ResultsModal = ({
   speedBonus = 0,
   hintsUsed = 0,
 }: ResultsModalProps) => {
-  const { toast } = useToast();
   const navigate = useNavigate();
   const [displayScore, setDisplayScore] = useState(0);
 
@@ -101,8 +100,7 @@ ${emoji}
 Can you beat my score?`;
     
     navigator.clipboard.writeText(shareText);
-    toast({
-      title: "Results copied!",
+    toast.success("Results copied!", {
       description: "Share your score with friends",
     });
   };
