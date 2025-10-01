@@ -110,9 +110,6 @@ const Index = () => {
       };
       setUserAnswers(newAnswers);
       setLastGuessRank(correctAnswer.rank);
-      toast.error("Time's up! Player revealed", {
-        duration: 2000,
-      });
       
       // Check if all players are now revealed (either guessed or auto-revealed)
       const allRevealed = newAnswers.every((a) => a.playerName);
