@@ -16,7 +16,7 @@ const Index = () => {
       <main className="container max-w-2xl mx-auto px-4 py-6 flex-1 flex flex-col justify-center gap-6">
         {/* Hero Section - Punchy & Action-Oriented */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-32 h-32">
+          <div className="inline-flex items-center justify-center w-48 h-48">
             <img src={basketballPlayer} alt="Basketball player dunking" className="w-full h-full object-contain" />
           </div>
           
