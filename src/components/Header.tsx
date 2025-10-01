@@ -72,9 +72,9 @@ const Header = () => {
           to={link.path}
           className={`${
             isActive(link.path)
-              ? "text-nav-hover font-semibold border-b-2 border-purple"
-              : "text-nav hover:text-nav-hover"
-          } transition-colors text-sm ${mobile ? "block py-2 text-base" : ""}`}
+              ? "text-foreground font-semibold"
+              : "text-muted-foreground hover:text-foreground"
+          } transition-colors text-xs ${mobile ? "block py-2 text-sm" : ""}`}
         >
           {link.label}
         </Link>
@@ -83,15 +83,15 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b-2 border-gold bg-background backdrop-blur-lg shadow-sm">
-      <div className="container flex h-16 items-center justify-between px-6">
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
+      <div className="container flex h-14 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <Trophy className="h-5 w-5 text-purple" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-base font-semibold text-foreground">NBA Daily Quiz</span>
+          <Trophy className="h-5 w-5 text-orange" />
+          <span className="text-sm font-bold text-foreground">NBA Quiz</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-4">
           <NavLinks />
         </nav>
 
@@ -100,10 +100,10 @@ const Header = () => {
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                  <Avatar className="h-10 w-10">
+                <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                  <Avatar className="h-9 w-9">
                     <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email} />
-                    <AvatarFallback className="bg-badge-lavender text-badge-text">
+                    <AvatarFallback className="bg-orange/10 text-orange">
                       {user.email?.charAt(0).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
@@ -112,7 +112,7 @@ const Header = () => {
               <DropdownMenuContent align="end" className="w-56 bg-card">
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none text-card-foreground">
+                    <p className="text-sm font-medium leading-none text-foreground">
                       {user.user_metadata?.display_name || user.email?.split('@')[0]}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground">
@@ -134,10 +134,10 @@ const Header = () => {
             </DropdownMenu>
           ) : (
             <Button 
-              variant="secondary" 
+              variant="default" 
               size="sm" 
               onClick={() => navigate("/auth")} 
-              className="bg-purple hover:bg-purple-hover text-primary-foreground font-semibold rounded-full h-10 px-6 focus:ring-2 focus:ring-purple focus:ring-offset-2 transition-all duration-150 hover:shadow-[0_0_20px_rgba(253,185,39,0.4)]"
+              className="rounded-full h-9 px-5 font-semibold"
             >
               Sign in
             </Button>
@@ -147,7 +147,7 @@ const Header = () => {
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="hover:bg-card/10 rounded-lg text-foreground">
+            <Button variant="ghost" size="icon" className="h-9 w-9 rounded-lg">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
@@ -162,7 +162,7 @@ const Header = () => {
                   </Button>
                   <Button 
                     variant="secondary" 
-                    className="mt-4 rounded-full h-10 px-6 bg-purple hover:bg-purple-hover text-primary-foreground font-semibold" 
+                    className="mt-4 rounded-full h-10 px-6 font-semibold" 
                     onClick={handleSignOut}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -171,8 +171,8 @@ const Header = () => {
                 </>
               ) : (
                 <Button 
-                  variant="secondary" 
-                  className="mt-4 rounded-full h-10 px-6 bg-purple hover:bg-purple-hover text-primary-foreground font-semibold" 
+                  variant="default" 
+                  className="mt-4 rounded-full h-10 px-6 font-semibold" 
                   onClick={() => navigate("/auth")}
                 >
                   Sign in

@@ -221,36 +221,37 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col animate-slide-up">
       <Header />
       
-      <main className="container max-w-5xl mx-auto px-6 py-4 flex-1 flex flex-col gap-4 overflow-hidden">
-        <div className="space-y-3">
-          <QuizHeader
-            title={QUIZ_DATA.title}
-            description={QUIZ_DATA.description}
-            date={QUIZ_DATA.date}
-            timeRemaining={overallTimeRemaining}
-            totalTime={totalQuizTime}
-            score={score}
-            streak={streak}
-            hintsUsed={hintsUsed}
-            maxHints={maxHints}
-            onSubmit={() => {
-              // Submit button functionality can be removed or used for manual submit
-            }}
-            isDisabled={isCompleted}
-          />
+      <main className="container max-w-2xl mx-auto px-4 py-3 flex-1 flex flex-col justify-between gap-3 overflow-hidden">
+        {/* Question Section - Top Priority */}
+        <QuizHeader
+          title={QUIZ_DATA.title}
+          description={QUIZ_DATA.description}
+          date={QUIZ_DATA.date}
+          timeRemaining={overallTimeRemaining}
+          totalTime={totalQuizTime}
+          score={score}
+          streak={streak}
+          hintsUsed={hintsUsed}
+          maxHints={maxHints}
+          onSubmit={() => {}}
+          isDisabled={isCompleted}
+        />
 
+        {/* Answer Cards - Middle Section */}
+        <AnswerGrid 
+          answers={userAnswers} 
+          lastGuessRank={lastGuessRank}
+          disabled={isCompleted}
+        />
+
+        {/* Input - Bottom 40% (Thumb Zone) */}
+        <div className="mt-auto">
           <GuessInput
             onGuess={handleGuess}
             onRequestHint={handleRequestHint}
             disabled={isCompleted}
             hintsRemaining={maxHints - hintsUsed}
             currentHint={currentHint}
-          />
-
-          <AnswerGrid 
-            answers={userAnswers} 
-            lastGuessRank={lastGuessRank}
-            disabled={isCompleted}
           />
         </div>
       </main>

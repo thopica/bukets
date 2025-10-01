@@ -33,9 +33,6 @@ const QuizHeader = ({
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
   const progressPercentage = (timeRemaining / totalTime) * 100;
-  const timeElapsed = totalTime - timeRemaining;
-  const minutesElapsed = Math.floor(timeElapsed / 60);
-  const secondsElapsed = timeElapsed % 60;
   const lastWarningTime = useRef<number>(0);
   
   // Timer urgency effects with haptic feedback
@@ -45,45 +42,39 @@ const QuizHeader = ({
       lastWarningTime.current = Math.floor(timeRemaining);
     }
   }, [timeRemaining]);
-  
-  const getProgressColor = () => {
-    return "bg-gold";
-  };
 
   return (
-    <Card className="p-6 bg-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border-[2px] border-border rounded-2xl">
-      {/* Title row */}
-      <div className="flex items-start justify-between gap-6 mb-6">
-        <div className="flex-1 min-w-0">
-          <p className="text-[15px] text-text-secondary mb-2">{title}</p>
-          <h1 className="text-[40px] font-bold text-text-primary leading-tight">{description}</h1>
-        </div>
+    <div className="space-y-3">
+      {/* Compact timer bar at top */}
+      <div className="flex items-center justify-between px-1">
+        <span className="text-xs text-muted-foreground uppercase tracking-wide">Time</span>
+        <span className={`font-mono text-sm font-semibold tabular-nums ${
+          timeRemaining <= 10 ? 'text-danger animate-pulse-urgency-fast' : 
+          timeRemaining <= 30 ? 'text-timerWarning animate-pulse-urgency' : 
+          'text-foreground'
+        }`}>
+          {minutes}:{seconds.toString().padStart(2, '0')}
+        </span>
+      </div>
+      <div className="relative h-1 w-full overflow-hidden rounded-full bg-muted">
+        <div 
+          className={`h-full transition-all duration-300 ${
+            timeRemaining <= 10 ? 'bg-danger' : 
+            timeRemaining <= 30 ? 'bg-timerWarning' : 
+            'bg-gold'
+          }`}
+          style={{ width: `${progressPercentage}%` }}
+        />
       </div>
 
-      {/* Simple progress bar with urgency animations */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <span className="text-[15px] text-text-secondary">Time remaining</span>
-          <span className={`font-mono text-[15px] font-semibold tabular-nums ${
-            timeRemaining <= 10 ? 'text-danger animate-pulse-urgency-fast' : 
-            timeRemaining <= 30 ? 'text-timerWarning animate-pulse-urgency' : 
-            'text-gold'
-          }`}>
-            {minutes}:{seconds.toString().padStart(2, '0')}
-          </span>
-        </div>
-        <div className="relative h-2 w-full overflow-hidden rounded-full bg-border">
-          <div 
-            className={`h-full transition-all duration-300 ${
-              timeRemaining <= 10 ? 'bg-danger animate-pulse-urgency-fast' : 
-              timeRemaining <= 30 ? 'bg-timerWarning animate-pulse-urgency' : 
-              'bg-gold'
-            }`}
-            style={{ width: `${progressPercentage}%` }}
-          />
-        </div>
+      {/* Question - Scannable in 2 seconds */}
+      <div className="space-y-1">
+        <h1 className="text-2xl font-bold text-foreground leading-tight tracking-tight">
+          {description}
+        </h1>
+        <p className="text-sm text-muted-foreground">{title}</p>
       </div>
-    </Card>
+    </div>
   );
 };
 
