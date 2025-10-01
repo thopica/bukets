@@ -56,14 +56,6 @@ const QuizHeader = ({
         </Button>
       </div>
 
-      {/* Stat pills on single row */}
-      <div className="flex flex-wrap items-center gap-3 mb-5">
-        <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
-          <Calendar className="h-5 w-5 text-icon-muted" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-[15px] text-text-primary">{date}</span>
-        </div>
-      </div>
-
       {/* Simple progress bar */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
