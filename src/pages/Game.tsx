@@ -155,7 +155,7 @@ const Index = () => {
     
     // Check against glossary data
     for (const answer of QUIZ_DATA.answers) {
-      const glossaryEntry = glossaryData?.data?.find(
+      const glossaryEntry = glossaryData?.find(
         (entry: any) => normalizeGuess(entry.player_name) === normalizeGuess(answer.name)
       );
       
