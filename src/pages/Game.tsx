@@ -32,6 +32,7 @@ const QUIZ_DATA = {
 };
 
 const Index = () => {
+  // State management for quiz game
   const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean }>>([
     { rank: 1 },
     { rank: 2 },
@@ -46,7 +47,7 @@ const Index = () => {
   const [hintsUsed, setHintsUsed] = useState(0);
   const [currentHint, setCurrentHint] = useState<string | undefined>();
   const [timeRemaining, setTimeRemaining] = useState(24);
-  const [overallTimeRemaining, setOverallTimeRemaining] = useState(160); // 2:40 minutes
+  const [overallTimeRemaining, setOverallTimeRemaining] = useState(160);
   const [showResults, setShowResults] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
