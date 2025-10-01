@@ -99,7 +99,7 @@ const Index = () => {
   }, [overallTimeRemaining, isCompleted]);
 
   const handleTimeUp = () => {
-    const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
+    const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
     if (unansweredIndex !== -1) {
       const correctAnswer = QUIZ_DATA.answers[unansweredIndex];
       const newAnswers = [...userAnswers];
@@ -109,7 +109,17 @@ const Index = () => {
         isCorrect: false,
       };
       setUserAnswers(newAnswers);
-      toast.error("Time's up! Player revealed");
+      setLastGuessRank(correctAnswer.rank);
+      toast.error("Time's up! Player revealed", {
+        duration: 2000,
+      });
+      
+      // Check if all players are now revealed (either guessed or auto-revealed)
+      const allRevealed = newAnswers.every((a) => a.playerName);
+      if (allRevealed) {
+        setIsCompleted(true);
+        setTimeout(() => setShowResults(true), 1000);
+      }
     }
   };
 
