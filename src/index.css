@@ -14,11 +14,11 @@ All colors MUST be HSL.
     --gold: 45 97% 58%; /* #FDB927 Lakers Gold */
     
     --background: 217 52% 9%; /* #0B1220 dark canvas */
-    --foreground: 0 0% 100%; /* #FFFFFF on dark */
+    --foreground: 0 0% 98%; /* #FAFAFA softer white on dark */
 
     --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 217 52% 9%; /* #0B1220 primary text */
-    --card-muted: 210 25% 97%; /* #F6F7F9 muted surface */
+    --card-foreground: 217 52% 12%; /* #0F1825 softer primary text */
+    --card-muted: 210 20% 96%; /* #F3F4F6 softer muted surface */
 
     --popover: 0 0% 100%;
     --popover-foreground: 217 52% 9%;
@@ -33,14 +33,14 @@ All colors MUST be HSL.
     --accent-gold-foreground: 217 52% 9%;
     
     /* Text colors */
-    --text-primary: 217 52% 9%; /* #0B1220 */
-    --text-secondary: 215 16% 47%; /* #64748B labels */
-    --text-on-dark: 0 0% 100%; /* #FFFFFF */
+    --text-primary: 217 52% 12%; /* #0F1825 softer primary */
+    --text-secondary: 215 16% 50%; /* #6B7280 softer labels */
+    --text-on-dark: 0 0% 98%; /* #FAFAFA softer white */
     
     /* Icons and borders */
-    --icon-muted: 214 15% 66%; /* #94A3B8 */
-    --border: 220 13% 91%; /* #E5E7EB */
-    --border-muted: 220 13% 91%;
+    --icon-muted: 214 15% 70%; /* #A1ADB8 softer icons */
+    --border: 220 13% 88%; /* #DFE1E5 softer border */
+    --border-muted: 220 13% 88%;
     
     /* Badge */
     --badge-lavender: 270 100% 94%; /* #EEE1FF */
@@ -94,9 +94,10 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background-color: #0B1220;
+    background: radial-gradient(ellipse at center, #1a2332 0%, #0B1220 70%, #080d16 100%);
+    min-height: 100vh;
   }
 
   /* Tabular numbers for timers */
