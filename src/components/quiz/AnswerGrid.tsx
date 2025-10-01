@@ -38,7 +38,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
 
   return (
     <div className="flex justify-center">
-      <div className="flex gap-4 overflow-x-auto max-w-full px-4">
+      <div className="flex flex-col gap-4 w-full max-w-md">
         {answers.map((answer) => {
           const isRevealed = !!answer.playerName;
           const isCorrect = answer.isCorrect;
@@ -48,7 +48,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
             <Card
               key={answer.rank}
               ref={(el) => cardRefs.current[answer.rank] = el}
-              className={`px-6 py-8 transition-all duration-150 rounded-card shadow-elevated relative overflow-hidden min-w-[180px] ${
+              className={`px-6 py-8 transition-all duration-150 rounded-card shadow-elevated relative overflow-hidden ${
                 isCorrect
                   ? "bg-card border-[2px] border-success shadow-floating animate-correct-answer animate-green-glow"
                   : isLastGuess && !isCorrect && isRevealed
@@ -58,9 +58,9 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
                   : "bg-card border-[2px] border-border/50"
               }`}
             >
-              <div className="flex flex-col items-center gap-4 text-center">
+              <div className="flex items-center gap-4">
                 {/* Rank badge */}
-                <div className={`flex items-center justify-center w-12 h-12 rounded-full font-bold text-lg ${
+                <div className={`flex items-center justify-center w-12 h-12 rounded-full font-bold text-lg flex-shrink-0 ${
                   isCorrect
                     ? 'bg-gold text-background' 
                     : 'bg-muted text-foreground'
@@ -69,22 +69,22 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
                 </div>
                 
                 {/* Player name or locked state */}
-                <div className="flex flex-col items-center gap-2 min-h-[60px] justify-center">
+                <div className="flex items-center gap-3 flex-1 min-h-[48px]">
                   {isRevealed ? (
                     <>
                       {isCorrect && (
                         <CheckCircle2 className="h-6 w-6 text-success flex-shrink-0 animate-bounce-in" style={{ strokeWidth: '1.5px' }} />
                       )}
-                      <span className={`font-semibold text-base ${
+                      <span className={`font-semibold text-lg ${
                         isCorrect ? "text-success" : "text-foreground"
                       }`}>
                         {answer.playerName}
                       </span>
                     </>
                   ) : (
-                    <div className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-3">
                       <Lock className="h-6 w-6 text-muted-foreground opacity-50" />
-                      <span className="text-sm text-muted-foreground">Not revealed</span>
+                      <span className="text-base text-muted-foreground">Not revealed</span>
                     </div>
                   )}
                 </div>
