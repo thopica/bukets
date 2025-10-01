@@ -37,63 +37,61 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
   }, [lastGuessRank, answers]);
 
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-col gap-4 w-full max-w-md">
+    <Card className="p-6 bg-card shadow-elevated border-[2px] border-border rounded-card">
+      <div className="space-y-3">
         {answers.map((answer) => {
           const isRevealed = !!answer.playerName;
           const isCorrect = answer.isCorrect;
           const isLastGuess = lastGuessRank === answer.rank;
 
           return (
-            <Card
+            <div
               key={answer.rank}
               ref={(el) => cardRefs.current[answer.rank] = el}
-              className={`px-6 py-8 transition-all duration-150 rounded-card shadow-elevated relative overflow-hidden ${
+              className={`flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-150 ${
                 isCorrect
-                  ? "bg-card border-[2px] border-success shadow-floating animate-correct-answer animate-green-glow"
+                  ? "bg-success/10 border-2 border-success animate-correct-answer animate-green-glow"
                   : isLastGuess && !isCorrect && isRevealed
-                  ? "bg-card border-[2px] border-danger animate-shake animate-red-flash"
+                  ? "bg-danger/10 border-2 border-danger animate-shake animate-red-flash"
                   : isRevealed
-                  ? "bg-card border-[2px] border-border"
-                  : "bg-card border-[2px] border-border/50"
+                  ? "bg-muted/50 border-2 border-border"
+                  : "bg-muted/30 border-2 border-border/50"
               }`}
             >
-              <div className="flex items-center gap-4">
-                {/* Rank badge */}
-                <div className={`flex items-center justify-center w-12 h-12 rounded-full font-bold text-lg flex-shrink-0 ${
-                  isCorrect
-                    ? 'bg-gold text-background' 
-                    : 'bg-muted text-foreground'
-                }`}>
-                  #{answer.rank}
-                </div>
-                
-                {/* Player name or locked state */}
-                <div className="flex items-center gap-3 flex-1 min-h-[48px]">
-                  {isRevealed ? (
-                    <>
-                      {isCorrect && (
-                        <CheckCircle2 className="h-6 w-6 text-success flex-shrink-0 animate-bounce-in" style={{ strokeWidth: '1.5px' }} />
-                      )}
-                      <span className={`font-semibold text-lg ${
-                        isCorrect ? "text-success" : "text-foreground"
-                      }`}>
-                        {answer.playerName}
-                      </span>
-                    </>
-                  ) : (
-                    <div className="flex items-center gap-3">
-                      <Lock className="h-6 w-6 text-muted-foreground opacity-50" />
-                      <span className="text-base text-muted-foreground">Not revealed</span>
-                    </div>
-                  )}
-                </div>
+              {/* Rank badge */}
+              <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold text-base flex-shrink-0 ${
+                isCorrect
+                  ? 'bg-gold text-background' 
+                  : 'bg-background text-foreground'
+              }`}>
+                #{answer.rank}
               </div>
-            </Card>
+              
+              {/* Player name or locked state */}
+              <div className="flex items-center gap-3 flex-1 min-h-[40px]">
+                {isRevealed ? (
+                  <>
+                    {isCorrect && (
+                      <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0 animate-bounce-in" style={{ strokeWidth: '1.5px' }} />
+                    )}
+                    <span className={`font-semibold text-base ${
+                      isCorrect ? "text-success" : "text-foreground"
+                    }`}>
+                      {answer.playerName}
+                    </span>
+                  </>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <Lock className="h-5 w-5 text-muted-foreground opacity-50" />
+                    <span className="text-sm text-muted-foreground">Not revealed</span>
+                  </div>
+                )}
+              </div>
+            </div>
           );
         })}
       </div>
-    </div>
+    </Card>
   );
 };
 
