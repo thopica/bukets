@@ -248,13 +248,6 @@ const Index = () => {
           />
         </div>
 
-        <HintBar
-          currentHint={currentHint}
-          hintsRemaining={maxHints - hintsUsed}
-          onRequestHint={handleRequestHint}
-          onDismissHint={() => setCurrentHint(undefined)}
-        />
-
         {isCompleted && (
           <Button
             onClick={() => setShowResults(true)}
