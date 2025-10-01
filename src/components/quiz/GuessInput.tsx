@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -10,10 +10,20 @@ interface GuessInputProps {
   disabled?: boolean;
   hintsRemaining?: number;
   currentHint?: string;
+  showError?: boolean;
 }
 
-const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining = 0, currentHint }: GuessInputProps) => {
+const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining = 0, currentHint, showError = false }: GuessInputProps) => {
   const [input, setInput] = useState("");
+  const [isShaking, setIsShaking] = useState(false);
+
+  useEffect(() => {
+    if (showError) {
+      setIsShaking(true);
+      const timer = setTimeout(() => setIsShaking(false), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [showError]);
 
   const handleSubmit = () => {
     const guess = input.trim();
@@ -53,7 +63,11 @@ const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining =
             onKeyDown={handleKeyDown}
             placeholder="Type player name..."
             disabled={disabled}
-            className="h-12 text-base text-foreground bg-card border-2 border-border rounded-xl px-4 focus:ring-2 focus:ring-orange focus:border-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated"
+            className={`h-12 text-base text-foreground bg-card border-2 rounded-xl px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
+              isShaking 
+                ? 'animate-shake-horizontal border-destructive focus:border-destructive' 
+                : 'border-border focus:border-orange'
+            }`}
             autoFocus
           />
           <Button

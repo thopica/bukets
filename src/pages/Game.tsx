@@ -53,6 +53,7 @@ const Index = () => {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [incorrectGuess, setIncorrectGuess] = useState<number | null>(null);
   const [lastGuessRank, setLastGuessRank] = useState<number | undefined>();
+  const [showInputError, setShowInputError] = useState(false);
 
   const maxHints = 3;
   const totalQuizTime = 160; // 2:40 minutes in seconds
@@ -183,6 +184,7 @@ const Index = () => {
       setCurrentHint(undefined);
       setIncorrectGuess(null);
       setLastGuessRank(matchedAnswer.rank);
+      setShowInputError(false);
       
       if (timeRemaining >= 23) {
         toast.success("🏀 BUZZER BEATER! +" + pointsEarned + " points", {
@@ -200,7 +202,7 @@ const Index = () => {
       }
     } else {
       setLastGuessRank(undefined);
-      toast.error("Incorrect! Try again");
+      setShowInputError(true);
     }
   };
 
@@ -275,6 +277,7 @@ const Index = () => {
         disabled={isCompleted}
         hintsRemaining={maxHints - hintsUsed}
         currentHint={currentHint}
+        showError={showInputError}
       />
 
       <ResultsModal
