@@ -8,27 +8,27 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Lakers-inspired color system */
-    --purple: 270 63% 32%; /* #552583 Lakers Purple */
-    --purple-hover: 270 58% 30%; /* #4A1F78 darker purple */
+    /* Nubank-inspired color system */
+    --purple: 271 81% 56%; /* #8B5CF6 Vibrant Purple */
+    --purple-hover: 271 91% 65%; /* #A78BFA lighter purple */
     --gold: 45 97% 58%; /* #FDB927 Lakers Gold */
     
-    --background: 217 52% 9%; /* #0B1220 dark canvas */
-    --foreground: 0 0% 98%; /* #FAFAFA softer white on dark */
+    --background: 271 81% 56%; /* #8B5CF6 vibrant purple canvas */
+    --foreground: 0 0% 98%; /* #FAFAFA on dark */
 
     --card: 0 0% 100%; /* #FFFFFF */
     --card-foreground: 217 52% 12%; /* #0F1825 softer primary text */
-    --card-muted: 210 20% 96%; /* #F3F4F6 softer muted surface */
+    --card-muted: 270 100% 98%; /* #FAF5FF very light purple */
 
     --popover: 0 0% 100%;
     --popover-foreground: 217 52% 9%;
 
-    /* Primary - Lakers Purple */
-    --primary: 270 63% 32%;
+    /* Primary - Vibrant Purple */
+    --primary: 271 81% 56%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 270 58% 30%;
+    --primary-hover: 271 91% 65%;
     
-    /* Accent - Lakers Gold */
+    /* Accent - Gold */
     --accent-gold: 45 97% 58%;
     --accent-gold-foreground: 217 52% 9%;
     
@@ -43,8 +43,8 @@ All colors MUST be HSL.
     --border-muted: 220 13% 88%;
     
     /* Badge */
-    --badge-lavender: 270 100% 94%; /* #EEE1FF */
-    --badge-text: 270 63% 32%; /* #552583 */
+    --badge-lavender: 270 100% 95%; /* #F3E8FF */
+    --badge-text: 271 81% 56%; /* #8B5CF6 */
     
     /* Progress */
     --progress-track: 220 13% 91%; /* #E5E7EB */
@@ -65,14 +65,14 @@ All colors MUST be HSL.
     --muted: 210 25% 97%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 270 63% 32%;
+    --accent: 271 81% 56%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --input: 220 13% 91%;
-    --ring: 270 63% 32%; /* Lakers Purple for focus */
+    --ring: 271 81% 56%; /* Vibrant Purple for focus */
 
     --radius: 1rem;
 
@@ -83,7 +83,7 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 217 52% 9%;
+    --background: 271 81% 56%;
     --foreground: 0 0% 100%;
   }
 }
@@ -96,7 +96,7 @@ All colors MUST be HSL.
   body {
     @apply text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: radial-gradient(ellipse at center, #3d2b5f 0%, #251a3a 40%, #1a2332 70%, #0B1220 100%);
+    background: radial-gradient(ellipse at center, #A78BFA 0%, #8B5CF6 40%, #7C3AED 70%, #6D28D9 100%);
     min-height: 100vh;
   }
 
