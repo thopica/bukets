@@ -103,6 +103,21 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
         const isCorrect = answer.isCorrect;
 
         const timerProgress = timers[answer.rank] !== undefined ? (timers[answer.rank] / 24) * 100 : 100;
+        
+        // Calculate smooth color transition: green (120) -> orange (30) -> red (0)
+        const getTimerColor = (timeRemaining: number) => {
+          const percentage = (timeRemaining / 24) * 100;
+          if (percentage > 62.5) { // > 15s: green to yellow
+            const hue = 120; // green
+            return `hsl(${hue}, 71%, 45%)`;
+          } else if (percentage > 33.3) { // 8-15s: yellow to orange
+            const hue = 120 - ((62.5 - percentage) / 29.2) * 60; // 120 to 60
+            return `hsl(${hue}, 71%, 45%)`;
+          } else { // < 8s: orange to red
+            const hue = 60 - ((33.3 - percentage) / 33.3) * 60; // 60 to 0
+            return `hsl(${hue}, 84%, 60%)`;
+          }
+        };
 
         return (
           <Card
@@ -158,14 +173,11 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
             {!answer.playerName && timers[answer.rank] !== undefined && (
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-border">
                 <div 
-                  className={`h-full transition-all duration-100 ${
-                    timers[answer.rank] > 15 
-                      ? 'bg-success' 
-                      : timers[answer.rank] > 8 
-                      ? 'bg-[#F59E0B]' 
-                      : 'bg-danger'
-                  }`}
-                  style={{ width: `${timerProgress}%` }}
+                  className="h-full transition-all duration-100"
+                  style={{ 
+                    width: `${timerProgress}%`,
+                    backgroundColor: getTimerColor(timers[answer.rank])
+                  }}
                 />
               </div>
             )}
