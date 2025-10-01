@@ -57,7 +57,8 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
   
   const navLinks = [
-    { path: "/", label: "Today's Quiz" },
+    { path: "/", label: "Home" },
+    { path: "/game", label: "Today's Quiz" },
     { path: "/leaderboard", label: "Leaderboard" },
     { path: "/archive", label: "Archive" },
     { path: "/how-to-play", label: "How to Play" },
