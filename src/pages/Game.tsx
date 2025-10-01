@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
+import GuessInput from "@/components/quiz/GuessInput";
 import HintBar from "@/components/quiz/HintBar";
 import ResultsModal from "@/components/quiz/ResultsModal";
 import { Button } from "@/components/ui/button";
@@ -50,6 +51,7 @@ const Index = () => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [incorrectGuess, setIncorrectGuess] = useState<number | null>(null);
+  const [lastGuessRank, setLastGuessRank] = useState<number | undefined>();
 
   const maxHints = 3;
   const totalQuizTime = 160; // 2:40 minutes in seconds
@@ -145,7 +147,7 @@ const Index = () => {
     return 0;
   };
 
-  const handleGuess = (guess: string, rank?: number) => {
+  const handleGuess = (guess: string) => {
     const matchedAnswer = checkGuess(guess);
     
     if (matchedAnswer) {
@@ -165,6 +167,7 @@ const Index = () => {
       setTimeRemaining(24);
       setCurrentHint(undefined);
       setIncorrectGuess(null);
+      setLastGuessRank(matchedAnswer.rank);
       
       if (timeRemaining >= 23) {
         toast.success("🏀 BUZZER BEATER! +" + pointsEarned + " points", {
@@ -181,13 +184,8 @@ const Index = () => {
         setTimeout(() => setShowResults(true), 1000);
       }
     } else {
-      // Show shake animation on the specific slot or first unanswered slot
-      const targetSlot = rank || userAnswers.findIndex((a) => !a.isCorrect) + 1;
-      if (targetSlot) {
-        setIncorrectGuess(targetSlot);
-        setTimeout(() => setIncorrectGuess(null), 300);
-      }
-      toast.error("Not found. Try again!");
+      setLastGuessRank(undefined);
+      toast.error("Incorrect! Try again");
     }
   };
 
@@ -240,10 +238,14 @@ const Index = () => {
             isDisabled={isCompleted}
           />
 
+          <GuessInput
+            onGuess={handleGuess}
+            disabled={isCompleted}
+          />
+
           <AnswerGrid 
             answers={userAnswers} 
-            focusedSlot={incorrectGuess || undefined}
-            onGuess={handleGuess}
+            lastGuessRank={lastGuessRank}
             disabled={isCompleted}
           />
         </div>

@@ -1,6 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Send } from "lucide-react";
 
 interface GuessInputProps {
   onGuess: (guess: string) => void;
@@ -8,45 +10,45 @@ interface GuessInputProps {
 }
 
 const GuessInput = ({ onGuess, disabled = false }: GuessInputProps) => {
-  const [guess, setGuess] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [input, setInput] = useState("");
 
-  useEffect(() => {
-    if (inputRef.current && !disabled) {
-      inputRef.current.focus();
-    }
-  }, [disabled]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (guess.trim()) {
-      onGuess(guess.trim());
-      setGuess("");
-      setTimeout(() => inputRef.current?.focus(), 50);
+  const handleSubmit = () => {
+    const guess = input.trim();
+    if (guess) {
+      onGuess(guess);
+      setInput("");
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      handleSubmit(e);
+      e.preventDefault();
+      handleSubmit();
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="relative shadow-[0_4px_20px_rgba(85,37,131,0.15),0_0_0_1px_rgba(253,185,39,0.2)]">
-        <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-icon-muted" style={{ strokeWidth: '1.5px' }} />
+    <Card className="p-6 bg-card shadow-elevated border-[2px] border-border rounded-card">
+      <div className="flex gap-3 items-center">
         <Input
-          ref={inputRef}
-          value={guess}
-          onChange={(e) => setGuess(e.target.value)}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Type an NBA player name..."
+          placeholder="Enter player name..."
           disabled={disabled}
-          className="pl-14 h-14 text-[18px] text-text-primary bg-card border-border rounded-full focus:ring-2 focus:ring-purple focus:ring-offset-2 focus:border-purple focus:shadow-[0_6px_24px_rgba(85,37,131,0.25),0_0_0_2px_rgba(253,185,39,0.4)] transition-all duration-150 placeholder:text-icon-muted"
+          className="h-12 text-base text-foreground bg-muted border-2 border-border rounded-input px-4 focus:ring-2 focus:ring-orange focus:border-orange transition-all duration-150 placeholder:text-muted-foreground"
+          autoFocus
         />
+        <Button
+          onClick={handleSubmit}
+          disabled={disabled || !input.trim()}
+          size="lg"
+          className="h-12 px-6 rounded-button"
+        >
+          <Send className="h-5 w-5" />
+        </Button>
       </div>
-    </form>
+    </Card>
   );
 };
 
