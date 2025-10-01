@@ -52,7 +52,7 @@ const QuizHeader = ({
   };
 
   return (
-    <div className="space-y-3">
+    <div className="border-2 border-white rounded-xl p-4 space-y-3">
       {/* Top Bar: Score + Two Timers */}
       <div className="flex items-center justify-between">
         {/* Running Score - Left */}
