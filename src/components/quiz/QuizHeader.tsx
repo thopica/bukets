@@ -72,13 +72,6 @@ const QuizHeader = ({
           <Lightbulb className="h-5 w-5 text-gold" style={{ strokeWidth: '1.5px' }} />
           <span className="text-[15px] text-text-primary font-medium">{maxHints - hintsUsed} hints left</span>
         </div>
-        
-        <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
-          <Clock className="h-5 w-5 text-icon-muted" style={{ strokeWidth: '1.5px' }} />
-          <span className="text-[15px] text-text-primary font-medium tabular-nums">
-            {minutesElapsed}:{secondsElapsed.toString().padStart(2, '0')} elapsed
-          </span>
-        </div>
       </div>
 
       {/* Simple progress bar */}
