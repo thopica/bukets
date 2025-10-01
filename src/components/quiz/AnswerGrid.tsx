@@ -19,25 +19,71 @@ interface AnswerGridProps {
 
 const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerGridProps) => {
   const [inputs, setInputs] = useState<{ [key: number]: string }>({});
+  const [timers, setTimers] = useState<{ [key: number]: number }>({});
   const inputRefs = useRef<{ [key: number]: HTMLInputElement | null }>({});
+  const timerIntervals = useRef<{ [key: number]: NodeJS.Timeout }>({});
 
   useEffect(() => {
-    // Focus first unanswered slot
+    // Focus first unanswered slot and start its timer
     const firstUnanswered = answers.find(a => !a.playerName);
     if (firstUnanswered && inputRefs.current[firstUnanswered.rank]) {
       inputRefs.current[firstUnanswered.rank]?.focus();
+      // Initialize timer if not already set
+      if (timers[firstUnanswered.rank] === undefined) {
+        setTimers(prev => ({ ...prev, [firstUnanswered.rank]: 24 }));
+      }
     }
   }, [answers]);
+
+  // Timer countdown effect
+  useEffect(() => {
+    answers.forEach(answer => {
+      if (!answer.playerName && timers[answer.rank] !== undefined) {
+        // Clear existing interval
+        if (timerIntervals.current[answer.rank]) {
+          clearInterval(timerIntervals.current[answer.rank]);
+        }
+        
+        // Start new interval
+        timerIntervals.current[answer.rank] = setInterval(() => {
+          setTimers(prev => {
+            const currentTime = prev[answer.rank];
+            if (currentTime <= 0) {
+              clearInterval(timerIntervals.current[answer.rank]);
+              return prev;
+            }
+            return { ...prev, [answer.rank]: currentTime - 0.1 };
+          });
+        }, 100);
+      }
+    });
+
+    return () => {
+      Object.values(timerIntervals.current).forEach(interval => clearInterval(interval));
+    };
+  }, [answers, timers]);
 
   const handleSubmit = (rank: number) => {
     const guess = inputs[rank]?.trim();
     if (guess) {
       onGuess(guess, rank);
       setInputs(prev => ({ ...prev, [rank]: '' }));
-      // Focus next unanswered slot
+      // Clear timer for this slot
+      if (timerIntervals.current[rank]) {
+        clearInterval(timerIntervals.current[rank]);
+      }
+      setTimers(prev => {
+        const newTimers = { ...prev };
+        delete newTimers[rank];
+        return newTimers;
+      });
+      // Focus next unanswered slot and start its timer
       const nextUnanswered = answers.find(a => !a.playerName && a.rank > rank);
       if (nextUnanswered && inputRefs.current[nextUnanswered.rank]) {
-        setTimeout(() => inputRefs.current[nextUnanswered.rank]?.focus(), 50);
+        setTimeout(() => {
+          inputRefs.current[nextUnanswered.rank]?.focus();
+          setTimers(prev => ({ ...prev, [nextUnanswered.rank]: 24 }));
+        }, 50);
       }
     }
   };
@@ -56,10 +102,12 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
         const isFocused = focusedSlot === answer.rank;
         const isCorrect = answer.isCorrect;
 
+        const timerProgress = timers[answer.rank] !== undefined ? (timers[answer.rank] / 24) * 100 : 100;
+
         return (
           <Card
             key={answer.rank}
-            className={`px-5 py-6 transition-all duration-150 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] ${
+            className={`px-5 py-6 transition-all duration-150 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] relative overflow-hidden ${
               isCorrect
                 ? "bg-card border-[2px] border-success shadow-[0_0_20px_rgba(253,185,39,0.3),0_2px_8px_rgba(0,0,0,0.08)] animate-bounce-in"
                 : isFocused
@@ -105,6 +153,16 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
                 )}
               </div>
             </div>
+            
+            {/* Timer bar at bottom */}
+            {!answer.playerName && timers[answer.rank] !== undefined && (
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-border">
+                <div 
+                  className="h-full bg-danger transition-all duration-100"
+                  style={{ width: `${timerProgress}%` }}
+                />
+              </div>
+            )}
           </Card>
         );
       })}
