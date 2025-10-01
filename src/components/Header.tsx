@@ -82,7 +82,7 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b-2 border-gold bg-background backdrop-blur-lg shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b-2 border-purple/20 bg-white/40 backdrop-blur-xl shadow-sm">
       <div className="container flex h-16 items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Trophy className="h-5 w-5 text-purple" style={{ strokeWidth: '1.5px' }} />

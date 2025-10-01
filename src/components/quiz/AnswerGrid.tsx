@@ -122,15 +122,15 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
         return (
           <Card
             key={answer.rank}
-            className={`px-5 py-6 transition-all duration-150 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] relative overflow-hidden ${
+            className={`px-5 py-6 transition-all duration-150 rounded-2xl relative overflow-hidden backdrop-blur-xl border ${
               isCorrect
-                ? "bg-card border-[2px] border-success shadow-[0_0_20px_rgba(253,185,39,0.3),0_2px_8px_rgba(0,0,0,0.08)] animate-bounce-in"
+                ? "bg-white/70 border-success/40 shadow-[0_8px_32px_rgba(34,197,94,0.15)] animate-bounce-in"
                 : isFocused
-                ? "bg-card border-[2px] border-danger shadow-[0_2px_12px_rgba(0,0,0,0.12)] animate-shake"
+                ? "bg-white/70 border-danger/40 shadow-[0_8px_32px_rgba(239,68,68,0.15)] animate-shake"
                 : isLocked
-                ? "bg-card border-[2px] border-border"
-                : "bg-card border-[2px] border-border"
-            } ${!isLocked && !isCorrect && !isFocused ? 'hover:shadow-[0_0_0_2px_#552583,0_4px_12px_rgba(0,0,0,0.1)]' : ''}`}
+                ? "bg-white/50 border-white/40 shadow-[0_4px_16px_rgba(139,92,246,0.08)]"
+                : "bg-white/50 border-white/40 shadow-[0_4px_16px_rgba(139,92,246,0.08)]"
+            } ${!isLocked && !isCorrect && !isFocused ? 'hover:bg-white/70 hover:shadow-[0_8px_32px_rgba(139,92,246,0.12)]' : ''}`}
           >
             <div className="flex items-center gap-3">
               {/* Left badge for rank */}

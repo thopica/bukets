@@ -40,7 +40,7 @@ const QuizHeader = ({
   };
 
   return (
-    <Card className="p-6 bg-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border-[2px] border-border rounded-2xl">
+    <Card className="p-6 bg-white/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(139,92,246,0.1)] border border-white/40 rounded-2xl">
       {/* Title row */}
       <div className="flex items-start justify-between gap-6 mb-6">
         <div className="flex-1 min-w-0">
