@@ -224,26 +224,28 @@ const Index = () => {
       <Header />
       
       <main className="container max-w-5xl mx-auto px-6 py-6 flex-1 flex flex-col gap-6 overflow-hidden">
-        <QuizHeader
-          title={QUIZ_DATA.title}
-          description={QUIZ_DATA.description}
-          date={QUIZ_DATA.date}
-          timeRemaining={overallTimeRemaining}
-          totalTime={totalQuizTime}
-          score={score}
-          streak={streak}
-          hintsUsed={hintsUsed}
-          maxHints={maxHints}
-          onSubmit={() => {
-            const input = document.querySelector('input[type="text"]') as HTMLInputElement;
-            if (input && input.value.trim()) {
-              handleGuess(input.value.trim());
-            }
-          }}
-          isDisabled={isCompleted}
-        />
+        <div className="space-y-4">
+          <QuizHeader
+            title={QUIZ_DATA.title}
+            description={QUIZ_DATA.description}
+            date={QUIZ_DATA.date}
+            timeRemaining={overallTimeRemaining}
+            totalTime={totalQuizTime}
+            score={score}
+            streak={streak}
+            hintsUsed={hintsUsed}
+            maxHints={maxHints}
+            onSubmit={() => {
+              const input = document.querySelector('input[type="text"]') as HTMLInputElement;
+              if (input && input.value.trim()) {
+                handleGuess(input.value.trim());
+              }
+            }}
+            isDisabled={isCompleted}
+          />
 
-        <GuessInput onGuess={handleGuess} disabled={isCompleted} />
+          <GuessInput onGuess={handleGuess} disabled={isCompleted} />
+        </div>
 
         <div className="flex-1 overflow-y-auto">
           <AnswerGrid answers={userAnswers} focusedSlot={incorrectGuess || undefined} />
