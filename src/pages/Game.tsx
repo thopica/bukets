@@ -269,6 +269,9 @@ const Index = () => {
         totalCount={6}
         streak={streak}
         answers={getResultsData()}
+        timeBonus={2}
+        speedBonus={overallTimeRemaining > 100 ? 3 : 0}
+        hintsUsed={hintsUsed}
       />
     </div>
   );
