@@ -15,7 +15,7 @@ const Index = () => {
       <main className="container max-w-2xl mx-auto px-4 py-6 flex-1 flex flex-col justify-center gap-6">
         {/* Hero Section - Punchy & Action-Oriented */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-orange to-orange-hover animate-pulse-soft">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-orange to-orange-hover">
             <Trophy className="h-10 w-10 text-white" />
           </div>
           
@@ -28,11 +28,11 @@ const Index = () => {
           </p>
         </div>
 
-        {/* CTA Button - MASSIVE with gradient pulse */}
+        {/* CTA Button - MASSIVE with subtle gradient shift */}
         <Button 
           size="lg" 
           onClick={() => navigate("/game")}
-          className="w-full h-16 rounded-full text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating animate-pulse-soft"
+          className="w-full h-16 rounded-full text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300"
         >
           <span className="relative z-10 flex items-center gap-2">
             <Clock className="h-6 w-6" />
