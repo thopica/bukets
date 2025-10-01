@@ -244,12 +244,10 @@ const Index = () => {
             isDisabled={isCompleted}
           />
 
-          <GuessInput onGuess={handleGuess} disabled={isCompleted} />
-        </div>
-
-        <div className="flex-1 overflow-y-auto">
           <AnswerGrid answers={userAnswers} focusedSlot={incorrectGuess || undefined} />
         </div>
+
+        <GuessInput onGuess={handleGuess} disabled={isCompleted} />
 
         <HintBar
           currentHint={currentHint}

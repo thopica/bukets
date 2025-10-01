@@ -24,15 +24,15 @@ const AnswerGrid = ({ answers, focusedSlot }: AnswerGridProps) => {
         return (
           <Card
             key={answer.rank}
-            className={`p-5 transition-all duration-150 rounded-2xl ${
+            className={`p-5 transition-all duration-150 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] ${
               isCorrect
-                ? "bg-card border-[2px] border-success shadow-[0_0_20px_rgba(253,185,39,0.3)] animate-bounce-in"
+                ? "bg-card border-[2px] border-success shadow-[0_0_20px_rgba(253,185,39,0.3),0_2px_8px_rgba(0,0,0,0.08)] animate-bounce-in"
                 : isFocused
-                ? "bg-card border-[2px] border-danger shadow-sm animate-shake"
+                ? "bg-card border-[2px] border-danger shadow-[0_2px_12px_rgba(0,0,0,0.12)] animate-shake"
                 : isLocked
-                ? "bg-card border-[2px] border-border shadow-sm"
-                : "bg-card border-[2px] border-border shadow-sm"
-            } ${!isLocked && !isCorrect && !isFocused ? 'hover:shadow-[0_0_0_2px_#552583]' : ''}`}
+                ? "bg-card border-[2px] border-border"
+                : "bg-card border-[2px] border-border"
+            } ${!isLocked && !isCorrect && !isFocused ? 'hover:shadow-[0_0_0_2px_#552583,0_4px_12px_rgba(0,0,0,0.1)]' : ''}`}
           >
             <div className="flex items-center gap-3">
               {/* Left badge for rank */}
