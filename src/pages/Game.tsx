@@ -136,13 +136,9 @@ const Index = () => {
         answer.aliases.some(alias => normalizeGuess(alias) === normalized);
       
       if (isMatch) {
-        const alreadyFound = userAnswers.find(
-          (a) => a.isCorrect && normalizeGuess(a.playerName || '') === normalizeGuess(answer.name)
-        );
-        
-        if (alreadyFound) {
-          toast.info("You already found this player!");
-          return null;
+        const slot = userAnswers[answer.rank - 1];
+        if (slot?.playerName) {
+          return slot.isCorrect ? "ALREADY_CORRECT" : "ALREADY_REVEALED";
         }
         
         return answer;
@@ -159,7 +155,18 @@ const Index = () => {
   };
 
   const handleGuess = (guess: string) => {
-    const matchedAnswer = checkGuess(guess);
+    const result = checkGuess(guess);
+    
+    if (typeof result === "string") {
+      if (result === "ALREADY_CORRECT") {
+        toast.info("You already found this player!");
+      } else {
+        toast.info("This player was revealed due to timeout. No points awarded.");
+      }
+      return;
+    }
+    
+    const matchedAnswer = result;
     
     if (matchedAnswer) {
       const timeBonus = calculateTimeBonus();
