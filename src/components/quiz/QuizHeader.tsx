@@ -41,19 +41,12 @@ const QuizHeader = ({
 
   return (
     <Card className="p-6 bg-card shadow-md border-0 rounded-2xl">
-      {/* Title row with Submit pill button */}
+      {/* Title row */}
       <div className="flex items-start justify-between gap-6 mb-6">
         <div className="flex-1 min-w-0">
           <p className="text-[15px] text-text-secondary mb-2">{title}</p>
           <h1 className="text-[40px] font-bold text-text-primary leading-tight">{description}</h1>
         </div>
-        <Button 
-          onClick={onSubmit}
-          disabled={isDisabled}
-          className="bg-purple hover:bg-purple-hover text-primary-foreground px-8 h-12 rounded-full font-semibold shadow-sm transition-all duration-150 focus:ring-2 focus:ring-purple focus:ring-offset-2 hover:shadow-[0_0_20px_rgba(253,185,39,0.4)]"
-        >
-          Submit
-        </Button>
       </div>
 
       {/* Simple progress bar */}
