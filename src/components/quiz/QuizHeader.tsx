@@ -50,7 +50,7 @@ const QuizHeader = ({
         <Button 
           onClick={onSubmit}
           disabled={isDisabled}
-          className="bg-purple hover:bg-purple-hover text-primary-foreground px-8 h-12 rounded-full font-semibold shadow-sm transition-all duration-150 focus:ring-2 focus:ring-purple focus:ring-offset-2"
+          className="bg-purple hover:bg-purple-hover text-primary-foreground px-8 h-12 rounded-full font-semibold shadow-sm transition-all duration-150 focus:ring-2 focus:ring-purple focus:ring-offset-2 hover:shadow-[0_0_20px_rgba(253,185,39,0.4)]"
         >
           Submit
         </Button>
@@ -59,7 +59,7 @@ const QuizHeader = ({
       {/* Stat pills on single row */}
       <div className="flex flex-wrap items-center gap-3 mb-5">
         <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
-          <Calendar className="h-5 w-5 text-text-secondary" style={{ strokeWidth: '1.5px' }} />
+          <Calendar className="h-5 w-5 text-icon-muted" style={{ strokeWidth: '1.5px' }} />
           <span className="text-[15px] text-text-primary">{date}</span>
         </div>
         
@@ -74,7 +74,7 @@ const QuizHeader = ({
         </div>
         
         <div className="flex items-center gap-2 px-4 py-2 bg-card-muted rounded-full">
-          <Clock className="h-5 w-5 text-text-secondary" style={{ strokeWidth: '1.5px' }} />
+          <Clock className="h-5 w-5 text-icon-muted" style={{ strokeWidth: '1.5px' }} />
           <span className="text-[15px] text-text-primary font-medium tabular-nums">
             {minutesElapsed}:{secondsElapsed.toString().padStart(2, '0')} elapsed
           </span>
@@ -85,13 +85,13 @@ const QuizHeader = ({
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <span className="text-[15px] text-text-secondary">Time remaining</span>
-          <span className="text-[15px] font-semibold tabular-nums text-gold">
+          <span className={`text-[15px] font-semibold tabular-nums ${timeRemaining <= 10 ? 'text-danger animate-pulse' : 'text-gold'}`}>
             {minutes}:{seconds.toString().padStart(2, '0')}
           </span>
         </div>
         <div className="relative h-2 w-full overflow-hidden rounded-full bg-border">
           <div 
-            className={`h-full transition-all duration-300 ${getProgressColor()}`}
+            className={`h-full transition-all duration-300 ${timeRemaining <= 10 ? 'bg-danger animate-pulse' : 'bg-gold'}`}
             style={{ width: `${progressPercentage}%` }}
           />
         </div>

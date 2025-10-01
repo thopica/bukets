@@ -259,7 +259,7 @@ const Index = () => {
         {isCompleted && (
           <Button
             onClick={() => setShowResults(true)}
-            className="w-full h-12 bg-purple hover:bg-purple-hover text-primary-foreground font-semibold rounded-full shadow-sm focus:ring-2 focus:ring-purple focus:ring-offset-2"
+            className="w-full h-12 bg-purple hover:bg-purple-hover text-primary-foreground font-semibold rounded-full shadow-sm focus:ring-2 focus:ring-purple focus:ring-offset-2 transition-all duration-150 hover:shadow-[0_0_0_2px_#FDB927]"
           >
             View results
           </Button>

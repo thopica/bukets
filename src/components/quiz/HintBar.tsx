@@ -33,9 +33,9 @@ const HintBar = ({ currentHint, hintsRemaining, onRequestHint, onDismissHint }: 
         variant="ghost"
         onClick={onRequestHint}
         disabled={hintsRemaining === 0 || !!currentHint}
-        className="h-12 px-8 text-[15px] font-medium text-text-on-dark hover:bg-card/10 rounded-full transition-all duration-150 focus:ring-2 focus:ring-purple focus:ring-offset-2 border border-foreground/20"
+        className="h-12 px-8 text-[15px] font-medium text-purple hover:bg-card/10 rounded-full transition-all duration-150 focus:ring-2 focus:ring-purple focus:ring-offset-2 border-2 border-gold"
       >
-        <Lightbulb className="mr-2 h-5 w-5" style={{ strokeWidth: '1.5px' }} />
+        <Lightbulb className="mr-2 h-5 w-5 text-gold" style={{ strokeWidth: '1.5px' }} />
         Need a hint? ({hintsRemaining} left)
       </Button>
     </div>

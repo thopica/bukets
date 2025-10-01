@@ -82,7 +82,7 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background backdrop-blur-lg shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b-2 border-gold bg-background backdrop-blur-lg shadow-sm">
       <div className="container flex h-16 items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Trophy className="h-5 w-5 text-purple" style={{ strokeWidth: '1.5px' }} />
@@ -136,7 +136,7 @@ const Header = () => {
               variant="secondary" 
               size="sm" 
               onClick={() => navigate("/auth")} 
-              className="bg-purple hover:bg-purple-hover text-primary-foreground font-semibold rounded-full h-10 px-6 focus:ring-2 focus:ring-purple focus:ring-offset-2"
+              className="bg-purple hover:bg-purple-hover text-primary-foreground font-semibold rounded-full h-10 px-6 focus:ring-2 focus:ring-purple focus:ring-offset-2 transition-all duration-150 hover:shadow-[0_0_20px_rgba(253,185,39,0.4)]"
             >
               Sign in
             </Button>

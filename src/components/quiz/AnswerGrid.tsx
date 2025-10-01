@@ -26,17 +26,21 @@ const AnswerGrid = ({ answers, focusedSlot }: AnswerGridProps) => {
             key={answer.rank}
             className={`p-5 transition-all duration-150 rounded-2xl ${
               isCorrect
-                ? "bg-card border-[2px] border-success shadow-md animate-bounce-in"
+                ? "bg-card border-[2px] border-success shadow-[0_0_20px_rgba(253,185,39,0.3)] animate-bounce-in"
                 : isFocused
                 ? "bg-card border-[2px] border-danger shadow-sm animate-shake"
                 : isLocked
                 ? "bg-card border-[2px] border-border shadow-sm"
                 : "bg-card border-[2px] border-border shadow-sm"
-            } ${!isLocked && !isCorrect && !isFocused ? 'hover:ring-2 hover:ring-purple' : ''}`}
+            } ${!isLocked && !isCorrect && !isFocused ? 'hover:shadow-[0_0_0_2px_#552583]' : ''}`}
           >
             <div className="flex items-center gap-3">
               {/* Left badge for rank */}
-              <div className="flex items-center justify-center min-w-[32px] h-8 px-2 rounded-lg bg-badge-lavender text-badge-text font-bold text-sm">
+              <div className={`flex items-center justify-center min-w-[32px] h-8 px-2 rounded-lg font-bold text-sm ${
+                answer.playerName && isCorrect 
+                  ? 'bg-gold text-text-primary' 
+                  : 'bg-badge-lavender text-badge-text'
+              }`}>
                 #{answer.rank}
               </div>
               
