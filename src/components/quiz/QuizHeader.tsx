@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, Flame, Lightbulb, Clock } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { haptics } from "@/lib/haptics";
 
 interface QuizHeaderProps {
   title: string;
@@ -34,6 +36,15 @@ const QuizHeader = ({
   const timeElapsed = totalTime - timeRemaining;
   const minutesElapsed = Math.floor(timeElapsed / 60);
   const secondsElapsed = timeElapsed % 60;
+  const lastWarningTime = useRef<number>(0);
+  
+  // Timer urgency effects with haptic feedback
+  useEffect(() => {
+    if (timeRemaining <= 10 && timeRemaining > 0 && Math.floor(timeRemaining) !== lastWarningTime.current) {
+      haptics.warning();
+      lastWarningTime.current = Math.floor(timeRemaining);
+    }
+  }, [timeRemaining]);
   
   const getProgressColor = () => {
     return "bg-gold";
@@ -49,17 +60,25 @@ const QuizHeader = ({
         </div>
       </div>
 
-      {/* Simple progress bar */}
+      {/* Simple progress bar with urgency animations */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <span className="text-[15px] text-text-secondary">Time remaining</span>
-          <span className={`text-[15px] font-semibold tabular-nums ${timeRemaining <= 10 ? 'text-danger animate-pulse' : 'text-gold'}`}>
+          <span className={`font-mono text-[15px] font-semibold tabular-nums ${
+            timeRemaining <= 10 ? 'text-danger animate-pulse-urgency-fast' : 
+            timeRemaining <= 30 ? 'text-timerWarning animate-pulse-urgency' : 
+            'text-gold'
+          }`}>
             {minutes}:{seconds.toString().padStart(2, '0')}
           </span>
         </div>
         <div className="relative h-2 w-full overflow-hidden rounded-full bg-border">
           <div 
-            className={`h-full transition-all duration-300 ${timeRemaining <= 10 ? 'bg-danger animate-pulse' : 'bg-gold'}`}
+            className={`h-full transition-all duration-300 ${
+              timeRemaining <= 10 ? 'bg-danger animate-pulse-urgency-fast' : 
+              timeRemaining <= 30 ? 'bg-timerWarning animate-pulse-urgency' : 
+              'bg-gold'
+            }`}
             style={{ width: `${progressPercentage}%` }}
           />
         </div>

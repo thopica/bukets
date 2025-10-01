@@ -185,4 +185,16 @@ All colors MUST be HSL.
   .space-24 { @apply gap-6; }
   .space-32 { @apply gap-8; }
   .space-48 { @apply gap-12; }
+
+  /* Confetti animation with CSS custom properties */
+  @keyframes confetti-particle {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--vx, 0), var(--vy, -100px)) rotate(360deg);
+      opacity: 0;
+    }
+  }
 }

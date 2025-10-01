@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useRef, useEffect } from "react";
+import { createConfetti, animateScoreFlyUp } from "@/lib/confetti";
+import { haptics } from "@/lib/haptics";
 
 interface Answer {
   rank: number;
@@ -20,7 +22,9 @@ interface AnswerGridProps {
 const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerGridProps) => {
   const [inputs, setInputs] = useState<{ [key: number]: string }>({});
   const [timers, setTimers] = useState<{ [key: number]: number }>({});
+  const [animatingSlots, setAnimatingSlots] = useState<{ [key: number]: 'correct' | 'incorrect' | null }>({});
   const inputRefs = useRef<{ [key: number]: HTMLInputElement | null }>({});
+  const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
   const timerIntervals = useRef<{ [key: number]: NodeJS.Timeout }>({});
 
   useEffect(() => {
@@ -67,6 +71,30 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
     const guess = inputs[rank]?.trim();
     if (guess) {
       onGuess(guess, rank);
+      
+      // Simulate checking if answer is correct (you'll need to pass actual result from parent)
+      // For now, we'll trigger animations based on the answer state after a brief delay
+      setTimeout(() => {
+        const answer = answers.find(a => a.rank === rank);
+        if (answer?.isCorrect) {
+          // Correct answer animations
+          setAnimatingSlots(prev => ({ ...prev, [rank]: 'correct' }));
+          if (cardRefs.current[rank]) {
+            createConfetti(cardRefs.current[rank]!);
+            animateScoreFlyUp(cardRefs.current[rank]!, 3);
+          }
+          haptics.correct();
+          setTimeout(() => setAnimatingSlots(prev => ({ ...prev, [rank]: null })), 500);
+        } else if (answer && !answer.isCorrect && answer.playerName) {
+          // Incorrect answer animations
+          setAnimatingSlots(prev => ({ ...prev, [rank]: 'incorrect' }));
+          haptics.incorrect();
+          setTimeout(() => {
+            setAnimatingSlots(prev => ({ ...prev, [rank]: null }));
+          }, 500);
+        }
+      }, 100);
+      
       setInputs(prev => ({ ...prev, [rank]: '' }));
       // Clear timer for this slot
       if (timerIntervals.current[rank]) {
@@ -122,15 +150,16 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
         return (
           <Card
             key={answer.rank}
+            ref={(el) => cardRefs.current[answer.rank] = el}
             className={`px-5 py-6 transition-all duration-150 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] relative overflow-hidden ${
               isCorrect
-                ? "bg-card border-[2px] border-success shadow-[0_0_20px_rgba(253,185,39,0.3),0_2px_8px_rgba(0,0,0,0.08)] animate-bounce-in"
-                : isFocused
-                ? "bg-card border-[2px] border-danger shadow-[0_2px_12px_rgba(0,0,0,0.12)] animate-shake"
+                ? "bg-card border-[2px] border-success shadow-floating animate-correct-answer animate-green-glow"
+                : animatingSlots[answer.rank] === 'incorrect'
+                ? "bg-card border-[2px] border-danger animate-shake animate-red-flash"
                 : isLocked
                 ? "bg-card border-[2px] border-border"
                 : "bg-card border-[2px] border-border"
-            } ${!isLocked && !isCorrect && !isFocused ? 'hover:shadow-[0_0_0_2px_#552583,0_4px_12px_rgba(0,0,0,0.1)]' : ''}`}
+            } ${!isLocked && !isCorrect && !isFocused ? 'hover:shadow-elevated' : ''}`}
           >
             <div className="flex items-center gap-3">
               {/* Left badge for rank */}

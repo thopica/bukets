@@ -219,7 +219,7 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col animate-slide-up">
       <Header />
       
       <main className="container max-w-5xl mx-auto px-6 py-6 flex-1 flex flex-col gap-6 overflow-hidden">

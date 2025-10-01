@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, XCircle, Share2, Trophy } from "lucide-react";
 import { toast } from "sonner";
+import { useEffect } from "react";
+import { haptics } from "@/lib/haptics";
 
 interface ResultAnswer {
   rank: number;
@@ -36,6 +38,13 @@ const ResultsModal = ({
   streak,
   answers,
 }: ResultsModalProps) => {
+  // Celebrate streak milestones with haptics
+  useEffect(() => {
+    if (open && streak > 0 && streak % 5 === 0) {
+      haptics.milestone();
+    }
+  }, [open, streak]);
+
   const handleShare = () => {
     const emoji = answers.map((a) => (a.isCorrect ? "✅" : "❌")).join(" ");
     const shareText = `NBA Daily Quiz\n${correctCount}/${totalCount} • Score: ${score} • 🔥${streak} day streak\n${emoji}`;
@@ -46,7 +55,7 @@ const ResultsModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto bg-card rounded-2xl border-0 shadow-md">
+      <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto bg-card rounded-2xl border-0 shadow-floating animate-slide-up">
         <DialogHeader className="space-y-3">
           <DialogTitle className="flex items-center gap-2 text-3xl font-bold text-text-primary">
             <Trophy className="h-7 w-7 text-purple" style={{ strokeWidth: '1.5px' }} />
@@ -70,7 +79,9 @@ const ResultsModal = ({
                 <p className="text-[15px] text-text-secondary">Correct</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-text-primary mb-1">🔥{streak}</p>
+                <p className={`text-3xl font-bold text-text-primary mb-1 ${streak > 0 && streak % 5 === 0 ? 'animate-flicker' : ''}`}>
+                  🔥<span className="animate-count-up">{streak}</span>
+                </p>
                 <p className="text-[15px] text-text-secondary">Day streak</p>
               </div>
             </div>
