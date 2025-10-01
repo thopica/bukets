@@ -196,6 +196,10 @@ export default {
           "0%": { transform: "translateY(0) rotate(0deg)", opacity: "1" },
           "100%": { transform: "translateY(-100px) rotate(360deg)", opacity: "0" },
         },
+        "pulse-soft": {
+          "0%, 100%": { transform: "scale(1)", opacity: "1" },
+          "50%": { transform: "scale(1.05)", opacity: "0.9" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -216,6 +220,7 @@ export default {
         "count-up": "count-up 0.4s ease-out",
         "shimmer": "shimmer 2s linear infinite",
         "confetti": "confetti 0.8s ease-out forwards",
+        "pulse-soft": "pulse-soft 2s ease-in-out infinite",
       },
     },
   },
