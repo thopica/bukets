@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
-import { CheckCircle2, Lock } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { useState, useRef, useEffect } from "react";
 
 interface Answer {
   rank: number;
@@ -11,9 +13,42 @@ interface Answer {
 interface AnswerGridProps {
   answers: Answer[];
   focusedSlot?: number;
+  onGuess: (guess: string, rank?: number) => void;
+  disabled?: boolean;
 }
 
-const AnswerGrid = ({ answers, focusedSlot }: AnswerGridProps) => {
+const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerGridProps) => {
+  const [inputs, setInputs] = useState<{ [key: number]: string }>({});
+  const inputRefs = useRef<{ [key: number]: HTMLInputElement | null }>({});
+
+  useEffect(() => {
+    // Focus first unanswered slot
+    const firstUnanswered = answers.find(a => !a.playerName);
+    if (firstUnanswered && inputRefs.current[firstUnanswered.rank]) {
+      inputRefs.current[firstUnanswered.rank]?.focus();
+    }
+  }, [answers]);
+
+  const handleSubmit = (rank: number) => {
+    const guess = inputs[rank]?.trim();
+    if (guess) {
+      onGuess(guess, rank);
+      setInputs(prev => ({ ...prev, [rank]: '' }));
+      // Focus next unanswered slot
+      const nextUnanswered = answers.find(a => !a.playerName && a.rank > rank);
+      if (nextUnanswered && inputRefs.current[nextUnanswered.rank]) {
+        setTimeout(() => inputRefs.current[nextUnanswered.rank]?.focus(), 50);
+      }
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent, rank: number) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSubmit(rank);
+    }
+  };
+
   return (
     <div className="grid grid-cols-2 gap-4">
       {answers.map((answer) => {
@@ -36,7 +71,7 @@ const AnswerGrid = ({ answers, focusedSlot }: AnswerGridProps) => {
           >
             <div className="flex items-center gap-3">
               {/* Left badge for rank */}
-              <div className={`flex items-center justify-center min-w-[32px] h-8 px-2 rounded-lg font-bold text-sm ${
+              <div className={`flex items-center justify-center min-w-[32px] h-8 px-2 rounded-lg font-bold text-sm flex-shrink-0 ${
                 answer.playerName && isCorrect 
                   ? 'bg-gold text-text-primary' 
                   : 'bg-badge-lavender text-badge-text'
@@ -58,10 +93,15 @@ const AnswerGrid = ({ answers, focusedSlot }: AnswerGridProps) => {
                     </span>
                   </>
                 ) : (
-                  <>
-                    <Lock className="h-5 w-5 flex-shrink-0 text-icon-muted" style={{ strokeWidth: '1.5px' }} />
-                    <span className="text-[15px] text-text-secondary truncate">Rank #{answer.rank}</span>
-                  </>
+                  <Input
+                    ref={(el) => inputRefs.current[answer.rank] = el}
+                    value={inputs[answer.rank] || ''}
+                    onChange={(e) => setInputs(prev => ({ ...prev, [answer.rank]: e.target.value }))}
+                    onKeyDown={(e) => handleKeyDown(e, answer.rank)}
+                    placeholder={`Rank #${answer.rank}`}
+                    disabled={disabled}
+                    className="h-8 text-[15px] text-text-primary bg-transparent border-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-0 placeholder:text-text-secondary"
+                  />
                 )}
               </div>
             </div>

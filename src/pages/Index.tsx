@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
-import GuessInput from "@/components/quiz/GuessInput";
 import HintBar from "@/components/quiz/HintBar";
 import ResultsModal from "@/components/quiz/ResultsModal";
 import { Button } from "@/components/ui/button";
@@ -146,7 +145,7 @@ const Index = () => {
     return 0;
   };
 
-  const handleGuess = (guess: string) => {
+  const handleGuess = (guess: string, rank?: number) => {
     const matchedAnswer = checkGuess(guess);
     
     if (matchedAnswer) {
@@ -182,10 +181,10 @@ const Index = () => {
         setTimeout(() => setShowResults(true), 1000);
       }
     } else {
-      // Show shake animation on first unanswered slot
-      const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
-      if (unansweredIndex !== -1) {
-        setIncorrectGuess(unansweredIndex + 1);
+      // Show shake animation on the specific slot or first unanswered slot
+      const targetSlot = rank || userAnswers.findIndex((a) => !a.isCorrect) + 1;
+      if (targetSlot) {
+        setIncorrectGuess(targetSlot);
         setTimeout(() => setIncorrectGuess(null), 300);
       }
       toast.error("Not found. Try again!");
@@ -236,18 +235,18 @@ const Index = () => {
             hintsUsed={hintsUsed}
             maxHints={maxHints}
             onSubmit={() => {
-              const input = document.querySelector('input[type="text"]') as HTMLInputElement;
-              if (input && input.value.trim()) {
-                handleGuess(input.value.trim());
-              }
+              // Submit button functionality can be removed or used for manual submit
             }}
             isDisabled={isCompleted}
           />
 
-          <AnswerGrid answers={userAnswers} focusedSlot={incorrectGuess || undefined} />
+          <AnswerGrid 
+            answers={userAnswers} 
+            focusedSlot={incorrectGuess || undefined}
+            onGuess={handleGuess}
+            disabled={isCompleted}
+          />
         </div>
-
-        <GuessInput onGuess={handleGuess} disabled={isCompleted} />
 
         <HintBar
           currentHint={currentHint}
