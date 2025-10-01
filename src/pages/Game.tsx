@@ -7,6 +7,7 @@ import HintBar from "@/components/quiz/HintBar";
 import ResultsModal from "@/components/quiz/ResultsModal";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 // Dummy data for v1
 const QUIZ_DATA = {
@@ -125,20 +126,60 @@ const Index = () => {
     return guess.toLowerCase().trim().replace(/[^a-z\s]/g, '');
   };
 
-  const checkGuess = (guess: string) => {
+  const checkGuess = async (guess: string) => {
     const normalized = normalizeGuess(guess);
     
+    // Fetch all players from glossary
+    const { data: glossaryData, error } = await supabase
+      .from('players_glossary' as any)
+      .select('*') as any;
+    
+    if (error) {
+      console.error('Error fetching glossary:', error);
+      // Fallback to hardcoded aliases if DB fails
+      for (const answer of QUIZ_DATA.answers) {
+        const isMatch = 
+          normalizeGuess(answer.name) === normalized ||
+          answer.aliases.some(alias => normalizeGuess(alias) === normalized);
+        
+        if (isMatch) {
+          const slot = userAnswers[answer.rank - 1];
+          if (slot?.playerName) {
+            return slot.isCorrect ? "ALREADY_CORRECT" : "ALREADY_REVEALED";
+          }
+          return answer;
+        }
+      }
+      return null;
+    }
+    
+    // Check against glossary data
     for (const answer of QUIZ_DATA.answers) {
-      const isMatch = 
-        normalizeGuess(answer.name) === normalized ||
-        answer.aliases.some(alias => normalizeGuess(alias) === normalized);
+      const glossaryEntry = glossaryData?.data?.find(
+        (entry: any) => normalizeGuess(entry.player_name) === normalizeGuess(answer.name)
+      );
+      
+      let isMatch = normalizeGuess(answer.name) === normalized;
+      
+      // Check nicknames, aliases, and common_misspellings from glossary
+      if (glossaryEntry && !isMatch) {
+        isMatch = [
+          ...(glossaryEntry.nicknames || []),
+          ...(glossaryEntry.aliases || []),
+          ...(glossaryEntry.common_misspellings || [])
+        ].some((variant: string) => normalizeGuess(variant) === normalized);
+      }
+      
+      // Fallback to hardcoded aliases if not in glossary
+      if (!isMatch) {
+        isMatch = answer.aliases.some(alias => normalizeGuess(alias) === normalized);
+      }
       
       if (isMatch) {
         const slot = userAnswers[answer.rank - 1];
         if (slot?.playerName) {
           return slot.isCorrect ? "ALREADY_CORRECT" : "ALREADY_REVEALED";
         }
-        
         return answer;
       }
     }
@@ -152,8 +193,8 @@ const Index = () => {
     return 0;
   };
 
-  const handleGuess = (guess: string) => {
-    const result = checkGuess(guess);
+  const handleGuess = async (guess: string) => {
+    const result = await checkGuess(guess);
     
     if (typeof result === "string") {
       if (result === "ALREADY_CORRECT") {
