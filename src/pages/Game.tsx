@@ -241,7 +241,10 @@ const Index = () => {
 
           <GuessInput
             onGuess={handleGuess}
+            onRequestHint={handleRequestHint}
             disabled={isCompleted}
+            hintsRemaining={maxHints - hintsUsed}
+            currentHint={currentHint}
           />
 
           <AnswerGrid 
