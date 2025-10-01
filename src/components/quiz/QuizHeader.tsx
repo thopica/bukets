@@ -1,7 +1,5 @@
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Calendar, Flame, Lightbulb, Clock } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { TrendingUp } from "lucide-react";
+import { useEffect } from "react";
 import { haptics } from "@/lib/haptics";
 
 interface QuizHeaderProps {
@@ -14,65 +12,110 @@ interface QuizHeaderProps {
   streak: number;
   hintsUsed: number;
   maxHints: number;
-  onSubmit: () => void;
-  isDisabled: boolean;
+  onSubmit?: () => void;
+  isDisabled?: boolean;
+  correctCount?: number;
+  totalCount?: number;
 }
 
-const QuizHeader = ({ 
-  title, 
-  description, 
-  date,
+const QuizHeader = ({
+  title,
   timeRemaining,
   totalTime,
-  streak,
-  hintsUsed,
-  maxHints,
-  onSubmit,
-  isDisabled
+  score,
+  correctCount = 0,
+  totalCount = 6,
 }: QuizHeaderProps) => {
-  const minutes = Math.floor(timeRemaining / 60);
-  const seconds = timeRemaining % 60;
-  const progressPercentage = (timeRemaining / totalTime) * 100;
-  const lastWarningTime = useRef<number>(0);
-  
-  // Timer urgency effects with haptic feedback
+  const percentage = (timeRemaining / totalTime) * 100;
+  const isUrgent = timeRemaining < 30;
+
+  // Haptic feedback for time warnings
   useEffect(() => {
-    if (timeRemaining <= 10 && timeRemaining > 0 && Math.floor(timeRemaining) !== lastWarningTime.current) {
+    if (timeRemaining === 30 || timeRemaining === 10) {
       haptics.warning();
-      lastWarningTime.current = Math.floor(timeRemaining);
     }
   }, [timeRemaining]);
 
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  // Calculate stroke dasharray for circular progress
+  const radius = 36;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
   return (
     <div className="space-y-3">
-      {/* Compact timer bar at top */}
-      <div className="flex items-center justify-between px-1">
-        <span className="text-xs text-muted-foreground uppercase tracking-wide">Time</span>
-        <span className={`font-mono text-sm font-semibold tabular-nums ${
-          timeRemaining <= 10 ? 'text-danger animate-pulse-urgency-fast' : 
-          timeRemaining <= 30 ? 'text-timerWarning animate-pulse-urgency' : 
-          'text-foreground'
-        }`}>
-          {minutes}:{seconds.toString().padStart(2, '0')}
-        </span>
-      </div>
-      <div className="relative h-1 w-full overflow-hidden rounded-full bg-muted">
-        <div 
-          className={`h-full transition-all duration-300 ${
-            timeRemaining <= 10 ? 'bg-danger' : 
-            timeRemaining <= 30 ? 'bg-timerWarning' : 
-            'bg-gold'
-          }`}
-          style={{ width: `${progressPercentage}%` }}
-        />
+      {/* Top Bar: Score + Timer */}
+      <div className="flex items-center justify-between">
+        {/* Running Score - Left */}
+        <div className="flex items-center gap-2">
+          <TrendingUp className="h-4 w-4 text-success" />
+          <span className="text-lg font-bold text-foreground animate-score-bounce">
+            {score} pts
+          </span>
+        </div>
+
+        {/* Circular Timer - Right */}
+        <div className="relative w-20 h-20">
+          <svg className="transform -rotate-90 w-20 h-20">
+            {/* Background circle */}
+            <circle
+              cx="40"
+              cy="40"
+              r={radius}
+              stroke="currentColor"
+              strokeWidth="6"
+              fill="none"
+              className="text-muted"
+            />
+            {/* Progress circle */}
+            <circle
+              cx="40"
+              cy="40"
+              r={radius}
+              stroke="currentColor"
+              strokeWidth="6"
+              fill="none"
+              strokeDasharray={circumference}
+              strokeDashoffset={strokeDashoffset}
+              className={`transition-all duration-300 ${
+                percentage < 10
+                  ? "text-danger"
+                  : percentage < 30
+                  ? "text-timerWarning"
+                  : "text-success"
+              }`}
+              strokeLinecap="round"
+            />
+          </svg>
+          {/* Timer text */}
+          <div className={`absolute inset-0 flex items-center justify-center ${isUrgent ? 'animate-pulse' : ''}`}>
+            <span className="text-base font-bold text-foreground">
+              {formatTime(timeRemaining)}
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* Question - Scannable in 2 seconds */}
-      <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-foreground leading-tight tracking-tight">
-          {description}
+      {/* Category + Question */}
+      <div className="space-y-2">
+        <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">
+          {title}
+        </p>
+        <h1 className="text-2xl font-bold text-foreground leading-tight">
+          Name the top {totalCount} scorers in NBA history
         </h1>
-        <p className="text-sm text-muted-foreground">{title}</p>
+      </div>
+
+      {/* Progress Pill */}
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted">
+        <span className="text-sm font-semibold text-foreground">
+          {correctCount}/{totalCount} answered
+        </span>
       </div>
     </div>
   );

@@ -37,61 +37,59 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
   }, [lastGuessRank, answers]);
 
   return (
-    <Card className="p-4 bg-card shadow-elevated border-[2px] border-border rounded-card">
-      <div className="space-y-2">
-        {answers.map((answer) => {
-          const isRevealed = !!answer.playerName;
-          const isCorrect = answer.isCorrect;
-          const isLastGuess = lastGuessRank === answer.rank;
+    <div className="space-y-2">
+      {answers.map((answer) => {
+        const isRevealed = !!answer.playerName;
+        const isCorrect = answer.isCorrect;
+        const isLastGuess = lastGuessRank === answer.rank;
 
-          return (
-            <div
-              key={answer.rank}
-              ref={(el) => cardRefs.current[answer.rank] = el}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-150 ${
-                isCorrect
-                  ? "bg-success/10 border-2 border-success animate-correct-answer animate-green-glow"
-                  : isLastGuess && !isCorrect && isRevealed
-                  ? "bg-danger/10 border-2 border-danger animate-shake animate-red-flash"
-                  : isRevealed
-                  ? "bg-muted/50 border-2 border-border"
-                  : "bg-muted/30 border-2 border-border/50"
-              }`}
-            >
-              {/* Rank badge */}
-              <div className={`flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm flex-shrink-0 ${
-                isCorrect
-                  ? 'bg-gold text-background' 
-                  : 'bg-background text-foreground'
-              }`}>
-                {answer.rank}
-              </div>
-              
-              {/* Player name or locked state */}
-              <div className="flex items-center gap-2 flex-1 min-h-[32px]">
-                {isRevealed ? (
-                  <>
-                    {isCorrect && (
-                      <CheckCircle2 className="h-4 w-4 text-success flex-shrink-0 animate-bounce-in" />
-                    )}
-                    <span className={`font-semibold text-sm ${
-                      isCorrect ? "text-success" : "text-foreground"
-                    }`}>
-                      {answer.playerName}
-                    </span>
-                  </>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <Lock className="h-4 w-4 text-muted-foreground opacity-50" />
-                    <span className="text-xs text-muted-foreground">Not revealed</span>
-                  </div>
-                )}
-              </div>
+        return (
+          <div
+            key={answer.rank}
+            ref={(el) => cardRefs.current[answer.rank] = el}
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-150 border-2 ${
+              isCorrect
+                ? "bg-success/10 border-success animate-scale-pulse shadow-glow-green"
+                : isLastGuess && !isCorrect && isRevealed
+                ? "bg-danger/10 border-danger animate-shake-horizontal"
+                : isRevealed
+                ? "bg-timerWarning/10 border-timerWarning"
+                : "bg-muted/30 border-border/50"
+            }`}
+          >
+            {/* Rank badge */}
+            <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold text-base flex-shrink-0 ${
+              isCorrect
+                ? 'bg-success text-white' 
+                : 'bg-muted text-foreground'
+            }`}>
+              #{answer.rank}
             </div>
-          );
-        })}
-      </div>
-    </Card>
+            
+            {/* Player name or locked state */}
+            <div className="flex items-center gap-2 flex-1 min-h-[32px]">
+              {isRevealed ? (
+                <>
+                  {isCorrect && (
+                    <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0 animate-bounce-in" />
+                  )}
+                  <span className={`font-semibold text-base ${
+                    isCorrect ? "text-success" : "text-foreground"
+                  }`}>
+                    {answer.playerName}
+                  </span>
+                </>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Lock className="h-4 w-4 text-muted-foreground opacity-50" />
+                  <span className="text-sm text-muted-foreground">Locked</span>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 

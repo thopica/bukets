@@ -117,6 +117,7 @@ export default {
         'elevated': 'var(--shadow-elevated)',
         'floating': 'var(--shadow-floating)',
         'pressed': 'var(--shadow-pressed)',
+        'glow-green': '0 0 20px rgba(34, 197, 94, 0.4)',
       },
       keyframes: {
         "accordion-down": {
@@ -152,6 +153,19 @@ export default {
           "0%, 100%": { transform: "translateX(0)" },
           "25%": { transform: "translateX(-5px)" },
           "75%": { transform: "translateX(5px)" },
+        },
+        "shake-horizontal": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "10%, 30%, 50%, 70%, 90%": { transform: "translateX(-8px)" },
+          "20%, 40%, 60%, 80%": { transform: "translateX(8px)" }
+        },
+        "scale-pulse": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" }
+        },
+        "score-bounce": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-4px)" }
         },
         "correct-answer": {
           "0%": { transform: "scale(1) rotate(0deg)" },
@@ -210,6 +224,9 @@ export default {
         "slide-up": "slide-up 0.2s ease-out",
         "bounce-in": "bounce-in 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
         "shake": "shake 0.3s ease-in-out",
+        "shake-horizontal": "shake-horizontal 0.6s ease-in-out",
+        "scale-pulse": "scale-pulse 0.4s ease-in-out",
+        "score-bounce": "score-bounce 0.3s ease-out",
         "correct-answer": "correct-answer 0.5s ease-out",
         "green-glow": "green-glow 0.3s ease-out",
         "red-flash": "red-flash 0.2s ease-out",

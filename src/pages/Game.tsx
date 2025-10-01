@@ -218,43 +218,48 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col animate-slide-up">
+    <div className="min-h-screen bg-background flex flex-col animate-slide-up pb-32">
       <Header />
       
-      <main className="container max-w-2xl mx-auto px-4 py-3 flex-1 flex flex-col justify-between gap-3 overflow-hidden">
-        {/* Question Section - Top Priority */}
-        <QuizHeader
-          title={QUIZ_DATA.title}
-          description={QUIZ_DATA.description}
-          date={QUIZ_DATA.date}
-          timeRemaining={overallTimeRemaining}
-          totalTime={totalQuizTime}
-          score={score}
-          streak={streak}
-          hintsUsed={hintsUsed}
-          maxHints={maxHints}
-          onSubmit={() => {}}
-          isDisabled={isCompleted}
-        />
+      {/* Mobile-Optimized Layout: 15% Header, 50% Grid, 35% Input */}
+      <main className="container max-w-2xl mx-auto px-4 py-4 flex-1 flex flex-col gap-4 overflow-y-auto">
+        {/* Question Header - 15% */}
+        <div className="shrink-0">
+          <QuizHeader
+            title={QUIZ_DATA.title}
+            description={QUIZ_DATA.description}
+            date={QUIZ_DATA.date}
+            timeRemaining={overallTimeRemaining}
+            totalTime={totalQuizTime}
+            score={score}
+            streak={streak}
+            hintsUsed={hintsUsed}
+            maxHints={maxHints}
+            onSubmit={() => {}}
+            isDisabled={isCompleted}
+            correctCount={correctCount}
+            totalCount={6}
+          />
+        </div>
 
-        {/* Answer Cards - Middle Section */}
-        <AnswerGrid 
-          answers={userAnswers} 
-          lastGuessRank={lastGuessRank}
-          disabled={isCompleted}
-        />
-
-        {/* Input - Bottom 40% (Thumb Zone) */}
-        <div className="mt-auto">
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
+        {/* Answer Grid - 50% */}
+        <div className="flex-1 overflow-y-auto">
+          <AnswerGrid 
+            answers={userAnswers} 
+            lastGuessRank={lastGuessRank}
             disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
           />
         </div>
       </main>
+
+      {/* Input Section - Fixed Bottom (35% / Thumb Zone) */}
+      <GuessInput
+        onGuess={handleGuess}
+        onRequestHint={handleRequestHint}
+        disabled={isCompleted}
+        hintsRemaining={maxHints - hintsUsed}
+        currentHint={currentHint}
+      />
 
       <ResultsModal
         open={showResults}
