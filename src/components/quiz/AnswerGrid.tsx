@@ -37,7 +37,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
   }, [lastGuessRank, answers]);
 
   return (
-    <div className="space-y-2">
+    <div className="grid grid-cols-1 gap-2">
       {answers.map((answer) => {
         const isRevealed = !!answer.playerName;
         const isCorrect = answer.isCorrect;
@@ -47,7 +47,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
           <div
             key={answer.rank}
             ref={(el) => cardRefs.current[answer.rank] = el}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-150 border-2 ${
+            className={`grid grid-cols-[auto_1fr] items-center gap-3 px-4 py-3 rounded-xl transition-all duration-150 border-2 ${
               isCorrect
                 ? "bg-success/10 border-success animate-scale-pulse shadow-glow-green"
                 : isLastGuess && !isCorrect && isRevealed
@@ -67,7 +67,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
             </div>
             
             {/* Player name or locked state */}
-            <div className="flex items-center gap-2 flex-1 min-h-[32px]">
+            <div className="flex items-center gap-2 min-h-[32px]">
               {isRevealed ? (
                 <>
                   {isCorrect && (

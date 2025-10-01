@@ -2,7 +2,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, Trophy, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
 
 const DUMMY_ARCHIVE = [
   {
@@ -47,7 +49,33 @@ const DUMMY_ARCHIVE = [
   },
 ];
 
+const ArchiveSkeleton = () => {
+  return (
+    <div className="space-y-3">
+      {[1, 2, 3, 4, 5].map((i) => (
+        <Card key={i} className="p-4">
+          <div className="flex items-center gap-4">
+            <div className="flex-1 space-y-3">
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-4 w-4 rounded" />
+                <Skeleton className="h-4 w-32" />
+              </div>
+              <Skeleton className="h-6 w-48" />
+              <div className="flex items-center gap-4">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-4 w-20" />
+              </div>
+            </div>
+            <Skeleton className="h-10 w-20 rounded-lg" />
+          </div>
+        </Card>
+      ))}
+    </div>
+  );
+};
+
 const Archive = () => {
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -62,36 +90,40 @@ const Archive = () => {
           </div>
 
           <div className="space-y-3">
-            {DUMMY_ARCHIVE.map((quiz) => (
-              <Card key={quiz.id} className="p-4 hover:shadow-md transition-all">
-                <div className="flex items-center gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">{quiz.date}</span>
-                    </div>
-                    <h3 className="font-semibold text-lg">{quiz.title}</h3>
-                    
-                    {quiz.completed && (
-                      <div className="flex items-center gap-4 mt-2 text-sm">
-                        <div className="flex items-center gap-1 text-success">
-                          <CheckCircle2 className="h-4 w-4" />
-                          <span>{quiz.correctAnswers}/6 correct</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Trophy className="h-4 w-4 text-secondary" />
-                          <span className="font-semibold">{quiz.score} points</span>
-                        </div>
+            {isLoading ? (
+              <ArchiveSkeleton />
+            ) : (
+              DUMMY_ARCHIVE.map((quiz) => (
+                <Card key={quiz.id} className="p-4 hover:shadow-md transition-all">
+                  <div className="flex items-center gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Calendar className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-sm text-muted-foreground">{quiz.date}</span>
                       </div>
-                    )}
-                  </div>
+                      <h3 className="font-semibold text-lg">{quiz.title}</h3>
+                      
+                      {quiz.completed && (
+                        <div className="flex items-center gap-4 mt-2 text-sm">
+                          <div className="flex items-center gap-1 text-success">
+                            <CheckCircle2 className="h-4 w-4" />
+                            <span>{quiz.correctAnswers}/6 correct</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Trophy className="h-4 w-4 text-secondary" />
+                            <span className="font-semibold">{quiz.score} points</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
 
-                  <Button variant={quiz.completed ? "outline" : "default"}>
-                    {quiz.completed ? "Review" : "Play"}
-                  </Button>
-                </div>
-              </Card>
-            ))}
+                    <Button variant={quiz.completed ? "outline" : "default"}>
+                      {quiz.completed ? "Review" : "Play"}
+                    </Button>
+                  </div>
+                </Card>
+              ))
+            )}
           </div>
         </div>
       </main>
