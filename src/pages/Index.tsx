@@ -224,7 +224,7 @@ const Index = () => {
       <Header />
       
       <main className="container max-w-5xl mx-auto px-6 py-6 flex-1 flex flex-col gap-6 overflow-hidden">
-        <div className="space-y-4">
+        <div className="space-y-3">
           <QuizHeader
             title={QUIZ_DATA.title}
             description={QUIZ_DATA.description}
