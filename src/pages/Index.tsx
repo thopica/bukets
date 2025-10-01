@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Trophy, Clock, Brain, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import basketballPlayer from "@/assets/basketball-player.png";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -15,8 +16,8 @@ const Index = () => {
       <main className="container max-w-2xl mx-auto px-4 py-6 flex-1 flex flex-col justify-center gap-6">
         {/* Hero Section - Punchy & Action-Oriented */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-orange to-orange-hover">
-            <Trophy className="h-10 w-10 text-white" />
+          <div className="inline-flex items-center justify-center w-32 h-32">
+            <img src={basketballPlayer} alt="Basketball player dunking" className="w-full h-full object-contain" />
           </div>
           
           <h1 className="text-4xl font-bold text-foreground leading-tight tracking-tight">
