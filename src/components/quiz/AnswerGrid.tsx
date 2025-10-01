@@ -59,7 +59,7 @@ const AnswerGrid = ({ answers, focusedSlot, onGuess, disabled = false }: AnswerG
         return (
           <Card
             key={answer.rank}
-            className={`p-5 transition-all duration-150 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] ${
+            className={`px-5 py-6 transition-all duration-150 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] ${
               isCorrect
                 ? "bg-card border-[2px] border-success shadow-[0_0_20px_rgba(253,185,39,0.3),0_2px_8px_rgba(0,0,0,0.08)] animate-bounce-in"
                 : isFocused
