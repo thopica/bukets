@@ -13,7 +13,7 @@ const HowToPlay = () => {
     {
       icon: <Trophy className="h-8 w-8 text-secondary" />,
       title: "Scoring System",
-      description: "Earn points for each correct answer. Speed matters: answer within 10 seconds for +5 points (golden), or 10+ seconds for +4 points (orange). Each hint used reduces your score by 1 point.",
+      description: "Earn points for each correct answer. Speed matters: answer within 10 seconds for +5 points (golden), 10-15 seconds for +4 points (orange), or 15+ seconds for +3 points (green). Each hint used reduces your score by 1 point.",
     },
     {
       icon: <Timer className="h-8 w-8 text-warning" />,
@@ -74,8 +74,12 @@ const HowToPlay = () => {
                 <span className="font-bold text-[#F7B32B]">+5 points (golden)</span>
               </div>
               <div className="flex justify-between items-center">
-                <span>Standard answer (10+ seconds)</span>
+                <span>Quick answer (10-15 seconds)</span>
                 <span className="font-bold text-[#FF6B35]">+4 points (orange)</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span>Standard answer (15+ seconds)</span>
+                <span className="font-bold text-success">+3 points (green)</span>
               </div>
               <div className="flex justify-between items-center">
                 <span>Hint used</span>
