@@ -64,22 +64,29 @@ const QuizHeader = ({
         </div>
       </div>
 
-      {/* Shot Clock - Center */}
-      <div className="flex items-center justify-center gap-2 md:gap-4">
-        {/* NBA Shot Clock (only show when totalTime > 0) */}
+      {/* Mobile Layout: Title left, Shot Clock right */}
+      <div className="md:hidden flex items-start justify-between gap-2">
+        {/* Category + Question */}
+        <div className="space-y-0.5 text-left flex-1">
+          <p className="text-sm font-bold text-foreground leading-tight capitalize">
+            {title}
+          </p>
+          <h1 className="text-sm font-bold text-foreground leading-tight">
+            Name the top {totalCount} scorers in NBA history
+          </h1>
+        </div>
+
+        {/* Shot Clock - Right side on mobile */}
         {showTimers && (
-          <div className="relative w-10 h-10 md:w-16 md:h-16 bg-black rounded-sm border-2 md:border-4 border-gray-400 shadow-2xl flex items-center justify-center"
+          <div className="relative w-10 h-10 bg-black rounded-sm border-2 border-gray-400 shadow-2xl flex items-center justify-center shrink-0"
             style={{
               backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
               backgroundSize: '4px 4px'
             }}
           >
-            {/* Inner border effect */}
             <div className="absolute inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
-            
-            {/* 24 Second Shot Clock - Red LED */}
             <div 
-              className={`font-shot-clock text-2xl md:text-4xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
+              className={`font-shot-clock text-2xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
                 isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
               }`}
               style={{
@@ -92,14 +99,41 @@ const QuizHeader = ({
         )}
       </div>
 
-      {/* Category + Question */}
-      <div className="space-y-0.5 md:space-y-1 text-center">
-        <p className="text-sm md:text-2xl font-bold text-foreground leading-tight capitalize">
-          {title}
-        </p>
-        <h1 className="text-sm md:text-2xl font-bold text-foreground leading-tight">
-          Name the top {totalCount} scorers in NBA history
-        </h1>
+      {/* Desktop Layout: Centered Shot Clock and Title */}
+      <div className="hidden md:block space-y-4">
+        {/* Shot Clock - Center */}
+        <div className="flex items-center justify-center">
+          {showTimers && (
+            <div className="relative w-16 h-16 bg-black rounded-sm border-4 border-gray-400 shadow-2xl flex items-center justify-center"
+              style={{
+                backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
+                backgroundSize: '4px 4px'
+              }}
+            >
+              <div className="absolute inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
+              <div 
+                className={`font-shot-clock text-4xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
+                  isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
+                }`}
+                style={{
+                  textShadow: '0 0 10px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3)'
+                }}
+              >
+                {playerTimeRemaining}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Category + Question */}
+        <div className="space-y-1 text-center">
+          <p className="text-2xl font-bold text-foreground leading-tight capitalize">
+            {title}
+          </p>
+          <h1 className="text-2xl font-bold text-foreground leading-tight">
+            Name the top {totalCount} scorers in NBA history
+          </h1>
+        </div>
       </div>
     </div>
   );
