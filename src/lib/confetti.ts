@@ -37,7 +37,7 @@ export const animateScoreFlyUp = (element: HTMLElement, points: number) => {
   const scoreElement = document.createElement('div');
   scoreElement.textContent = `+${points}`;
   scoreElement.style.position = 'absolute';
-  scoreElement.style.fontSize = '20px';
+  scoreElement.style.fontSize = '16px';
   scoreElement.style.fontWeight = '700';
   scoreElement.style.color = '#00D9A5';
   scoreElement.style.pointerEvents = 'none';
@@ -46,7 +46,7 @@ export const animateScoreFlyUp = (element: HTMLElement, points: number) => {
   
   const rect = element.getBoundingClientRect();
   scoreElement.style.left = `${rect.left + rect.width / 2 + 30}px`;
-  scoreElement.style.top = `${rect.top + rect.height / 3}px`;
+  scoreElement.style.top = `${rect.top + rect.height / 4}px`;
   scoreElement.style.transform = 'translateX(-50%)';
   
   scoreElement.style.animation = 'score-fly-up 0.6s ease-out forwards';
