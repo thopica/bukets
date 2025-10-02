@@ -51,9 +51,11 @@ const QuizHeader = ({
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
+  const showTimers = totalTime > 0;
+
   return (
     <div className="border-2 border-white rounded-xl p-3 space-y-2">
-      {/* Top Bar: Score + Two Timers */}
+      {/* Top Bar: Score + Timers */}
       <div className="flex items-center justify-between">
         {/* Running Score - Left */}
         <div className="flex items-center gap-2">
@@ -63,6 +65,54 @@ const QuizHeader = ({
           </span>
         </div>
 
+        {/* Timers - Right (only show when totalTime > 0) */}
+        {showTimers && (
+          <div className="flex items-center gap-3">
+            {/* Per-Player Timer */}
+            <div className="flex flex-col items-end">
+              <span className="text-xs text-muted-foreground">Player</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-12 h-1.5 bg-muted rounded-full overflow-hidden">
+                  <div
+                    className={`h-full transition-all duration-300 ${
+                      isPlayerUrgent ? "bg-destructive" : "bg-primary"
+                    }`}
+                    style={{ width: `${playerPercentage}%` }}
+                  />
+                </div>
+                <span
+                  className={`text-sm font-bold tabular-nums ${
+                    isPlayerUrgent ? "text-destructive" : "text-foreground"
+                  }`}
+                >
+                  {playerTimeRemaining}s
+                </span>
+              </div>
+            </div>
+
+            {/* Overall Quiz Timer */}
+            <div className="flex flex-col items-end">
+              <span className="text-xs text-muted-foreground">Total</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-12 h-1.5 bg-muted rounded-full overflow-hidden">
+                  <div
+                    className={`h-full transition-all duration-300 ${
+                      isOverallUrgent ? "bg-destructive" : "bg-primary"
+                    }`}
+                    style={{ width: `${percentage}%` }}
+                  />
+                </div>
+                <span
+                  className={`text-sm font-bold tabular-nums ${
+                    isOverallUrgent ? "text-destructive" : "text-foreground"
+                  }`}
+                >
+                  {formatTime(timeRemaining)}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Category + Question */}
