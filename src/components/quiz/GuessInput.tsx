@@ -64,7 +64,7 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
             onKeyDown={handleKeyDown}
             placeholder="Type player name..."
             disabled={disabled}
-            className={`h-12 text-sm text-foreground bg-card border-2 rounded-xl px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
+            className={`flex-1 h-12 text-sm text-foreground bg-card border-2 rounded-xl px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
               isShaking 
                 ? 'animate-shake-horizontal border-destructive focus:border-destructive' 
                 : 'border-border focus:border-orange'
@@ -97,7 +97,7 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
             onClick={handleSubmit}
             disabled={disabled || !input.trim()}
             size="lg"
-            className="h-12 px-6 rounded-xl shrink-0 font-bold text-sm"
+            className="h-12 px-3 rounded-xl shrink-0 font-bold text-sm"
           >
             <Send className="h-5 w-5" />
           </Button>
