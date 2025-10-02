@@ -76,7 +76,7 @@ const Index = () => {
                 <img src={basketballPlayer} alt="Basketball player dunking" className="w-full h-full object-contain" />
               </div>
               
-              <p className="text-base md:text-lg text-muted-foreground font-medium max-w-xl mx-auto leading-relaxed">
+              <p className="text-base md:text-lg font-medium max-w-xl mx-auto leading-relaxed text-white">
                 One quiz. Six answers. 2:40. Measure yourself against basketball fans from Boston to Beijing.
               </p>
             </div>
