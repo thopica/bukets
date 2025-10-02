@@ -16,7 +16,7 @@ const Training = () => {
   const [QUIZ_DATA, setQUIZ_DATA] = useState<Quiz>(getQuizByIndex(0));
   
   // State management for quiz game
-  const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean }>>([
+  const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean; stat?: string }>>([
     { rank: 1 }, { rank: 2 }, { rank: 3 }, { rank: 4 }, { rank: 5 }, { rank: 6 },
   ]);
   
@@ -94,6 +94,7 @@ const Training = () => {
         rank: correctAnswer.rank,
         playerName: correctAnswer.name,
         isCorrect: false,
+        stat: correctAnswer.stat,
       };
       setUserAnswers(newAnswers);
       setLastGuessRank(correctAnswer.rank);
@@ -178,6 +179,7 @@ const Training = () => {
         rank: matchedAnswer.rank,
         playerName: matchedAnswer.name,
         isCorrect: true,
+        stat: matchedAnswer.stat,
       };
       
       setUserAnswers(newAnswers);

@@ -18,7 +18,7 @@ const Index = () => {
   };
 
   // State management for quiz game
-  const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean }>>([
+  const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean; stat?: string }>>([
     { rank: 1 },
     { rank: 2 },
     { rank: 3 },
@@ -93,6 +93,7 @@ const Index = () => {
         rank: correctAnswer.rank,
         playerName: correctAnswer.name,
         isCorrect: false,
+        stat: correctAnswer.stat,
       };
       setUserAnswers(newAnswers);
       setLastGuessRank(correctAnswer.rank);
@@ -182,6 +183,7 @@ const Index = () => {
         rank: matchedAnswer.rank,
         playerName: matchedAnswer.name,
         isCorrect: true,
+        stat: matchedAnswer.stat,
       };
       
       setUserAnswers(newAnswers);

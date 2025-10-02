@@ -9,6 +9,7 @@ interface Answer {
   playerName?: string;
   isCorrect?: boolean;
   isRevealed?: boolean;
+  stat?: string;
 }
 
 interface AnswerGridProps {
@@ -48,7 +49,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
           <div
             key={answer.rank}
             ref={(el) => cardRefs.current[answer.rank] = el}
-            className={`grid grid-cols-[auto_1fr] items-center gap-3 px-3 py-2 rounded-xl transition-all duration-150 border-2 ${
+            className={`grid grid-cols-[auto_1fr_auto] items-center gap-3 px-3 py-2 rounded-xl transition-all duration-150 border-2 ${
               isCorrect
                 ? "bg-success/10 border-success animate-scale-pulse shadow-glow-green"
                 : isLastGuess && !isCorrect && isRevealed
@@ -87,6 +88,13 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
                 </div>
               )}
             </div>
+
+            {/* Stats */}
+            {isRevealed && answer.stat && (
+              <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">
+                {answer.stat}
+              </span>
+            )}
           </div>
         );
       })}
