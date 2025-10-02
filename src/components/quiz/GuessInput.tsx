@@ -57,49 +57,51 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
         )}
         
         {/* Input Row */}
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center w-full">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type player name..."
             disabled={disabled}
-            className={`flex-1 h-12 text-sm text-foreground bg-card border-2 rounded-xl px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
+            className={`flex-1 min-w-0 h-12 text-sm text-foreground bg-card border-2 rounded-xl px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
               isShaking 
                 ? 'animate-shake-horizontal border-destructive focus:border-destructive' 
                 : 'border-border focus:border-orange'
             }`}
             autoFocus
           />
-          <Button
-            onClick={onRequestHint}
-            disabled={disabled || hintsRemaining === 0}
-            variant="outline"
-            size="sm"
-            className="h-12 px-2 rounded-xl shrink-0 border-2 border-timerWarning text-timerWarning hover:bg-timerWarning/10"
-            title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}
-          >
-            <Lightbulb className="h-4 w-4" />
-          </Button>
+          {onRequestHint && (
+            <Button
+              onClick={onRequestHint}
+              disabled={disabled || hintsRemaining === 0}
+              variant="outline"
+              size="icon"
+              className="h-12 w-12 rounded-xl shrink-0 border-2 border-timerWarning text-timerWarning hover:bg-timerWarning/10"
+              title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}
+            >
+              <Lightbulb className="h-5 w-5" />
+            </Button>
+          )}
           {onShuffle && (
             <Button
               onClick={onShuffle}
               disabled={disabled}
               variant="outline"
-              size="sm"
-              className="h-12 px-2 rounded-xl shrink-0 border-2"
+              size="icon"
+              className="h-12 w-12 rounded-xl shrink-0 border-2"
               title="Random quiz"
             >
-              <Shuffle className="h-4 w-4" />
+              <Shuffle className="h-5 w-5" />
             </Button>
           )}
           <Button
             onClick={handleSubmit}
             disabled={disabled || !input.trim()}
-            size="sm"
-            className="h-12 px-2 rounded-xl shrink-0 font-bold text-sm"
+            size="icon"
+            className="h-12 w-12 rounded-xl shrink-0 font-bold"
           >
-            <Send className="h-4 w-4" />
+            <Send className="h-5 w-5" />
           </Button>
         </div>
       </div>
