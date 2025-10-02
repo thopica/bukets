@@ -1,0 +1,339 @@
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import Header from "@/components/Header";
+import QuizHeader from "@/components/quiz/QuizHeader";
+import AnswerGrid from "@/components/quiz/AnswerGrid";
+import GuessInput from "@/components/quiz/GuessInput";
+import ResultsModal from "@/components/quiz/ResultsModal";
+import { ChevronLeft, ChevronRight, Shuffle } from "lucide-react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { getQuizByIndex, getTotalQuizzes, type Quiz } from "@/utils/quizDate";
+
+const Training = () => {
+  const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
+  const [QUIZ_DATA, setQUIZ_DATA] = useState<Quiz>(getQuizByIndex(0));
+  
+  // State management for quiz game
+  const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean }>>([
+    { rank: 1 }, { rank: 2 }, { rank: 3 }, { rank: 4 }, { rank: 5 }, { rank: 6 },
+  ]);
+  
+  const [score, setScore] = useState(0);
+  const [hintsUsed, setHintsUsed] = useState(0);
+  const [currentHint, setCurrentHint] = useState<string | undefined>();
+  const [timeRemaining, setTimeRemaining] = useState(24);
+  const [showResults, setShowResults] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [lastGuessRank, setLastGuessRank] = useState<number | undefined>();
+  const [showInputError, setShowInputError] = useState(false);
+
+  const maxHints = 3;
+  const totalQuizzes = getTotalQuizzes();
+
+  // Reset quiz state when quiz changes
+  const resetQuiz = () => {
+    setUserAnswers([
+      { rank: 1 }, { rank: 2 }, { rank: 3 }, { rank: 4 }, { rank: 5 }, { rank: 6 },
+    ]);
+    setScore(0);
+    setHintsUsed(0);
+    setCurrentHint(undefined);
+    setTimeRemaining(24);
+    setShowResults(false);
+    setIsCompleted(false);
+    setLastGuessRank(undefined);
+    setShowInputError(false);
+  };
+
+  const loadQuiz = (index: number) => {
+    const safeIndex = ((index % totalQuizzes) + totalQuizzes) % totalQuizzes;
+    setCurrentQuizIndex(safeIndex);
+    setQUIZ_DATA(getQuizByIndex(safeIndex));
+    resetQuiz();
+  };
+
+  const handleRandomQuiz = () => {
+    const randomIndex = Math.floor(Math.random() * totalQuizzes);
+    loadQuiz(randomIndex);
+    toast.success("Random quiz loaded!");
+  };
+
+  const handleNextQuiz = () => {
+    loadQuiz(currentQuizIndex + 1);
+  };
+
+  const handlePreviousQuiz = () => {
+    loadQuiz(currentQuizIndex - 1);
+  };
+
+  // Per-player timer countdown
+  useEffect(() => {
+    if (isCompleted || timeRemaining === 0) return;
+
+    const timer = setInterval(() => {
+      setTimeRemaining((prev) => {
+        if (prev <= 1) {
+          handleTimeUp();
+          return 24;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeRemaining, isCompleted]);
+
+  const handleTimeUp = () => {
+    const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
+    if (unansweredIndex !== -1) {
+      const correctAnswer = QUIZ_DATA.answers[unansweredIndex];
+      const newAnswers = [...userAnswers];
+      newAnswers[unansweredIndex] = {
+        rank: correctAnswer.rank,
+        playerName: correctAnswer.name,
+        isCorrect: false,
+      };
+      setUserAnswers(newAnswers);
+      setLastGuessRank(correctAnswer.rank);
+      
+      const allRevealed = newAnswers.every((a) => a.playerName);
+      if (allRevealed) {
+        setIsCompleted(true);
+        setTimeout(() => setShowResults(true), 1000);
+      }
+    }
+  };
+
+  const normalizeGuess = (guess: string) => {
+    return guess.toLowerCase().trim().replace(/[^a-z\s]/g, '');
+  };
+
+  const checkGuess = async (guess: string) => {
+    const normalized = normalizeGuess(guess);
+    
+    const { data: glossaryData, error } = await supabase
+      .from('players_glossary' as any)
+      .select('*') as any;
+    
+    for (const answer of QUIZ_DATA.answers) {
+      let isMatch = normalizeGuess(answer.name) === normalized;
+      
+      if (!isMatch) {
+        isMatch = answer.aliases.some(alias => normalizeGuess(alias) === normalized);
+      }
+      
+      if (!isMatch && glossaryData && !error) {
+        const glossaryEntry = glossaryData.find(
+          (entry: any) => normalizeGuess(entry.player_name) === normalizeGuess(answer.name)
+        );
+        
+        if (glossaryEntry?.variations) {
+          isMatch = glossaryEntry.variations.some(
+            (variant: string) => normalizeGuess(variant) === normalized
+          );
+        }
+      }
+      
+      if (isMatch) {
+        const slot = userAnswers[answer.rank - 1];
+        if (slot?.playerName) {
+          return slot.isCorrect ? "ALREADY_CORRECT" : "ALREADY_REVEALED";
+        }
+        return answer;
+      }
+    }
+    
+    return null;
+  };
+
+  const calculateTimeBonus = () => {
+    if (timeRemaining >= 15) return 2;
+    if (timeRemaining >= 10) return 1;
+    return 0;
+  };
+
+  const handleGuess = async (guess: string) => {
+    const result = await checkGuess(guess);
+    
+    if (typeof result === "string") {
+      if (result === "ALREADY_CORRECT") {
+        toast.info("You already found this player!");
+      } else {
+        toast.info("This player was revealed due to timeout. No points awarded.");
+      }
+      return;
+    }
+    
+    const matchedAnswer = result;
+    
+    if (matchedAnswer) {
+      const timeBonus = calculateTimeBonus();
+      const pointsEarned = 3 + timeBonus;
+      
+      const newAnswers = [...userAnswers];
+      const index = matchedAnswer.rank - 1;
+      newAnswers[index] = {
+        rank: matchedAnswer.rank,
+        playerName: matchedAnswer.name,
+        isCorrect: true,
+      };
+      
+      setUserAnswers(newAnswers);
+      setScore((prev) => prev + pointsEarned);
+      setTimeRemaining(24);
+      setCurrentHint(undefined);
+      setLastGuessRank(matchedAnswer.rank);
+      setShowInputError(false);
+      
+      if (timeRemaining >= 23) {
+        toast.success("🏀 BUZZER BEATER! +" + pointsEarned + " points", {
+          duration: 3000,
+        });
+      } else {
+        toast.success(`Correct! +${pointsEarned} points (${timeBonus > 0 ? `+${timeBonus} time bonus` : 'no time bonus'})`);
+      }
+      
+      const allCorrect = newAnswers.every((a) => a.isCorrect);
+      if (allCorrect) {
+        setIsCompleted(true);
+        setTimeout(() => setShowResults(true), 1000);
+      }
+    } else {
+      setLastGuessRank(undefined);
+      setShowInputError(true);
+    }
+  };
+
+  const handleRequestHint = () => {
+    if (hintsUsed >= maxHints || currentHint) return;
+    
+    const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
+    if (unansweredIndex !== -1) {
+      const hint = QUIZ_DATA.hints[unansweredIndex];
+      setCurrentHint(hint.text);
+      setHintsUsed((prev) => prev + 1);
+      setScore((prev) => Math.max(0, prev - 0.5));
+      toast.info("Hint revealed! -0.5 points");
+    }
+  };
+
+  const getResultsData = () => {
+    return QUIZ_DATA.answers.map((answer) => {
+      const userAnswer = userAnswers.find((a) => a.rank === answer.rank);
+      return {
+        rank: answer.rank,
+        correctName: answer.name,
+        userGuess: userAnswer?.playerName,
+        isCorrect: userAnswer?.isCorrect || false,
+      };
+    });
+  };
+
+  const correctCount = userAnswers.filter((a) => a.isCorrect).length;
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col animate-slide-up pb-28">
+      <Header />
+      
+      <main className="container max-w-2xl mx-auto px-4 py-2 flex-1 flex flex-col gap-4">
+        {/* Carousel Navigation */}
+        <Card className="p-4 bg-card/50 backdrop-blur">
+          <div className="flex items-center justify-between gap-4">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handlePreviousQuiz}
+              disabled={isCompleted}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            
+            <div className="flex-1 text-center">
+              <p className="text-sm text-muted-foreground">Training Mode</p>
+              <p className="font-semibold">Quiz {currentQuizIndex + 1} of {totalQuizzes}</p>
+            </div>
+            
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleRandomQuiz}
+              disabled={isCompleted}
+              className="bg-primary/10 hover:bg-primary/20"
+            >
+              <Shuffle className="h-4 w-4" />
+            </Button>
+            
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleNextQuiz}
+              disabled={isCompleted}
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </Card>
+
+        {/* Quiz Content */}
+        <div className="shrink-0">
+          <QuizHeader
+            title={QUIZ_DATA.title}
+            description={QUIZ_DATA.description}
+            date="Training Mode"
+            timeRemaining={0}
+            totalTime={0}
+            playerTimeRemaining={timeRemaining}
+            playerTotalTime={24}
+            score={score}
+            streak={0}
+            hintsUsed={hintsUsed}
+            maxHints={maxHints}
+            onSubmit={() => {}}
+            isDisabled={isCompleted}
+            correctCount={correctCount}
+            totalCount={6}
+          />
+        </div>
+
+        <div className="flex-1 overflow-y-auto">
+          <AnswerGrid 
+            answers={userAnswers} 
+            lastGuessRank={lastGuessRank}
+            disabled={isCompleted}
+          />
+        </div>
+      </main>
+
+      <GuessInput
+        onGuess={handleGuess}
+        onRequestHint={handleRequestHint}
+        disabled={isCompleted}
+        hintsRemaining={maxHints - hintsUsed}
+        currentHint={currentHint}
+        showError={showInputError}
+      />
+
+      <ResultsModal
+        open={showResults}
+        onOpenChange={(open) => {
+          setShowResults(open);
+          if (!open) {
+            resetQuiz();
+          }
+        }}
+        score={score}
+        correctCount={correctCount}
+        totalCount={6}
+        streak={0}
+        answers={getResultsData()}
+        timeBonus={0}
+        speedBonus={0}
+        hintsUsed={hintsUsed}
+      />
+    </div>
+  );
+};
+
+export default Training;
