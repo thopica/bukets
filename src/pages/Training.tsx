@@ -6,7 +6,7 @@ import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
 import GuessInput from "@/components/quiz/GuessInput";
 import ResultsModal from "@/components/quiz/ResultsModal";
-import { ChevronLeft, ChevronRight, Shuffle } from "lucide-react";
+import { ChevronLeft, ChevronRight, Shuffle, Flame } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { getQuizByIndex, getTotalQuizzes, type Quiz } from "@/utils/quizDate";
@@ -21,6 +21,7 @@ const Training = () => {
   ]);
   
   const [score, setScore] = useState(0);
+  const [streak, setStreak] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [currentHint, setCurrentHint] = useState<string | undefined>();
   const [timeRemaining, setTimeRemaining] = useState(24);
@@ -38,6 +39,7 @@ const Training = () => {
       { rank: 1 }, { rank: 2 }, { rank: 3 }, { rank: 4 }, { rank: 5 }, { rank: 6 },
     ]);
     setScore(0);
+    setStreak(0);
     setHintsUsed(0);
     setCurrentHint(undefined);
     setTimeRemaining(24);
@@ -98,6 +100,7 @@ const Training = () => {
       };
       setUserAnswers(newAnswers);
       setLastGuessRank(correctAnswer.rank);
+      setStreak(0);
       
       const allRevealed = newAnswers.every((a) => a.playerName);
       if (allRevealed) {
@@ -184,6 +187,7 @@ const Training = () => {
       
       setUserAnswers(newAnswers);
       setScore((prev) => prev + pointsEarned);
+      setStreak((prev) => prev + 1);
       setTimeRemaining(24);
       setCurrentHint(undefined);
       setLastGuessRank(matchedAnswer.rank);
@@ -205,6 +209,7 @@ const Training = () => {
     } else {
       setLastGuessRank(undefined);
       setShowInputError(true);
+      setStreak(0);
     }
   };
 
@@ -253,8 +258,16 @@ const Training = () => {
             </Button>
             
             <div className="flex-1 text-center">
-              <p className="text-sm text-muted-foreground">Training Mode</p>
-              <p className="font-semibold">Quiz {currentQuizIndex + 1} of {totalQuizzes}</p>
+              <p className="text-sm text-muted-foreground">Unranked Training Mode</p>
+              <div className="flex items-center justify-center gap-2">
+                <p className="font-semibold">Quiz {currentQuizIndex + 1}</p>
+                {streak >= 2 && (
+                  <div className="flex items-center gap-1 text-orange animate-bounce-in">
+                    <Flame className="h-4 w-4" />
+                    <span className="text-sm font-bold">{streak}</span>
+                  </div>
+                )}
+              </div>
             </div>
             
             <Button
