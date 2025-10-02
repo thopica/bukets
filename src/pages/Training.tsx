@@ -252,15 +252,6 @@ const Training = () => {
         {/* Carousel Navigation */}
         <Card className="p-4 bg-card/50 backdrop-blur">
           <div className="flex items-center justify-between gap-4">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handlePreviousQuiz}
-              disabled={isCompleted}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            
             <div className="flex-1 text-center">
               <p className="text-sm text-muted-foreground">Unranked Training Mode</p>
               <div className="flex items-center justify-center gap-2">
@@ -281,15 +272,6 @@ const Training = () => {
               disabled={isCompleted}
             >
               <Shuffle className="h-4 w-4" />
-            </Button>
-            
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleNextQuiz}
-              disabled={isCompleted}
-            >
-              <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
         </Card>
