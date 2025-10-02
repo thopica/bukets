@@ -54,39 +54,39 @@ const QuizHeader = ({
   const showTimers = totalTime > 0;
 
   return (
-    <div className="border-2 border-white rounded-lg md:rounded-xl p-2 md:p-3 space-y-2 md:space-y-4 relative">
+    <div className="border-2 border-white rounded-lg md:rounded-xl p-1.5 md:p-3 space-y-1.5 md:space-y-4 relative">
       {/* Progress Pill - Top Right Corner */}
-      <div className="absolute top-2 right-2 md:top-3 md:right-3">
-        <div className="inline-flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-muted">
-          <span className="text-xs md:text-sm font-semibold text-foreground">
+      <div className="absolute top-1.5 right-1.5 md:top-3 md:right-3">
+        <div className="inline-flex items-center gap-1 md:gap-2 px-1.5 md:px-3 py-0.5 md:py-1 rounded-full bg-muted">
+          <span className="text-[10px] md:text-sm font-semibold text-foreground">
             {correctCount}/{totalCount}
           </span>
         </div>
       </div>
 
       {/* Mobile Layout: Title left, Shot Clock right */}
-      <div className="md:hidden flex items-start justify-between gap-2">
+      <div className="md:hidden flex items-start justify-between gap-1.5">
         {/* Category + Question */}
         <div className="space-y-0.5 text-left flex-1">
-          <p className="text-sm font-bold text-foreground leading-tight capitalize">
+          <p className="text-xs font-bold text-foreground leading-tight capitalize">
             {title}
           </p>
-          <h1 className="text-sm font-bold text-foreground leading-tight">
+          <h1 className="text-xs font-bold text-foreground leading-tight">
             Name the top {totalCount} scorers in NBA history
           </h1>
         </div>
 
         {/* Shot Clock - Right side on mobile */}
         {showTimers && (
-          <div className="relative w-10 h-10 bg-black rounded-sm border-2 border-gray-400 shadow-2xl flex items-center justify-center shrink-0"
+          <div className="relative w-9 h-9 md:w-16 md:h-16 bg-black rounded-sm border-2 md:border-4 border-gray-400 shadow-2xl flex items-center justify-center shrink-0"
             style={{
               backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
               backgroundSize: '4px 4px'
             }}
           >
-            <div className="absolute inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
+            <div className="absolute inset-0.5 md:inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
             <div 
-              className={`font-shot-clock text-2xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
+              className={`font-shot-clock text-xl md:text-4xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
                 isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
               }`}
               style={{

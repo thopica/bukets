@@ -43,13 +43,13 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
   };
 
   return (
-    <div className="bg-background p-2 md:p-3 border-t md:border-t-2 border-border md:sticky md:bottom-0 md:shadow-floating z-[1000]" style={{ paddingBottom: `max(0.5rem, env(safe-area-inset-bottom))` }}>
-      <div className="space-y-1.5 md:space-y-2 md:container md:max-w-5xl md:mx-auto">
+    <div className="bg-background p-1.5 md:p-3 border-t md:border-t-2 border-border md:sticky md:bottom-0 md:shadow-floating z-[1000]" style={{ paddingBottom: `max(0.375rem, env(safe-area-inset-bottom))` }}>
+      <div className="space-y-1 md:space-y-2 md:container md:max-w-5xl md:mx-auto">
         {/* Hint Overlay - Slides up */}
         {currentHint && (
-          <div className="p-2 md:p-3 bg-timerWarning/10 border md:border-2 border-timerWarning rounded-lg md:rounded-xl animate-slide-up shadow-elevated">
-            <div className="flex items-start gap-1.5 md:gap-2">
-              <Lightbulb className="h-3 w-3 md:h-4 md:w-4 text-timerWarning flex-shrink-0 mt-0.5" />
+          <div className="p-1.5 md:p-3 bg-timerWarning/10 border md:border-2 border-timerWarning rounded-lg md:rounded-xl animate-slide-up shadow-elevated">
+            <div className="flex items-start gap-1 md:gap-2">
+              <Lightbulb className="h-2.5 w-2.5 md:h-4 md:w-4 text-timerWarning flex-shrink-0 mt-0.5" />
               <p className="text-[10px] md:text-xs text-foreground flex-1">
                 <span className="font-semibold">{hintsUsed === 1 ? "First Hint" : "Second Hint"}:</span> {currentHint}
               </p>
@@ -58,14 +58,14 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
         )}
         
         {/* Input Row */}
-        <div className="flex gap-1.5 md:gap-2 items-center w-full">
+        <div className="flex gap-1 md:gap-2 items-center w-full">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type player name..."
             disabled={disabled}
-            className={`flex-1 min-w-0 h-9 md:h-12 text-xs md:text-sm text-foreground bg-card border md:border-2 rounded-lg md:rounded-xl px-3 md:px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
+            className={`flex-1 min-w-0 h-8 md:h-12 text-xs md:text-sm text-foreground bg-card border md:border-2 rounded-lg md:rounded-xl px-2.5 md:px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
               isShaking 
                 ? 'animate-shake-horizontal border-destructive focus:border-destructive' 
                 : 'border-border focus:border-orange'
@@ -78,15 +78,15 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
               disabled={disabled || hintsRemaining === 0}
               variant="outline"
               size="icon"
-              className={`h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl shrink-0 border md:border-2 transition-all relative ${
+              className={`h-8 w-8 md:h-12 md:w-12 rounded-lg md:rounded-xl shrink-0 border md:border-2 transition-all relative ${
                 hintsRemaining === 0 
                   ? 'border-muted-foreground/30 text-muted-foreground/30 bg-muted/20 cursor-not-allowed' 
                   : 'border-timerWarning text-timerWarning hover:bg-timerWarning/10'
               }`}
               title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}
             >
-              <div className="flex flex-col items-center justify-center gap-0.5">
-                <Lightbulb className="h-4 w-4 md:h-5 md:w-5" />
+              <div className="flex flex-col items-center justify-center gap-0">
+                <Lightbulb className="h-3.5 w-3.5 md:h-5 md:w-5" />
                 <span className={`text-[7px] md:text-[8px] font-bold leading-none transition-colors ${
                   hintsRemaining === 0 ? 'text-muted-foreground/50' : 'text-timerWarning'
                 }`}>
@@ -101,19 +101,19 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
               disabled={disabled}
               variant="outline"
               size="icon"
-              className="h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl shrink-0 border md:border-2"
+              className="h-8 w-8 md:h-12 md:w-12 rounded-lg md:rounded-xl shrink-0 border md:border-2"
               title="Random quiz"
             >
-              <Shuffle className="h-4 w-4 md:h-5 md:w-5" />
+              <Shuffle className="h-3.5 w-3.5 md:h-5 md:w-5" />
             </Button>
           )}
           <Button
             onClick={handleSubmit}
             disabled={disabled || !input.trim()}
             size="icon"
-            className="h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl shrink-0 font-bold"
+            className="h-8 w-8 md:h-12 md:w-12 rounded-lg md:rounded-xl shrink-0 font-bold"
           >
-            <Send className="h-4 w-4 md:h-5 md:w-5" />
+            <Send className="h-3.5 w-3.5 md:h-5 md:w-5" />
           </Button>
         </div>
       </div>
