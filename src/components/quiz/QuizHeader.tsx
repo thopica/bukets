@@ -55,17 +55,9 @@ const QuizHeader = ({
 
   return (
     <div className="border-2 border-white rounded-xl p-3 space-y-2">
-      {/* Top Bar: Score + Shot Clock */}
+      {/* Shot Clock - Center */}
       <div className="flex items-center justify-center gap-4">
-        {/* Running Score - Left */}
-        <div className="flex items-center gap-2">
-          <TrendingUp className="h-4 w-4 text-success" />
-          <span className="text-lg font-bold text-foreground animate-score-bounce">
-            {score} pts
-          </span>
-        </div>
-
-        {/* NBA Shot Clock - Right (only show when totalTime > 0) */}
+        {/* NBA Shot Clock (only show when totalTime > 0) */}
         {showTimers && (
           <div className="relative w-24 h-24 bg-black rounded-sm border-4 border-gray-400 shadow-2xl flex items-center justify-center"
             style={{
@@ -101,11 +93,21 @@ const QuizHeader = ({
         </h1>
       </div>
 
-      {/* Progress Pill */}
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted">
-        <span className="text-sm font-semibold text-foreground">
-          {correctCount}/{totalCount} answered
-        </span>
+      {/* Progress Pill + Score */}
+      <div className="flex items-center justify-between gap-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted">
+          <span className="text-sm font-semibold text-foreground">
+            {correctCount}/{totalCount} answered
+          </span>
+        </div>
+        
+        {/* Running Score - Right */}
+        <div className="flex items-center gap-2">
+          <TrendingUp className="h-4 w-4 text-success" />
+          <span className="text-lg font-bold text-foreground animate-score-bounce">
+            {score} pts
+          </span>
+        </div>
       </div>
     </div>
   );
