@@ -79,7 +79,7 @@ const QuizHeader = ({
             <div className="flex flex-col items-center gap-0 relative z-10">
               {/* Total Time - Amber LED */}
               <div 
-                className={`font-shot-clock text-3xl font-normal tracking-[0.15em] leading-none ${
+                className={`font-shot-clock text-3xl font-normal tracking-[0.15em] leading-none flex items-center ${
                   isOverallUrgent ? "text-red-500" : "text-amber-400"
                 }`}
                 style={{
@@ -88,7 +88,9 @@ const QuizHeader = ({
                     : '0 0 6px rgba(251, 191, 36, 0.8), 0 0 12px rgba(251, 191, 36, 0.6), 0 0 18px rgba(251, 191, 36, 0.4)'
                 }}
               >
-                {formatTime(timeRemaining)}
+                <span>{formatTime(timeRemaining).split(':')[0]}</span>
+                <span className="-translate-y-0.5">:</span>
+                <span>{formatTime(timeRemaining).split(':')[1]}</span>
               </div>
               
               {/* 24 Second Shot Clock - Red LED */}
