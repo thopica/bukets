@@ -46,18 +46,29 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
         // Calculate time taken and points
         const timeTaken = (Date.now() - startTimeRef.current) / 1000; // in seconds
         let points = 3;
-        let color = '#00D9A5'; // green
         
         if (timeTaken <= 10) {
           points = 5;
-          color = '#F7B32B'; // golden
         } else if (timeTaken <= 15) {
           points = 4;
-          color = '#FF6B35'; // orange
         }
         
         // Apply hint penalty (1 point per hint used)
         points = Math.max(1, points - hintsUsed);
+        
+        // Assign color based on final points
+        let color = '#00D9A5'; // default green
+        if (points === 5) {
+          color = '#F7B32B'; // gold
+        } else if (points === 4) {
+          color = '#00D9A5'; // green
+        } else if (points === 3) {
+          color = '#FF6B35'; // orange
+        } else if (points === 2) {
+          color = '#D97706'; // dark orange
+        } else if (points === 1) {
+          color = '#EF4444'; // red
+        }
         
         // Correct answer animations
         createConfetti(cardRefs.current[lastGuessRank]!);
