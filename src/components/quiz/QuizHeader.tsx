@@ -70,13 +70,13 @@ const QuizHeader = ({
           <div className="bg-black rounded-lg px-4 py-2 border-2 border-gray-700 shadow-lg">
             {/* Total Time - White */}
             <div className="flex flex-col items-center">
-              <div className={`font-mono text-2xl font-bold tracking-wider ${
+              <div className={`font-shot-clock text-2xl font-black tracking-wider ${
                 isOverallUrgent ? "text-red-500" : "text-white"
               }`}>
                 {formatTime(timeRemaining)}
               </div>
               {/* 24 Second Shot Clock - Red */}
-              <div className={`font-mono text-3xl font-bold tracking-wider ${
+              <div className={`font-shot-clock text-3xl font-black tracking-wider ${
                 isPlayerUrgent ? "text-red-600 animate-pulse" : "text-red-500"
               }`}>
                 {playerTimeRemaining}

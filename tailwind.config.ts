@@ -17,6 +17,7 @@ export default {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'system-ui', 'sans-serif'],
         display: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Segoe UI', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+        'shot-clock': ['Orbitron', 'monospace'],
       },
       fontSize: {
         'h1': ['32px', { lineHeight: '38px', letterSpacing: '-0.02em', fontWeight: '700' }],
