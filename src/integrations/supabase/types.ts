@@ -14,30 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      players_glossary: {
-        Row: {
-          created_at: string | null
-          id: string
-          player_name: string
-          updated_at: string | null
-          variations: string[] | null
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          player_name: string
-          updated_at?: string | null
-          variations?: string[] | null
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          player_name?: string
-          updated_at?: string | null
-          variations?: string[] | null
-        }
-        Relationships: []
-      }
       profiles: {
         Row: {
           avatar_url: string | null
