@@ -79,7 +79,7 @@ const QuizHeader = ({
             <div className="flex flex-col items-center gap-0 relative z-10">
               {/* Total Time - Amber LED */}
               <div 
-                className={`font-shot-clock text-lg font-normal tracking-[0.15em] leading-none ${
+                className={`font-shot-clock text-3xl font-normal tracking-[0.15em] leading-none ${
                   isOverallUrgent ? "text-red-500" : "text-amber-400"
                 }`}
                 style={{
