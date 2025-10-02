@@ -68,10 +68,10 @@ const CarouselPlayer = () => {
   const correctCount = playerAnswers.filter(a => a.isRevealed).length;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col animate-slide-up pb-28">
+    <div className="min-h-screen bg-background flex flex-col animate-slide-up">
       <Header />
       
-      <main className="container max-w-2xl mx-auto px-4 py-2 flex-1 flex flex-col gap-2 overflow-y-auto">
+      <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch">
         {/* Question Header - Compact */}
         <div className="shrink-0">
           <QuizHeader
@@ -92,7 +92,7 @@ const CarouselPlayer = () => {
         </div>
 
         {/* Answer Grid */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="shrink-0">
           <AnswerGrid
             answers={playerAnswers}
             lastGuessRank={lastGuessRank}
@@ -100,15 +100,29 @@ const CarouselPlayer = () => {
             hintsUsed={usedHints.length}
           />
         </div>
+
+        {/* Desktop Input - Below Answers */}
+        <div className="hidden md:block shrink-0">
+          <GuessInput
+            onGuess={handleGuess}
+            onShuffle={handleRandom}
+            disabled={correctCount === 6}
+            hintsRemaining={2 - usedHints.length}
+            showError={showError}
+          />
+        </div>
       </main>
 
-      <GuessInput
-        onGuess={handleGuess}
-        onShuffle={handleRandom}
-        disabled={correctCount === 6}
-        hintsRemaining={2 - usedHints.length}
-        showError={showError}
-      />
+      {/* Mobile Input - Fixed at Bottom */}
+      <div className="md:hidden shrink-0">
+        <GuessInput
+          onGuess={handleGuess}
+          onShuffle={handleRandom}
+          disabled={correctCount === 6}
+          hintsRemaining={2 - usedHints.length}
+          showError={showError}
+        />
+      </div>
     </div>
   );
 };
