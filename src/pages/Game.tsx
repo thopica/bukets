@@ -154,9 +154,10 @@ const Index = () => {
   };
 
   const calculateTimeBonus = () => {
-    if (timeRemaining >= 15) return 2;
-    if (timeRemaining >= 10) return 1;
-    return 0;
+    const timeUsed = 24 - timeRemaining;
+    if (timeUsed < 10) return 2;  // 0-9.99 seconds = +2 points
+    if (timeUsed < 15) return 1;  // 10-14.99 seconds = +1 point
+    return 0;  // 15+ seconds = no bonus
   };
 
   const handleGuess = async (guess: string) => {
