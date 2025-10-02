@@ -23,6 +23,7 @@ const Training = () => {
   
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
+  const [currentQuizPerfect, setCurrentQuizPerfect] = useState(true);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [currentHint, setCurrentHint] = useState<string | undefined>();
   const [timeRemaining, setTimeRemaining] = useState(24);
@@ -40,7 +41,7 @@ const Training = () => {
       { rank: 1 }, { rank: 2 }, { rank: 3 }, { rank: 4 }, { rank: 5 }, { rank: 6 },
     ]);
     setScore(0);
-    setStreak(0);
+    setCurrentQuizPerfect(true);
     setHintsUsed(0);
     setCurrentHint(undefined);
     setTimeRemaining(24);
@@ -95,10 +96,11 @@ const Training = () => {
       };
       setUserAnswers(newAnswers);
       setLastGuessRank(correctAnswer.rank);
-      setStreak(0);
+      setCurrentQuizPerfect(false); // Quiz is no longer perfect
       
       const allRevealed = newAnswers.every((a) => a.playerName);
       if (allRevealed) {
+        setStreak(0); // Reset streak because quiz wasn't perfect
         setIsCompleted(true);
         setTimeout(() => setShowResults(true), 1000);
       }
@@ -198,6 +200,13 @@ const Training = () => {
       
       const allCorrect = newAnswers.every((a) => a.isCorrect);
       if (allCorrect) {
+        // Perfect quiz! Increment streak
+        if (currentQuizPerfect) {
+          setStreak((prev) => prev + 1);
+          toast.success(`🔥 Perfect Quiz! Streak: ${streak + 1}`, {
+            duration: 3000,
+          });
+        }
         setIsCompleted(true);
         setTimeout(() => setShowResults(true), 1000);
       }
