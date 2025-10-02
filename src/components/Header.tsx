@@ -59,7 +59,7 @@ const Header = () => {
   const navLinks = [
     { path: "/", label: "Home" },
     { path: "/game", label: "Today's Quiz" },
-    { path: "/training", label: "Training", icon: <Shuffle className="h-4 w-4" /> },
+    { path: "/training", label: "Carousel" },
     { path: "/leaderboard", label: "Leaderboard" },
     { path: "/archive", label: "Archive" },
     { path: "/how-to-play", label: "How to Play" },
@@ -75,11 +75,8 @@ const Header = () => {
             isActive(link.path)
               ? "text-foreground font-semibold"
               : "text-muted-foreground hover:text-foreground"
-          } transition-colors text-xs ${mobile ? "block py-2 text-sm" : ""} ${
-            link.icon ? "flex items-center gap-1" : ""
-          }`}
+          } transition-colors text-xs ${mobile ? "block py-2 text-sm" : ""}`}
         >
-          {link.icon}
           {link.label}
         </Link>
       ))}
