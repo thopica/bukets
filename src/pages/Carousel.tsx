@@ -3,14 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import Header from "@/components/Header";
-import { ChevronLeft, ChevronRight, Shuffle, Eye, EyeOff } from "lucide-react";
-import { toast } from "sonner";
+import { ChevronLeft, ChevronRight, Shuffle, Eye, EyeOff, Lightbulb } from "lucide-react";
 import carouselData from "@/data/carousel_questions.json";
 import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
 import GuessInput from "@/components/quiz/GuessInput";
-import HintBar from "@/components/quiz/HintBar";
 
 type QuizMode = "single" | "player";
 type Answer = {
@@ -71,7 +70,6 @@ const Carousel = () => {
     const randomIndex = Math.floor(Math.random() * maxQuestions);
     setCurrentIndex(randomIndex);
     if (mode === "player") initializePlayerAnswers();
-    toast.success("Random question loaded!");
   };
 
   const toggleAnswer = () => {
@@ -105,18 +103,15 @@ const Carousel = () => {
       };
       setPlayerAnswers(updatedAnswers);
       setLastGuessRank(matchIndex + 1);
-      toast.success("Correct!");
     } else {
       setShowError(true);
       setTimeout(() => setShowError(false), 500);
-      toast.error("Incorrect guess!");
     }
   };
 
   const handleRequestHint = (rank: number) => {
     if (!usedHints.includes(rank)) {
       setUsedHints([...usedHints, rank]);
-      toast.success("Hint revealed!");
     }
   };
 
@@ -237,10 +232,34 @@ const Carousel = () => {
               totalCount={6}
             />
 
-            <HintBar
-              hints={currentPlayerQuestion.hints}
-              usedHints={usedHints}
-            />
+            {/* Hints Display */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {currentPlayerQuestion.hints.map((hint) => (
+                <Alert 
+                  key={hint.rank}
+                  className={`p-3 ${usedHints.includes(hint.rank) ? 'bg-gold/10 border-gold/30' : 'bg-muted/30'}`}
+                >
+                  <AlertDescription className="text-sm">
+                    {usedHints.includes(hint.rank) ? (
+                      <>
+                        <Lightbulb className="h-4 w-4 inline mr-1 text-gold" />
+                        <span className="font-medium">#{hint.rank}:</span> {hint.text}
+                      </>
+                    ) : (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleRequestHint(hint.rank)}
+                        className="w-full h-auto p-0"
+                      >
+                        <Lightbulb className="h-4 w-4 mr-1" />
+                        Reveal hint #{hint.rank}
+                      </Button>
+                    )}
+                  </AlertDescription>
+                </Alert>
+              ))}
+            </div>
 
             <AnswerGrid
               answers={playerAnswers}
@@ -250,7 +269,6 @@ const Carousel = () => {
 
             <GuessInput
               onGuess={handleGuess}
-              onRequestHint={handleRequestHint}
               disabled={correctCount === 6}
               hintsRemaining={6 - usedHints.length}
               showError={showError}
