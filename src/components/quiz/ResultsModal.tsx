@@ -8,7 +8,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, XCircle, Share2, Trophy, TrendingUp, Clock, Lightbulb, Zap, Flame } from "lucide-react";
-import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { haptics } from "@/lib/haptics";
 import { useNavigate } from "react-router-dom";
@@ -100,9 +99,6 @@ ${emoji}
 Can you beat my score?`;
     
     navigator.clipboard.writeText(shareText);
-    toast.success("Results copied!", {
-      description: "Share your score with friends",
-    });
   };
 
   return (

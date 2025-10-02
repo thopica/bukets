@@ -6,7 +6,6 @@ import GuessInput from "@/components/quiz/GuessInput";
 import HintBar from "@/components/quiz/HintBar";
 import ResultsModal from "@/components/quiz/ResultsModal";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { getTodaysQuiz, getQuizDate, type Quiz } from "@/utils/quizDate";
 
@@ -70,10 +69,6 @@ const Index = () => {
         if (prev <= 1) {
           // End quiz when overall time is up
           setIsCompleted(true);
-          toast.error("Time's up! Quiz ended", {
-            description: "The overall time limit has been reached",
-            duration: 5000,
-          });
           setTimeout(() => setShowResults(true), 1500);
           return 0;
         }
@@ -89,7 +84,6 @@ const Index = () => {
     if (unansweredIndex !== -1) {
       // Time ran out - we need to fetch the correct answer from server
       // For now, just mark as incomplete
-      toast.error("Time's up for this player!");
       setTimeRemaining(24);
     }
   };
@@ -147,11 +141,7 @@ const Index = () => {
     const result = await checkGuess(guess);
     
     if (typeof result === "string") {
-      if (result === "ALREADY_CORRECT") {
-        toast.info("You already found this player!");
-      } else {
-        toast.info("This player was revealed due to timeout. No points awarded.");
-      }
+      // Already correct or timed out - just return
       return;
     }
     
@@ -178,14 +168,6 @@ const Index = () => {
       setLastGuessRank(matchedAnswer.rank);
       setShowInputError(false);
       
-      if (timeRemaining >= 23) {
-        toast.success("🏀 BUZZER BEATER! +" + pointsEarned + " points", {
-          duration: 3000,
-        });
-      } else {
-        toast.success(`Correct! +${pointsEarned} points (${timeBonus > 0 ? `+${timeBonus} time bonus` : 'no time bonus'})`);
-      }
-      
       // Check if all answered
       const allCorrect = newAnswers.every((a) => a.isCorrect);
       if (allCorrect) {
@@ -207,7 +189,6 @@ const Index = () => {
       setCurrentHint(hint.text);
       setHintsUsed((prev) => prev + 1);
       setScore((prev) => Math.max(0, prev - 0.5));
-      toast.info("Hint revealed! -0.5 points");
     }
   };
 

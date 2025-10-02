@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { toast } from "@/hooks/use-toast";
 import { Trophy, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -34,11 +33,6 @@ const Auth = () => {
       setLoading(true);
       
       if (!email || !password) {
-        toast({
-          title: "Error",
-          description: "Please enter both email and password",
-          variant: "destructive",
-        });
         return;
       }
 
@@ -75,20 +69,11 @@ const Auth = () => {
           }
           throw error;
         }
-
-        toast({
-          title: "Welcome back!",
-          description: "Signed in successfully",
-        });
         
         navigate("/");
       }
     } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "An error occurred",
-        variant: "destructive",
-      });
+      // Error handling without toast
     } finally {
       setLoading(false);
     }
@@ -106,17 +91,8 @@ const Auth = () => {
       });
 
       if (error) throw error;
-
-      toast({
-        title: "Verification email sent!",
-        description: "Please check your inbox and spam folder.",
-      });
     } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to resend verification email",
-        variant: "destructive",
-      });
+      // Error handling without toast
     } finally {
       setLoading(false);
     }
@@ -134,11 +110,7 @@ const Auth = () => {
 
       if (error) throw error;
     } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to sign in with Google",
-        variant: "destructive",
-      });
+      // Error handling without toast
       setLoading(false);
     }
   };
