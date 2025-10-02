@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getTodaysQuiz, getQuizDate, type Quiz } from "@/utils/quizDate";
 
 const Index = () => {
-  // Get today's quiz
+  // Get today's quiz metadata (no answers)
   const QUIZ_DATA: Quiz & { date: string } = {
     ...getTodaysQuiz(),
     date: getQuizDate()
@@ -87,23 +87,10 @@ const Index = () => {
   const handleTimeUp = () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
     if (unansweredIndex !== -1) {
-      const correctAnswer = QUIZ_DATA.answers[unansweredIndex];
-      const newAnswers = [...userAnswers];
-      newAnswers[unansweredIndex] = {
-        rank: correctAnswer.rank,
-        playerName: correctAnswer.name,
-        isCorrect: false,
-        stat: correctAnswer.stat,
-      };
-      setUserAnswers(newAnswers);
-      setLastGuessRank(correctAnswer.rank);
-      
-      // Check if all players are now revealed (either guessed or auto-revealed)
-      const allRevealed = newAnswers.every((a) => a.playerName);
-      if (allRevealed) {
-        setIsCompleted(true);
-        setTimeout(() => setShowResults(true), 1000);
-      }
+      // Time ran out - we need to fetch the correct answer from server
+      // For now, just mark as incomplete
+      toast.error("Time's up for this player!");
+      setTimeRemaining(24);
     }
   };
 
@@ -225,15 +212,13 @@ const Index = () => {
   };
 
   const getResultsData = () => {
-    return QUIZ_DATA.answers.map((answer) => {
-      const userAnswer = userAnswers.find((a) => a.rank === answer.rank);
-      return {
-        rank: answer.rank,
-        correctName: answer.name,
-        userGuess: userAnswer?.playerName,
-        isCorrect: userAnswer?.isCorrect || false,
-      };
-    });
+    // We don't have answers client-side, so just return user's guesses
+    return userAnswers.map((userAnswer) => ({
+      rank: userAnswer.rank,
+      correctName: userAnswer.playerName || "Not answered",
+      userGuess: userAnswer.playerName,
+      isCorrect: userAnswer.isCorrect || false,
+    }));
   };
 
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;

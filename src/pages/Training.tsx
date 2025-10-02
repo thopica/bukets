@@ -84,24 +84,9 @@ const Training = () => {
   const handleTimeUp = () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
     if (unansweredIndex !== -1) {
-      const correctAnswer = QUIZ_DATA.answers[unansweredIndex];
-      const newAnswers = [...userAnswers];
-      newAnswers[unansweredIndex] = {
-        rank: correctAnswer.rank,
-        playerName: correctAnswer.name,
-        isCorrect: false,
-        stat: correctAnswer.stat,
-      };
-      setUserAnswers(newAnswers);
-      setLastGuessRank(correctAnswer.rank);
-      setCurrentQuizPerfect(false); // Quiz is no longer perfect
-      
-      const allRevealed = newAnswers.every((a) => a.playerName);
-      if (allRevealed) {
-        setStreak(0); // Reset streak because quiz wasn't perfect
-        setIsCompleted(true);
-        setTimeout(() => setShowResults(true), 1000);
-      }
+      // Time ran out - reset timer for next player
+      toast.info("Time's up! Hint available.");
+      setTimeRemaining(24);
     }
   };
 
@@ -217,15 +202,13 @@ const Training = () => {
   };
 
   const getResultsData = () => {
-    return QUIZ_DATA.answers.map((answer) => {
-      const userAnswer = userAnswers.find((a) => a.rank === answer.rank);
-      return {
-        rank: answer.rank,
-        correctName: answer.name,
-        userGuess: userAnswer?.playerName,
-        isCorrect: userAnswer?.isCorrect || false,
-      };
-    });
+    // We don't have answers client-side, so just return user's guesses
+    return userAnswers.map((userAnswer) => ({
+      rank: userAnswer.rank,
+      correctName: userAnswer.playerName || "Not answered",
+      userGuess: userAnswer.playerName,
+      isCorrect: userAnswer.isCorrect || false,
+    }));
   };
 
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
