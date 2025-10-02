@@ -232,7 +232,7 @@ const Index = () => {
         <Header />
         
         {/* Scrollable Content Area */}
-        <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 1rem)' }}>
+        <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch">
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
@@ -263,19 +263,34 @@ const Index = () => {
             hintsUsed={hintsUsed}
           />
         </div>
+
+        {/* Input Section - Mobile: sticks to answers */}
+        <div className="md:hidden">
+          <GuessInput
+            onGuess={handleGuess}
+            onRequestHint={handleRequestHint}
+            disabled={isCompleted}
+            hintsRemaining={maxHints - hintsUsed}
+            currentHint={currentHint}
+            showError={showInputError}
+            hintsUsed={hintsUsed}
+          />
+        </div>
         </main>
       </div>
 
-      {/* Input Section - Sticky at bottom */}
-      <GuessInput
-        onGuess={handleGuess}
-        onRequestHint={handleRequestHint}
-        disabled={isCompleted}
-        hintsRemaining={maxHints - hintsUsed}
-        currentHint={currentHint}
-        showError={showInputError}
-        hintsUsed={hintsUsed}
-      />
+      {/* Input Section - Desktop: sticky at bottom */}
+      <div className="hidden md:block">
+        <GuessInput
+          onGuess={handleGuess}
+          onRequestHint={handleRequestHint}
+          disabled={isCompleted}
+          hintsRemaining={maxHints - hintsUsed}
+          currentHint={currentHint}
+          showError={showInputError}
+          hintsUsed={hintsUsed}
+        />
+      </div>
 
       <ResultsModal
         open={showResults}
