@@ -181,7 +181,7 @@ const Index = () => {
   };
 
   const handleRequestHint = () => {
-    if (hintsUsed >= maxHints || currentHint) return;
+    if (hintsUsed >= maxHints) return;
     
     const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
     if (unansweredIndex !== -1) {
@@ -189,6 +189,11 @@ const Index = () => {
       setCurrentHint(hint.text);
       setHintsUsed((prev) => prev + 1);
       setScore((prev) => Math.max(0, prev - 1));
+      
+      // Clear hint after 10 seconds
+      setTimeout(() => {
+        setCurrentHint(undefined);
+      }, 10000);
     }
   };
 
