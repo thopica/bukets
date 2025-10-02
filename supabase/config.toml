@@ -1,1 +1,7 @@
 project_id = "ldbvqzyqcgdyylzbxdqw"
+
+[functions.verify-guess]
+verify_jwt = false
+
+[functions.get-quiz-metadata]
+verify_jwt = false
