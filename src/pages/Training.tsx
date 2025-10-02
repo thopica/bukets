@@ -213,7 +213,6 @@ const Training = () => {
       const hint = QUIZ_DATA.hints[unansweredIndex];
       setCurrentHint(hint.text);
       setHintsUsed((prev) => prev + 1);
-      toast.info("Hint revealed!");
     }
   };
 
