@@ -54,66 +54,63 @@ const QuizHeader = ({
   const showTimers = totalTime > 0;
 
   return (
-    <div className="border-2 border-white rounded-xl p-3 space-y-2">
-      {/* Top Bar: Score + Timers */}
-      <div className="flex items-center justify-between">
-        {/* Running Score - Left */}
-        <div className="flex items-center gap-2">
-          <TrendingUp className="h-4 w-4 text-success" />
-          <span className="text-lg font-bold text-foreground animate-score-bounce">
-            {score} pts
-          </span>
-        </div>
+    <div className="border-2 border-white rounded-xl p-3 space-y-3">
+      {/* Score */}
+      <div className="flex items-center gap-2">
+        <TrendingUp className="h-4 w-4 text-success" />
+        <span className="text-lg font-bold text-foreground animate-score-bounce">
+          {score} pts
+        </span>
+      </div>
 
-        {/* Timers - Right (only show when totalTime > 0) */}
-        {showTimers && (
-          <div className="flex flex-col items-end gap-2">
-            {/* Overall Quiz Timer */}
-            <div className="flex flex-col items-end">
-              <span className="text-xs text-muted-foreground">Total</span>
-              <div className="flex items-center gap-1.5">
-                <div className="w-12 h-1.5 bg-muted rounded-full overflow-hidden">
-                  <div
-                    className={`h-full transition-all duration-300 ${
-                      isOverallUrgent ? "bg-destructive" : "bg-primary"
-                    }`}
-                    style={{ width: `${percentage}%` }}
-                  />
-                </div>
-                <span
-                  className={`text-sm font-bold tabular-nums ${
-                    isOverallUrgent ? "text-destructive" : "text-foreground"
-                  }`}
-                >
-                  {formatTime(timeRemaining)}
-                </span>
-              </div>
+      {/* Timers Section - Full Width (only show when totalTime > 0) */}
+      {showTimers && (
+        <div className="space-y-2.5">
+          {/* Overall Quiz Timer - Longer Bar */}
+          <div className="space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-muted-foreground">Total Time</span>
+              <span
+                className={`text-sm font-bold tabular-nums ${
+                  isOverallUrgent ? "text-destructive" : "text-foreground"
+                }`}
+              >
+                {formatTime(timeRemaining)}
+              </span>
             </div>
-
-            {/* Per-Player Timer */}
-            <div className="flex flex-col items-end">
-              <span className="text-xs text-muted-foreground">Player</span>
-              <div className="flex items-center gap-1.5">
-                <div className="w-12 h-1.5 bg-muted rounded-full overflow-hidden">
-                  <div
-                    className={`h-full transition-all duration-300 ${
-                      isPlayerUrgent ? "bg-destructive" : "bg-primary"
-                    }`}
-                    style={{ width: `${playerPercentage}%` }}
-                  />
-                </div>
-                <span
-                  className={`text-sm font-bold tabular-nums ${
-                    isPlayerUrgent ? "text-destructive" : "text-foreground"
-                  }`}
-                >
-                  {playerTimeRemaining}s
-                </span>
-              </div>
+            <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
+              <div
+                className={`h-full transition-all duration-300 ${
+                  isOverallUrgent ? "bg-destructive" : "bg-blue-500"
+                }`}
+                style={{ width: `${percentage}%` }}
+              />
             </div>
           </div>
-        )}
-      </div>
+
+          {/* Per-Player Timer - Shorter Bar */}
+          <div className="space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-muted-foreground">Current Player</span>
+              <span
+                className={`text-sm font-bold tabular-nums ${
+                  isPlayerUrgent ? "text-destructive" : "text-foreground"
+                }`}
+              >
+                {playerTimeRemaining}s
+              </span>
+            </div>
+            <div className="w-full h-1.5 bg-muted/50 rounded-full overflow-hidden">
+              <div
+                className={`h-full transition-all duration-300 ${
+                  isPlayerUrgent ? "bg-destructive" : "bg-orange-500"
+                }`}
+                style={{ width: `${playerPercentage}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Category + Question */}
       <div className="space-y-1">
