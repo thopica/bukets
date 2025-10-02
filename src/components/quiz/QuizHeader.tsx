@@ -54,7 +54,7 @@ const QuizHeader = ({
   const showTimers = totalTime > 0;
 
   return (
-    <div className="border-2 border-white rounded-lg md:rounded-xl p-1.5 md:p-3 space-y-1.5 md:space-y-4 relative">
+    <div className="rounded-lg md:rounded-xl p-1.5 md:p-3 space-y-1.5 md:space-y-4 relative">
       {/* Progress Pill - Top Right Corner */}
       <div className="absolute top-1.5 right-1.5 md:top-3 md:right-3">
         <div className="inline-flex items-center gap-1 md:gap-2 px-1.5 md:px-3 py-0.5 md:py-1 rounded-full bg-muted">
