@@ -92,7 +92,7 @@ const QuizHeader = ({
 
         {/* Category + Question - Centered below */}
         <div className="space-y-0.5 text-center">
-          <p className="text-lg font-bold text-foreground leading-tight capitalize">
+          <p className="text-3xl font-bold text-foreground leading-tight capitalize">
             {title}
           </p>
           <h1 className="text-3xl font-bold text-foreground leading-tight">
