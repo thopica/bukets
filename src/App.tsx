@@ -12,7 +12,6 @@ import Leaderboard from "./pages/Leaderboard";
 import Archive from "./pages/Archive";
 import HowToPlay from "./pages/HowToPlay";
 import Account from "./pages/Account";
-import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -34,7 +33,6 @@ const App = () => (
           <Route path="/archive" element={<Archive />} />
           <Route path="/how-to-play" element={<HowToPlay />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="/auth" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
