@@ -67,7 +67,7 @@ const QuizHeader = ({
 
         {/* NBA Shot Clock - Right (only show when totalTime > 0) */}
         {showTimers && (
-          <div className="relative w-24 h-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-sm border-4 border-gray-400 shadow-2xl flex items-center justify-center"
+          <div className="relative w-24 h-24 bg-black rounded-sm border-4 border-gray-400 shadow-2xl flex items-center justify-center"
             style={{
               backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
               backgroundSize: '4px 4px'
