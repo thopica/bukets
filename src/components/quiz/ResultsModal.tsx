@@ -128,7 +128,7 @@ Can you beat my score?`;
                 <h3 className="font-bold text-lg text-foreground">
                   Your score is not saved
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-white">
                   Create an account to save your score, build your streak, and compete on the global leaderboard with fans from Boston to Beijing.
                 </p>
               </div>
