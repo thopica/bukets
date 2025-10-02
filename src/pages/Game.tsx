@@ -217,12 +217,12 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col animate-slide-up pb-28">
+    <div className="h-[100dvh] bg-background flex flex-col animate-slide-up overflow-hidden">
       <Header />
       
-      {/* Mobile-Optimized Layout: 15% Header, 50% Grid, 35% Input */}
-      <main className="container max-w-2xl mx-auto px-4 py-2 flex-1 flex flex-col gap-2 overflow-y-auto">
-        {/* Question Header - 15% */}
+      {/* Scrollable Content Area - excludes fixed input bar */}
+      <main className="container max-w-2xl mx-auto px-4 py-2 flex-1 flex flex-col gap-2 overflow-y-auto pb-4" style={{ paddingBottom: 'calc(5rem + env(safe-area-inset-bottom))' }}>
+        {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
             title={QUIZ_DATA.title}
@@ -243,8 +243,8 @@ const Index = () => {
           />
         </div>
 
-        {/* Answer Grid - 50% */}
-        <div className="flex-1 overflow-y-auto">
+        {/* Answer Grid */}
+        <div className="flex-1 min-h-0">
           <AnswerGrid 
             answers={userAnswers} 
             lastGuessRank={lastGuessRank}
