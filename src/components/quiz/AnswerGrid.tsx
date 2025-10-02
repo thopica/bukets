@@ -43,15 +43,12 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
       if (answer?.isCorrect && cardRefs.current[lastGuessRank]) {
         // Calculate time taken and points
         const timeTaken = (Date.now() - startTimeRef.current) / 1000; // in seconds
-        let points = 3;
-        let color = '#00D9A5'; // green
+        let points = 4;
+        let color = '#FF6B35'; // orange
         
-        if (timeTaken <= 5) {
+        if (timeTaken <= 10) {
           points = 5;
           color = '#F7B32B'; // golden
-        } else if (timeTaken <= 10) {
-          points = 4;
-          color = '#FF6B35'; // orange
         }
         
         // Apply hint penalty (1 point per hint used)
