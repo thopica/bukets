@@ -18,7 +18,7 @@ const HowToPlay = () => {
     {
       icon: <Timer className="h-8 w-8 text-warning" />,
       title: "Time Pressure",
-      description: "You have 24 seconds per player. After 3 incorrect guesses, the answer is revealed automatically (no points awarded).",
+      description: "You have 24 seconds per player. After 3 incorrect guesses, the answer is revealed automatically (you get no points).",
     },
     {
       icon: <Lightbulb className="h-8 w-8 text-primary-light" />,
