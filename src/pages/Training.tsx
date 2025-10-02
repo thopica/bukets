@@ -70,22 +70,7 @@ const Training = () => {
     loadQuiz(currentQuizIndex - 1);
   };
 
-  // Per-player timer countdown
-  useEffect(() => {
-    if (isCompleted || timeRemaining === 0) return;
-
-    const timer = setInterval(() => {
-      setTimeRemaining((prev) => {
-        if (prev <= 1) {
-          handleTimeUp();
-          return 24;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeRemaining, isCompleted]);
+  // No timer in training mode - unlimited time
 
   const handleTimeUp = () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
