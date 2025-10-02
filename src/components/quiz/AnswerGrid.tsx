@@ -82,7 +82,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
   }, [lastGuessRank, answers, hintsUsed]);
 
   return (
-    <div className="border-2 border-white rounded-lg md:rounded-xl p-0.5 md:p-1.5">
+    <div className="border border-white rounded-lg md:rounded-xl p-0.5 md:p-1.5">
       <div className="grid grid-cols-1 gap-0.5 md:gap-1">
       {answers.map((answer) => {
         const isRevealed = !!answer.playerName;
