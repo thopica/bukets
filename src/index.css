@@ -8,6 +8,8 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    --vh: 1dvh;
+    
     /* Basketball-inspired color system */
     --orange: 17 100% 60%; /* #FF6B35 Basketball orange */
     --orange-hover: 17 100% 63%; /* #FF8C42 lighter orange */
@@ -109,7 +111,6 @@ All colors MUST be HSL.
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Prevent page jumping on mobile keyboard */
   }
 
   body {
