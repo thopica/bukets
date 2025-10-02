@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Game from "./pages/Game";
 import Training from "./pages/Training";
+import Carousel from "./pages/Carousel";
 import Leaderboard from "./pages/Leaderboard";
 import Archive from "./pages/Archive";
 import HowToPlay from "./pages/HowToPlay";
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/game" element={<Game />} />
           <Route path="/training" element={<Training />} />
+          <Route path="/carousel" element={<Carousel />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/archive" element={<Archive />} />
           <Route path="/how-to-play" element={<HowToPlay />} />

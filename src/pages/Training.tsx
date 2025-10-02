@@ -1,20 +1,16 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { useState } from "react";
 import Header from "@/components/Header";
 import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
 import GuessInput from "@/components/quiz/GuessInput";
 import ResultsModal from "@/components/quiz/ResultsModal";
-import { ChevronLeft, ChevronRight, Shuffle, Flame } from "lucide-react";
+import { Flame } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { getQuizByIndex, getTotalQuizzes, type Quiz } from "@/utils/quizDate";
+import { getTodaysQuiz, type Quiz } from "@/utils/quizDate";
 
 const Training = () => {
-  const [displayedQuizNumber, setDisplayedQuizNumber] = useState(1);
-  const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
-  const [QUIZ_DATA, setQUIZ_DATA] = useState<Quiz>(getQuizByIndex(0));
+  const QUIZ_DATA: Quiz = getTodaysQuiz();
   
   // State management for quiz game
   const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean; stat?: string }>>([
@@ -32,9 +28,8 @@ const Training = () => {
   const [showInputError, setShowInputError] = useState(false);
 
   const maxHints = 3;
-  const totalQuizzes = getTotalQuizzes();
 
-  // Reset quiz state when quiz changes
+  // Reset quiz state
   const resetQuiz = () => {
     setUserAnswers([
       { rank: 1 }, { rank: 2 }, { rank: 3 }, { rank: 4 }, { rank: 5 }, { rank: 6 },
@@ -47,36 +42,6 @@ const Training = () => {
     setIsCompleted(false);
     setLastGuessRank(undefined);
     setShowInputError(false);
-  };
-
-  const loadQuiz = (index: number, updateDisplay = true) => {
-    const safeIndex = ((index % totalQuizzes) + totalQuizzes) % totalQuizzes;
-    setCurrentQuizIndex(safeIndex);
-    setQUIZ_DATA(getQuizByIndex(safeIndex));
-    if (updateDisplay) {
-      setDisplayedQuizNumber(safeIndex + 1);
-    }
-    resetQuiz();
-  };
-
-  const handleRandomQuiz = () => {
-    const randomIndex = Math.floor(Math.random() * totalQuizzes);
-    loadQuiz(randomIndex, false); // Don't update display number
-    toast.success("Random quiz loaded!");
-  };
-
-  const handleNextQuiz = () => {
-    const nextIndex = currentQuizIndex + 1;
-    const safeIndex = ((nextIndex % totalQuizzes) + totalQuizzes) % totalQuizzes;
-    setDisplayedQuizNumber((prev) => (prev % totalQuizzes) + 1);
-    loadQuiz(nextIndex, false);
-  };
-
-  const handlePreviousQuiz = () => {
-    const prevIndex = currentQuizIndex - 1;
-    const safeIndex = ((prevIndex % totalQuizzes) + totalQuizzes) % totalQuizzes;
-    setDisplayedQuizNumber((prev) => prev === 1 ? totalQuizzes : prev - 1);
-    loadQuiz(prevIndex, false);
   };
 
   // No timer in training mode - unlimited time
@@ -101,11 +66,11 @@ const Training = () => {
         .filter(a => a.playerName)
         .map(a => a.rank);
 
-      // Call server-side verification
+      // Call server-side verification for today's quiz
       const { data, error } = await supabase.functions.invoke('verify-guess', {
         body: {
           guess,
-          quizIndex: currentQuizIndex,
+          quizIndex: undefined, // undefined = today's quiz
           alreadyAnswered
         }
       });
@@ -218,32 +183,16 @@ const Training = () => {
       <Header />
       
       <main className="container max-w-2xl mx-auto px-4 py-2 flex-1 flex flex-col gap-4">
-        {/* Carousel Navigation */}
-        <Card className="p-4 bg-card/50 backdrop-blur">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex-1 text-center">
-              <p className="text-sm text-muted-foreground">Unranked Training Mode</p>
-              <div className="flex items-center justify-center gap-2">
-                <p className="font-semibold">Quiz {displayedQuizNumber}</p>
-                {streak >= 2 && (
-                  <div className="flex items-center gap-1 text-orange animate-bounce-in">
-                    <Flame className="h-4 w-4" />
-                    <span className="text-sm font-bold">{streak}</span>
-                  </div>
-                )}
-              </div>
+        {/* Training Mode Header */}
+        <div className="text-center py-2">
+          <p className="text-sm text-muted-foreground">Practice Mode - Today's Quiz</p>
+          {streak >= 2 && (
+            <div className="flex items-center justify-center gap-1 text-orange animate-bounce-in mt-1">
+              <Flame className="h-4 w-4" />
+              <span className="text-sm font-bold">Streak: {streak}</span>
             </div>
-            
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleRandomQuiz}
-              disabled={isCompleted}
-            >
-              <Shuffle className="h-4 w-4" />
-            </Button>
-          </div>
-        </Card>
+          )}
+        </div>
 
         {/* Quiz Content */}
         <div className="shrink-0">

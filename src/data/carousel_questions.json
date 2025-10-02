@@ -1,0 +1,604 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Who holds the NBA record for most points in a single game?",
+      "answer": "Wilt Chamberlain (100 points)",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 2,
+      "question": "Which player has won the most NBA championships?",
+      "answer": "Bill Russell (11 championships)",
+      "category": "Championships"
+    },
+    {
+      "id": 3,
+      "question": "Who is the NBA's all-time leading scorer?",
+      "answer": "LeBron James",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 4,
+      "question": "Which team has won the most NBA championships?",
+      "answer": "Boston Celtics (18 championships)",
+      "category": "Team History"
+    },
+    {
+      "id": 5,
+      "question": "Who was the first overall pick in the 2003 NBA Draft?",
+      "answer": "LeBron James",
+      "category": "Draft History"
+    },
+    {
+      "id": 6,
+      "question": "Which player is known as 'The Greek Freak'?",
+      "answer": "Giannis Antetokounmpo",
+      "category": "Nicknames"
+    },
+    {
+      "id": 7,
+      "question": "Who holds the record for most assists in NBA history?",
+      "answer": "John Stockton",
+      "category": "Assists"
+    },
+    {
+      "id": 8,
+      "question": "Which player scored 81 points in a single game?",
+      "answer": "Kobe Bryant",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 9,
+      "question": "Who was known as 'The Answer'?",
+      "answer": "Allen Iverson",
+      "category": "Nicknames"
+    },
+    {
+      "id": 10,
+      "question": "Which player has the most career triple-doubles?",
+      "answer": "Russell Westbrook",
+      "category": "Triple-Doubles"
+    },
+    {
+      "id": 11,
+      "question": "Who won the NBA MVP award in 2023-24?",
+      "answer": "Nikola Jokic",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 12,
+      "question": "Which player is called 'The King'?",
+      "answer": "LeBron James",
+      "category": "Nicknames"
+    },
+    {
+      "id": 13,
+      "question": "Who has the most three-pointers made in NBA history?",
+      "answer": "Stephen Curry",
+      "category": "Three-Point Records"
+    },
+    {
+      "id": 14,
+      "question": "Which team did Michael Jordan play for most of his career?",
+      "answer": "Chicago Bulls",
+      "category": "Team History"
+    },
+    {
+      "id": 15,
+      "question": "Who was the 2024 NBA Finals MVP?",
+      "answer": "Jaylen Brown",
+      "category": "Finals MVP"
+    },
+    {
+      "id": 16,
+      "question": "Which player is known as 'The Slim Reaper'?",
+      "answer": "Kevin Durant",
+      "category": "Nicknames"
+    },
+    {
+      "id": 17,
+      "question": "Who holds the record for most rebounds in NBA history?",
+      "answer": "Wilt Chamberlain",
+      "category": "Rebounding"
+    },
+    {
+      "id": 18,
+      "question": "Which player wore number 23 for the Lakers?",
+      "answer": "LeBron James",
+      "category": "Jersey Numbers"
+    },
+    {
+      "id": 19,
+      "question": "Who is called 'The Black Mamba'?",
+      "answer": "Kobe Bryant",
+      "category": "Nicknames"
+    },
+    {
+      "id": 20,
+      "question": "Which team drafted Kobe Bryant?",
+      "answer": "Charlotte Hornets (traded to Lakers)",
+      "category": "Draft History"
+    },
+    {
+      "id": 21,
+      "question": "Who has won the most NBA MVP awards?",
+      "answer": "Kareem Abdul-Jabbar (6 MVP awards)",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 22,
+      "question": "Which player is known as 'The Logo'?",
+      "answer": "Jerry West",
+      "category": "Nicknames"
+    },
+    {
+      "id": 23,
+      "question": "Who was the first player to average a triple-double for a season?",
+      "answer": "Oscar Robertson",
+      "category": "Triple-Doubles"
+    },
+    {
+      "id": 24,
+      "question": "Which team won the 2023 NBA Championship?",
+      "answer": "Denver Nuggets",
+      "category": "Championships"
+    },
+    {
+      "id": 25,
+      "question": "Who is the youngest player to score 10,000 points?",
+      "answer": "LeBron James",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 26,
+      "question": "Which player is called 'Chef Curry'?",
+      "answer": "Stephen Curry",
+      "category": "Nicknames"
+    },
+    {
+      "id": 27,
+      "question": "Who has the most blocks in NBA history?",
+      "answer": "Hakeem Olajuwon",
+      "category": "Defensive Records"
+    },
+    {
+      "id": 28,
+      "question": "Which team has the longest winning streak in NBA history?",
+      "answer": "Los Angeles Lakers (33 games)",
+      "category": "Team Records"
+    },
+    {
+      "id": 29,
+      "question": "Who was known as 'Air Jordan'?",
+      "answer": "Michael Jordan",
+      "category": "Nicknames"
+    },
+    {
+      "id": 30,
+      "question": "Which player has the most steals in NBA history?",
+      "answer": "John Stockton",
+      "category": "Defensive Records"
+    },
+    {
+      "id": 31,
+      "question": "Who won the 2024 NBA Rookie of the Year?",
+      "answer": "Victor Wembanyama",
+      "category": "Awards"
+    },
+    {
+      "id": 32,
+      "question": "Which player is called 'The Joker'?",
+      "answer": "Nikola Jokic",
+      "category": "Nicknames"
+    },
+    {
+      "id": 33,
+      "question": "Who has the most Finals MVP awards?",
+      "answer": "Michael Jordan (6 Finals MVPs)",
+      "category": "Finals MVP"
+    },
+    {
+      "id": 34,
+      "question": "Which team did Shaquille O'Neal win his first championship with?",
+      "answer": "Los Angeles Lakers",
+      "category": "Championships"
+    },
+    {
+      "id": 35,
+      "question": "Who is known as 'The Big Fundamental'?",
+      "answer": "Tim Duncan",
+      "category": "Nicknames"
+    },
+    {
+      "id": 36,
+      "question": "Which player has played the most NBA games?",
+      "answer": "Robert Parish (1,611 games)",
+      "category": "Career Longevity"
+    },
+    {
+      "id": 37,
+      "question": "Who was the first international player to win NBA MVP?",
+      "answer": "Hakeem Olajuwon",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 38,
+      "question": "Which team is known as 'The Purple and Gold'?",
+      "answer": "Los Angeles Lakers",
+      "category": "Team Nicknames"
+    },
+    {
+      "id": 39,
+      "question": "Who holds the record for most points in a playoff game?",
+      "answer": "Michael Jordan (63 points)",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 40,
+      "question": "Which player is called 'The Process'?",
+      "answer": "Joel Embiid",
+      "category": "Nicknames"
+    },
+    {
+      "id": 41,
+      "question": "Who was the shortest player in NBA history?",
+      "answer": "Muggsy Bogues (5'3\")",
+      "category": "Player Facts"
+    },
+    {
+      "id": 42,
+      "question": "Which team won the first NBA championship?",
+      "answer": "Philadelphia Warriors (1947)",
+      "category": "Championships"
+    },
+    {
+      "id": 43,
+      "question": "Who is known as 'The Mailman'?",
+      "answer": "Karl Malone",
+      "category": "Nicknames"
+    },
+    {
+      "id": 44,
+      "question": "Which player has the highest career free throw percentage?",
+      "answer": "Stephen Curry",
+      "category": "Shooting"
+    },
+    {
+      "id": 45,
+      "question": "Who was the tallest player in NBA history?",
+      "answer": "Gheorghe Muresan and Manute Bol (7'7\")",
+      "category": "Player Facts"
+    },
+    {
+      "id": 46,
+      "question": "Which team is known as 'The Dubs'?",
+      "answer": "Golden State Warriors",
+      "category": "Team Nicknames"
+    },
+    {
+      "id": 47,
+      "question": "Who has the most All-Star appearances?",
+      "answer": "LeBron James",
+      "category": "All-Star"
+    },
+    {
+      "id": 48,
+      "question": "Which player is called 'The Glove'?",
+      "answer": "Gary Payton",
+      "category": "Nicknames"
+    },
+    {
+      "id": 49,
+      "question": "Who was the first player to win 8 scoring titles?",
+      "answer": "Michael Jordan",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 50,
+      "question": "Which team drafted Tim Duncan?",
+      "answer": "San Antonio Spurs",
+      "category": "Draft History"
+    },
+    {
+      "id": 51,
+      "question": "Who is known as 'The Admiral'?",
+      "answer": "David Robinson",
+      "category": "Nicknames"
+    },
+    {
+      "id": 52,
+      "question": "Which player has the most Defensive Player of the Year awards?",
+      "answer": "Dikembe Mutombo, Ben Wallace, Rudy Gobert (4 each)",
+      "category": "Defensive Awards"
+    },
+    {
+      "id": 53,
+      "question": "Who was known as 'Magic'?",
+      "answer": "Earvin Johnson",
+      "category": "Nicknames"
+    },
+    {
+      "id": 54,
+      "question": "Which team has the most consecutive championships?",
+      "answer": "Boston Celtics (8 straight, 1959-1966)",
+      "category": "Championships"
+    },
+    {
+      "id": 55,
+      "question": "Who holds the record for most 50-point games?",
+      "answer": "Wilt Chamberlain (118 games)",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 56,
+      "question": "Which player is called 'Dame Time'?",
+      "answer": "Damian Lillard",
+      "category": "Nicknames"
+    },
+    {
+      "id": 57,
+      "question": "Who was the first player drafted straight out of high school?",
+      "answer": "Moses Malone (ABA, 1974)",
+      "category": "Draft History"
+    },
+    {
+      "id": 58,
+      "question": "Which team is known as 'The Knicks'?",
+      "answer": "New York Knickerbockers",
+      "category": "Team Names"
+    },
+    {
+      "id": 59,
+      "question": "Who has the most double-doubles in NBA history?",
+      "answer": "Tim Duncan",
+      "category": "Statistical Records"
+    },
+    {
+      "id": 60,
+      "question": "Which player is called 'The Klaw'?",
+      "answer": "Kawhi Leonard",
+      "category": "Nicknames"
+    },
+    {
+      "id": 61,
+      "question": "Who was the oldest player to play in the NBA?",
+      "answer": "Nat Hickey (45 years old)",
+      "category": "Player Facts"
+    },
+    {
+      "id": 62,
+      "question": "Which team drafted Dirk Nowitzki?",
+      "answer": "Milwaukee Bucks (traded to Dallas)",
+      "category": "Draft History"
+    },
+    {
+      "id": 63,
+      "question": "Who is known as 'The Big Diesel'?",
+      "answer": "Shaquille O'Neal",
+      "category": "Nicknames"
+    },
+    {
+      "id": 64,
+      "question": "Which player has the most career turnovers?",
+      "answer": "LeBron James",
+      "category": "Statistical Records"
+    },
+    {
+      "id": 65,
+      "question": "Who was called 'Larry Legend'?",
+      "answer": "Larry Bird",
+      "category": "Nicknames"
+    },
+    {
+      "id": 66,
+      "question": "Which team won 73 games in the 2015-16 season?",
+      "answer": "Golden State Warriors",
+      "category": "Team Records"
+    },
+    {
+      "id": 67,
+      "question": "Who has the most playoff points in NBA history?",
+      "answer": "LeBron James",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 68,
+      "question": "Which player is called 'The Beard'?",
+      "answer": "James Harden",
+      "category": "Nicknames"
+    },
+    {
+      "id": 69,
+      "question": "Who was the first European player to win NBA MVP?",
+      "answer": "Dirk Nowitzki",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 70,
+      "question": "Which team is known for 'Showtime'?",
+      "answer": "Los Angeles Lakers (1980s)",
+      "category": "Team History"
+    },
+    {
+      "id": 71,
+      "question": "Who has the most seasons played in NBA history?",
+      "answer": "Vince Carter (22 seasons)",
+      "category": "Career Longevity"
+    },
+    {
+      "id": 72,
+      "question": "Which player is called 'The Truth'?",
+      "answer": "Paul Pierce",
+      "category": "Nicknames"
+    },
+    {
+      "id": 73,
+      "question": "Who was the first player to win MVP unanimously?",
+      "answer": "Stephen Curry (2015-16)",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 74,
+      "question": "Which team drafted Giannis Antetokounmpo?",
+      "answer": "Milwaukee Bucks",
+      "category": "Draft History"
+    },
+    {
+      "id": 75,
+      "question": "Who is known as 'CP3'?",
+      "answer": "Chris Paul",
+      "category": "Nicknames"
+    },
+    {
+      "id": 76,
+      "question": "Which player has the most 40-point games?",
+      "answer": "Wilt Chamberlain",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 77,
+      "question": "Who was called 'The Dream'?",
+      "answer": "Hakeem Olajuwon",
+      "category": "Nicknames"
+    },
+    {
+      "id": 78,
+      "question": "Which team won the 2016 NBA Championship?",
+      "answer": "Cleveland Cavaliers",
+      "category": "Championships"
+    },
+    {
+      "id": 79,
+      "question": "Who has the most consecutive free throws made?",
+      "answer": "Micheal Williams (97 straight)",
+      "category": "Shooting Records"
+    },
+    {
+      "id": 80,
+      "question": "Which player is called 'The Splash Brother'?",
+      "answer": "Klay Thompson (with Steph Curry)",
+      "category": "Nicknames"
+    },
+    {
+      "id": 81,
+      "question": "Who was the youngest MVP in NBA history?",
+      "answer": "Derrick Rose (22 years old)",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 82,
+      "question": "Which team is known as 'The Heat'?",
+      "answer": "Miami Heat",
+      "category": "Team Names"
+    },
+    {
+      "id": 83,
+      "question": "Who has the most games with 10+ assists?",
+      "answer": "John Stockton",
+      "category": "Assists"
+    },
+    {
+      "id": 84,
+      "question": "Which player is called 'The Round Mound of Rebound'?",
+      "answer": "Charles Barkley",
+      "category": "Nicknames"
+    },
+    {
+      "id": 85,
+      "question": "Who was the first African American head coach in NBA?",
+      "answer": "Bill Russell",
+      "category": "Coaching History"
+    },
+    {
+      "id": 86,
+      "question": "Which team drafted Kevin Durant?",
+      "answer": "Seattle SuperSonics",
+      "category": "Draft History"
+    },
+    {
+      "id": 87,
+      "question": "Who is known as 'The Big Ticket'?",
+      "answer": "Kevin Garnett",
+      "category": "Nicknames"
+    },
+    {
+      "id": 88,
+      "question": "Which player has the most games with 5+ steals?",
+      "answer": "John Stockton",
+      "category": "Defensive Records"
+    },
+    {
+      "id": 89,
+      "question": "Who was called 'Pistol Pete'?",
+      "answer": "Pete Maravich",
+      "category": "Nicknames"
+    },
+    {
+      "id": 90,
+      "question": "Which team won the 2020 NBA Championship?",
+      "answer": "Los Angeles Lakers",
+      "category": "Championships"
+    },
+    {
+      "id": 91,
+      "question": "Who has the most games with 20+ rebounds?",
+      "answer": "Wilt Chamberlain",
+      "category": "Rebounding"
+    },
+    {
+      "id": 92,
+      "question": "Which player is called 'KD'?",
+      "answer": "Kevin Durant",
+      "category": "Nicknames"
+    },
+    {
+      "id": 93,
+      "question": "Who was the first player to score 30,000 career points?",
+      "answer": "Wilt Chamberlain",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 94,
+      "question": "Which team is known as 'The Celtics'?",
+      "answer": "Boston Celtics",
+      "category": "Team Names"
+    },
+    {
+      "id": 95,
+      "question": "Who has the most games with 5+ blocks?",
+      "answer": "Hakeem Olajuwon",
+      "category": "Defensive Records"
+    },
+    {
+      "id": 96,
+      "question": "Which player is called 'The Iceman'?",
+      "answer": "George Gervin",
+      "category": "Nicknames"
+    },
+    {
+      "id": 97,
+      "question": "Who was the first player to record a quadruple-double?",
+      "answer": "Nate Thurmond",
+      "category": "Statistical Records"
+    },
+    {
+      "id": 98,
+      "question": "Which team drafted Stephen Curry?",
+      "answer": "Golden State Warriors",
+      "category": "Draft History"
+    },
+    {
+      "id": 99,
+      "question": "Who is known as 'The Worm'?",
+      "answer": "Dennis Rodman",
+      "category": "Nicknames"
+    },
+    {
+      "id": 100,
+      "question": "Which player has the highest single-season scoring average?",
+      "answer": "Wilt Chamberlain (50.4 PPG in 1961-62)",
+      "category": "Scoring Records"
+    }
+  ]
+}
