@@ -18,7 +18,7 @@ const HowToPlay = () => {
     {
       icon: <Timer className="h-8 w-8 text-warning" />,
       title: "Time Pressure",
-      description: "You have 24 seconds per player. After 3 incorrect guesses, you lose 1 point and the answer is revealed automatically.",
+      description: "You have 24 seconds per player. After 3 incorrect guesses, the answer is revealed automatically (no points awarded).",
     },
     {
       icon: <Lightbulb className="h-8 w-8 text-primary-light" />,
@@ -87,7 +87,7 @@ const HowToPlay = () => {
               </div>
               <div className="flex justify-between items-center">
                 <span>3 wrong guesses per player</span>
-                <span className="font-bold text-destructive">-1 point</span>
+                <span className="font-bold text-muted-foreground">Name revealed, 0 points</span>
               </div>
               <div className="flex justify-between items-center border-t pt-3 mt-3">
                 <span className="font-bold">Maximum possible score</span>
