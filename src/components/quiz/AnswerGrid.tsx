@@ -22,10 +22,11 @@ interface AnswerGridProps {
 const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }: AnswerGridProps) => {
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
   const startTimeRef = useRef(Date.now());
+  const lastProcessedGuessRef = useRef<number | undefined>();
 
   // Reset timer when moving to a new player (when a correct answer is given)
   useEffect(() => {
-    if (lastGuessRank) {
+    if (lastGuessRank && lastGuessRank !== lastProcessedGuessRef.current) {
       const answer = answers.find(a => a.rank === lastGuessRank);
       if (answer?.isCorrect) {
         // Reset start time for next player after a short delay
@@ -38,7 +39,8 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
 
   // Trigger animations when a guess is made
   useEffect(() => {
-    if (lastGuessRank) {
+    if (lastGuessRank && lastGuessRank !== lastProcessedGuessRef.current) {
+      lastProcessedGuessRef.current = lastGuessRank;
       const answer = answers.find(a => a.rank === lastGuessRank);
       if (answer?.isCorrect && cardRefs.current[lastGuessRank]) {
         // Calculate time taken and points
