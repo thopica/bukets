@@ -101,7 +101,7 @@ const Index = () => {
 
             <Button 
               size="lg" 
-              onClick={() => navigate("/auth")}
+              onClick={() => navigate("/game")}
               className="w-full h-16 rounded-full text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300"
             >
               <span className="relative z-10 flex items-center gap-2">
