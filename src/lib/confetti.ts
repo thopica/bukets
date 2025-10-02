@@ -46,7 +46,7 @@ export const animateScoreFlyUp = (element: HTMLElement, points: number) => {
   
   const rect = element.getBoundingClientRect();
   scoreElement.style.left = `${rect.left + rect.width / 2 + 30}px`;
-  scoreElement.style.top = `${rect.top + rect.height / 2}px`;
+  scoreElement.style.top = `${rect.top + rect.height / 3}px`;
   scoreElement.style.transform = 'translateX(-50%)';
   
   scoreElement.style.animation = 'score-fly-up 0.6s ease-out forwards';
