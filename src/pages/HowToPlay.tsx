@@ -91,7 +91,7 @@ const HowToPlay = () => {
               </div>
               <div className="flex justify-between items-center border-t pt-3 mt-3">
                 <span className="font-bold">Maximum possible score</span>
-                <span className="font-bold text-primary">30 points (6 players × 5 points)</span>
+                <span className="font-bold text-primary">30 points</span>
               </div>
             </div>
           </Card>
