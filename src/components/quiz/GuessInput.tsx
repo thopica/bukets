@@ -12,9 +12,10 @@ interface GuessInputProps {
   hintsRemaining?: number;
   currentHint?: string;
   showError?: boolean;
+  hintsUsed?: number;
 }
 
-const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hintsRemaining = 0, currentHint, showError = false }: GuessInputProps) => {
+const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hintsRemaining = 0, currentHint, showError = false, hintsUsed = 0 }: GuessInputProps) => {
   const [input, setInput] = useState("");
   const [isShaking, setIsShaking] = useState(false);
 
@@ -50,7 +51,7 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
             <div className="flex items-start gap-2">
               <Lightbulb className="h-4 w-4 text-timerWarning flex-shrink-0 mt-0.5" />
               <p className="text-xs text-foreground flex-1">
-                <span className="font-semibold">Hint:</span> {currentHint}
+                <span className="font-semibold">{hintsUsed === 1 ? "First Hint" : "Second Hint"}:</span> {currentHint}
               </p>
             </div>
           </div>

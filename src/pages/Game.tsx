@@ -255,6 +255,7 @@ const Index = () => {
         hintsRemaining={maxHints - hintsUsed}
         currentHint={currentHint}
         showError={showInputError}
+        hintsUsed={hintsUsed}
       />
 
       <ResultsModal
