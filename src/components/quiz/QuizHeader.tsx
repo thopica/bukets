@@ -67,29 +67,7 @@ const QuizHeader = ({
 
         {/* Timers - Right (only show when totalTime > 0) */}
         {showTimers && (
-          <div className="flex items-center gap-3">
-            {/* Per-Player Timer */}
-            <div className="flex flex-col items-end">
-              <span className="text-xs text-muted-foreground">Player</span>
-              <div className="flex items-center gap-1.5">
-                <div className="w-12 h-1.5 bg-muted rounded-full overflow-hidden">
-                  <div
-                    className={`h-full transition-all duration-300 ${
-                      isPlayerUrgent ? "bg-destructive" : "bg-primary"
-                    }`}
-                    style={{ width: `${playerPercentage}%` }}
-                  />
-                </div>
-                <span
-                  className={`text-sm font-bold tabular-nums ${
-                    isPlayerUrgent ? "text-destructive" : "text-foreground"
-                  }`}
-                >
-                  {playerTimeRemaining}s
-                </span>
-              </div>
-            </div>
-
+          <div className="flex flex-col items-end gap-2">
             {/* Overall Quiz Timer */}
             <div className="flex flex-col items-end">
               <span className="text-xs text-muted-foreground">Total</span>
@@ -108,6 +86,28 @@ const QuizHeader = ({
                   }`}
                 >
                   {formatTime(timeRemaining)}
+                </span>
+              </div>
+            </div>
+
+            {/* Per-Player Timer */}
+            <div className="flex flex-col items-end">
+              <span className="text-xs text-muted-foreground">Player</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-12 h-1.5 bg-muted rounded-full overflow-hidden">
+                  <div
+                    className={`h-full transition-all duration-300 ${
+                      isPlayerUrgent ? "bg-destructive" : "bg-primary"
+                    }`}
+                    style={{ width: `${playerPercentage}%` }}
+                  />
+                </div>
+                <span
+                  className={`text-sm font-bold tabular-nums ${
+                    isPlayerUrgent ? "text-destructive" : "text-foreground"
+                  }`}
+                >
+                  {playerTimeRemaining}s
                 </span>
               </div>
             </div>
