@@ -1,10 +1,4 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, XCircle, Share2, Trophy, TrendingUp, Clock, Lightbulb, Zap, Flame } from "lucide-react";
@@ -12,14 +6,12 @@ import { useEffect, useState } from "react";
 import { haptics } from "@/lib/haptics";
 import { useNavigate } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
-
 interface ResultAnswer {
   rank: number;
   correctName: string;
   userGuess?: string;
   isCorrect: boolean;
 }
-
 interface ResultsModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -33,7 +25,6 @@ interface ResultsModalProps {
   hintsUsed?: number;
   isLoggedIn?: boolean;
 }
-
 const ResultsModal = ({
   open,
   onOpenChange,
@@ -45,7 +36,7 @@ const ResultsModal = ({
   timeBonus = 0,
   speedBonus = 0,
   hintsUsed = 0,
-  isLoggedIn = false,
+  isLoggedIn = false
 }: ResultsModalProps) => {
   const navigate = useNavigate();
   const [displayScore, setDisplayScore] = useState(0);
@@ -77,21 +68,35 @@ const ResultsModal = ({
 
   // Performance rating based on score
   const getPerformanceRating = () => {
-    const percentage = (correctCount / totalCount) * 100;
-    if (percentage === 100 && score >= 18) return { label: "All-Star!", color: "text-gold", icon: "🌟" };
-    if (percentage >= 80) return { label: "Starter", color: "text-success", icon: "⭐" };
-    if (percentage >= 50) return { label: "Bench Player", color: "text-timerWarning", icon: "💪" };
-    return { label: "Rookie", color: "text-muted-foreground", icon: "🏀" };
+    const percentage = correctCount / totalCount * 100;
+    if (percentage === 100 && score >= 18) return {
+      label: "All-Star!",
+      color: "text-gold",
+      icon: "🌟"
+    };
+    if (percentage >= 80) return {
+      label: "Starter",
+      color: "text-success",
+      icon: "⭐"
+    };
+    if (percentage >= 50) return {
+      label: "Bench Player",
+      color: "text-timerWarning",
+      icon: "💪"
+    };
+    return {
+      label: "Rookie",
+      color: "text-muted-foreground",
+      icon: "🏀"
+    };
   };
-
   const performance = getPerformanceRating();
 
   // Calculate next streak milestone
   const nextMilestone = Math.ceil((streak + 1) / 5) * 5;
-  const streakProgress = ((streak % 5) / 5) * 100;
-
+  const streakProgress = streak % 5 / 5 * 100;
   const handleShare = () => {
-    const emoji = answers.map((a) => (a.isCorrect ? "✅" : "❌")).join("");
+    const emoji = answers.map(a => a.isCorrect ? "✅" : "❌").join("");
     const shareText = `NBA Daily Quiz 🏀
     
 ${correctCount}/${totalCount} correct • ${score} pts • 🔥 ${streak} day streak
@@ -99,14 +104,12 @@ ${correctCount}/${totalCount} correct • ${score} pts • 🔥 ${streak} day st
 ${emoji}
 
 Can you beat my score?`;
-    
     navigator.clipboard.writeText(shareText);
   };
 
   // Not logged in view
   if (!isLoggedIn) {
-    return (
-      <Dialog open={open} onOpenChange={onOpenChange}>
+    return <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-lg bg-background rounded-2xl border-2 border-border shadow-floating animate-slide-up">
           <DialogHeader className="space-y-4">
             {/* Score Display */}
@@ -128,27 +131,20 @@ Can you beat my score?`;
                 <h3 className="font-bold text-lg text-foreground">
                   Your score is not saved
                 </h3>
-                <p className="text-sm text-white">
-                  Create an account to save your score, build your streak, and compete on the global leaderboard with fans from Boston to Beijing.
-                </p>
+                <p className="text-sm text-white">Create an account to save your score, build your streak, and compete on the global leaderboard.</p>
               </div>
 
-              <Button 
-                onClick={() => navigate('/auth')}
-                className="w-full h-12 rounded-xl font-bold text-base bg-orange hover:bg-orange-hover"
-              >
+              <Button onClick={() => navigate('/auth')} className="w-full h-12 rounded-xl font-bold text-base bg-orange hover:bg-orange-hover">
                 Create Account
               </Button>
             </Card>
           </DialogHeader>
         </DialogContent>
-      </Dialog>
-    );
+      </Dialog>;
   }
 
   // Logged in view (existing full results)
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+  return <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg max-h-[85vh] overflow-y-auto bg-background rounded-2xl border-2 border-border shadow-floating animate-slide-up">
         <DialogHeader className="space-y-2">
           {/* Performance Rating */}
@@ -187,33 +183,27 @@ Can you beat my score?`;
                   {correctCount}/{totalCount} ({correctCount * 3} pts)
                 </span>
               </div>
-              {timeBonus > 0 && (
-                <div className="flex items-center justify-between">
+              {timeBonus > 0 && <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2 text-sm text-foreground">
                     <Clock className="h-4 w-4 text-timerWarning" />
                     Time bonus
                   </span>
                   <span className="font-semibold text-success">+{timeBonus} pts</span>
-                </div>
-              )}
-              {speedBonus > 0 && (
-                <div className="flex items-center justify-between">
+                </div>}
+              {speedBonus > 0 && <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2 text-sm text-foreground">
                     <Zap className="h-4 w-4 text-gold" />
                     Speed bonus
                   </span>
                   <span className="font-semibold text-success">+{speedBonus} pts</span>
-                </div>
-              )}
-              {hintsUsed > 0 && (
-                <div className="flex items-center justify-between">
+                </div>}
+              {hintsUsed > 0 && <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2 text-sm text-foreground">
                     <Lightbulb className="h-4 w-4 text-muted-foreground" />
                     Hints used
                   </span>
                   <span className="font-semibold text-danger">-{hintsUsed * 0.5} pts</span>
-                </div>
-              )}
+                </div>}
             </div>
           </Card>
 
@@ -246,68 +236,42 @@ Can you beat my score?`;
             
             {/* Detailed answers (collapsible section) */}
             <div className="space-y-2 mt-4">
-              {answers.map((answer) => (
-                <div
-                  key={answer.rank}
-                  className={`p-3 rounded-lg border ${
-                    answer.isCorrect 
-                      ? "bg-success/5 border-success/30" 
-                      : "bg-danger/5 border-danger/30"
-                  }`}
-                >
+              {answers.map(answer => <div key={answer.rank} className={`p-3 rounded-lg border ${answer.isCorrect ? "bg-success/5 border-success/30" : "bg-danger/5 border-danger/30"}`}>
                   <div className="flex items-center gap-2">
-                    {answer.isCorrect ? (
-                      <CheckCircle2 className="h-4 w-4 text-success flex-shrink-0" />
-                    ) : (
-                      <XCircle className="h-4 w-4 text-danger flex-shrink-0" />
-                    )}
+                    {answer.isCorrect ? <CheckCircle2 className="h-4 w-4 text-success flex-shrink-0" /> : <XCircle className="h-4 w-4 text-danger flex-shrink-0" />}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-bold text-sm text-foreground">#{answer.rank}</span>
                         <span className="font-semibold text-sm text-foreground">{answer.correctName}</span>
                       </div>
-                      {!answer.isCorrect && answer.userGuess && (
-                        <p className="text-xs text-muted-foreground mt-1">
+                      {!answer.isCorrect && answer.userGuess && <p className="text-xs text-muted-foreground mt-1">
                           Your guess: {answer.userGuess}
-                        </p>
-                      )}
+                        </p>}
                     </div>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
           {/* Action Buttons */}
           <div className="space-y-2 pt-2">
-            <Button 
-              onClick={handleShare}
-              className="w-full h-12 rounded-xl font-bold text-base bg-orange hover:bg-orange-hover"
-            >
+            <Button onClick={handleShare} className="w-full h-12 rounded-xl font-bold text-base bg-orange hover:bg-orange-hover">
               <Share2 className="mr-2 h-5 w-5" />
               Share Results
             </Button>
             
             <div className="grid grid-cols-2 gap-2">
-              <Button 
-                variant="outline"
-                onClick={() => {
-                  navigate('/leaderboard');
-                  onOpenChange(false);
-                }}
-                className="h-11 rounded-xl border-2"
-              >
+              <Button variant="outline" onClick={() => {
+              navigate('/leaderboard');
+              onOpenChange(false);
+            }} className="h-11 rounded-xl border-2">
                 <TrendingUp className="mr-2 h-4 w-4" />
                 Leaderboard
               </Button>
-              <Button 
-                variant="outline"
-                onClick={() => {
-                  navigate('/archive');
-                  onOpenChange(false);
-                }}
-                className="h-11 rounded-xl border-2"
-              >
+              <Button variant="outline" onClick={() => {
+              navigate('/archive');
+              onOpenChange(false);
+            }} className="h-11 rounded-xl border-2">
                 <Trophy className="mr-2 h-4 w-4" />
                 Archive
               </Button>
@@ -315,8 +279,6 @@ Can you beat my score?`;
           </div>
         </div>
       </DialogContent>
-    </Dialog>
-  );
+    </Dialog>;
 };
-
 export default ResultsModal;
