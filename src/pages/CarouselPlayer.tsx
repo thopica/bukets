@@ -97,6 +97,7 @@ const CarouselPlayer = () => {
             answers={playerAnswers}
             lastGuessRank={lastGuessRank}
             disabled={false}
+            hintsUsed={usedHints.length}
           />
         </div>
       </main>

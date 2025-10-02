@@ -237,6 +237,7 @@ const Index = () => {
             answers={userAnswers} 
             lastGuessRank={lastGuessRank}
             disabled={isCompleted}
+            hintsUsed={hintsUsed}
           />
         </div>
       </main>

@@ -16,9 +16,10 @@ interface AnswerGridProps {
   answers: Answer[];
   lastGuessRank?: number;
   disabled?: boolean;
+  hintsUsed?: number;
 }
 
-const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProps) => {
+const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }: AnswerGridProps) => {
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
   const [startTime] = useState(Date.now());
 
@@ -40,6 +41,9 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
           color = '#FF6B35'; // orange
         }
         
+        // Apply hint penalty (1 point per hint used)
+        points = Math.max(1, points - hintsUsed);
+        
         // Correct answer animations
         createConfetti(cardRefs.current[lastGuessRank]!);
         animateScoreFlyUp(cardRefs.current[lastGuessRank]!, points, color);
@@ -49,7 +53,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
         haptics.incorrect();
       }
     }
-  }, [lastGuessRank, answers, startTime]);
+  }, [lastGuessRank, answers, startTime, hintsUsed]);
 
   return (
     <div className="border-2 border-white rounded-xl p-1.5">
