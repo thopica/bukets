@@ -67,18 +67,31 @@ const QuizHeader = ({
 
         {/* NBA Shot Clock - Right (only show when totalTime > 0) */}
         {showTimers && (
-          <div className="bg-black rounded-lg px-4 py-2 border-2 border-gray-700 shadow-lg">
-            {/* Total Time - White */}
-            <div className="flex flex-col items-center">
-              <div className={`font-shot-clock text-2xl font-black tracking-wider ${
-                isOverallUrgent ? "text-red-500" : "text-white"
-              }`}>
+          <div className="bg-black rounded-lg px-3 py-2.5 border-2 border-gray-800 shadow-2xl">
+            <div className="flex flex-col items-center gap-0.5">
+              {/* Total Time - Amber LED */}
+              <div 
+                className={`font-shot-clock text-2xl font-black tracking-[0.15em] ${
+                  isOverallUrgent ? "text-red-500" : "text-amber-400"
+                }`}
+                style={{
+                  textShadow: isOverallUrgent 
+                    ? '0 0 8px rgba(239, 68, 68, 0.8), 0 0 16px rgba(239, 68, 68, 0.6), 0 0 24px rgba(239, 68, 68, 0.4)'
+                    : '0 0 8px rgba(251, 191, 36, 0.8), 0 0 16px rgba(251, 191, 36, 0.6), 0 0 24px rgba(251, 191, 36, 0.4)'
+                }}
+              >
                 {formatTime(timeRemaining)}
               </div>
-              {/* 24 Second Shot Clock - Red */}
-              <div className={`font-shot-clock text-3xl font-black tracking-wider ${
-                isPlayerUrgent ? "text-red-600 animate-pulse" : "text-red-500"
-              }`}>
+              
+              {/* 24 Second Shot Clock - Red LED */}
+              <div 
+                className={`font-shot-clock text-4xl font-black tracking-[0.15em] ${
+                  isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
+                }`}
+                style={{
+                  textShadow: '0 0 10px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3)'
+                }}
+              >
                 {playerTimeRemaining}
               </div>
             </div>
