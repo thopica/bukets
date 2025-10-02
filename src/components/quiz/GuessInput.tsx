@@ -72,27 +72,25 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
             autoFocus
           />
           {onRequestHint && (
-            <div className="relative flex flex-col items-center gap-1">
-              <Button
-                onClick={onRequestHint}
-                disabled={disabled || hintsRemaining === 0}
-                variant="outline"
-                size="icon"
-                className={`h-12 w-12 rounded-xl shrink-0 border-2 transition-all ${
-                  hintsRemaining === 0 
-                    ? 'border-muted-foreground/30 text-muted-foreground/30 bg-muted/20 cursor-not-allowed' 
-                    : 'border-timerWarning text-timerWarning hover:bg-timerWarning/10'
-                }`}
-                title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}
-              >
-                <Lightbulb className="h-5 w-5" />
-              </Button>
-              <div className={`text-xs font-bold transition-colors ${
+            <Button
+              onClick={onRequestHint}
+              disabled={disabled || hintsRemaining === 0}
+              variant="outline"
+              size="icon"
+              className={`h-12 w-12 rounded-xl shrink-0 border-2 transition-all relative ${
+                hintsRemaining === 0 
+                  ? 'border-muted-foreground/30 text-muted-foreground/30 bg-muted/20 cursor-not-allowed' 
+                  : 'border-timerWarning text-timerWarning hover:bg-timerWarning/10'
+              }`}
+              title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}
+            >
+              <Lightbulb className="h-5 w-5" />
+              <span className={`absolute bottom-1 right-1 text-[10px] font-bold transition-colors ${
                 hintsRemaining === 0 ? 'text-muted-foreground/50' : 'text-timerWarning'
               }`}>
                 {hintsRemaining}
-              </div>
-            </div>
+              </span>
+            </Button>
           )}
           {onShuffle && (
             <Button
