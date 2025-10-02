@@ -63,7 +63,7 @@ const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining =
             onKeyDown={handleKeyDown}
             placeholder="Type player name..."
             disabled={disabled}
-            className={`h-12 text-base text-foreground bg-card border-2 rounded-xl px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
+            className={`h-12 text-sm text-foreground bg-card border-2 rounded-xl px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
               isShaking 
                 ? 'animate-shake-horizontal border-destructive focus:border-destructive' 
                 : 'border-border focus:border-orange'
