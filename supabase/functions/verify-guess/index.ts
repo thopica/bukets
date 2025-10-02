@@ -1,4 +1,3 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.58.0';
 import { quizzes } from './quizzes.ts';
 
 const corsHeaders = {
@@ -49,16 +48,6 @@ Deno.serve(async (req) => {
     }
 
     const normalized = normalizeGuess(guess);
-    
-    // Initialize Supabase client
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
-    // Fetch glossary data
-    const { data: glossaryData } = await supabase
-      .from('players_glossary')
-      .select('*');
 
     // Check each answer
     for (const answer of quiz.answers) {
@@ -67,24 +56,12 @@ Deno.serve(async (req) => {
         continue;
       }
 
+      // Check exact name match
       let isMatch = normalizeGuess(answer.name) === normalized;
       
-      // Check JSON aliases
+      // Check all aliases (includes nicknames, variations, misspellings)
       if (!isMatch) {
         isMatch = answer.aliases.some((alias: string) => normalizeGuess(alias) === normalized);
-      }
-      
-      // Check glossary variations
-      if (!isMatch && glossaryData) {
-        const glossaryEntry = glossaryData.find(
-          (entry: any) => normalizeGuess(entry.player_name) === normalizeGuess(answer.name)
-        );
-        
-        if (glossaryEntry?.variations) {
-          isMatch = glossaryEntry.variations.some(
-            (variant: string) => normalizeGuess(variant) === normalized
-          );
-        }
       }
       
       if (isMatch) {
