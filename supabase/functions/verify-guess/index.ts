@@ -74,46 +74,32 @@ function soundex(str: string): string {
   return soundexCode;
 }
 
-// Damerau-Levenshtein distance (handles transpositions better)
-function damerauLevenshteinDistance(str1: string, str2: string): number {
-  const len1 = str1.length;
-  const len2 = str2.length;
-  const maxDist = len1 + len2;
-  const H: { [key: string]: number } = {};
-  const sd: number[][] = [];
-  
-  for (let i = 0; i <= len1; i++) {
-    sd[i] = [];
-    sd[i][0] = i;
-  }
-  
-  for (let j = 0; j <= len2; j++) {
-    sd[0][j] = j;
-  }
-  
-  for (let i = 1; i <= len1; i++) {
-    let DB = 0;
-    for (let j = 1; j <= len2; j++) {
-      const k = H[str2[j - 1]] || 0;
-      const l = DB;
-      let cost = 1;
-      
-      if (str1[i - 1] === str2[j - 1]) {
-        cost = 0;
-        DB = j;
-      }
-      
-      sd[i][j] = Math.min(
-        sd[i - 1][j] + 1,           // deletion
-        sd[i][j - 1] + 1,           // insertion
-        sd[i - 1][j - 1] + cost,    // substitution
-        sd[k - 1][l - 1] + (i - k - 1) + 1 + (j - l - 1) // transposition
+// Levenshtein distance (robust)
+function levenshteinDistance(a: string, b: string): number {
+  const m = a.length;
+  const n = b.length;
+  if (m === 0) return n;
+  if (n === 0) return m;
+
+  const dp: number[] = new Array(n + 1);
+  for (let j = 0; j <= n; j++) dp[j] = j;
+
+  for (let i = 1; i <= m; i++) {
+    let prev = dp[0];
+    dp[0] = i;
+    for (let j = 1; j <= n; j++) {
+      const temp = dp[j];
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[j] = Math.min(
+        dp[j] + 1,       // deletion
+        dp[j - 1] + 1,   // insertion
+        prev + cost      // substitution
       );
+      prev = temp;
     }
-    H[str1[i - 1]] = i;
   }
-  
-  return sd[len1][len2];
+
+  return dp[n];
 }
 
 // Advanced fuzzy matching with multiple algorithms
@@ -159,9 +145,9 @@ function isFuzzyMatch(guess: string, target: string): boolean {
     }
   }
   
-  // Damerau-Levenshtein distance (better for transpositions)
+  // Levenshtein distance for general typos
   const maxDistance = Math.max(1, Math.ceil(target.length * 0.25)); // Allow 25% error
-  const distance = damerauLevenshteinDistance(guess, target);
+  const distance = levenshteinDistance(guess, target);
   
   if (distance <= maxDistance) {
     return true;
