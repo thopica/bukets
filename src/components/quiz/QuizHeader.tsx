@@ -76,34 +76,16 @@ const QuizHeader = ({
             {/* Inner border effect */}
             <div className="absolute inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
             
-            <div className="flex flex-col items-center gap-0 relative z-10">
-              {/* Total Time - Amber LED */}
-              <div 
-                className={`font-shot-clock text-3xl font-normal tracking-[0.15em] leading-none flex items-center ${
-                  isOverallUrgent ? "text-red-500" : "text-amber-400"
-                }`}
-                style={{
-                  textShadow: isOverallUrgent 
-                    ? '0 0 6px rgba(239, 68, 68, 0.8), 0 0 12px rgba(239, 68, 68, 0.6), 0 0 18px rgba(239, 68, 68, 0.4)'
-                    : '0 0 6px rgba(251, 191, 36, 0.8), 0 0 12px rgba(251, 191, 36, 0.6), 0 0 18px rgba(251, 191, 36, 0.4)'
-                }}
-              >
-                <span>{formatTime(timeRemaining).split(':')[0]}</span>
-                <span className="-translate-y-1">:</span>
-                <span>{formatTime(timeRemaining).split(':')[1]}</span>
-              </div>
-              
-              {/* 24 Second Shot Clock - Red LED */}
-              <div 
-                className={`font-shot-clock text-5xl font-normal tracking-[0.1em] leading-none ${
-                  isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
-                }`}
-                style={{
-                  textShadow: '0 0 10px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3)'
-                }}
-              >
-                {playerTimeRemaining}
-              </div>
+            {/* 24 Second Shot Clock - Red LED */}
+            <div 
+              className={`font-shot-clock text-7xl font-normal tracking-[0.1em] leading-none ${
+                isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
+              }`}
+              style={{
+                textShadow: '0 0 10px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3)'
+              }}
+            >
+              {playerTimeRemaining}
             </div>
           </div>
         )}
