@@ -93,19 +93,11 @@ const QuizHeader = ({
         </h1>
       </div>
 
-      {/* Progress Pill + Score */}
+      {/* Progress Pill */}
       <div className="flex items-center justify-between gap-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted">
           <span className="text-sm font-semibold text-foreground">
             {correctCount}/{totalCount} answered
-          </span>
-        </div>
-        
-        {/* Running Score - Right */}
-        <div className="flex items-center gap-2">
-          <TrendingUp className="h-4 w-4 text-success" />
-          <span className="text-lg font-bold text-foreground animate-score-bounce">
-            {score} pts
           </span>
         </div>
       </div>
