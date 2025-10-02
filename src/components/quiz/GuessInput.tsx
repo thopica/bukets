@@ -84,12 +84,14 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
               }`}
               title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}
             >
-              <Lightbulb className="h-5 w-5" />
-              <span className={`absolute bottom-1 right-1 text-[10px] font-bold transition-colors ${
-                hintsRemaining === 0 ? 'text-muted-foreground/50' : 'text-timerWarning'
-              }`}>
-                {hintsRemaining}
-              </span>
+              <div className="flex flex-col items-center justify-center gap-0">
+                <Lightbulb className="h-5 w-5" />
+                <span className={`text-[10px] font-bold leading-none transition-colors ${
+                  hintsRemaining === 0 ? 'text-muted-foreground/50' : 'text-timerWarning'
+                }`}>
+                  {hintsRemaining}
+                </span>
+              </div>
             </Button>
           )}
           {onShuffle && (
