@@ -78,7 +78,7 @@ const QuizHeader = ({
 
         {/* Shot Clock - Right side on mobile */}
         {showTimers && (
-          <div className="relative w-9 h-9 md:w-16 md:h-16 bg-black rounded-sm border-2 md:border-4 border-gray-400 shadow-2xl flex items-center justify-center shrink-0"
+          <div className="relative w-9 h-9 md:w-16 md:h-16 bg-black rounded-sm border-2 md:border-4 border-gray-400 shadow-2xl flex items-center justify-center shrink-0 -mt-1"
             style={{
               backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
               backgroundSize: '4px 4px'
