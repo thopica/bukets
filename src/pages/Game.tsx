@@ -188,7 +188,7 @@ const Index = () => {
       const hint = QUIZ_DATA.hints[unansweredIndex];
       setCurrentHint(hint.text);
       setHintsUsed((prev) => prev + 1);
-      setScore((prev) => Math.max(0, prev - 0.5));
+      setScore((prev) => Math.max(0, prev - 1));
     }
   };
 
