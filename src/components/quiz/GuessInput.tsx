@@ -75,31 +75,31 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
             onClick={onRequestHint}
             disabled={disabled || hintsRemaining === 0}
             variant="outline"
-            size="lg"
-            className="h-12 px-3 rounded-xl shrink-0 border-2 border-timerWarning text-timerWarning hover:bg-timerWarning/10"
+            size="sm"
+            className="h-12 px-2 rounded-xl shrink-0 border-2 border-timerWarning text-timerWarning hover:bg-timerWarning/10"
             title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}
           >
-            <Lightbulb className="h-5 w-5" />
+            <Lightbulb className="h-4 w-4" />
           </Button>
           {onShuffle && (
             <Button
               onClick={onShuffle}
               disabled={disabled}
               variant="outline"
-              size="lg"
-              className="h-12 px-3 rounded-xl shrink-0 border-2"
+              size="sm"
+              className="h-12 px-2 rounded-xl shrink-0 border-2"
               title="Random quiz"
             >
-              <Shuffle className="h-5 w-5" />
+              <Shuffle className="h-4 w-4" />
             </Button>
           )}
           <Button
             onClick={handleSubmit}
             disabled={disabled || !input.trim()}
-            size="lg"
-            className="h-12 px-3 rounded-xl shrink-0 font-bold text-sm"
+            size="sm"
+            className="h-12 px-2 rounded-xl shrink-0 font-bold text-sm"
           >
-            <Send className="h-5 w-5" />
+            <Send className="h-4 w-4" />
           </Button>
         </div>
       </div>
