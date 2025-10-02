@@ -83,19 +83,18 @@ const QuizHeader = ({
         )}
       </div>
 
-      {/* Category + Question */}
-      <div className="space-y-0.5 md:space-y-1 text-center">
-        <p className="text-sm md:text-2xl font-bold text-foreground leading-tight capitalize">
-          {title}
-        </p>
-        <h1 className="text-sm md:text-2xl font-bold text-foreground leading-tight">
-          Name the top {totalCount} scorers in NBA history
-        </h1>
-      </div>
-
-      {/* Progress Pill */}
-      <div className="flex items-center justify-end gap-2 md:gap-4">
-        <div className="inline-flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-muted">
+      {/* Category + Question + Progress */}
+      <div className="flex items-start justify-between gap-2">
+        <div className="space-y-0.5 md:space-y-1 text-left flex-1">
+          <p className="text-sm md:text-2xl font-bold text-foreground leading-tight capitalize">
+            {title}
+          </p>
+          <h1 className="text-sm md:text-2xl font-bold text-foreground leading-tight">
+            Name the top {totalCount} scorers in NBA history
+          </h1>
+        </div>
+        
+        <div className="inline-flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-muted shrink-0">
           <span className="text-xs md:text-sm font-semibold text-foreground">
             {correctCount}/{totalCount}
           </span>
