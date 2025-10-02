@@ -45,7 +45,7 @@ export const animateScoreFlyUp = (element: HTMLElement, points: number) => {
   scoreElement.className = 'font-mono';
   
   const rect = element.getBoundingClientRect();
-  scoreElement.style.left = `${rect.left + rect.width / 2 + 30}px`;
+  scoreElement.style.left = `${rect.left + rect.width / 2 + 50}px`;
   scoreElement.style.top = `${rect.top + rect.height / 4}px`;
   scoreElement.style.transform = 'translateX(-50%)';
   
