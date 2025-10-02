@@ -68,28 +68,6 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Feature Cards - 2x2 Grid, Icons + Short Labels */}
-        <div className="grid grid-cols-2 gap-3">
-          <Card className="p-5 text-center space-y-2 bg-card/50 backdrop-blur-sm border-2 hover:border-orange hover:shadow-elevated transition-all duration-200 cursor-pointer group">
-            <Clock className="h-8 w-8 text-orange mx-auto group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-sm text-foreground">Daily Challenge</h3>
-          </Card>
-
-          <Card className="p-5 text-center space-y-2 bg-card/50 backdrop-blur-sm border-2 hover:border-orange hover:shadow-elevated transition-all duration-200 cursor-pointer group">
-            <Brain className="h-8 w-8 text-orange mx-auto group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-sm text-foreground">Smart Hints</h3>
-          </Card>
-
-          <Card className="p-5 text-center space-y-2 bg-card/50 backdrop-blur-sm border-2 hover:border-orange hover:shadow-elevated transition-all duration-200 cursor-pointer group">
-            <TrendingUp className="h-8 w-8 text-orange mx-auto group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-sm text-foreground">Build Streaks</h3>
-          </Card>
-
-          <Card className="p-5 text-center space-y-2 bg-card/50 backdrop-blur-sm border-2 hover:border-orange hover:shadow-elevated transition-all duration-200 cursor-pointer group">
-            <Trophy className="h-8 w-8 text-orange mx-auto group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-sm text-foreground">Compete Globally</h3>
-          </Card>
-        </div>
       </main>
 
       <Footer />
