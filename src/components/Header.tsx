@@ -48,7 +48,7 @@ const Header = () => {
   const navLinks = [
     { path: "/", label: "Home" },
     { path: "/game", label: "Today's Quiz" },
-    { path: "/carousel", label: "Carousel" },
+    { path: "/carousel", label: "Playground" },
     { path: "/leaderboard", label: "Leaderboard" },
     { path: "/archive", label: "Archive" },
     { path: "/how-to-play", label: "How to Play" },
