@@ -110,41 +110,41 @@ const Training = () => {
   };
 
   const checkGuess = async (guess: string) => {
-    const normalized = normalizeGuess(guess);
-    
-    const { data: glossaryData, error } = await supabase
-      .from('players_glossary' as any)
-      .select('*') as any;
-    
-    for (const answer of QUIZ_DATA.answers) {
-      let isMatch = normalizeGuess(answer.name) === normalized;
-      
-      if (!isMatch) {
-        isMatch = answer.aliases.some(alias => normalizeGuess(alias) === normalized);
-      }
-      
-      if (!isMatch && glossaryData && !error) {
-        const glossaryEntry = glossaryData.find(
-          (entry: any) => normalizeGuess(entry.player_name) === normalizeGuess(answer.name)
-        );
-        
-        if (glossaryEntry?.variations) {
-          isMatch = glossaryEntry.variations.some(
-            (variant: string) => normalizeGuess(variant) === normalized
-          );
+    try {
+      // Get already answered ranks
+      const alreadyAnswered = userAnswers
+        .filter(a => a.playerName)
+        .map(a => a.rank);
+
+      // Call server-side verification
+      const { data, error } = await supabase.functions.invoke('verify-guess', {
+        body: {
+          guess,
+          quizIndex: currentQuizIndex,
+          alreadyAnswered
         }
+      });
+
+      if (error) {
+        console.error('Verification error:', error);
+        return null;
       }
-      
-      if (isMatch) {
-        const slot = userAnswers[answer.rank - 1];
-        if (slot?.playerName) {
-          return slot.isCorrect ? "ALREADY_CORRECT" : "ALREADY_REVEALED";
-        }
-        return answer;
+
+      if (!data.correct) {
+        return null;
       }
+
+      // Check if already answered
+      const slot = userAnswers[data.answer.rank - 1];
+      if (slot?.playerName) {
+        return slot.isCorrect ? "ALREADY_CORRECT" : "ALREADY_REVEALED";
+      }
+
+      return data.answer;
+    } catch (error) {
+      console.error('Error verifying guess:', error);
+      return null;
     }
-    
-    return null;
   };
 
   const handleGuess = async (guess: string) => {
