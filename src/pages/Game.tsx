@@ -186,7 +186,10 @@ const Index = () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
     if (unansweredIndex !== -1) {
       const hint = QUIZ_DATA.hints[unansweredIndex];
-      setCurrentHint(hint.text);
+      const parts = (hint?.text || '').split(',').map((p) => p.trim()).filter(Boolean);
+      const nextIndex = hintsUsed === 0 ? 0 : 1; // 0 for first hint, 1 for second
+      const partToShow = parts[nextIndex] || parts[0] || hint?.text || '';
+      setCurrentHint(partToShow);
       setHintsUsed((prev) => prev + 1);
       setScore((prev) => Math.max(0, prev - 1));
       
