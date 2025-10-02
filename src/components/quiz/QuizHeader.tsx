@@ -64,39 +64,41 @@ const QuizHeader = ({
         </div>
       </div>
 
-      {/* Mobile Layout: Title left, Shot Clock right */}
-      <div className="md:hidden flex items-center justify-between gap-1.5">
-        {/* Category + Question */}
-        <div className="space-y-0.5 text-left flex-1 -mt-1 md:mt-0">
-          <p className="text-xs font-bold text-foreground leading-tight capitalize">
-            {title}
-          </p>
-          <h1 className="text-xs font-bold text-foreground leading-tight">
-            Name the top {totalCount} scorers in NBA history
-          </h1>
-        </div>
-
-        {/* Shot Clock - Right side on mobile */}
+      {/* Mobile Layout: Shot Clock on top (centered), Title below */}
+      <div className="md:hidden space-y-2">
+        {/* Shot Clock - Centered at top */}
         {showTimers && (
-          <div className="relative w-9 h-9 md:w-16 md:h-16 bg-black rounded-sm border-2 md:border-4 border-gray-400 shadow-2xl flex items-center justify-center shrink-0 -mt-1 md:mt-0"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
-              backgroundSize: '4px 4px'
-            }}
-          >
-            <div className="absolute inset-0.5 md:inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
-            <div 
-              className={`font-shot-clock text-xl md:text-4xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
-                isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
-              }`}
+          <div className="flex items-center justify-center">
+            <div className="relative w-12 h-12 bg-black rounded-sm border-2 border-gray-400 shadow-2xl flex items-center justify-center"
               style={{
-                textShadow: '0 0 10px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3)'
+                backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
+                backgroundSize: '4px 4px'
               }}
             >
-              {playerTimeRemaining}
+              <div className="absolute inset-0.5 border border-gray-700 rounded-sm pointer-events-none"></div>
+              <div 
+                className={`font-shot-clock text-3xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
+                  isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
+                }`}
+                style={{
+                  textShadow: '0 0 10px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.7), 0 0 30px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3)'
+                }}
+              >
+                {playerTimeRemaining}
+              </div>
             </div>
           </div>
         )}
+
+        {/* Category + Question - Centered below */}
+        <div className="space-y-0.5 text-center">
+          <p className="text-sm font-bold text-foreground leading-tight capitalize">
+            {title}
+          </p>
+          <h1 className="text-base font-bold text-foreground leading-tight">
+            Name the top {totalCount} scorers in NBA history
+          </h1>
+        </div>
       </div>
 
       {/* Desktop Layout: Centered Shot Clock and Title */}
