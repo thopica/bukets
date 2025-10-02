@@ -36,25 +36,29 @@ const Index = () => {
           // Logged-in view - Mobile Optimized
           <>
             <div className="text-center space-y-4">
-              {/* Welcome Message - Small */}
-              <p className="text-xs text-muted-foreground font-medium">
+              {/* Welcome Message - Larger */}
+              <p className="text-base text-muted-foreground font-medium">
                 Welcome back{user.email ? `, ${user.email.split('@')[0]}` : ''}
               </p>
 
               {/* Mini Streak Indicator */}
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-3xl">🔥</span>
-                <span className="text-4xl font-bold text-foreground">3</span>
+              <div className="space-y-2">
+                <p className="text-xs text-muted-foreground font-medium">Your current streak</p>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-3xl">🔥</span>
+                  <span className="text-4xl font-bold text-foreground">3</span>
+                </div>
+                <p className="text-xs text-muted-foreground font-medium">Don't break your streak</p>
               </div>
 
-              {/* MASSIVE CTA Button */}
+              {/* CTA Button - 50% Smaller */}
               <Button 
                 size="lg" 
                 onClick={() => navigate("/game")}
-                className="w-full h-24 rounded-2xl text-3xl font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300"
+                className="w-full h-12 rounded-2xl text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300"
               >
-                <span className="relative z-10 flex flex-col items-center gap-1">
-                  <Clock className="h-10 w-10" />
+                <span className="relative z-10 flex items-center gap-2">
+                  <Clock className="h-5 w-5" />
                   <span>Start Today's Quiz</span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-hover to-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
