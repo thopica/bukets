@@ -82,7 +82,6 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
                 ? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
                 : 'border-border focus-visible:border-white focus-visible:ring-white'
             }`}
-            autoFocus
           />
           {onRequestHint && (
             <Button
