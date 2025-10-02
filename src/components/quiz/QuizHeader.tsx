@@ -94,7 +94,7 @@ const QuizHeader = ({
       </div>
 
       {/* Progress Pill */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-end gap-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted">
           <span className="text-sm font-semibold text-foreground">
             {correctCount}/{totalCount} answered
