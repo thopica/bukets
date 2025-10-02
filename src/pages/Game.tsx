@@ -220,8 +220,8 @@ const Index = () => {
     <div className="h-[100dvh] bg-background flex flex-col animate-slide-up overflow-hidden">
       <Header />
       
-      {/* Scrollable Content Area - excludes fixed input bar */}
-      <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom))' }}>
+      {/* Scrollable Content Area - includes input bar */}
+      <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
@@ -243,27 +243,27 @@ const Index = () => {
           />
         </div>
 
-        {/* Answer Grid */}
-        <div className="flex-1 min-h-0">
+        {/* Answer Grid + Input Section - Attached */}
+        <div className="flex-1 min-h-0 flex flex-col gap-0">
           <AnswerGrid 
             answers={userAnswers} 
             lastGuessRank={lastGuessRank}
             disabled={isCompleted}
             hintsUsed={hintsUsed}
           />
+          
+          {/* Input Section - Attached to Answer Grid */}
+          <GuessInput
+            onGuess={handleGuess}
+            onRequestHint={handleRequestHint}
+            disabled={isCompleted}
+            hintsRemaining={maxHints - hintsUsed}
+            currentHint={currentHint}
+            showError={showInputError}
+            hintsUsed={hintsUsed}
+          />
         </div>
       </main>
-
-      {/* Input Section - Fixed Bottom (35% / Thumb Zone) */}
-      <GuessInput
-        onGuess={handleGuess}
-        onRequestHint={handleRequestHint}
-        disabled={isCompleted}
-        hintsRemaining={maxHints - hintsUsed}
-        currentHint={currentHint}
-        showError={showInputError}
-        hintsUsed={hintsUsed}
-      />
 
       <ResultsModal
         open={showResults}
