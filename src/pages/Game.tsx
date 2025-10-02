@@ -8,6 +8,7 @@ import ResultsModal from "@/components/quiz/ResultsModal";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { getTodaysQuiz, getQuizDate, type Quiz } from "@/utils/quizDate";
+import type { User } from "@supabase/supabase-js";
 
 const Index = () => {
   // Dynamic vh fix for mobile
@@ -49,9 +50,23 @@ const Index = () => {
   const [lastGuessRank, setLastGuessRank] = useState<number | undefined>();
   const [showInputError, setShowInputError] = useState(false);
   const [showInputSuccess, setShowInputSuccess] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
+
+  // Check authentication state
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   // Per-player timer countdown
   useEffect(() => {
@@ -308,6 +323,7 @@ const Index = () => {
         timeBonus={2}
         speedBonus={overallTimeRemaining > 100 ? 3 : 0}
         hintsUsed={hintsUsed}
+        isLoggedIn={!!user}
       />
     </div>
   );

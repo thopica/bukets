@@ -31,6 +31,7 @@ interface ResultsModalProps {
   timeBonus?: number;
   speedBonus?: number;
   hintsUsed?: number;
+  isLoggedIn?: boolean;
 }
 
 const ResultsModal = ({
@@ -44,6 +45,7 @@ const ResultsModal = ({
   timeBonus = 0,
   speedBonus = 0,
   hintsUsed = 0,
+  isLoggedIn = false,
 }: ResultsModalProps) => {
   const navigate = useNavigate();
   const [displayScore, setDisplayScore] = useState(0);
@@ -101,6 +103,51 @@ Can you beat my score?`;
     navigator.clipboard.writeText(shareText);
   };
 
+  // Not logged in view
+  if (!isLoggedIn) {
+    return (
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-lg bg-background rounded-2xl border-2 border-border shadow-floating animate-slide-up">
+          <DialogHeader className="space-y-4">
+            {/* Score Display */}
+            <div className="text-center space-y-2">
+              <DialogTitle className="text-3xl font-bold text-foreground">
+                Your Score
+              </DialogTitle>
+              <div className="text-6xl font-bold text-foreground animate-count-up py-4">
+                {displayScore}
+              </div>
+              <DialogDescription className="text-base text-muted-foreground">
+                {correctCount} out of {totalCount} correct
+              </DialogDescription>
+            </div>
+
+            {/* Warning Message */}
+            <Card className="p-6 bg-orange/10 border-2 border-orange/30 rounded-xl space-y-4">
+              <div className="text-center space-y-3">
+                <div className="text-4xl">⚠️</div>
+                <h3 className="font-bold text-lg text-foreground">
+                  Your score is not saved
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Create an account to save your score, build your streak, and compete on the global leaderboard with fans from Boston to Beijing.
+                </p>
+              </div>
+
+              <Button 
+                onClick={() => navigate('/auth')}
+                className="w-full h-12 rounded-xl font-bold text-base bg-orange hover:bg-orange-hover"
+              >
+                Create Account
+              </Button>
+            </Card>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
+  // Logged in view (existing full results)
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg max-h-[85vh] overflow-y-auto bg-background rounded-2xl border-2 border-border shadow-floating animate-slide-up">
