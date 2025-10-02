@@ -125,7 +125,6 @@ Can you beat my score?`;
             {/* Warning Message */}
             <Card className="p-6 bg-orange/10 border-2 border-orange/30 rounded-xl space-y-4">
               <div className="text-center space-y-3">
-                <div className="text-4xl">⚠️</div>
                 <h3 className="font-bold text-lg text-foreground">
                   Your score is not saved
                 </h3>
