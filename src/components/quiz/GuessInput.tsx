@@ -43,8 +43,8 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
   };
 
   return (
-    <div className="bg-background p-2 md:p-3 rounded-b-lg md:rounded-b-xl">
-      <div className="space-y-1.5 md:space-y-2">
+    <div className="bg-background p-2 md:p-3 rounded-b-lg md:rounded-b-xl md:fixed md:bottom-0 md:left-0 md:right-0 md:border-t-2 md:border-border md:shadow-floating md:z-50">
+      <div className="space-y-1.5 md:space-y-2 md:container md:max-w-5xl md:mx-auto">
         {/* Hint Overlay - Slides up */}
         {currentHint && (
           <div className="p-2 md:p-3 bg-timerWarning/10 border md:border-2 border-timerWarning rounded-lg md:rounded-xl animate-slide-up shadow-elevated">

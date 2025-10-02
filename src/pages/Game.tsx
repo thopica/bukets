@@ -220,8 +220,8 @@ const Index = () => {
     <div className="h-[100dvh] bg-background flex flex-col animate-slide-up overflow-hidden">
       <Header />
       
-      {/* Scrollable Content Area - includes input bar */}
-      <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      {/* Scrollable Content Area */}
+      <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto md:pb-28" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
@@ -243,7 +243,7 @@ const Index = () => {
           />
         </div>
 
-        {/* Answer Grid + Input Section - Attached */}
+        {/* Answer Grid + Input Section - Attached on mobile, separate on desktop */}
         <div className="flex-1 min-h-0 flex flex-col gap-0">
           <AnswerGrid 
             answers={userAnswers} 
@@ -252,18 +252,33 @@ const Index = () => {
             hintsUsed={hintsUsed}
           />
           
-          {/* Input Section - Attached to Answer Grid */}
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
-            disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
-            showError={showInputError}
-            hintsUsed={hintsUsed}
-          />
+          {/* Input Section - Attached on mobile, hidden on desktop (desktop version is fixed) */}
+          <div className="md:hidden">
+            <GuessInput
+              onGuess={handleGuess}
+              onRequestHint={handleRequestHint}
+              disabled={isCompleted}
+              hintsRemaining={maxHints - hintsUsed}
+              currentHint={currentHint}
+              showError={showInputError}
+              hintsUsed={hintsUsed}
+            />
+          </div>
         </div>
       </main>
+
+      {/* Input Section - Fixed at bottom on desktop only */}
+      <div className="hidden md:block">
+        <GuessInput
+          onGuess={handleGuess}
+          onRequestHint={handleRequestHint}
+          disabled={isCompleted}
+          hintsRemaining={maxHints - hintsUsed}
+          currentHint={currentHint}
+          showError={showInputError}
+          hintsUsed={hintsUsed}
+        />
+      </div>
 
       <ResultsModal
         open={showResults}
