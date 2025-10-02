@@ -23,7 +23,7 @@ const HowToPlay = () => {
     {
       icon: <Lightbulb className="h-8 w-8 text-primary-light" />,
       title: "Hints Available",
-      description: "Stuck? Use up to 3 hints per quiz. Each hint costs -0.5 points but gives you valuable clues about the player's career, team, or achievements.",
+      description: "Stuck? Use up to 2 hints per quiz. Each hint costs -1 point but gives you valuable clues about the player's career, team, or achievements.",
     },
     {
       icon: <Flame className="h-8 w-8 text-orange-500" />,
@@ -83,7 +83,7 @@ const HowToPlay = () => {
               </div>
               <div className="flex justify-between items-center">
                 <span>Hint used</span>
-                <span className="font-bold text-destructive">-0.5 points</span>
+                <span className="font-bold text-destructive">-1 point</span>
               </div>
               <div className="flex justify-between items-center">
                 <span>3 wrong guesses per player</span>
