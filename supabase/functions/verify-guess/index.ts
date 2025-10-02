@@ -18,47 +18,164 @@ function normalizeGuess(guess: string): string {
   return guess.toLowerCase().trim().replace(/[^a-z\s]/g, '');
 }
 
-// Calculate Levenshtein distance for fuzzy matching
-function levenshteinDistance(str1: string, str2: string): number {
-  const len1 = str1.length;
-  const len2 = str2.length;
-  const matrix: number[][] = [];
-
-  for (let i = 0; i <= len1; i++) {
-    matrix[i] = [i];
-  }
-
-  for (let j = 0; j <= len2; j++) {
-    matrix[0][j] = j;
-  }
-
-  for (let i = 1; i <= len1; i++) {
-    for (let j = 1; j <= len2; j++) {
-      const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
-      matrix[i][j] = Math.min(
-        matrix[i - 1][j] + 1,      // deletion
-        matrix[i][j - 1] + 1,      // insertion
-        matrix[i - 1][j - 1] + cost // substitution
-      );
+// Common letter substitutions that sound similar or are commonly mistyped
+function applyCommonSubstitutions(str: string): string[] {
+  const variations: string[] = [str];
+  
+  // Phonetic substitutions
+  const substitutions: Array<[RegExp, string]> = [
+    [/ph/g, 'f'],
+    [/f/g, 'ph'],
+    [/c/g, 'k'],
+    [/k/g, 'c'],
+    [/s/g, 'z'],
+    [/z/g, 's'],
+    [/ck/g, 'k'],
+    [/qu/g, 'kw'],
+    [/x/g, 'ks'],
+    [/ie/g, 'y'],
+    [/y/g, 'ie'],
+    [/tion/g, 'shun'],
+    [/sion/g, 'shun'],
+  ];
+  
+  for (const [pattern, replacement] of substitutions) {
+    if (pattern.test(str)) {
+      variations.push(str.replace(pattern, replacement));
     }
   }
-
-  return matrix[len1][len2];
+  
+  return variations;
 }
 
-// Check if guess is close enough to target (allows for misspellings)
+// Soundex algorithm for phonetic matching
+function soundex(str: string): string {
+  const a = str.toLowerCase().split('');
+  const firstLetter = a[0];
+  
+  const codes: { [key: string]: string } = {
+    a: '', e: '', i: '', o: '', u: '', h: '', w: '', y: '',
+    b: '1', f: '1', p: '1', v: '1',
+    c: '2', g: '2', j: '2', k: '2', q: '2', s: '2', x: '2', z: '2',
+    d: '3', t: '3',
+    l: '4',
+    m: '5', n: '5',
+    r: '6'
+  };
+  
+  let soundexCode = firstLetter.toUpperCase() + a
+    .slice(1)
+    .map(letter => codes[letter])
+    .filter((code, index, array) => code !== '' && code !== array[index - 1])
+    .join('')
+    .substring(0, 3)
+    .padEnd(3, '0');
+  
+  return soundexCode;
+}
+
+// Damerau-Levenshtein distance (handles transpositions better)
+function damerauLevenshteinDistance(str1: string, str2: string): number {
+  const len1 = str1.length;
+  const len2 = str2.length;
+  const maxDist = len1 + len2;
+  const H: { [key: string]: number } = {};
+  const sd: number[][] = [];
+  
+  for (let i = 0; i <= len1; i++) {
+    sd[i] = [];
+    sd[i][0] = i;
+  }
+  
+  for (let j = 0; j <= len2; j++) {
+    sd[0][j] = j;
+  }
+  
+  for (let i = 1; i <= len1; i++) {
+    let DB = 0;
+    for (let j = 1; j <= len2; j++) {
+      const k = H[str2[j - 1]] || 0;
+      const l = DB;
+      let cost = 1;
+      
+      if (str1[i - 1] === str2[j - 1]) {
+        cost = 0;
+        DB = j;
+      }
+      
+      sd[i][j] = Math.min(
+        sd[i - 1][j] + 1,           // deletion
+        sd[i][j - 1] + 1,           // insertion
+        sd[i - 1][j - 1] + cost,    // substitution
+        sd[k - 1][l - 1] + (i - k - 1) + 1 + (j - l - 1) // transposition
+      );
+    }
+    H[str1[i - 1]] = i;
+  }
+  
+  return sd[len1][len2];
+}
+
+// Advanced fuzzy matching with multiple algorithms
 function isFuzzyMatch(guess: string, target: string): boolean {
   // Exact match
   if (guess === target) return true;
   
-  // For short names (< 5 chars), require exact match
-  if (target.length < 5) return false;
+  // Very short names require exact match
+  if (target.length < 4) return false;
   
-  // Calculate allowed edit distance based on length
-  const maxDistance = Math.max(1, Math.floor(target.length * 0.2)); // Allow 20% error
-  const distance = levenshteinDistance(guess, target);
+  // Check if guess is contained in target or vice versa (partial matches)
+  if (target.includes(guess) || guess.includes(target)) {
+    return true;
+  }
   
-  return distance <= maxDistance;
+  // Check common substitution variations
+  const guessVariations = applyCommonSubstitutions(guess);
+  const targetVariations = applyCommonSubstitutions(target);
+  
+  for (const gVar of guessVariations) {
+    for (const tVar of targetVariations) {
+      if (gVar === tVar) return true;
+    }
+  }
+  
+  // Phonetic matching using Soundex
+  const guessSoundex = soundex(guess);
+  const targetSoundex = soundex(target);
+  if (guessSoundex === targetSoundex && target.length >= 5) {
+    return true;
+  }
+  
+  // Token-based matching for multi-word names
+  const guessTokens = guess.split(/\s+/).filter(t => t.length > 2);
+  const targetTokens = target.split(/\s+/).filter(t => t.length > 2);
+  
+  if (guessTokens.length > 0 && targetTokens.length > 0) {
+    const matchingTokens = guessTokens.filter(gt => 
+      targetTokens.some(tt => tt === gt || tt.startsWith(gt) || gt.startsWith(tt))
+    );
+    if (matchingTokens.length === guessTokens.length) {
+      return true;
+    }
+  }
+  
+  // Damerau-Levenshtein distance (better for transpositions)
+  const maxDistance = Math.max(1, Math.ceil(target.length * 0.25)); // Allow 25% error
+  const distance = damerauLevenshteinDistance(guess, target);
+  
+  if (distance <= maxDistance) {
+    return true;
+  }
+  
+  // Prefix matching for longer names
+  if (target.length >= 6 && guess.length >= 4) {
+    const minPrefixLength = Math.min(4, Math.floor(target.length * 0.6));
+    if (target.startsWith(guess.substring(0, minPrefixLength))) {
+      return true;
+    }
+  }
+  
+  return false;
 }
 
 Deno.serve(async (req) => {
