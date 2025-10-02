@@ -59,7 +59,7 @@ const QuizHeader = ({
       <div className="flex items-center justify-center gap-4">
         {/* NBA Shot Clock (only show when totalTime > 0) */}
         {showTimers && (
-          <div className="relative w-24 h-24 bg-black rounded-sm border-4 border-gray-400 shadow-2xl flex items-center justify-center"
+          <div className="relative w-16 h-16 bg-black rounded-sm border-4 border-gray-400 shadow-2xl flex items-center justify-center"
             style={{
               backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
               backgroundSize: '4px 4px'
@@ -70,7 +70,7 @@ const QuizHeader = ({
             
             {/* 24 Second Shot Clock - Red LED */}
             <div 
-              className={`font-shot-clock text-7xl font-normal tracking-[0.1em] leading-none ${
+              className={`font-shot-clock text-5xl font-normal tracking-[0.1em] leading-none ${
                 isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
               }`}
               style={{
