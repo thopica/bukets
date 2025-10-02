@@ -54,7 +54,7 @@ const QuizHeader = ({
   const showTimers = totalTime > 0;
 
   return (
-    <div className="border-2 border-white rounded-xl p-3 space-y-2">
+    <div className="border-2 border-white rounded-xl p-3 space-y-4">
       {/* Shot Clock - Center */}
       <div className="flex items-center justify-center gap-4">
         {/* NBA Shot Clock (only show when totalTime > 0) */}
