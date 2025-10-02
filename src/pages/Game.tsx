@@ -48,6 +48,7 @@ const Index = () => {
   const [incorrectGuess, setIncorrectGuess] = useState<number | null>(null);
   const [lastGuessRank, setLastGuessRank] = useState<number | undefined>();
   const [showInputError, setShowInputError] = useState(false);
+  const [showInputSuccess, setShowInputSuccess] = useState(false);
 
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
@@ -179,6 +180,7 @@ const Index = () => {
       setIncorrectGuess(null);
       setLastGuessRank(matchedAnswer.rank);
       setShowInputError(false);
+      setShowInputSuccess(true);
       // Reset hints after awarding animation
       setTimeout(() => setHintsUsed(0), 800);
       
@@ -191,6 +193,7 @@ const Index = () => {
     } else {
       setLastGuessRank(undefined);
       setShowInputError(true);
+      setShowInputSuccess(false);
     }
   };
 
@@ -263,6 +266,7 @@ const Index = () => {
             hintsRemaining={maxHints - hintsUsed}
             currentHint={currentHint}
             showError={showInputError}
+            showSuccess={showInputSuccess}
             hintsUsed={hintsUsed}
           />
         </div>
@@ -288,6 +292,7 @@ const Index = () => {
           hintsRemaining={maxHints - hintsUsed}
           currentHint={currentHint}
           showError={showInputError}
+          showSuccess={showInputSuccess}
           hintsUsed={hintsUsed}
         />
       </div>

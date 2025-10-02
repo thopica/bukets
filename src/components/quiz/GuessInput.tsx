@@ -12,20 +12,30 @@ interface GuessInputProps {
   hintsRemaining?: number;
   currentHint?: string;
   showError?: boolean;
+  showSuccess?: boolean;
   hintsUsed?: number;
 }
 
-const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hintsRemaining = 0, currentHint, showError = false, hintsUsed = 0 }: GuessInputProps) => {
+const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hintsRemaining = 0, currentHint, showError = false, showSuccess = false, hintsUsed = 0 }: GuessInputProps) => {
   const [input, setInput] = useState("");
   const [isShaking, setIsShaking] = useState(false);
+  const [showSuccessBorder, setShowSuccessBorder] = useState(false);
 
   useEffect(() => {
     if (showError) {
       setIsShaking(true);
-      const timer = setTimeout(() => setIsShaking(false), 600);
+      const timer = setTimeout(() => setIsShaking(false), 1000);
       return () => clearTimeout(timer);
     }
   }, [showError]);
+
+  useEffect(() => {
+    if (showSuccess) {
+      setShowSuccessBorder(true);
+      const timer = setTimeout(() => setShowSuccessBorder(false), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
 
   const handleSubmit = () => {
     const guess = input.trim();
@@ -65,10 +75,12 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
             onKeyDown={handleKeyDown}
             placeholder="Type player name..."
             disabled={disabled}
-            className={`flex-1 min-w-0 h-10 md:h-12 text-base md:text-sm text-foreground bg-card border md:border-2 rounded-lg md:rounded-xl px-2.5 md:px-4 focus:ring-2 focus:ring-orange transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
+            className={`flex-1 min-w-0 h-10 md:h-12 text-base md:text-sm text-foreground bg-card border md:border-2 rounded-lg md:rounded-xl px-2.5 md:px-4 focus:ring-2 transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
               isShaking 
-                ? 'animate-shake-horizontal border-destructive focus:border-destructive' 
-                : 'border-border focus:border-orange'
+                ? 'animate-shake-horizontal border-destructive focus:border-destructive focus:ring-destructive' 
+                : showSuccessBorder
+                ? 'border-green-500 focus:border-green-500 focus:ring-green-500'
+                : 'border-border focus:border-orange focus:ring-orange'
             }`}
             autoFocus
           />
