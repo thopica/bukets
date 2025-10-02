@@ -89,7 +89,7 @@ const QuizHeader = ({
                 }}
               >
                 <span>{formatTime(timeRemaining).split(':')[0]}</span>
-                <span className="-translate-y-0.5">:</span>
+                <span className="-translate-y-1">:</span>
                 <span>{formatTime(timeRemaining).split(':')[1]}</span>
               </div>
               
