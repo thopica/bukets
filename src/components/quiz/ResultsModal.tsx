@@ -197,25 +197,6 @@ Can you beat my score?`;
             <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
               Answer Review
             </h3>
-            <div className="grid grid-cols-3 gap-2">
-              {answers.map((answer) => (
-                <div
-                  key={answer.rank}
-                  className={`p-3 rounded-xl border-2 text-center transition-all ${
-                    answer.isCorrect 
-                      ? "bg-success/10 border-success" 
-                      : "bg-danger/10 border-danger"
-                  }`}
-                >
-                  <div className="text-2xl mb-1">
-                    {answer.isCorrect ? "✓" : "✗"}
-                  </div>
-                  <div className="text-xs font-semibold text-foreground">
-                    #{answer.rank}
-                  </div>
-                </div>
-              ))}
-            </div>
             
             {/* Detailed answers (collapsible section) */}
             <div className="space-y-2 mt-4">
