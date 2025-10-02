@@ -76,16 +76,16 @@ const QuizHeader = ({
             {/* Inner border effect */}
             <div className="absolute inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
             
-            <div className="flex flex-col items-center gap-0.5 relative z-10">
+            <div className="flex flex-col items-center gap-0 relative z-10">
               {/* Total Time - Amber LED */}
               <div 
-                className={`font-shot-clock text-xl font-normal tracking-[0.2em] ${
+                className={`font-shot-clock text-base font-normal tracking-[0.15em] leading-none ${
                   isOverallUrgent ? "text-red-500" : "text-amber-400"
                 }`}
                 style={{
                   textShadow: isOverallUrgent 
-                    ? '0 0 8px rgba(239, 68, 68, 0.8), 0 0 16px rgba(239, 68, 68, 0.6), 0 0 24px rgba(239, 68, 68, 0.4)'
-                    : '0 0 8px rgba(251, 191, 36, 0.8), 0 0 16px rgba(251, 191, 36, 0.6), 0 0 24px rgba(251, 191, 36, 0.4)'
+                    ? '0 0 6px rgba(239, 68, 68, 0.8), 0 0 12px rgba(239, 68, 68, 0.6), 0 0 18px rgba(239, 68, 68, 0.4)'
+                    : '0 0 6px rgba(251, 191, 36, 0.8), 0 0 12px rgba(251, 191, 36, 0.6), 0 0 18px rgba(251, 191, 36, 0.4)'
                 }}
               >
                 {formatTime(timeRemaining)}
@@ -93,7 +93,7 @@ const QuizHeader = ({
               
               {/* 24 Second Shot Clock - Red LED */}
               <div 
-                className={`font-shot-clock text-3xl font-normal tracking-[0.2em] ${
+                className={`font-shot-clock text-5xl font-normal tracking-[0.1em] leading-none ${
                   isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
                 }`}
                 style={{
