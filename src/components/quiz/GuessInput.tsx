@@ -75,12 +75,12 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
             onKeyDown={handleKeyDown}
             placeholder="Type player name..."
             disabled={disabled}
-            className={`flex-1 min-w-0 h-10 md:h-12 text-base md:text-sm text-foreground bg-card border md:border-2 rounded-lg md:rounded-xl px-2.5 md:px-4 focus:ring-1 transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
+            className={`flex-1 min-w-0 h-10 md:h-12 text-base md:text-sm text-foreground bg-card border md:border-2 rounded-lg md:rounded-xl px-2.5 md:px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${
               isShaking 
-                ? 'animate-shake-horizontal border-destructive focus:border-destructive focus:ring-destructive' 
+                ? 'animate-shake-horizontal border-destructive focus-visible:border-destructive focus-visible:ring-destructive' 
                 : showSuccessBorder
-                ? 'border-green-500 focus:border-green-500 focus:ring-green-500'
-                : 'border-border focus:border-white focus:ring-white'
+                ? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
+                : 'border-border focus-visible:border-white focus-visible:ring-white'
             }`}
             autoFocus
           />
