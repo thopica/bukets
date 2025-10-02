@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import carouselData from "@/data/carousel_questions.json";
 import Header from "@/components/Header";
 import QuizHeader from "@/components/quiz/QuizHeader";
@@ -23,8 +23,8 @@ const CarouselPlayer = () => {
   const totalQuestions = carouselData.playerQuestions.length;
   const currentQuestion = carouselData.playerQuestions[currentIndex];
 
-  // Initialize player answers when changing questions
-  const initializePlayerAnswers = () => {
+  // Initialize/reset player answers when question changes
+  useEffect(() => {
     const answers: Answer[] = currentQuestion.answers.map((_, index) => ({
       rank: index + 1,
       name: "",
@@ -34,17 +34,11 @@ const CarouselPlayer = () => {
     setPlayerAnswers(answers);
     setUsedHints([]);
     setLastGuessRank(null);
-  };
-
-  // Initialize on mount
-  useState(() => {
-    initializePlayerAnswers();
-  });
+  }, [currentIndex, currentQuestion]);
 
   const handleRandom = () => {
     const randomIndex = Math.floor(Math.random() * totalQuestions);
     setCurrentIndex(randomIndex);
-    initializePlayerAnswers();
   };
 
   const handleGuess = (guess: string) => {
