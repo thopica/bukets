@@ -72,7 +72,7 @@ const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining =
           />
           <Button
             onClick={onRequestHint}
-            disabled={disabled || hintsRemaining === 0 || !!currentHint}
+            disabled={disabled || hintsRemaining === 0}
             variant="outline"
             size="lg"
             className="h-12 px-3 rounded-xl shrink-0 border-2 border-timerWarning text-timerWarning hover:bg-timerWarning/10"
