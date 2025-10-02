@@ -101,7 +101,18 @@ const CarouselPlayer = () => {
           />
         </div>
 
-        {/* Desktop Input - Below Answers */}
+        {/* Inputs - Below Answers */}
+        {/* Mobile */}
+        <div className="md:hidden shrink-0">
+          <GuessInput
+            onGuess={handleGuess}
+            onShuffle={handleRandom}
+            disabled={correctCount === 6}
+            hintsRemaining={2 - usedHints.length}
+            showError={showError}
+          />
+        </div>
+        {/* Desktop */}
         <div className="hidden md:block shrink-0">
           <GuessInput
             onGuess={handleGuess}
@@ -113,16 +124,6 @@ const CarouselPlayer = () => {
         </div>
       </main>
 
-      {/* Mobile Input - Fixed at Bottom */}
-      <div className="md:hidden shrink-0">
-        <GuessInput
-          onGuess={handleGuess}
-          onShuffle={handleRandom}
-          disabled={correctCount === 6}
-          hintsRemaining={2 - usedHints.length}
-          showError={showError}
-        />
-      </div>
     </div>
   );
 };
