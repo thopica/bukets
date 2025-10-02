@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, Lock } from "lucide-react";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { createConfetti, animateScoreFlyUp } from "@/lib/confetti";
 import { haptics } from "@/lib/haptics";
 
@@ -20,22 +20,28 @@ interface AnswerGridProps {
 
 const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProps) => {
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+  const [startTime] = useState(Date.now());
 
   // Trigger animations when a guess is made
   useEffect(() => {
     if (lastGuessRank) {
       const answer = answers.find(a => a.rank === lastGuessRank);
       if (answer?.isCorrect && cardRefs.current[lastGuessRank]) {
+        // Calculate time taken and points
+        const timeTaken = (Date.now() - startTime) / 1000; // in seconds
+        const points = timeTaken <= 5 ? 5 : 3;
+        const color = timeTaken <= 5 ? '#F7B32B' : '#00D9A5'; // golden or green
+        
         // Correct answer animations
         createConfetti(cardRefs.current[lastGuessRank]!);
-        animateScoreFlyUp(cardRefs.current[lastGuessRank]!, 3);
+        animateScoreFlyUp(cardRefs.current[lastGuessRank]!, points, color);
         haptics.correct();
       } else if (answer && !answer.isCorrect) {
         // Incorrect answer animations
         haptics.incorrect();
       }
     }
-  }, [lastGuessRank, answers]);
+  }, [lastGuessRank, answers, startTime]);
 
   return (
     <div className="border-2 border-white rounded-xl p-1.5">

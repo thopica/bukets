@@ -33,13 +33,13 @@ export const createConfetti = (element: HTMLElement) => {
 };
 
 // Score fly-up animation
-export const animateScoreFlyUp = (element: HTMLElement, points: number) => {
+export const animateScoreFlyUp = (element: HTMLElement, points: number, color: string = '#00D9A5') => {
   const scoreElement = document.createElement('div');
   scoreElement.textContent = `+${points}`;
   scoreElement.style.position = 'absolute';
   scoreElement.style.fontSize = '16px';
   scoreElement.style.fontWeight = '700';
-  scoreElement.style.color = '#00D9A5';
+  scoreElement.style.color = color;
   scoreElement.style.pointerEvents = 'none';
   scoreElement.style.zIndex = '1000';
   scoreElement.className = 'font-mono';
