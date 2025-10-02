@@ -1,5 +1,5 @@
 {
-  "questions": [
+  "singleQuestions": [
     {
       "id": 1,
       "question": "Who holds the NBA record for most points in a single game?",
@@ -50,7 +50,7 @@
     },
     {
       "id": 9,
-      "question": "Who was known as 'The Answer'?",
+      "question": "Who is known as 'The Answer'?",
       "answer": "Allen Iverson",
       "category": "Nicknames"
     },
@@ -62,543 +62,2045 @@
     },
     {
       "id": 11,
-      "question": "Who won the NBA MVP award in 2023-24?",
-      "answer": "Nikola Jokic",
+      "question": "Who won the first NBA MVP award?",
+      "answer": "Bob Pettit (1956)",
       "category": "MVP Awards"
     },
     {
       "id": 12,
-      "question": "Which player is called 'The King'?",
+      "question": "Which player is called 'King James'?",
       "answer": "LeBron James",
       "category": "Nicknames"
     },
     {
       "id": 13,
-      "question": "Who has the most three-pointers made in NBA history?",
-      "answer": "Stephen Curry",
-      "category": "Three-Point Records"
+      "question": "Who holds the record for most rebounds in a single game?",
+      "answer": "Wilt Chamberlain (55 rebounds)",
+      "category": "Rebounding Records"
     },
     {
       "id": 14,
-      "question": "Which team did Michael Jordan play for most of his career?",
-      "answer": "Chicago Bulls",
-      "category": "Team History"
-    },
-    {
-      "id": 15,
-      "question": "Who was the 2024 NBA Finals MVP?",
-      "answer": "Jaylen Brown",
-      "category": "Finals MVP"
-    },
-    {
-      "id": 16,
-      "question": "Which player is known as 'The Slim Reaper'?",
-      "answer": "Kevin Durant",
-      "category": "Nicknames"
-    },
-    {
-      "id": 17,
-      "question": "Who holds the record for most rebounds in NBA history?",
-      "answer": "Wilt Chamberlain",
-      "category": "Rebounding"
-    },
-    {
-      "id": 18,
-      "question": "Which player wore number 23 for the Lakers?",
-      "answer": "LeBron James",
-      "category": "Jersey Numbers"
-    },
-    {
-      "id": 19,
-      "question": "Who is called 'The Black Mamba'?",
-      "answer": "Kobe Bryant",
-      "category": "Nicknames"
-    },
-    {
-      "id": 20,
       "question": "Which team drafted Kobe Bryant?",
       "answer": "Charlotte Hornets (traded to Lakers)",
       "category": "Draft History"
     },
     {
-      "id": 21,
-      "question": "Who has won the most NBA MVP awards?",
-      "answer": "Kareem Abdul-Jabbar (6 MVP awards)",
+      "id": 15,
+      "question": "Who is the shortest player to win an NBA MVP?",
+      "answer": "Allen Iverson (6'0\")",
       "category": "MVP Awards"
     },
     {
-      "id": 22,
-      "question": "Which player is known as 'The Logo'?",
-      "answer": "Jerry West",
+      "id": 16,
+      "question": "Which player has the most career blocks?",
+      "answer": "Hakeem Olajuwon",
+      "category": "Defense"
+    },
+    {
+      "id": 17,
+      "question": "Who is known as 'The Black Mamba'?",
+      "answer": "Kobe Bryant",
       "category": "Nicknames"
     },
     {
+      "id": 18,
+      "question": "Which player has the most 3-pointers made in NBA history?",
+      "answer": "Stephen Curry",
+      "category": "Three-Point Records"
+    },
+    {
+      "id": 19,
+      "question": "Who was the youngest player to score 30,000 points?",
+      "answer": "LeBron James",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 20,
+      "question": "Which player is known as 'The Big Fundamental'?",
+      "answer": "Tim Duncan",
+      "category": "Nicknames"
+    },
+    {
+      "id": 21,
+      "question": "Who holds the record for most steals in NBA history?",
+      "answer": "John Stockton",
+      "category": "Defense"
+    },
+    {
+      "id": 22,
+      "question": "Which player scored 13 points in 35 seconds?",
+      "answer": "Tracy McGrady",
+      "category": "Historic Performances"
+    },
+    {
       "id": 23,
+      "question": "Who is the only player to win NBA MVP unanimously twice?",
+      "answer": "Stephen Curry",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 24,
+      "question": "Which player is known as 'The Beard'?",
+      "answer": "James Harden",
+      "category": "Nicknames"
+    },
+    {
+      "id": 25,
+      "question": "Who won the NBA Finals MVP in 2020?",
+      "answer": "LeBron James",
+      "category": "Finals MVP"
+    },
+    {
+      "id": 26,
+      "question": "Which player has the most career free throws made?",
+      "answer": "Karl Malone",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 27,
+      "question": "Who is known as 'The Diesel'?",
+      "answer": "Shaquille O'Neal",
+      "category": "Nicknames"
+    },
+    {
+      "id": 28,
+      "question": "Which player has the most consecutive games with a triple-double?",
+      "answer": "Russell Westbrook (11 games)",
+      "category": "Triple-Doubles"
+    },
+    {
+      "id": 29,
       "question": "Who was the first player to average a triple-double for a season?",
       "answer": "Oscar Robertson",
       "category": "Triple-Doubles"
     },
     {
-      "id": 24,
-      "question": "Which team won the 2023 NBA Championship?",
-      "answer": "Denver Nuggets",
-      "category": "Championships"
-    },
-    {
-      "id": 25,
-      "question": "Who is the youngest player to score 10,000 points?",
-      "answer": "LeBron James",
-      "category": "Scoring Records"
-    },
-    {
-      "id": 26,
-      "question": "Which player is called 'Chef Curry'?",
-      "answer": "Stephen Curry",
-      "category": "Nicknames"
-    },
-    {
-      "id": 27,
-      "question": "Who has the most blocks in NBA history?",
-      "answer": "Hakeem Olajuwon",
-      "category": "Defensive Records"
-    },
-    {
-      "id": 28,
-      "question": "Which team has the longest winning streak in NBA history?",
-      "answer": "Los Angeles Lakers (33 games)",
-      "category": "Team Records"
-    },
-    {
-      "id": 29,
-      "question": "Who was known as 'Air Jordan'?",
-      "answer": "Michael Jordan",
-      "category": "Nicknames"
-    },
-    {
       "id": 30,
-      "question": "Which player has the most steals in NBA history?",
-      "answer": "John Stockton",
-      "category": "Defensive Records"
+      "question": "Which player is known as 'The Glove'?",
+      "answer": "Gary Payton",
+      "category": "Nicknames"
     },
     {
       "id": 31,
-      "question": "Who won the 2024 NBA Rookie of the Year?",
-      "answer": "Victor Wembanyama",
-      "category": "Awards"
+      "question": "Who holds the record for most assists in a single game?",
+      "answer": "Scott Skiles (30 assists)",
+      "category": "Assists"
     },
     {
       "id": 32,
-      "question": "Which player is called 'The Joker'?",
-      "answer": "Nikola Jokic",
-      "category": "Nicknames"
-    },
-    {
-      "id": 33,
-      "question": "Who has the most Finals MVP awards?",
-      "answer": "Michael Jordan (6 Finals MVPs)",
+      "question": "Which player has the most Finals MVP awards?",
+      "answer": "Michael Jordan (6)",
       "category": "Finals MVP"
     },
     {
-      "id": 34,
-      "question": "Which team did Shaquille O'Neal win his first championship with?",
-      "answer": "Los Angeles Lakers",
-      "category": "Championships"
-    },
-    {
-      "id": 35,
-      "question": "Who is known as 'The Big Fundamental'?",
-      "answer": "Tim Duncan",
-      "category": "Nicknames"
-    },
-    {
-      "id": 36,
-      "question": "Which player has played the most NBA games?",
-      "answer": "Robert Parish (1,611 games)",
-      "category": "Career Longevity"
-    },
-    {
-      "id": 37,
-      "question": "Who was the first international player to win NBA MVP?",
-      "answer": "Hakeem Olajuwon",
-      "category": "MVP Awards"
-    },
-    {
-      "id": 38,
-      "question": "Which team is known as 'The Purple and Gold'?",
-      "answer": "Los Angeles Lakers",
-      "category": "Team Nicknames"
-    },
-    {
-      "id": 39,
-      "question": "Who holds the record for most points in a playoff game?",
-      "answer": "Michael Jordan (63 points)",
-      "category": "Playoff Records"
-    },
-    {
-      "id": 40,
-      "question": "Which player is called 'The Process'?",
+      "id": 33,
+      "question": "Who is known as 'The Process'?",
       "answer": "Joel Embiid",
       "category": "Nicknames"
     },
     {
+      "id": 34,
+      "question": "Which player has the most regular season MVP awards?",
+      "answer": "Kareem Abdul-Jabbar (6)",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 35,
+      "question": "Who scored 100 points in a high school game?",
+      "answer": "Multiple players (most famous: Wilt Chamberlain's HS career)",
+      "category": "Historic Performances"
+    },
+    {
+      "id": 36,
+      "question": "Which player is known as 'The Truth'?",
+      "answer": "Paul Pierce",
+      "category": "Nicknames"
+    },
+    {
+      "id": 37,
+      "question": "Who was the first international player to win NBA MVP?",
+      "answer": "Hakeem Olajuwon (Nigerian)",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 38,
+      "question": "Which player has the most career dunks?",
+      "answer": "Dwight Howard",
+      "category": "Dunking"
+    },
+    {
+      "id": 39,
+      "question": "Who is known as 'The Dream'?",
+      "answer": "Hakeem Olajuwon",
+      "category": "Nicknames"
+    },
+    {
+      "id": 40,
+      "question": "Which player has the highest career scoring average?",
+      "answer": "Michael Jordan (30.1 ppg)",
+      "category": "Scoring Records"
+    },
+    {
       "id": 41,
-      "question": "Who was the shortest player in NBA history?",
-      "answer": "Muggsy Bogues (5'3\")",
-      "category": "Player Facts"
+      "question": "Who was the first player to win Rookie of the Year and MVP in the same season?",
+      "answer": "Wilt Chamberlain",
+      "category": "MVP Awards"
     },
     {
       "id": 42,
-      "question": "Which team won the first NBA championship?",
-      "answer": "Philadelphia Warriors (1947)",
-      "category": "Championships"
+      "question": "Which player is known as 'The Slim Reaper'?",
+      "answer": "Kevin Durant",
+      "category": "Nicknames"
     },
     {
       "id": 43,
+      "question": "Who holds the record for most blocks in a single game?",
+      "answer": "Elmore Smith (17 blocks)",
+      "category": "Defense"
+    },
+    {
+      "id": 44,
+      "question": "Which player has the most All-Star selections?",
+      "answer": "LeBron James",
+      "category": "All-Star"
+    },
+    {
+      "id": 45,
       "question": "Who is known as 'The Mailman'?",
       "answer": "Karl Malone",
       "category": "Nicknames"
     },
     {
-      "id": 44,
-      "question": "Which player has the highest career free throw percentage?",
-      "answer": "Stephen Curry",
-      "category": "Shooting"
-    },
-    {
-      "id": 45,
-      "question": "Who was the tallest player in NBA history?",
-      "answer": "Gheorghe Muresan and Manute Bol (7'7\")",
-      "category": "Player Facts"
-    },
-    {
       "id": 46,
-      "question": "Which team is known as 'The Dubs'?",
-      "answer": "Golden State Warriors",
-      "category": "Team Nicknames"
+      "question": "Which player scored 70+ points in a game most recently?",
+      "answer": "Donovan Mitchell (71 points in 2023)",
+      "category": "Scoring Records"
     },
     {
       "id": 47,
-      "question": "Who has the most All-Star appearances?",
-      "answer": "LeBron James",
-      "category": "All-Star"
-    },
-    {
-      "id": 48,
-      "question": "Which player is called 'The Glove'?",
-      "answer": "Gary Payton",
-      "category": "Nicknames"
-    },
-    {
-      "id": 49,
-      "question": "Who was the first player to win 8 scoring titles?",
-      "answer": "Michael Jordan",
-      "category": "Scoring Records"
-    },
-    {
-      "id": 50,
-      "question": "Which team drafted Tim Duncan?",
-      "answer": "San Antonio Spurs",
-      "category": "Draft History"
-    },
-    {
-      "id": 51,
-      "question": "Who is known as 'The Admiral'?",
-      "answer": "David Robinson",
-      "category": "Nicknames"
-    },
-    {
-      "id": 52,
-      "question": "Which player has the most Defensive Player of the Year awards?",
-      "answer": "Dikembe Mutombo, Ben Wallace, Rudy Gobert (4 each)",
-      "category": "Defensive Awards"
-    },
-    {
-      "id": 53,
-      "question": "Who was known as 'Magic'?",
-      "answer": "Earvin Johnson",
-      "category": "Nicknames"
-    },
-    {
-      "id": 54,
-      "question": "Which team has the most consecutive championships?",
-      "answer": "Boston Celtics (8 straight, 1959-1966)",
-      "category": "Championships"
-    },
-    {
-      "id": 55,
-      "question": "Who holds the record for most 50-point games?",
-      "answer": "Wilt Chamberlain (118 games)",
-      "category": "Scoring Records"
-    },
-    {
-      "id": 56,
-      "question": "Which player is called 'Dame Time'?",
-      "answer": "Damian Lillard",
-      "category": "Nicknames"
-    },
-    {
-      "id": 57,
-      "question": "Who was the first player drafted straight out of high school?",
-      "answer": "Moses Malone (ABA, 1974)",
-      "category": "Draft History"
-    },
-    {
-      "id": 58,
-      "question": "Which team is known as 'The Knicks'?",
-      "answer": "New York Knickerbockers",
-      "category": "Team Names"
-    },
-    {
-      "id": 59,
-      "question": "Who has the most double-doubles in NBA history?",
-      "answer": "Tim Duncan",
-      "category": "Statistical Records"
-    },
-    {
-      "id": 60,
-      "question": "Which player is called 'The Klaw'?",
-      "answer": "Kawhi Leonard",
-      "category": "Nicknames"
-    },
-    {
-      "id": 61,
-      "question": "Who was the oldest player to play in the NBA?",
-      "answer": "Nat Hickey (45 years old)",
-      "category": "Player Facts"
-    },
-    {
-      "id": 62,
-      "question": "Which team drafted Dirk Nowitzki?",
-      "answer": "Milwaukee Bucks (traded to Dallas)",
-      "category": "Draft History"
-    },
-    {
-      "id": 63,
-      "question": "Who is known as 'The Big Diesel'?",
-      "answer": "Shaquille O'Neal",
-      "category": "Nicknames"
-    },
-    {
-      "id": 64,
-      "question": "Which player has the most career turnovers?",
-      "answer": "LeBron James",
-      "category": "Statistical Records"
-    },
-    {
-      "id": 65,
-      "question": "Who was called 'Larry Legend'?",
-      "answer": "Larry Bird",
-      "category": "Nicknames"
-    },
-    {
-      "id": 66,
-      "question": "Which team won 73 games in the 2015-16 season?",
-      "answer": "Golden State Warriors",
-      "category": "Team Records"
-    },
-    {
-      "id": 67,
-      "question": "Who has the most playoff points in NBA history?",
-      "answer": "LeBron James",
-      "category": "Playoff Records"
-    },
-    {
-      "id": 68,
-      "question": "Which player is called 'The Beard'?",
-      "answer": "James Harden",
-      "category": "Nicknames"
-    },
-    {
-      "id": 69,
       "question": "Who was the first European player to win NBA MVP?",
       "answer": "Dirk Nowitzki",
       "category": "MVP Awards"
     },
     {
-      "id": 70,
-      "question": "Which team is known for 'Showtime'?",
-      "answer": "Los Angeles Lakers (1980s)",
-      "category": "Team History"
-    },
-    {
-      "id": 71,
-      "question": "Who has the most seasons played in NBA history?",
-      "answer": "Vince Carter (22 seasons)",
-      "category": "Career Longevity"
-    },
-    {
-      "id": 72,
-      "question": "Which player is called 'The Truth'?",
-      "answer": "Paul Pierce",
+      "id": 48,
+      "question": "Which player is known as 'The Admiral'?",
+      "answer": "David Robinson",
       "category": "Nicknames"
     },
     {
-      "id": 73,
-      "question": "Who was the first player to win MVP unanimously?",
-      "answer": "Stephen Curry (2015-16)",
-      "category": "MVP Awards"
+      "id": 49,
+      "question": "Who holds the record for most steals in a single game?",
+      "answer": "Larry Kenon and Kendall Gill (11 steals)",
+      "category": "Defense"
     },
     {
-      "id": 74,
-      "question": "Which team drafted Giannis Antetokounmpo?",
-      "answer": "Milwaukee Bucks",
-      "category": "Draft History"
+      "id": 50,
+      "question": "Which player has the most All-NBA First Team selections?",
+      "answer": "LeBron James and Kobe Bryant (11 each)",
+      "category": "Awards"
     },
     {
-      "id": 75,
-      "question": "Who is known as 'CP3'?",
-      "answer": "Chris Paul",
+      "id": 51,
+      "question": "Who is known as 'Chef Curry'?",
+      "answer": "Stephen Curry",
       "category": "Nicknames"
     },
     {
-      "id": 76,
-      "question": "Which player has the most 40-point games?",
-      "answer": "Wilt Chamberlain",
-      "category": "Scoring Records"
+      "id": 52,
+      "question": "Which player has the most Defensive Player of the Year awards?",
+      "answer": "Dikembe Mutombo and Ben Wallace (4 each)",
+      "category": "Defense"
     },
     {
-      "id": 77,
-      "question": "Who was called 'The Dream'?",
-      "answer": "Hakeem Olajuwon",
-      "category": "Nicknames"
+      "id": 53,
+      "question": "Who was the tallest player in NBA history?",
+      "answer": "Gheorghe Muresan and Manute Bol (7'7\")",
+      "category": "Physical Records"
     },
     {
-      "id": 78,
-      "question": "Which team won the 2016 NBA Championship?",
-      "answer": "Cleveland Cavaliers",
-      "category": "Championships"
-    },
-    {
-      "id": 79,
-      "question": "Who has the most consecutive free throws made?",
-      "answer": "Micheal Williams (97 straight)",
-      "category": "Shooting Records"
-    },
-    {
-      "id": 80,
-      "question": "Which player is called 'The Splash Brother'?",
-      "answer": "Klay Thompson (with Steph Curry)",
-      "category": "Nicknames"
-    },
-    {
-      "id": 81,
-      "question": "Who was the youngest MVP in NBA history?",
-      "answer": "Derrick Rose (22 years old)",
-      "category": "MVP Awards"
-    },
-    {
-      "id": 82,
-      "question": "Which team is known as 'The Heat'?",
-      "answer": "Miami Heat",
-      "category": "Team Names"
-    },
-    {
-      "id": 83,
-      "question": "Who has the most games with 10+ assists?",
-      "answer": "John Stockton",
-      "category": "Assists"
-    },
-    {
-      "id": 84,
-      "question": "Which player is called 'The Round Mound of Rebound'?",
-      "answer": "Charles Barkley",
-      "category": "Nicknames"
-    },
-    {
-      "id": 85,
-      "question": "Who was the first African American head coach in NBA?",
-      "answer": "Bill Russell",
-      "category": "Coaching History"
-    },
-    {
-      "id": 86,
-      "question": "Which team drafted Kevin Durant?",
-      "answer": "Seattle SuperSonics",
-      "category": "Draft History"
-    },
-    {
-      "id": 87,
-      "question": "Who is known as 'The Big Ticket'?",
+      "id": 54,
+      "question": "Which player is known as 'The Big Ticket'?",
       "answer": "Kevin Garnett",
       "category": "Nicknames"
     },
     {
-      "id": 88,
-      "question": "Which player has the most games with 5+ steals?",
-      "answer": "John Stockton",
-      "category": "Defensive Records"
+      "id": 55,
+      "question": "Who holds the record for most 3-pointers in a single game?",
+      "answer": "Klay Thompson (14)",
+      "category": "Three-Point Records"
     },
     {
-      "id": 89,
-      "question": "Who was called 'Pistol Pete'?",
-      "answer": "Pete Maravich",
+      "id": 56,
+      "question": "Which player has the most consecutive free throws made?",
+      "answer": "Micheal Williams (97)",
+      "category": "Free Throws"
+    },
+    {
+      "id": 57,
+      "question": "Who is known as 'The Unicorn'?",
+      "answer": "Kristaps Porzingis",
       "category": "Nicknames"
     },
     {
-      "id": 90,
-      "question": "Which team won the 2020 NBA Championship?",
-      "answer": "Los Angeles Lakers",
-      "category": "Championships"
+      "id": 58,
+      "question": "Which player was the shortest in NBA history?",
+      "answer": "Muggsy Bogues (5'3\")",
+      "category": "Physical Records"
     },
     {
-      "id": 91,
-      "question": "Who has the most games with 20+ rebounds?",
-      "answer": "Wilt Chamberlain",
-      "category": "Rebounding"
+      "id": 59,
+      "question": "Who won the first Sixth Man of the Year award?",
+      "answer": "Bobby Jones (1983)",
+      "category": "Awards"
     },
     {
-      "id": 92,
-      "question": "Which player is called 'KD'?",
-      "answer": "Kevin Durant",
+      "id": 60,
+      "question": "Which player is known as 'Flash'?",
+      "answer": "Dwyane Wade",
       "category": "Nicknames"
     },
     {
-      "id": 93,
-      "question": "Who was the first player to score 30,000 career points?",
-      "answer": "Wilt Chamberlain",
+      "id": 61,
+      "question": "Who has the most 60-point games in NBA history?",
+      "answer": "Wilt Chamberlain (32 games)",
       "category": "Scoring Records"
     },
     {
-      "id": 94,
-      "question": "Which team is known as 'The Celtics'?",
-      "answer": "Boston Celtics",
-      "category": "Team Names"
+      "id": 62,
+      "question": "Which player won Rookie of the Year with the Spurs in 1998?",
+      "answer": "Tim Duncan",
+      "category": "Rookie Awards"
     },
     {
-      "id": 95,
-      "question": "Who has the most games with 5+ blocks?",
-      "answer": "Hakeem Olajuwon",
-      "category": "Defensive Records"
+      "id": 63,
+      "question": "Who is known as 'The Brow'?",
+      "answer": "Anthony Davis",
+      "category": "Nicknames"
     },
     {
-      "id": 96,
-      "question": "Which player is called 'The Iceman'?",
+      "id": 64,
+      "question": "Which player has the most career offensive rebounds?",
+      "answer": "Moses Malone",
+      "category": "Rebounding Records"
+    },
+    {
+      "id": 65,
+      "question": "Who was the first pick in the 1996 NBA Draft?",
+      "answer": "Allen Iverson",
+      "category": "Draft History"
+    },
+    {
+      "id": 66,
+      "question": "Which player is known as 'The Logo'?",
+      "answer": "Jerry West",
+      "category": "Nicknames"
+    },
+    {
+      "id": 67,
+      "question": "Who holds the record for most points in an NBA Finals game?",
+      "answer": "Elgin Baylor (61 points)",
+      "category": "Finals Records"
+    },
+    {
+      "id": 68,
+      "question": "Which player has the most career turnovers?",
+      "answer": "LeBron James",
+      "category": "Career Stats"
+    },
+    {
+      "id": 69,
+      "question": "Who is known as 'The Big Aristotle'?",
+      "answer": "Shaquille O'Neal",
+      "category": "Nicknames"
+    },
+    {
+      "id": 70,
+      "question": "Which player scored 60 points in his final NBA game?",
+      "answer": "Kobe Bryant",
+      "category": "Historic Performances"
+    },
+    {
+      "id": 71,
+      "question": "Who has the most quadruple-doubles in NBA history?",
+      "answer": "Hakeem Olajuwon (6 unofficial, 4 official)",
+      "category": "Rare Achievements"
+    },
+    {
+      "id": 72,
+      "question": "Which player is known as 'The Iceman'?",
       "answer": "George Gervin",
       "category": "Nicknames"
     },
     {
-      "id": 97,
-      "question": "Who was the first player to record a quadruple-double?",
-      "answer": "Nate Thurmond",
-      "category": "Statistical Records"
-    },
-    {
-      "id": 98,
-      "question": "Which team drafted Stephen Curry?",
-      "answer": "Golden State Warriors",
+      "id": 73,
+      "question": "Who was the first pick in the 1984 NBA Draft?",
+      "answer": "Hakeem Olajuwon",
       "category": "Draft History"
     },
     {
+      "id": 74,
+      "question": "Which player has the most career playoff points?",
+      "answer": "LeBron James",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 75,
+      "question": "Who is known as 'The Round Mound of Rebound'?",
+      "answer": "Charles Barkley",
+      "category": "Nicknames"
+    },
+    {
+      "id": 76,
+      "question": "Which player hit 'The Shot' over Craig Ehlo in 1989?",
+      "answer": "Michael Jordan",
+      "category": "Historic Performances"
+    },
+    {
+      "id": 77,
+      "question": "Who has the highest free throw percentage in a season?",
+      "answer": "José Calderón (98.1% in 2008-09)",
+      "category": "Free Throws"
+    },
+    {
+      "id": 78,
+      "question": "Which player is known as 'Melo'?",
+      "answer": "Carmelo Anthony",
+      "category": "Nicknames"
+    },
+    {
+      "id": 79,
+      "question": "Who was the last player to average 50+ points per game in a season?",
+      "answer": "Wilt Chamberlain (1961-62)",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 80,
+      "question": "Which player has the most career ejections?",
+      "answer": "Rasheed Wallace",
+      "category": "Discipline"
+    },
+    {
+      "id": 81,
+      "question": "Who is known as 'Spida'?",
+      "answer": "Donovan Mitchell",
+      "category": "Nicknames"
+    },
+    {
+      "id": 82,
+      "question": "Which player scored 8 points in 9 seconds?",
+      "answer": "Reggie Miller",
+      "category": "Historic Performances"
+    },
+    {
+      "id": 83,
+      "question": "Who was the first pick in the 2007 NBA Draft?",
+      "answer": "Greg Oden",
+      "category": "Draft History"
+    },
+    {
+      "id": 84,
+      "question": "Which player is known as 'The Joker'?",
+      "answer": "Nikola Jokic",
+      "category": "Nicknames"
+    },
+    {
+      "id": 85,
+      "question": "Who holds the record for most points in an All-Star game?",
+      "answer": "Anthony Davis (52 points)",
+      "category": "All-Star"
+    },
+    {
+      "id": 86,
+      "question": "Which player has the most career games played?",
+      "answer": "Robert Parish",
+      "category": "Longevity"
+    },
+    {
+      "id": 87,
+      "question": "Who is known as 'Pistol Pete'?",
+      "answer": "Pete Maravich",
+      "category": "Nicknames"
+    },
+    {
+      "id": 88,
+      "question": "Which player made the 'Sky Hook' famous?",
+      "answer": "Kareem Abdul-Jabbar",
+      "category": "Signature Moves"
+    },
+    {
+      "id": 89,
+      "question": "Who was the last player to win back-to-back MVPs?",
+      "answer": "Giannis Antetokounmpo (2019, 2020)",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 90,
+      "question": "Which player is known as 'AK-47'?",
+      "answer": "Andrei Kirilenko",
+      "category": "Nicknames"
+    },
+    {
+      "id": 91,
+      "question": "Who holds the record for most minutes played in a season?",
+      "answer": "Wilt Chamberlain (48.5 mpg in 1961-62)",
+      "category": "Longevity"
+    },
+    {
+      "id": 92,
+      "question": "Which player has the most career playoff triple-doubles?",
+      "answer": "LeBron James",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 93,
+      "question": "Who is known as 'Dame Time'?",
+      "answer": "Damian Lillard",
+      "category": "Nicknames"
+    },
+    {
+      "id": 94,
+      "question": "Which player was the first to win MVP and Rookie of the Year?",
+      "answer": "Wes Unseld (1969)",
+      "category": "Awards"
+    },
+    {
+      "id": 95,
+      "question": "Who has the most 50-point games in the playoffs?",
+      "answer": "Michael Jordan (8)",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 96,
+      "question": "Which player is known as 'White Chocolate'?",
+      "answer": "Jason Williams",
+      "category": "Nicknames"
+    },
+    {
+      "id": 97,
+      "question": "Who was the oldest player to win Finals MVP?",
+      "answer": "Kareem Abdul-Jabbar (38 years)",
+      "category": "Finals MVP"
+    },
+    {
+      "id": 98,
+      "question": "Which player has the highest career three-point percentage?",
+      "answer": "Steve Kerr (45.4%)",
+      "category": "Three-Point Records"
+    },
+    {
       "id": 99,
-      "question": "Who is known as 'The Worm'?",
-      "answer": "Dennis Rodman",
+      "question": "Who is known as 'Dr. J'?",
+      "answer": "Julius Erving",
       "category": "Nicknames"
     },
     {
       "id": 100,
-      "question": "Which player has the highest single-season scoring average?",
-      "answer": "Wilt Chamberlain (50.4 PPG in 1961-62)",
+      "question": "Which player was the youngest to score 10,000 points?",
+      "answer": "LeBron James",
       "category": "Scoring Records"
+    }
+  ],
+  "playerQuestions": [
+    {
+      "id": 1,
+      "title": "All-Time Scoring Leaders",
+      "description": "Name the top 6 scorers in NBA history",
+      "category": "Scoring",
+      "hints": [
+        { "rank": 1, "text": "Active player at age 40, all-time leading scorer" },
+        { "rank": 2, "text": "Legendary Lakers center, famous for skyhook" },
+        { "rank": 3, "text": "Power forward nicknamed 'The Mailman'" },
+        { "rank": 4, "text": "Lakers icon, wore #24 and #8" },
+        { "rank": 5, "text": "6× Finals MVP with Chicago Bulls" },
+        { "rank": 6, "text": "German forward, Dallas Mavericks legend" }
+      ],
+      "answers": ["LeBron James", "Kareem Abdul-Jabbar", "Karl Malone", "Kobe Bryant", "Michael Jordan", "Dirk Nowitzki"]
+    },
+    {
+      "id": 2,
+      "title": "Most Career Assists",
+      "description": "Name the top 6 assist leaders in NBA history",
+      "category": "Assists",
+      "hints": [
+        { "rank": 1, "text": "Jazz legend with huge lead over second place" },
+        { "rank": 2, "text": "Active point guard, passed Kidd in 2024-25" },
+        { "rank": 3, "text": "Triple-double machine, coached multiple teams" },
+        { "rank": 4, "text": "Active player, all-around great passer" },
+        { "rank": 5, "text": "Two-time MVP, Canadian point guard" },
+        { "rank": 6, "text": "Former Knicks guard, now commentator" }
+      ],
+      "answers": ["John Stockton", "Chris Paul", "Jason Kidd", "LeBron James", "Steve Nash", "Mark Jackson"]
+    },
+    {
+      "id": 3,
+      "title": "Most Career Rebounds",
+      "description": "Name the top 6 rebounders in NBA history",
+      "category": "Rebounding",
+      "hints": [
+        { "rank": 1, "text": "Scored 100 points in a game, dominant rebounder" },
+        { "rank": 2, "text": "11-time champion, defensive master" },
+        { "rank": 3, "text": "All-time scoring leader with skyhook" },
+        { "rank": 4, "text": "Bullets/Rockets star, over 27,000 points" },
+        { "rank": 5, "text": "3× MVP, fierce offensive rebounder" },
+        { "rank": 6, "text": "5 championships with Spurs, Mr. Fundamental" }
+      ],
+      "answers": ["Wilt Chamberlain", "Bill Russell", "Kareem Abdul-Jabbar", "Elvin Hayes", "Moses Malone", "Tim Duncan"]
+    },
+    {
+      "id": 4,
+      "title": "Most Career Steals",
+      "description": "Name the top 6 steal leaders in NBA history",
+      "category": "Defense",
+      "hints": [
+        { "rank": 1, "text": "Jazz legend, also all-time assist leader" },
+        { "rank": 2, "text": "Active guard, passed Kidd in 2024-25 season" },
+        { "rank": 3, "text": "Triple-double king, now third all-time" },
+        { "rank": 4, "text": "Bulls legend, 10× scoring champion" },
+        { "rank": 5, "text": "Nicknamed 'The Glove', defensive specialist" },
+        { "rank": 6, "text": "Active player, all-around defensive presence" }
+      ],
+      "answers": ["John Stockton", "Chris Paul", "Jason Kidd", "Michael Jordan", "Gary Payton", "LeBron James"]
+    },
+    {
+      "id": 5,
+      "title": "Most Career Blocks",
+      "description": "Name the top 6 shot blockers in NBA history",
+      "category": "Defense",
+      "hints": [
+        { "rank": 1, "text": "Dream Shake master, Rockets legend" },
+        { "rank": 2, "text": "Famous finger wag, 4× DPOY" },
+        { "rank": 3, "text": "All-time scoring leader, defensive anchor" },
+        { "rank": 4, "text": "7'4\" Jazz center, 2× DPOY" },
+        { "rank": 5, "text": "Spurs icon, 5 championships" },
+        { "rank": 6, "text": "The Admiral, Spurs center, 1995 MVP" }
+      ],
+      "answers": ["Hakeem Olajuwon", "Dikembe Mutombo", "Kareem Abdul-Jabbar", "Mark Eaton", "Tim Duncan", "David Robinson"]
+    },
+    {
+      "id": 6,
+      "title": "Most MVP Awards",
+      "description": "Name the 6 players with the most NBA MVP awards",
+      "category": "Awards",
+      "hints": [
+        { "rank": 1, "text": "6 MVP awards, Lakers and Bucks legend" },
+        { "rank": 2, "text": "5 MVPs, 6 championships with Bulls" },
+        { "rank": 3, "text": "5 MVPs, 11 championships with Celtics" },
+        { "rank": 4, "text": "4 MVPs, dominant center from 1960s" },
+        { "rank": 5, "text": "4 MVPs, active all-time scorer" },
+        { "rank": 6, "text": "3 MVPs, fierce rebounder and scorer" }
+      ],
+      "answers": ["Kareem Abdul-Jabbar", "Michael Jordan", "Bill Russell", "Wilt Chamberlain", "LeBron James", "Moses Malone"]
+    },
+    {
+      "id": 7,
+      "title": "Most Three-Pointers Made",
+      "description": "Name the top 6 three-point shooters in NBA history",
+      "category": "Three-Point Shooting",
+      "hints": [
+        { "rank": 1, "text": "Warriors star, first to reach 4,000 threes" },
+        { "rank": 2, "text": "Active player, former Rockets MVP" },
+        { "rank": 3, "text": "Hit clutch shot for Miami in Finals" },
+        { "rank": 4, "text": "Active Trail Blazers icon, deep range" },
+        { "rank": 5, "text": "Warriors sharpshooter, Splash Brother" },
+        { "rank": 6, "text": "Pacers legend, trash talker" }
+      ],
+      "answers": ["Stephen Curry", "James Harden", "Ray Allen", "Damian Lillard", "Klay Thompson", "Reggie Miller"]
+    },
+    {
+      "id": 8,
+      "title": "Most Finals MVP Awards",
+      "description": "Name players with multiple Finals MVP awards",
+      "category": "Championships",
+      "hints": [
+        { "rank": 1, "text": "6 Finals MVPs, never lost in Finals" },
+        { "rank": 2, "text": "4 Finals MVPs with three different teams" },
+        { "rank": 3, "text": "3 Finals MVPs in Showtime era" },
+        { "rank": 4, "text": "3 Finals MVPs, dominant center" },
+        { "rank": 5, "text": "3 Finals MVPs with Spurs dynasty" },
+        { "rank": 6, "text": "2 Finals MVPs, won with Spurs and Raptors" }
+      ],
+      "answers": ["Michael Jordan", "LeBron James", "Magic Johnson", "Shaquille O'Neal", "Tim Duncan", "Kawhi Leonard"]
+    },
+    {
+      "id": 9,
+      "title": "Most All-Star Selections",
+      "description": "Name players with the most All-Star appearances",
+      "category": "Awards",
+      "hints": [
+        { "rank": 1, "text": "Active player, 20 All-Star selections" },
+        { "rank": 2, "text": "Lakers legend, skyhook master" },
+        { "rank": 3, "text": "Lakers icon, 18 All-Star appearances" },
+        { "rank": 4, "text": "5-time champion with Spurs" },
+        { "rank": 5, "text": "Lakers legend with skyhook" },
+        { "rank": 6, "text": "Lakers superstar with 18 appearances" }
+      ],
+      "answers": ["LeBron James", "Kareem Abdul-Jabbar", "Kobe Bryant", "Tim Duncan", "Shaquille O'Neal", "Kevin Garnett"]
+    },
+    {
+      "id": 10,
+      "title": "Most Championships Won",
+      "description": "Name players with the most NBA championships",
+      "category": "Championships",
+      "hints": [
+        { "rank": 1, "text": "11 championships, Celtics legend" },
+        { "rank": 2, "text": "10 championships, point guard for Celtics" },
+        { "rank": 3, "text": "8 championships, Celtics forward" },
+        { "rank": 4, "text": "8 championships, defensive specialist" },
+        { "rank": 5, "text": "7 championships, sharpshooter" },
+        { "rank": 6, "text": "6 championships, never lost in Finals" }
+      ],
+      "answers": ["Bill Russell", "Sam Jones", "John Havlicek", "Tom Heinsohn", "Robert Horry", "Michael Jordan"]
+    },
+    {
+      "id": 11,
+      "title": "Highest Career PPG Average",
+      "description": "Name players with highest career scoring averages",
+      "category": "Scoring",
+      "hints": [
+        { "rank": 1, "text": "30.1 PPG, Bulls legend" },
+        { "rank": 2, "text": "30.07 PPG, 100-point game scorer" },
+        { "rank": 3, "text": "27.36 PPG, active all-time scorer" },
+        { "rank": 4, "text": "27.2 PPG, scored 81 points once" },
+        { "rank": 5, "text": "27.1 PPG, Warriors superstar" },
+        { "rank": 6, "text": "27.0 PPG, Rockets/Thunder star" }
+      ],
+      "answers": ["Michael Jordan", "Wilt Chamberlain", "LeBron James", "Kobe Bryant", "Kevin Durant", "James Harden"]
+    },
+    {
+      "id": 12,
+      "title": "Most Career Triple-Doubles",
+      "description": "Name players with the most triple-doubles",
+      "category": "All-Around Play",
+      "hints": [
+        { "rank": 1, "text": "First to average triple-double for a season" },
+        { "rank": 2, "text": "Only player with multiple 40+ triple-double seasons" },
+        { "rank": 3, "text": "Active player, all-time leader" },
+        { "rank": 4, "text": "Lakers legend, Showtime era" },
+        { "rank": 5, "text": "Triple-double king, coached teams" },
+        { "rank": 6, "text": "Active player, Nuggets MVP" }
+      ],
+      "answers": ["Oscar Robertson", "Russell Westbrook", "Russell Westbrook", "Magic Johnson", "Jason Kidd", "Nikola Jokic"]
+    },
+    {
+      "id": 13,
+      "title": "Most 50-Point Games",
+      "description": "Name players with the most 50+ point games",
+      "category": "Scoring",
+      "hints": [
+        { "rank": 1, "text": "Scored 100 in one game, 118 total 50+ games" },
+        { "rank": 2, "text": "Bulls legend, 31 games with 50+" },
+        { "rank": 3, "text": "Lakers icon, 25 games with 50+" },
+        { "rank": 4, "text": "Active player, Rockets/Nets star" },
+        { "rank": 5, "text": "Active all-time scorer" },
+        { "rank": 6, "text": "Scoring champion from 1970s-80s" }
+      ],
+      "answers": ["Wilt Chamberlain", "Michael Jordan", "Kobe Bryant", "James Harden", "LeBron James", "Rick Barry"]
+    },
+    {
+      "id": 14,
+      "title": "Most Games Played",
+      "description": "Name players with the most games in career",
+      "category": "Longevity",
+      "hints": [
+        { "rank": 1, "text": "Chief, Celtics center, 1,611 games" },
+        { "rank": 2, "text": "Lakers legend, 1,560 games" },
+        { "rank": 3, "text": "Active player, Lakers/Cavs star" },
+        { "rank": 4, "text": "Power forward, Jazz/Lakers" },
+        { "rank": 5, "text": "Mavericks legend, German star" },
+        { "rank": 6, "text": "Active player, Rockets/Thunder/Clippers" }
+      ],
+      "answers": ["Robert Parish", "Kareem Abdul-Jabbar", "LeBron James", "Karl Malone", "Dirk Nowitzki", "Chris Paul"]
+    },
+    {
+      "id": 15,
+      "title": "Most Defensive Player of the Year Awards",
+      "description": "Name players with multiple DPOY awards",
+      "category": "Defense",
+      "hints": [
+        { "rank": 1, "text": "4 DPOY awards, famous finger wag" },
+        { "rank": 2, "text": "4 DPOY awards, Pistons legend" },
+        { "rank": 3, "text": "3 DPOY awards, former DPOY" },
+        { "rank": 4, "text": "2 DPOY awards, Spurs forward" },
+        { "rank": 5, "text": "2 DPOY awards, Clippers/Grizzlies" },
+        { "rank": 6, "text": "1 DPOY award, Bulls legend" }
+      ],
+      "answers": ["Dikembe Mutombo", "Ben Wallace", "Dwight Howard", "Kawhi Leonard", "Marc Gasol", "Michael Jordan"]
+    },
+    {
+      "id": 16,
+      "title": "Most Playoff Points",
+      "description": "Name players with most playoff career points",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "Active player, 10 Finals appearances" },
+        { "rank": 2, "text": "Bulls legend, 6-0 in Finals" },
+        { "rank": 3, "text": "Lakers legend, skyhook master" },
+        { "rank": 4, "text": "Lakers icon, 5 championships" },
+        { "rank": 5, "text": "Spurs legend, 5 championships" },
+        { "rank": 6, "text": "Lakers center, 3-peat twice" }
+      ],
+      "answers": ["LeBron James", "Michael Jordan", "Kareem Abdul-Jabbar", "Kobe Bryant", "Tim Duncan", "Shaquille O'Neal"]
+    },
+    {
+      "id": 17,
+      "title": "Most Free Throws Made",
+      "description": "Name players with most career free throws",
+      "category": "Free Throws",
+      "hints": [
+        { "rank": 1, "text": "The Mailman, Jazz legend" },
+        { "rank": 2, "text": "3× MVP, offensive rebounder" },
+        { "rank": 3, "text": "Active all-time scorer" },
+        { "rank": 4, "text": "Lakers icon, 5 championships" },
+        { "rank": 5, "text": "Mavericks legend, 2011 Finals MVP" },
+        { "rank": 6, "text": "Showtime Lakers legend" }
+      ],
+      "answers": ["Karl Malone", "Moses Malone", "LeBron James", "Kobe Bryant", "Dirk Nowitzki", "Oscar Robertson"]
+    },
+    {
+      "id": 18,
+      "title": "Most Consecutive Games Played",
+      "description": "Name players with longest consecutive games streaks",
+      "category": "Longevity",
+      "hints": [
+        { "rank": 1, "text": "The Iron Man, 1,192 consecutive games" },
+        { "rank": 2, "text": "Jazz legend, 1,162 consecutive games" },
+        { "rank": 3, "text": "Trail Blazers guard, 906 games" },
+        { "rank": 4, "text": "Lakers legend, 844 games" },
+        { "rank": 5, "text": "Active player, 746 consecutive games" },
+        { "rank": 6, "text": "Former player, 610 games" }
+      ],
+      "answers": ["A.C. Green", "John Stockton", "Randy Smith", "Johnny Kerr", "DeAndre Jordan", "Jason Terry"]
+    },
+    {
+      "id": 19,
+      "title": "Most 60-Point Games",
+      "description": "Name players with the most 60+ point games",
+      "category": "Scoring",
+      "hints": [
+        { "rank": 1, "text": "32 games with 60+, scored 100 once" },
+        { "rank": 2, "text": "Lakers icon, 6 games with 60+" },
+        { "rank": 3, "text": "Bulls legend, 4 games with 60+" },
+        { "rank": 4, "text": "Active player, 4 games with 60+" },
+        { "rank": 5, "text": "Rockets legend, 32 career 50+ games" },
+        { "rank": 6, "text": "Active Lakers star" }
+      ],
+      "answers": ["Wilt Chamberlain", "Kobe Bryant", "Michael Jordan", "James Harden", "Elgin Baylor", "LeBron James"]
+    },
+    {
+      "id": 20,
+      "title": "Youngest MVPs",
+      "description": "Name the youngest MVP award winners",
+      "category": "Awards",
+      "hints": [
+        { "rank": 1, "text": "22 years old, Bulls star in 2011" },
+        { "rank": 2, "text": "23 years old, Cavs star in 2009" },
+        { "rank": 3, "text": "23 years old, Bucks star in 2019" },
+        { "rank": 4, "text": "23 years old, Thunder star in 2014" },
+        { "rank": 5, "text": "24 years old, 76ers star in 1983" },
+        { "rank": 6, "text": "24 years old, Nuggets star in 2021" }
+      ],
+      "answers": ["Derrick Rose", "LeBron James", "Giannis Antetokounmpo", "Kevin Durant", "Moses Malone", "Nikola Jokic"]
+    },
+    {
+      "id": 21,
+      "title": "Most Rookie of the Year Winners by Team",
+      "description": "Name teams with most ROY winners",
+      "category": "Team History",
+      "hints": [
+        { "rank": 1, "text": "Bulls: Rose, Jordan, Brand, others" },
+        { "rank": 2, "text": "76ers: Iverson, Embiid, MCW, others" },
+        { "rank": 3, "text": "Bucks: Antetokounmpo, Alcindor, Mayo" },
+        { "rank": 4, "text": "Lakers: Magic, Baylor, West" },
+        { "rank": 5, "text": "Trail Blazers: Roy, Oden, Aldridge" },
+        { "rank": 6, "text": "Kings: Tyreke Evans, others" }
+      ],
+      "answers": ["Chicago Bulls", "Philadelphia 76ers", "Milwaukee Bucks", "Los Angeles Lakers", "Portland Trail Blazers", "Sacramento Kings"]
+    },
+    {
+      "id": 22,
+      "title": "Most Technical Fouls",
+      "description": "Name players with most career technical fouls",
+      "category": "Discipline",
+      "hints": [
+        { "rank": 1, "text": "Pistons/Blazers forward, 317 technicals" },
+        { "rank": 2, "text": "Suns forward, outspoken personality" },
+        { "rank": 3, "text": "Pacers legend, trash talker" },
+        { "rank": 4, "text": "Celtics forward, intense competitor" },
+        { "rank": 5, "text": "Former Mavericks coach, player" },
+        { "rank": 6, "text": "Warriors forward, emotional player" }
+      ],
+      "answers": ["Rasheed Wallace", "Charles Barkley", "Reggie Miller", "Kevin Garnett", "Jason Kidd", "Draymond Green"]
+    },
+    {
+      "id": 23,
+      "title": "Tallest NBA Players",
+      "description": "Name the tallest players in NBA history",
+      "category": "Physical Attributes",
+      "hints": [
+        { "rank": 1, "text": "7'7\", Romanian center" },
+        { "rank": 2, "text": "7'7\", Sudanese shot blocker" },
+        { "rank": 3, "text": "7'6\", Rockets/Raptors center" },
+        { "rank": 4, "text": "7'5\", Wizards center" },
+        { "rank": 5, "text": "7'5\", Celtics center" },
+        { "rank": 6, "text": "7'4\", Jazz shot blocker" }
+      ],
+      "answers": ["Gheorghe Muresan", "Manute Bol", "Yao Ming", "Shawn Bradley", "Tacko Fall", "Mark Eaton"]
+    },
+    {
+      "id": 24,
+      "title": "Most All-NBA First Team Selections",
+      "description": "Name players with most First Team selections",
+      "category": "Awards",
+      "hints": [
+        { "rank": 1, "text": "Active player, 13 First Team selections" },
+        { "rank": 2, "text": "Lakers icon, 11 First Team selections" },
+        { "rank": 3, "text": "Bulls legend, 10 First Team selections" },
+        { "rank": 4, "text": "Lakers center, 10 First Team selections" },
+        { "rank": 5, "text": "Lakers legend, 10 First Team selections" },
+        { "rank": 6, "text": "Jazz power forward, 11 First Team selections" }
+      ],
+      "answers": ["LeBron James", "Kobe Bryant", "Michael Jordan", "Kareem Abdul-Jabbar", "Jerry West", "Karl Malone"]
+    },
+    {
+      "id": 25,
+      "title": "Most Turnovers",
+      "description": "Name players with most career turnovers",
+      "category": "Statistics",
+      "hints": [
+        { "rank": 1, "text": "Active player, high usage rate" },
+        { "rank": 2, "text": "Jazz power forward legend" },
+        { "rank": 3, "text": "Jazz assist leader" },
+        { "rank": 4, "text": "Former triple-double king" },
+        { "rank": 5, "text": "Rockets/Lakers center" },
+        { "rank": 6, "text": "Wizards/Lakers legend" }
+      ],
+      "answers": ["LeBron James", "Karl Malone", "John Stockton", "Russell Westbrook", "Moses Malone", "Oscar Robertson"]
+    },
+    {
+      "id": 26,
+      "title": "Most Sixth Man Awards",
+      "description": "Name players who won Sixth Man of the Year",
+      "category": "Awards",
+      "hints": [
+        { "rank": 1, "text": "3 Sixth Man awards, Clippers/Lakers" },
+        { "rank": 2, "text": "3 Sixth Man awards, 76ers legend" },
+        { "rank": 3, "text": "2 Sixth Man awards, Jazz guard" },
+        { "rank": 4, "text": "2 Sixth Man awards, Hawks forward" },
+        { "rank": 5, "text": "2 Sixth Man awards, Thunder guard" },
+        { "rank": 6, "text": "1 Sixth Man award, Mavericks guard" }
+      ],
+      "answers": ["Jamal Crawford", "Lou Williams", "Jordan Clarkson", "Lamar Odom", "James Harden", "Jason Terry"]
+    },
+    {
+      "id": 27,
+      "title": "Most Improved Player Winners",
+      "description": "Name recent Most Improved Player winners",
+      "category": "Awards",
+      "hints": [
+        { "rank": 1, "text": "2024 MIP, Knicks guard" },
+        { "rank": 2, "text": "2023 MIP, Pacers forward" },
+        { "rank": 3, "text": "2022 MIP, Grizzlies guard" },
+        { "rank": 4, "text": "2021 MIP, Nuggets forward" },
+        { "rank": 5, "text": "2020 MIP, Heat forward" },
+        { "rank": 6, "text": "2019 MIP, Raptors forward" }
+      ],
+      "answers": ["Jalen Brunson", "Lauri Markkanen", "Ja Morant", "Julius Randle", "Brandon Ingram", "Pascal Siakam"]
+    },
+    {
+      "id": 28,
+      "title": "Most Career Dunks",
+      "description": "Name players with the most career dunks",
+      "category": "Scoring",
+      "hints": [
+        { "rank": 1, "text": "Superman, 2,910 career dunks" },
+        { "rank": 2, "text": "Lakers legend, dominant center" },
+        { "rank": 3, "text": "Active player, Clippers/Mavericks" },
+        { "rank": 4, "text": "Active Lakers/Cavs star" },
+        { "rank": 5, "text": "Hawks/Clippers center" },
+        { "rank": 6, "text": "Suns/Mavericks center" }
+      ],
+      "answers": ["Dwight Howard", "Shaquille O'Neal", "DeAndre Jordan", "LeBron James", "Clint Capela", "Tyson Chandler"]
+    },
+    {
+      "id": 29,
+      "title": "Most Games with 10+ Assists",
+      "description": "Name players with most 10+ assist games",
+      "category": "Assists",
+      "hints": [
+        { "rank": 1, "text": "Jazz legend, all-time assist leader" },
+        { "rank": 2, "text": "Lakers Showtime legend" },
+        { "rank": 3, "text": "Active point guard, future HOF" },
+        { "rank": 4, "text": "Triple-double king" },
+        { "rank": 5, "text": "Active Lakers/Cavs star" },
+        { "rank": 6, "text": "Suns/Mavericks MVP" }
+      ],
+      "answers": ["John Stockton", "Magic Johnson", "Chris Paul", "Russell Westbrook", "LeBron James", "Steve Nash"]
+    },
+    {
+      "id": 30,
+      "title": "Most Points in a Playoff Series",
+      "description": "Name players who dominated playoff series scoring",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "Bulls legend, 246 points in 1992 series" },
+        { "rank": 2, "text": "Active player, 235 points in series" },
+        { "rank": 3, "text": "Bucks legend, 222 points in series" },
+        { "rank": 4, "text": "Lakers icon, 204 points in series" },
+        { "rank": 5, "text": "Celtics legend, 199 points in series" },
+        { "rank": 6, "text": "Thunder/Warriors star" }
+      ],
+      "answers": ["Michael Jordan", "LeBron James", "Giannis Antetokounmpo", "Kobe Bryant", "John Havlicek", "Kevin Durant"]
+    },
+    {
+      "id": 31,
+      "title": "Best Free Throw Shooters",
+      "description": "Name players with highest career FT%",
+      "category": "Free Throws",
+      "hints": [
+        { "rank": 1, "text": "Warriors guard, 90.4% career" },
+        { "rank": 2, "text": "Suns guard, 89.4% career" },
+        { "rank": 3, "text": "Celtics legend, 89.3% career" },
+        { "rank": 4, "text": "Lakers legend, 89.2% career" },
+        { "rank": 5, "text": "Active Trail Blazers guard" },
+        { "rank": 6, "text": "Former Heat sharpshooter" }
+      ],
+      "answers": ["Stephen Curry", "Steve Nash", "Larry Bird", "Rick Barry", "Damian Lillard", "Ray Allen"]
+    },
+    {
+      "id": 32,
+      "title": "Most Buzzer Beaters",
+      "description": "Name players with most playoff buzzer beaters",
+      "category": "Clutch Moments",
+      "hints": [
+        { "rank": 1, "text": "Bulls legend, 9 playoff buzzer beaters" },
+        { "rank": 2, "text": "Active Lakers/Cavs star" },
+        { "rank": 3, "text": "Lakers icon, 8 playoff buzzer beaters" },
+        { "rank": 4, "text": "Trail Blazers guard, clutch shooter" },
+        { "rank": 5, "text": "Raptors champion, 2019 shot" },
+        { "rank": 6, "text": "Warriors superstar" }
+      ],
+      "answers": ["Michael Jordan", "LeBron James", "Kobe Bryant", "Damian Lillard", "Kawhi Leonard", "Stephen Curry"]
+    },
+    {
+      "id": 33,
+      "title": "Most Games with 5+ Blocks",
+      "description": "Name players with most 5+ block games",
+      "category": "Defense",
+      "hints": [
+        { "rank": 1, "text": "Rockets legend, Dream Shake" },
+        { "rank": 2, "text": "Jazz center, 7'4\" shot blocker" },
+        { "rank": 3, "text": "Famous finger wag, 4× DPOY" },
+        { "rank": 4, "text": "Lakers center, skyhook master" },
+        { "rank": 5, "text": "Spurs legend, 5 championships" },
+        { "rank": 6, "text": "Spurs center, The Admiral" }
+      ],
+      "answers": ["Hakeem Olajuwon", "Mark Eaton", "Dikembe Mutombo", "Kareem Abdul-Jabbar", "Tim Duncan", "David Robinson"]
+    },
+    {
+      "id": 34,
+      "title": "Best Three-Point Percentage (Career)",
+      "description": "Name players with highest career 3PT%",
+      "category": "Three-Point Shooting",
+      "hints": [
+        { "rank": 1, "text": "Warriors coach, 45.4% career" },
+        { "rank": 2, "text": "Former Heat sharpshooter" },
+        { "rank": 3, "text": "Active Nets forward" },
+        { "rank": 4, "text": "Former Bucks guard" },
+        { "rank": 5, "text": "Heat/Cavs sharpshooter" },
+        { "rank": 6, "text": "Warriors superstar" }
+      ],
+      "answers": ["Steve Kerr", "Hubert Davis", "Joe Harris", "Jason Kapono", "Kyle Korver", "Stephen Curry"]
+    },
+    {
+      "id": 35,
+      "title": "Most Double-Doubles",
+      "description": "Name players with most career double-doubles",
+      "category": "All-Around Play",
+      "hints": [
+        { "rank": 1, "text": "Spurs legend, 5 championships" },
+        { "rank": 2, "text": "Jazz power forward, The Mailman" },
+        { "rank": 3, "text": "Lakers center, skyhook master" },
+        { "rank": 4, "text": "Active Lakers/Cavs star" },
+        { "rank": 5, "text": "Timberwolves/Celtics forward" },
+        { "rank": 6, "text": "Mavericks legend, German star" }
+      ],
+      "answers": ["Tim Duncan", "Karl Malone", "Kareem Abdul-Jabbar", "LeBron James", "Kevin Garnett", "Dirk Nowitzki"]
+    },
+    {
+      "id": 36,
+      "title": "Most 40-Point Games",
+      "description": "Name players with most 40+ point games",
+      "category": "Scoring",
+      "hints": [
+        { "rank": 1, "text": "271 games with 40+, scored 100 once" },
+        { "rank": 2, "text": "Bulls legend, 173 games with 40+" },
+        { "rank": 3, "text": "Lakers icon, 122 games with 40+" },
+        { "rank": 4, "text": "Active player, 89 games with 40+" },
+        { "rank": 5, "text": "Active Lakers star, 88 games" },
+        { "rank": 6, "text": "Former Lakers legend" }
+      ],
+      "answers": ["Wilt Chamberlain", "Michael Jordan", "Kobe Bryant", "James Harden", "LeBron James", "Elgin Baylor"]
+    },
+    {
+      "id": 37,
+      "title": "Best Field Goal Percentage (Career)",
+      "description": "Name players with highest career FG%",
+      "category": "Shooting",
+      "hints": [
+        { "rank": 1, "text": "Lakers/Heat center, 67.1%" },
+        { "rank": 2, "text": "Active Mavericks center" },
+        { "rank": 3, "text": "Active Clippers center" },
+        { "rank": 4, "text": "Spurs/Raptors champion" },
+        { "rank": 5, "text": "Rockets/Clippers center" },
+        { "rank": 6, "text": "Bulls/Lakers center" }
+      ],
+      "answers": ["Artis Gilmore", "Dwight Powell", "DeAndre Jordan", "Kawhi Leonard", "Clint Capela", "Artis Gilmore"]
+    },
+    {
+      "id": 38,
+      "title": "Most Minutes Played",
+      "description": "Name players with most career minutes",
+      "category": "Longevity",
+      "hints": [
+        { "rank": 1, "text": "Lakers center, 57,446 minutes" },
+        { "rank": 2, "text": "Jazz power forward, 54,852 minutes" },
+        { "rank": 3, "text": "Active Lakers/Cavs star" },
+        { "rank": 4, "text": "Mavericks legend, 51,368 minutes" },
+        { "rank": 5, "text": "Lakers icon, 50,000+ minutes" },
+        { "rank": 6, "text": "Celtics center, 45,704 minutes" }
+      ],
+      "answers": ["Kareem Abdul-Jabbar", "Karl Malone", "LeBron James", "Dirk Nowitzki", "Kobe Bryant", "Kevin Garnett"]
+    },
+    {
+      "id": 39,
+      "title": "Most Offensive Rebounds",
+      "description": "Name players with most offensive rebounds",
+      "category": "Rebounding",
+      "hints": [
+        { "rank": 1, "text": "3× MVP, 6,731 offensive rebounds" },
+        { "rank": 2, "text": "Celtics/Sixers forward" },
+        { "rank": 3, "text": "Rockets/Bullets legend" },
+        { "rank": 4, "text": "Round Mound of Rebound" },
+        { "rank": 5, "text": "Former Pistons rebounder" },
+        { "rank": 6, "text": "Buck Williams, Nets legend" }
+      ],
+      "answers": ["Moses Malone", "Robert Parish", "Dennis Rodman", "Charles Barkley", "Ben Wallace", "Buck Williams"]
+    },
+    {
+      "id": 40,
+      "title": "Most Defensive Rebounds",
+      "description": "Name players with most defensive rebounds",
+      "category": "Rebounding",
+      "hints": [
+        { "rank": 1, "text": "Jazz power forward, 11,406" },
+        { "rank": 2, "text": "Spurs legend, 5 championships" },
+        { "rank": 3, "text": "Lakers center, skyhook master" },
+        { "rank": 4, "text": "Active Lakers/Cavs star" },
+        { "rank": 5, "text": "Mavericks legend, German star" },
+        { "rank": 6, "text": "Lakers/Heat center" }
+      ],
+      "answers": ["Karl Malone", "Tim Duncan", "Kareem Abdul-Jabbar", "LeBron James", "Dirk Nowitzki", "Shaquille O'Neal"]
+    },
+    {
+      "id": 41,
+      "title": "Most Personal Fouls",
+      "description": "Name players with most career fouls",
+      "category": "Statistics",
+      "hints": [
+        { "rank": 1, "text": "Jazz power forward, 4,578 fouls" },
+        { "rank": 2, "text": "Lakers center, 4,657 fouls" },
+        { "rank": 3, "text": "Celtics center, 4,443 fouls" },
+        { "rank": 4, "text": "Active player, defensive anchor" },
+        { "rank": 5, "text": "Former defensive specialist" },
+        { "rank": 6, "text": "Hawks center, 4,000+ fouls" }
+      ],
+      "answers": ["Kareem Abdul-Jabbar", "Karl Malone", "Robert Parish", "LeBron James", "Charles Oakley", "Dikembe Mutombo"]
+    },
+    {
+      "id": 42,
+      "title": "Most Seasons Played",
+      "description": "Name players with longest NBA careers",
+      "category": "Longevity",
+      "hints": [
+        { "rank": 1, "text": "22 seasons, Bucks/Lakers center" },
+        { "rank": 2, "text": "Active player, 22+ seasons" },
+        { "rank": 3, "text": "21 seasons, Mavericks legend" },
+        { "rank": 4, "text": "21 seasons, Spurs legend" },
+        { "rank": 5, "text": "20 seasons, Lakers icon" },
+        { "rank": 6, "text": "20 seasons, Jazz duo" }
+      ],
+      "answers": ["Vince Carter", "LeBron James", "Dirk Nowitzki", "Tim Duncan", "Kobe Bryant", "John Stockton"]
+    },
+    {
+      "id": 43,
+      "title": "Most Playoff Assists",
+      "description": "Name players with most playoff assists",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "Active Lakers/Cavs star, 2,000+ assists" },
+        { "rank": 2, "text": "Lakers Showtime legend" },
+        { "rank": 3, "text": "Jazz all-time assist leader" },
+        { "rank": 4, "text": "Active point guard, future HOF" },
+        { "rank": 5, "text": "Former triple-double king" },
+        { "rank": 6, "text": "Spurs legend, 1,000+ assists" }
+      ],
+      "answers": ["LeBron James", "Magic Johnson", "John Stockton", "Chris Paul", "Jason Kidd", "Tony Parker"]
+    },
+    {
+      "id": 44,
+      "title": "Most Playoff Rebounds",
+      "description": "Name players with most playoff rebounds",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "Celtics legend, 4,104 rebounds" },
+        { "rank": 2, "text": "Spurs legend, 5 championships" },
+        { "rank": 3, "text": "Jazz power forward legend" },
+        { "rank": 4, "text": "Lakers center, skyhook master" },
+        { "rank": 5, "text": "Active Lakers/Cavs star" },
+        { "rank": 6, "text": "Lakers/Rockets legend" }
+      ],
+      "answers": ["Bill Russell", "Tim Duncan", "Karl Malone", "Kareem Abdul-Jabbar", "LeBron James", "Wilt Chamberlain"]
+    },
+    {
+      "id": 45,
+      "title": "Most Playoff Steals",
+      "description": "Name players with most playoff steals",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "Active Lakers/Cavs star" },
+        { "rank": 2, "text": "Jazz all-time assist leader" },
+        { "rank": 3, "text": "Bulls legend, 6 championships" },
+        { "rank": 4, "text": "Lakers icon, 5 championships" },
+        { "rank": 5, "text": "Active point guard" },
+        { "rank": 6, "text": "Spurs legend, defensive master" }
+      ],
+      "answers": ["LeBron James", "John Stockton", "Michael Jordan", "Kobe Bryant", "Chris Paul", "Scottie Pippen"]
+    },
+    {
+      "id": 46,
+      "title": "Most Playoff Blocks",
+      "description": "Name players with most playoff blocks",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "Spurs legend, 5 championships" },
+        { "rank": 2, "text": "Lakers center, skyhook master" },
+        { "rank": 3, "text": "Rockets legend, Dream Shake" },
+        { "rank": 4, "text": "Lakers/Heat center, dominant" },
+        { "rank": 5, "text": "Spurs center, The Admiral" },
+        { "rank": 6, "text": "Famous finger wag, 4× DPOY" }
+      ],
+      "answers": ["Tim Duncan", "Kareem Abdul-Jabbar", "Hakeem Olajuwon", "Shaquille O'Neal", "David Robinson", "Dikembe Mutombo"]
+    },
+    {
+      "id": 47,
+      "title": "Most Playoff Three-Pointers",
+      "description": "Name players with most playoff threes",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "Active Lakers/Cavs star" },
+        { "rank": 2, "text": "Warriors superstar, 4 championships" },
+        { "rank": 3, "text": "Former Heat sharpshooter" },
+        { "rank": 4, "text": "Active Rockets/Nets star" },
+        { "rank": 5, "text": "Warriors sharpshooter, Splash Brother" },
+        { "rank": 6, "text": "Active Warriors/Mavs star" }
+      ],
+      "answers": ["LeBron James", "Stephen Curry", "Ray Allen", "James Harden", "Klay Thompson", "Kevin Durant"]
+    },
+    {
+      "id": 48,
+      "title": "Most 30-Point Playoff Games",
+      "description": "Name players with most 30+ point playoff games",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "Bulls legend, 109 games with 30+" },
+        { "rank": 2, "text": "Active Lakers/Cavs star" },
+        { "rank": 3, "text": "Lakers icon, 88 games with 30+" },
+        { "rank": 4, "text": "Lakers/Heat center, dominant" },
+        { "rank": 5, "text": "Warriors/Thunder star" },
+        { "rank": 6, "text": "76ers legend, scored 100" }
+      ],
+      "answers": ["Michael Jordan", "LeBron James", "Kobe Bryant", "Shaquille O'Neal", "Kevin Durant", "Wilt Chamberlain"]
+    },
+    {
+      "id": 49,
+      "title": "Most Games in Finals",
+      "description": "Name players who played most Finals games",
+      "category": "Finals",
+      "hints": [
+        { "rank": 1, "text": "Celtics legend, 70 Finals games" },
+        { "rank": 2, "text": "Celtics forward, 66 Finals games" },
+        { "rank": 3, "text": "Active Lakers/Cavs star" },
+        { "rank": 4, "text": "Lakers legend, Showtime era" },
+        { "rank": 5, "text": "Bulls legend, 6-0 in Finals" },
+        { "rank": 6, "text": "Lakers center, skyhook master" }
+      ],
+      "answers": ["Bill Russell", "Sam Jones", "LeBron James", "Magic Johnson", "Michael Jordan", "Kareem Abdul-Jabbar"]
+    },
+    {
+      "id": 50,
+      "title": "Highest Scoring Averages in Finals",
+      "description": "Name players with highest Finals PPG",
+      "category": "Finals",
+      "hints": [
+        { "rank": 1, "text": "Rockets legend, 36.3 PPG" },
+        { "rank": 2, "text": "Bulls legend, 33.6 PPG" },
+        { "rank": 3, "text": "Lakers/Heat center, 28.8 PPG" },
+        { "rank": 4, "text": "76ers legend, 27.7 PPG" },
+        { "rank": 5, "text": "Lakers forward, 27.4 PPG" },
+        { "rank": 6, "text": "Active Lakers/Cavs star" }
+      ],
+      "answers": ["Rick Barry", "Michael Jordan", "Shaquille O'Neal", "Allen Iverson", "Elgin Baylor", "LeBron James"]
+    },
+    {
+      "id": 51,
+      "title": "Most Points Per Game (Season)",
+      "description": "Name players with highest single-season PPG",
+      "category": "Single Season Records",
+      "hints": [
+        { "rank": 1, "text": "50.4 PPG in 1961-62" },
+        { "rank": 2, "text": "44.8 PPG in 1962-63" },
+        { "rank": 3, "text": "38.4 PPG in 1962-63" },
+        { "rank": 4, "text": "37.1 PPG in 1987-88" },
+        { "rank": 5, "text": "37.0 PPG in 1959-60" },
+        { "rank": 6, "text": "35.4 PPG in 2005-06" }
+      ],
+      "answers": ["Wilt Chamberlain", "Wilt Chamberlain", "Wilt Chamberlain", "Michael Jordan", "Wilt Chamberlain", "Kobe Bryant"]
+    },
+    {
+      "id": 52,
+      "title": "Most Assists Per Game (Season)",
+      "description": "Name players with highest single-season APG",
+      "category": "Single Season Records",
+      "hints": [
+        { "rank": 1, "text": "14.5 APG in 1989-90" },
+        { "rank": 2, "text": "14.2 APG in 1990-91" },
+        { "rank": 3, "text": "13.9 APG in 1987-88" },
+        { "rank": 4, "text": "13.6 APG in 1981-82" },
+        { "rank": 5, "text": "13.5 APG in 1983-84" },
+        { "rank": 6, "text": "13.1 APG in 1980-81" }
+      ],
+      "answers": ["John Stockton", "John Stockton", "John Stockton", "Magic Johnson", "Magic Johnson", "Kevin Porter"]
+    },
+    {
+      "id": 53,
+      "title": "Most Rebounds Per Game (Season)",
+      "description": "Name players with highest single-season RPG",
+      "category": "Single Season Records",
+      "hints": [
+        { "rank": 1, "text": "27.2 RPG in 1960-61" },
+        { "rank": 2, "text": "27.0 RPG in 1961-62" },
+        { "rank": 3, "text": "24.7 RPG in 1963-64" },
+        { "rank": 4, "text": "24.6 RPG in 1959-60" },
+        { "rank": 5, "text": "24.3 RPG in 1957-58" },
+        { "rank": 6, "text": "23.8 RPG in 1958-59" }
+      ],
+      "answers": ["Wilt Chamberlain", "Wilt Chamberlain", "Bill Russell", "Wilt Chamberlain", "Bill Russell", "Bill Russell"]
+    },
+    {
+      "id": 54,
+      "title": "Most Steals Per Game (Season)",
+      "description": "Name players with highest single-season SPG",
+      "category": "Single Season Records",
+      "hints": [
+        { "rank": 1, "text": "3.67 SPG in 1974-75" },
+        { "rank": 2, "text": "3.47 SPG in 1975-76" },
+        { "rank": 3, "text": "3.43 SPG in 1976-77" },
+        { "rank": 4, "text": "3.18 SPG in 1985-86" },
+        { "rank": 5, "text": "3.16 SPG in 1987-88" },
+        { "rank": 6, "text": "3.08 SPG in 1982-83" }
+      ],
+      "answers": ["Larry Steele", "Don Buse", "Don Buse", "Alvin Robertson", "Michael Jordan", "Michael Ray Richardson"]
+    },
+    {
+      "id": 55,
+      "title": "Most Blocks Per Game (Season)",
+      "description": "Name players with highest single-season BPG",
+      "category": "Single Season Records",
+      "hints": [
+        { "rank": 1, "text": "5.56 BPG in 1984-85" },
+        { "rank": 2, "text": "4.97 BPG in 1983-84" },
+        { "rank": 3, "text": "4.96 BPG in 1985-86" },
+        { "rank": 4, "text": "4.85 BPG in 1982-83" },
+        { "rank": 5, "text": "4.59 BPG in 1992-93" },
+        { "rank": 6, "text": "4.12 BPG in 1986-87" }
+      ],
+      "answers": ["Mark Eaton", "Mark Eaton", "Manute Bol", "Tree Rollins", "Hakeem Olajuwon", "Mark Eaton"]
+    },
+    {
+      "id": 56,
+      "title": "Highest Field Goal % (Season)",
+      "description": "Name players with highest single-season FG%",
+      "category": "Single Season Records",
+      "hints": [
+        { "rank": 1, "text": "72.7% in 1972-73" },
+        { "rank": 2, "text": "68.3% in 2020-21" },
+        { "rank": 3, "text": "67.0% in 2018-19" },
+        { "rank": 4, "text": "66.9% in 2017-18" },
+        { "rank": 5, "text": "66.5% in 2013-14" },
+        { "rank": 6, "text": "65.2% in 2011-12" }
+      ],
+      "answers": ["Wilt Chamberlain", "Mitchell Robinson", "Rudy Gobert", "Mitchell Robinson", "DeAndre Jordan", "Tyson Chandler"]
+    },
+    {
+      "id": 57,
+      "title": "Most Three-Pointers (Season)",
+      "description": "Name players who made most threes in a season",
+      "category": "Single Season Records",
+      "hints": [
+        { "rank": 1, "text": "402 threes in 2015-16" },
+        { "rank": 2, "text": "378 threes in 2020-21" },
+        { "rank": 3, "text": "357 threes in 2022-23" },
+        { "rank": 4, "text": "354 threes in 2018-19" },
+        { "rank": 5, "text": "337 threes in 2016-17" },
+        { "rank": 6, "text": "329 threes in 2018-19" }
+      ],
+      "answers": ["Stephen Curry", "Stephen Curry", "Stephen Curry", "James Harden", "Stephen Curry", "Paul George"]
+    },
+    {
+      "id": 58,
+      "title": "Most Wins by Team (Season)",
+      "description": "Name teams with most regular season wins",
+      "category": "Team Records",
+      "hints": [
+        { "rank": 1, "text": "73 wins in 2015-16" },
+        { "rank": 2, "text": "72 wins in 1995-96" },
+        { "rank": 3, "text": "69 wins in 2016-17" },
+        { "rank": 4, "text": "67 wins in 1999-00" },
+        { "rank": 5, "text": "67 wins in 1985-86" },
+        { "rank": 6, "text": "67 wins in 1971-72" }
+      ],
+      "answers": ["Golden State Warriors", "Chicago Bulls", "Golden State Warriors", "Los Angeles Lakers", "Boston Celtics", "Los Angeles Lakers"]
+    },
+    {
+      "id": 59,
+      "title": "Most Championships by Team",
+      "description": "Name teams with most NBA championships",
+      "category": "Team Records",
+      "hints": [
+        { "rank": 1, "text": "18 championships, Boston team" },
+        { "rank": 2, "text": "17 championships, Los Angeles team" },
+        { "rank": 3, "text": "7 championships, Bay Area team" },
+        { "rank": 4, "text": "6 championships, Chicago team" },
+        { "rank": 5, "text": "5 championships, Texas team" },
+        { "rank": 6, "text": "4 championships, Motor City team" }
+      ],
+      "answers": ["Boston Celtics", "Los Angeles Lakers", "Golden State Warriors", "Chicago Bulls", "San Antonio Spurs", "Detroit Pistons"]
+    },
+    {
+      "id": 60,
+      "title": "Most Points in a Game by Team",
+      "description": "Name teams that scored most in a game",
+      "category": "Team Records",
+      "hints": [
+        { "rank": 1, "text": "186 points by Detroit in 1983" },
+        { "rank": 2, "text": "173 points by Boston in 1959" },
+        { "rank": 3, "text": "173 points by Phoenix in 1990" },
+        { "rank": 4, "text": "171 points by San Antonio in 1982" },
+        { "rank": 5, "text": "169 points by Golden State in 2018" },
+        { "rank": 6, "text": "168 points by Boston in 1992" }
+      ],
+      "answers": ["Detroit Pistons", "Boston Celtics", "Phoenix Suns", "San Antonio Spurs", "Golden State Warriors", "Boston Celtics"]
+    },
+    {
+      "id": 61,
+      "title": "Most Consecutive Wins (Team)",
+      "description": "Name teams with longest win streaks",
+      "category": "Team Records",
+      "hints": [
+        { "rank": 1, "text": "33 wins by 1971-72 Lakers" },
+        { "rank": 2, "text": "27 wins by 2012-13 Heat" },
+        { "rank": 3, "text": "24 wins by 2015-16 Warriors" },
+        { "rank": 4, "text": "22 wins by 2007-08 Rockets" },
+        { "rank": 5, "text": "20 wins by 1970-71 Bucks" },
+        { "rank": 6, "text": "19 wins by multiple teams" }
+      ],
+      "answers": ["Los Angeles Lakers", "Miami Heat", "Golden State Warriors", "Houston Rockets", "Milwaukee Bucks", "Multiple Teams"]
+    },
+    {
+      "id": 62,
+      "title": "Most Finals Appearances",
+      "description": "Name players with most Finals appearances",
+      "category": "Finals",
+      "hints": [
+        { "rank": 1, "text": "12 Finals, Celtics legend" },
+        { "rank": 2, "text": "11 Finals, Celtics forward" },
+        { "rank": 3, "text": "10 Finals, active Lakers/Cavs star" },
+        { "rank": 4, "text": "9 Finals, Lakers center" },
+        { "rank": 5, "text": "9 Finals, Lakers legend" },
+        { "rank": 6, "text": "7 Finals, Lakers Showtime" }
+      ],
+      "answers": ["Bill Russell", "Sam Jones", "LeBron James", "Kareem Abdul-Jabbar", "Magic Johnson", "Magic Johnson"]
+    },
+    {
+      "id": 63,
+      "title": "Most Draft Picks by College",
+      "description": "Name colleges with most NBA draft picks",
+      "category": "Draft History",
+      "hints": [
+        { "rank": 1, "text": "UCLA, 80+ draft picks" },
+        { "rank": 2, "text": "Kentucky, 120+ draft picks" },
+        { "rank": 3, "text": "Duke, 80+ draft picks" },
+        { "rank": 4, "text": "North Carolina, 100+ picks" },
+        { "rank": 5, "text": "Kansas, 80+ picks" },
+        { "rank": 6, "text": "Arizona, 40+ picks" }
+      ],
+      "answers": ["University of Kentucky", "University of North Carolina", "Duke University", "UCLA", "University of Kansas", "University of Arizona"]
+    },
+    {
+      "id": 64,
+      "title": "Most #1 Overall Picks",
+      "description": "Name players selected #1 most recently",
+      "category": "Draft History",
+      "hints": [
+        { "rank": 1, "text": "2024 #1 pick, French forward" },
+        { "rank": 2, "text": "2023 #1 pick, French forward" },
+        { "rank": 3, "text": "2022 #1 pick, Magic center" },
+        { "rank": 4, "text": "2021 #1 pick, Pistons guard" },
+        { "rank": 5, "text": "2020 #1 pick, Timberwolves guard" },
+        { "rank": 6, "text": "2019 #1 pick, Pelicans forward" }
+      ],
+      "answers": ["Zaccharie Risacher", "Victor Wembanyama", "Paolo Banchero", "Cade Cunningham", "Anthony Edwards", "Zion Williamson"]
+    },
+    {
+      "id": 65,
+      "title": "Oldest Players in NBA",
+      "description": "Name oldest players to play in NBA",
+      "category": "Age Records",
+      "hints": [
+        { "rank": 1, "text": "45 years old, played until 1948" },
+        { "rank": 2, "text": "43 years old, Hawks/Raptors legend" },
+        { "rank": 3, "text": "42 years old, Knicks/Celtics" },
+        { "rank": 4, "text": "41 years old, Bucks/Lakers center" },
+        { "rank": 5, "text": "40 years old, active Lakers star" },
+        { "rank": 6, "text": "40 years old, Mavericks legend" }
+      ],
+      "answers": ["Nat Hickey", "Vince Carter", "Robert Parish", "Kareem Abdul-Jabbar", "LeBron James", "Dirk Nowitzki"]
+    },
+    {
+      "id": 66,
+      "title": "Youngest Players in NBA",
+      "description": "Name youngest players to debut in NBA",
+      "category": "Age Records",
+      "hints": [
+        { "rank": 1, "text": "18 years, 6 days old" },
+        { "rank": 2, "text": "18 years, 7 days old" },
+        { "rank": 3, "text": "18 years, 27 days old" },
+        { "rank": 4, "text": "18 years, 49 days old" },
+        { "rank": 5, "text": "18 years, 53 days old" },
+        { "rank": 6, "text": "18 years, 60 days old" }
+      ],
+      "answers": ["Andrew Bynum", "Jermaine O'Neal", "Kobe Bryant", "Tracy McGrady", "Amir Johnson", "Kevin Garnett"]
+    },
+    {
+      "id": 67,
+      "title": "Most Improved Players",
+      "description": "Name notable Most Improved Player winners",
+      "category": "Awards",
+      "hints": [
+        { "rank": 1, "text": "2011 MIP, Bulls point guard" },
+        { "rank": 2, "text": "2013 MIP, Pacers forward" },
+        { "rank": 3, "text": "2016 MIP, Raptors guard" },
+        { "rank": 4, "text": "2019 MIP, Raptors forward" },
+        { "rank": 5, "text": "2021 MIP, Knicks forward" },
+        { "rank": 6, "text": "2023 MIP, Pacers forward" }
+      ],
+      "answers": ["Derrick Rose", "Paul George", "C.J. McCollum", "Pascal Siakam", "Julius Randle", "Lauri Markkanen"]
+    },
+    {
+      "id": 68,
+      "title": "Best International Players",
+      "description": "Name greatest international NBA players",
+      "category": "International",
+      "hints": [
+        { "rank": 1, "text": "German forward, 2011 champion" },
+        { "rank": 2, "text": "Nigerian/American center, Dream Shake" },
+        { "rank": 3, "text": "Chinese center, 8× All-Star" },
+        { "rank": 4, "text": "Greek forward, 2× MVP" },
+        { "rank": 5, "text": "Serbian center, 3× MVP" },
+        { "rank": 6, "text": "Canadian point guard, 2× MVP" }
+      ],
+      "answers": ["Dirk Nowitzki", "Hakeem Olajuwon", "Yao Ming", "Giannis Antetokounmpo", "Nikola Jokic", "Steve Nash"]
+    },
+    {
+      "id": 69,
+      "title": "Best Defensive Teams",
+      "description": "Name teams known for great defense",
+      "category": "Team History",
+      "hints": [
+        { "rank": 1, "text": "2004 Pistons, held Lakers to 68 points" },
+        { "rank": 2, "text": "1996 Bulls, 72-10 record" },
+        { "rank": 3, "text": "2008 Celtics, Big Three era" },
+        { "rank": 4, "text": "1999 Spurs, first championship" },
+        { "rank": 5, "text": "2014 Spurs, Beautiful Game" },
+        { "rank": 6, "text": "2016 Warriors, 73-9 record" }
+      ],
+      "answers": ["Detroit Pistons", "Chicago Bulls", "Boston Celtics", "San Antonio Spurs", "San Antonio Spurs", "Golden State Warriors"]
+    },
+    {
+      "id": 70,
+      "title": "Best Offensive Teams",
+      "description": "Name teams with highest offensive ratings",
+      "category": "Team History",
+      "hints": [
+        { "rank": 1, "text": "2017 Warriors, 115.6 ORtg" },
+        { "rank": 2, "text": "2022 Celtics, 117.7 ORtg" },
+        { "rank": 3, "text": "2021 Nets, Big Three" },
+        { "rank": 4, "text": "2018 Rockets, 65 wins" },
+        { "rank": 5, "text": "1987 Lakers, Showtime peak" },
+        { "rank": 6, "text": "2016 Warriors, 73 wins" }
+      ],
+      "answers": ["Golden State Warriors", "Boston Celtics", "Brooklyn Nets", "Houston Rockets", "Los Angeles Lakers", "Golden State Warriors"]
+    },
+    {
+      "id": 71,
+      "title": "Best Clutch Players",
+      "description": "Name most clutch performers in NBA",
+      "category": "Clutch Performance",
+      "hints": [
+        { "rank": 1, "text": "Bulls legend, countless game winners" },
+        { "rank": 2, "text": "Lakers icon, 5 championships" },
+        { "rank": 3, "text": "Trail Blazers guard, Dame Time" },
+        { "rank": 4, "text": "Active Lakers/Cavs star" },
+        { "rank": 5, "text": "Celtics legend, Larry Legend" },
+        { "rank": 6, "text": "Pacers legend, 8 points in 9 seconds" }
+      ],
+      "answers": ["Michael Jordan", "Kobe Bryant", "Damian Lillard", "LeBron James", "Larry Bird", "Reggie Miller"]
+    },
+    {
+      "id": 72,
+      "title": "Best Dunkers All-Time",
+      "description": "Name greatest dunkers in NBA history",
+      "category": "Dunking",
+      "hints": [
+        { "rank": 1, "text": "Dr. J, aerial artistry pioneer" },
+        { "rank": 2, "text": "Bulls legend, 5 dunk contests" },
+        { "rank": 3, "text": "Lakers/Heat center, dominant" },
+        { "rank": 4, "text": "Hawks legend, high-flying" },
+        { "rank": 5, "text": "Raptors champion, massive hands" },
+        { "rank": 6, "text": "Clippers/Thunder forward" }
+      ],
+      "answers": ["Julius Erving", "Michael Jordan", "Shaquille O'Neal", "Dominique Wilkins", "Vince Carter", "Blake Griffin"]
+    },
+    {
+      "id": 73,
+      "title": "Best Ball Handlers",
+      "description": "Name players with best handles",
+      "category": "Ball Handling",
+      "hints": [
+        { "rank": 1, "text": "The Answer, killer crossover" },
+        { "rank": 2, "text": "Warriors superstar, behind the back" },
+        { "rank": 3, "text": "Nets guard, ankle breaker" },
+        { "rank": 4, "text": "White Chocolate, flashy passer" },
+        { "rank": 5, "text": "Mavericks legend, one-legged fadeaway" },
+        { "rank": 6, "text": "Active point guard, elusive" }
+      ],
+      "answers": ["Allen Iverson", "Stephen Curry", "Kyrie Irving", "Jason Williams", "Luka Doncic", "Chris Paul"]
+    },
+    {
+      "id": 74,
+      "title": "Best Passers Ever",
+      "description": "Name greatest passers in NBA history",
+      "category": "Passing",
+      "hints": [
+        { "rank": 1, "text": "Lakers Showtime legend" },
+        { "rank": 2, "text": "Jazz all-time assist leader" },
+        { "rank": 3, "text": "Celtics legend, Bird's vision" },
+        { "rank": 4, "text": "Active point guard, floor general" },
+        { "rank": 5, "text": "Active Lakers/Cavs star" },
+        { "rank": 6, "text": "Serbian center, creative passer" }
+      ],
+      "answers": ["Magic Johnson", "John Stockton", "Larry Bird", "Chris Paul", "LeBron James", "Nikola Jokic"]
+    },
+    {
+      "id": 75,
+      "title": "Best Shooters Ever",
+      "description": "Name greatest shooters in NBA history",
+      "category": "Shooting",
+      "hints": [
+        { "rank": 1, "text": "Warriors superstar, 3-point king" },
+        { "rank": 2, "text": "Former Heat sharpshooter" },
+        { "rank": 3, "text": "Pacers legend, trash talker" },
+        { "rank": 4, "text": "Celtics legend, Larry Legend" },
+        { "rank": 5, "text": "Warriors sharpshooter, Splash Brother" },
+        { "rank": 6, "text": "Trail Blazers guard, deep range" }
+      ],
+      "answers": ["Stephen Curry", "Ray Allen", "Reggie Miller", "Larry Bird", "Klay Thompson", "Damian Lillard"]
+    },
+    {
+      "id": 76,
+      "title": "Best Defenders Ever",
+      "description": "Name greatest defenders in NBA history",
+      "category": "Defense",
+      "hints": [
+        { "rank": 1, "text": "Bulls legend, 9× All-Defense First Team" },
+        { "rank": 2, "text": "The Glove, 9× All-Defense" },
+        { "rank": 3, "text": "Rockets legend, 9× All-Defense" },
+        { "rank": 4, "text": "Bulls forward, Pippen" },
+        { "rank": 5, "text": "Spurs forward, Kawhi Leonard" },
+        { "rank": 6, "text": "Pistons forward, Rodman" }
+      ],
+      "answers": ["Michael Jordan", "Gary Payton", "Hakeem Olajuwon", "Scottie Pippen", "Kawhi Leonard", "Dennis Rodman"]
+    },
+    {
+      "id": 77,
+      "title": "Best Rebounders Ever",
+      "description": "Name greatest rebounders in NBA history",
+      "category": "Rebounding",
+      "hints": [
+        { "rank": 1, "text": "Scored 100, dominant rebounder" },
+        { "rank": 2, "text": "11 championships, Celtics legend" },
+        { "rank": 3, "text": "3× MVP, offensive rebounder" },
+        { "rank": 4, "text": "Pistons legend, The Worm" },
+        { "rank": 5, "text": "Round Mound of Rebound" },
+        { "rank": 6, "text": "Spurs legend, 5 championships" }
+      ],
+      "answers": ["Wilt Chamberlain", "Bill Russell", "Moses Malone", "Dennis Rodman", "Charles Barkley", "Tim Duncan"]
+    },
+    {
+      "id": 78,
+      "title": "Most Valuable Franchises",
+      "description": "Name most valuable NBA franchises",
+      "category": "Franchise Value",
+      "hints": [
+        { "rank": 1, "text": "New York team, $6.5B valuation" },
+        { "rank": 2, "text": "Bay Area team, $7B valuation" },
+        { "rank": 3, "text": "Los Angeles team, $6B valuation" },
+        { "rank": 4, "text": "Chicago team, $4.6B valuation" },
+        { "rank": 5, "text": "Boston team, $4B valuation" },
+        { "rank": 6, "text": "Los Angeles team, $3.5B valuation" }
+      ],
+      "answers": ["New York Knicks", "Golden State Warriors", "Los Angeles Lakers", "Chicago Bulls", "Boston Celtics", "Los Angeles Clippers"]
+    },
+    {
+      "id": 79,
+      "title": "Best Sixth Men Ever",
+      "description": "Name greatest sixth men in NBA history",
+      "category": "Sixth Man",
+      "hints": [
+        { "rank": 1, "text": "Celtics legend, McHale" },
+        { "rank": 2, "text": "76ers/Clippers/Lakers legend" },
+        { "rank": 3, "text": "3× Sixth Man award winner" },
+        { "rank": 4, "text": "Thunder/Lakers guard" },
+        { "rank": 5, "text": "Mavs champion, 2011" },
+        { "rank": 6, "text": "Celtics legend, Havlicek" }
+      ],
+      "answers": ["Kevin McHale", "Lou Williams", "Jamal Crawford", "Russell Westbrook", "Jason Terry", "John Havlicek"]
+    },
+    {
+      "id": 80,
+      "title": "Best Coaches All-Time",
+      "description": "Name greatest NBA coaches",
+      "category": "Coaching",
+      "hints": [
+        { "rank": 1, "text": "11 championships, Celtics legend" },
+        { "rank": 2, "text": "11 championships as coach, Bulls/Lakers" },
+        { "rank": 3, "text": "5 championships, Spurs legend" },
+        { "rank": 4, "text": "5 championships, Lakers Showtime" },
+        { "rank": 5, "text": "4 championships, Warriors coach" },
+        { "rank": 6, "text": "3 championships, Heat coach" }
+      ],
+      "answers": ["Red Auerbach", "Phil Jackson", "Gregg Popovich", "Pat Riley", "Steve Kerr", "Erik Spoelstra"]
+    },
+    {
+      "id": 81,
+      "title": "Best Point Guards Ever",
+      "description": "Name greatest point guards in NBA history",
+      "category": "Position Rankings",
+      "hints": [
+        { "rank": 1, "text": "Lakers Showtime legend" },
+        { "rank": 2, "text": "Warriors superstar, 2× unanimous MVP" },
+        { "rank": 3, "text": "Triple-double legend from 1960s" },
+        { "rank": 4, "text": "Jazz all-time assist leader" },
+        { "rank": 5, "text": "Active point guard, future HOF" },
+        { "rank": 6, "text": "Pistons Bad Boys legend" }
+      ],
+      "answers": ["Magic Johnson", "Stephen Curry", "Oscar Robertson", "John Stockton", "Chris Paul", "Isiah Thomas"]
+    },
+    {
+      "id": 82,
+      "title": "Best Shooting Guards Ever",
+      "description": "Name greatest shooting guards in NBA history",
+      "category": "Position Rankings",
+      "hints": [
+        { "rank": 1, "text": "Bulls legend, 6 championships" },
+        { "rank": 2, "text": "Lakers icon, 5 championships" },
+        { "rank": 3, "text": "Miami legend, Flash" },
+        { "rank": 4, "text": "Houston Rockets legend" },
+        { "rank": 5, "text": "The Answer, 76ers legend" },
+        { "rank": 6, "text": "Warriors sharpshooter" }
+      ],
+      "answers": ["Michael Jordan", "Kobe Bryant", "Dwyane Wade", "James Harden", "Allen Iverson", "Klay Thompson"]
+    },
+    {
+      "id": 83,
+      "title": "Best Small Forwards Ever",
+      "description": "Name greatest small forwards in NBA history",
+      "category": "Position Rankings",
+      "hints": [
+        { "rank": 1, "text": "Active Lakers/Cavs star" },
+        { "rank": 2, "text": "Celtics legend, Larry Legend" },
+        { "rank": 3, "text": "Warriors/Thunder star, KD" },
+        { "rank": 4, "text": "Dr. J, aerial pioneer" },
+        { "rank": 5, "text": "Bulls legend, Scottie" },
+        { "rank": 6, "text": "Spurs/Raptors champion" }
+      ],
+      "answers": ["LeBron James", "Larry Bird", "Kevin Durant", "Julius Erving", "Scottie Pippen", "Kawhi Leonard"]
+    },
+    {
+      "id": 84,
+      "title": "Best Power Forwards Ever",
+      "description": "Name greatest power forwards in NBA history",
+      "category": "Position Rankings",
+      "hints": [
+        { "rank": 1, "text": "Spurs legend, 5 championships" },
+        { "rank": 2, "text": "Jazz legend, The Mailman" },
+        { "rank": 3, "text": "Round Mound of Rebound" },
+        { "rank": 4, "text": "Timberwolves/Celtics legend" },
+        { "rank": 5, "text": "Mavericks legend, 2011 champion" },
+        { "rank": 6, "text": "Active Greek Freak" }
+      ],
+      "answers": ["Tim Duncan", "Karl Malone", "Charles Barkley", "Kevin Garnett", "Dirk Nowitzki", "Giannis Antetokounmpo"]
+    },
+    {
+      "id": 85,
+      "title": "Best Centers Ever",
+      "description": "Name greatest centers in NBA history",
+      "category": "Position Rankings",
+      "hints": [
+        { "rank": 1, "text": "Lakers legend, skyhook master" },
+        { "rank": 2, "text": "Celtics legend, 11 championships" },
+        { "rank": 3, "text": "Scored 100 points in a game" },
+        { "rank": 4, "text": "Lakers/Heat legend, Shaq" },
+        { "rank": 5, "text": "Rockets legend, Dream Shake" },
+        { "rank": 6, "text": "Spurs center, The Admiral" }
+      ],
+      "answers": ["Kareem Abdul-Jabbar", "Bill Russell", "Wilt Chamberlain", "Shaquille O'Neal", "Hakeem Olajuwon", "David Robinson"]
+    },
+    {
+      "id": 86,
+      "title": "Best Draft Classes",
+      "description": "Name best NBA draft classes",
+      "category": "Draft History",
+      "hints": [
+        { "rank": 1, "text": "1984: Jordan, Olajuwon, Barkley, Stockton" },
+        { "rank": 2, "text": "1996: Iverson, Kobe, Nash, Allen" },
+        { "rank": 3, "text": "2003: LeBron, Wade, Bosh, Melo" },
+        { "rank": 4, "text": "1985: Ewing, Malone, Mullin" },
+        { "rank": 5, "text": "2009: Curry, Harden, DeRozan" },
+        { "rank": 6, "text": "2018: Doncic, Trae, SGA" }
+      ],
+      "answers": ["1984 Draft", "1996 Draft", "2003 Draft", "1985 Draft", "2009 Draft", "2018 Draft"]
+    },
+    {
+      "id": 87,
+      "title": "Biggest Draft Busts",
+      "description": "Name biggest disappointments in draft history",
+      "category": "Draft History",
+      "hints": [
+        { "rank": 1, "text": "2007 #1 pick, injury-plagued center" },
+        { "rank": 2, "text": "1986 #2 pick, died of overdose" },
+        { "rank": 3, "text": "2000 #1 pick, NJ Nets guard" },
+        { "rank": 4, "text": "2013 #1 pick, Cavs forward" },
+        { "rank": 5, "text": "2001 #1 pick, Wizards center" },
+        { "rank": 6, "text": "1998 #2 pick, Grizzlies forward" }
+      ],
+      "answers": ["Greg Oden", "Len Bias", "Kenyon Martin", "Anthony Bennett", "Kwame Brown", "Michael Olowokandi"]
+    },
+    {
+      "id": 88,
+      "title": "Best Playoff Performances",
+      "description": "Name legendary playoff performances",
+      "category": "Playoff Performances",
+      "hints": [
+        { "rank": 1, "text": "63 points vs Celtics, 1986" },
+        { "rank": 2, "text": "55 points in Finals, 1993" },
+        { "rank": 3, "text": "51 points at 38 years old, 2020" },
+        { "rank": 4, "text": "48 points, Game 6 vs Celtics, 2012" },
+        { "rank": 5, "text": "45 points, Game 6 vs Jazz, 1998" },
+        { "rank": 6, "text": "81 points vs Raptors, 2006" }
+      ],
+      "answers": ["Michael Jordan", "Michael Jordan", "LeBron James", "LeBron James", "Michael Jordan", "Kobe Bryant"]
+    },
+    {
+      "id": 89,
+      "title": "Most Iconic Duos",
+      "description": "Name most iconic player duos",
+      "category": "Player Duos",
+      "hints": [
+        { "rank": 1, "text": "Jordan and Pippen" },
+        { "rank": 2, "text": "Magic and Kareem" },
+        { "rank": 3, "text": "Kobe and Shaq" },
+        { "rank": 4, "text": "Stockton and Malone" },
+        { "rank": 5, "text": "Curry and Klay" },
+        { "rank": 6, "text": "LeBron and Wade" }
+      ],
+      "answers": ["Michael Jordan and Scottie Pippen", "Magic Johnson and Kareem Abdul-Jabbar", "Kobe Bryant and Shaquille O'Neal", "John Stockton and Karl Malone", "Stephen Curry and Klay Thompson", "LeBron James and Dwyane Wade"]
+    },
+    {
+      "id": 90,
+      "title": "Best Rivalries",
+      "description": "Name greatest NBA rivalries",
+      "category": "Rivalries",
+      "hints": [
+        { "rank": 1, "text": "Celtics vs Lakers" },
+        { "rank": 2, "text": "Bulls vs Pistons (1980s-90s)" },
+        { "rank": 3, "text": "Knicks vs Heat (1990s)" },
+        { "rank": 4, "text": "Warriors vs Cavs (2015-2018)" },
+        { "rank": 5, "text": "Lakers vs Spurs (2000s)" },
+        { "rank": 6, "text": "76ers vs Celtics (1980s)" }
+      ],
+      "answers": ["Celtics vs Lakers", "Bulls vs Pistons", "Knicks vs Heat", "Warriors vs Cavaliers", "Lakers vs Spurs", "76ers vs Celtics"]
+    },
+    {
+      "id": 91,
+      "title": "Most Memorable Finals",
+      "description": "Name most memorable NBA Finals series",
+      "category": "Finals",
+      "hints": [
+        { "rank": 1, "text": "2016: Cavs overcome 3-1 deficit" },
+        { "rank": 2, "text": "1998: Jordan's Last Shot" },
+        { "rank": 3, "text": "2010: Lakers beat Celtics in Game 7" },
+        { "rank": 4, "text": "2013: Ray Allen's clutch three" },
+        { "rank": 5, "text": "1984: Celtics beat Lakers" },
+        { "rank": 6, "text": "2011: Mavs upset Heat" }
+      ],
+      "answers": ["2016 Finals", "1998 Finals", "2010 Finals", "2013 Finals", "1984 Finals", "2011 Finals"]
+    },
+    {
+      "id": 92,
+      "title": "Best Nicknames",
+      "description": "Name players with iconic nicknames",
+      "category": "Nicknames",
+      "hints": [
+        { "rank": 1, "text": "Air Jordan" },
+        { "rank": 2, "text": "The Black Mamba" },
+        { "rank": 3, "text": "The King" },
+        { "rank": 4, "text": "The Big Fundamental" },
+        { "rank": 5, "text": "The Greek Freak" },
+        { "rank": 6, "text": "The Mailman" }
+      ],
+      "answers": ["Michael Jordan", "Kobe Bryant", "LeBron James", "Tim Duncan", "Giannis Antetokounmpo", "Karl Malone"]
+    },
+    {
+      "id": 93,
+      "title": "Most Clutch Shots",
+      "description": "Name players who hit famous clutch shots",
+      "category": "Clutch Moments",
+      "hints": [
+        { "rank": 1, "text": "The Shot over Craig Ehlo" },
+        { "rank": 2, "text": "2019 Game 7 vs 76ers" },
+        { "rank": 3, "text": "2013 Game 6 corner three" },
+        { "rank": 4, "text": "8 points in 9 seconds" },
+        { "rank": 5, "text": "37-foot three to beat Clippers" },
+        { "rank": 6, "text": "Game 7 block in 2016 Finals" }
+      ],
+      "answers": ["Michael Jordan", "Kawhi Leonard", "Ray Allen", "Reggie Miller", "Damian Lillard", "LeBron James"]
+    },
+    {
+      "id": 94,
+      "title": "Most Controversial Moments",
+      "description": "Name controversial NBA moments",
+      "category": "Controversy",
+      "hints": [
+        { "rank": 1, "text": "Malice at the Palace (2004)" },
+        { "rank": 2, "text": "The Decision (2010)" },
+        { "rank": 3, "text": "Tim Donaghy betting scandal" },
+        { "rank": 4, "text": "2002 Lakers-Kings Game 6" },
+        { "rank": 5, "text": "KD to Warriors (2016)" },
+        { "rank": 6, "text": "Draymond suspension 2016 Finals" }
+      ],
+      "answers": ["Malice at the Palace", "LeBron's Decision", "Tim Donaghy Scandal", "2002 WCF Game 6", "Kevin Durant to Warriors", "Draymond Green Suspension"]
+    },
+    {
+      "id": 95,
+      "title": "Best Playoff Series",
+      "description": "Name greatest playoff series ever",
+      "category": "Playoffs",
+      "hints": [
+        { "rank": 1, "text": "2016 Finals: Cavs vs Warriors" },
+        { "rank": 2, "text": "1998 Finals: Bulls vs Jazz" },
+        { "rank": 3, "text": "2013 Finals: Heat vs Spurs" },
+        { "rank": 4, "text": "2010 Finals: Lakers vs Celtics" },
+        { "rank": 5, "text": "1984 Finals: Celtics vs Lakers" },
+        { "rank": 6, "text": "2011 Finals: Mavs vs Heat" }
+      ],
+      "answers": ["2016 NBA Finals", "1998 NBA Finals", "2013 NBA Finals", "2010 NBA Finals", "1984 NBA Finals", "2011 NBA Finals"]
+    },
+    {
+      "id": 96,
+      "title": "Most Underrated Players",
+      "description": "Name most underrated NBA players",
+      "category": "Player Rankings",
+      "hints": [
+        { "rank": 1, "text": "Jazz duo, Stockton and Malone" },
+        { "rank": 2, "text": "Spurs Big Three member, Parker" },
+        { "rank": 3, "text": "Pistons Bad Boys, Dumars" },
+        { "rank": 4, "text": "Trail Blazers legend, Drexler" },
+        { "rank": 5, "text": "Suns point guard, Nash" },
+        { "rank": 6, "text": "Pacers legend, Miller" }
+      ],
+      "answers": ["John Stockton", "Tony Parker", "Joe Dumars", "Clyde Drexler", "Steve Nash", "Reggie Miller"]
+    },
+    {
+      "id": 97,
+      "title": "Best Comeback Wins",
+      "description": "Name greatest comeback victories",
+      "category": "Historic Moments",
+      "hints": [
+        { "rank": 1, "text": "2016 Cavs overcome 3-1 in Finals" },
+        { "rank": 2, "text": "TMac scores 13 in 35 seconds" },
+        { "rank": 3, "text": "Lakers overcome 24-point deficit" },
+        { "rank": 4, "text": "Clippers down 3-1 to Nuggets" },
+        { "rank": 5, "text": "Heat overcome 3-2 to Celtics 2012" },
+        { "rank": 6, "text": "Nuggets overcome 3-1 to Jazz" }
+      ],
+      "answers": ["2016 Cavs Finals", "Tracy McGrady 13 in 35", "Lakers vs Trail Blazers 2000", "Clippers vs Nuggets 2020", "Heat vs Celtics 2012", "Nuggets vs Jazz 2020"]
+    },
+    {
+      "id": 98,
+      "title": "Best Dynasties",
+      "description": "Name greatest NBA dynasties",
+      "category": "Team History",
+      "hints": [
+        { "rank": 1, "text": "1960s Celtics, 11 championships" },
+        { "rank": 2, "text": "1990s Bulls, 6 championships" },
+        { "rank": 3, "text": "1980s Lakers, Showtime" },
+        { "rank": 4, "text": "2000s Spurs, 5 championships" },
+        { "rank": 5, "text": "2010s Warriors, 4 championships" },
+        { "rank": 6, "text": "1980s Celtics, Larry Bird era" }
+      ],
+      "answers": ["1960s Celtics", "1990s Bulls", "1980s Lakers", "2000s Spurs", "2010s Warriors", "1980s Celtics"]
+    },
+    {
+      "id": 99,
+      "title": "Most Athletic Players",
+      "description": "Name most athletic NBA players ever",
+      "category": "Athleticism",
+      "hints": [
+        { "rank": 1, "text": "Bulls legend, gravity-defying" },
+        { "rank": 2, "text": "Dr. J, aerial pioneer" },
+        { "rank": 3, "text": "Active Lakers/Cavs star" },
+        { "rank": 4, "text": "Hawks legend, Human Highlight" },
+        { "rank": 5, "text": "Raptors champion, high-flying" },
+        { "rank": 6, "text": "Thunder guard, explosive" }
+      ],
+      "answers": ["Michael Jordan", "Julius Erving", "LeBron James", "Dominique Wilkins", "Vince Carter", "Russell Westbrook"]
+    },
+    {
+      "id": 100,
+      "title": "Best NBA Moments",
+      "description": "Name greatest moments in NBA history",
+      "category": "Historic Moments",
+      "hints": [
+        { "rank": 1, "text": "Jordan's Last Shot (1998)" },
+        { "rank": 2, "text": "Magic's junior skyhook (1987)" },
+        { "rank": 3, "text": "LeBron's block in 2016 Finals" },
+        { "rank": 4, "text": "Ray Allen's corner three (2013)" },
+        { "rank": 5, "text": "Kobe's 60-point finale (2016)" },
+        { "rank": 6, "text": "Kawhi's Game 7 buzzer beater (2019)" }
+      ],
+      "answers": ["Jordan's Last Shot", "Magic's Junior Skyhook", "The Block", "Ray Allen Game 6", "Kobe's 60-Point Finale", "Kawhi's Bounce"]
     }
   ]
 }
