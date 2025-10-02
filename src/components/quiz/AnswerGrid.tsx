@@ -21,7 +21,20 @@ interface AnswerGridProps {
 
 const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }: AnswerGridProps) => {
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
-  const [startTime] = useState(Date.now());
+  const startTimeRef = useRef(Date.now());
+
+  // Reset timer when moving to a new player (when a correct answer is given)
+  useEffect(() => {
+    if (lastGuessRank) {
+      const answer = answers.find(a => a.rank === lastGuessRank);
+      if (answer?.isCorrect) {
+        // Reset start time for next player after a short delay
+        setTimeout(() => {
+          startTimeRef.current = Date.now();
+        }, 800);
+      }
+    }
+  }, [lastGuessRank, answers]);
 
   // Trigger animations when a guess is made
   useEffect(() => {
@@ -29,7 +42,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
       const answer = answers.find(a => a.rank === lastGuessRank);
       if (answer?.isCorrect && cardRefs.current[lastGuessRank]) {
         // Calculate time taken and points
-        const timeTaken = (Date.now() - startTime) / 1000; // in seconds
+        const timeTaken = (Date.now() - startTimeRef.current) / 1000; // in seconds
         let points = 3;
         let color = '#00D9A5'; // green
         
@@ -53,7 +66,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
         haptics.incorrect();
       }
     }
-  }, [lastGuessRank, answers, startTime, hintsUsed]);
+  }, [lastGuessRank, answers, hintsUsed]);
 
   return (
     <div className="border-2 border-white rounded-xl p-1.5">
