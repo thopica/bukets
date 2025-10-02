@@ -29,8 +29,16 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false }: AnswerGridProp
       if (answer?.isCorrect && cardRefs.current[lastGuessRank]) {
         // Calculate time taken and points
         const timeTaken = (Date.now() - startTime) / 1000; // in seconds
-        const points = timeTaken <= 5 ? 5 : 3;
-        const color = timeTaken <= 5 ? '#F7B32B' : '#00D9A5'; // golden or green
+        let points = 3;
+        let color = '#00D9A5'; // green
+        
+        if (timeTaken <= 5) {
+          points = 5;
+          color = '#F7B32B'; // golden
+        } else if (timeTaken <= 10) {
+          points = 4;
+          color = '#FF6B35'; // orange
+        }
         
         // Correct answer animations
         createConfetti(cardRefs.current[lastGuessRank]!);
