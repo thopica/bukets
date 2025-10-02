@@ -56,7 +56,7 @@ const QuizHeader = ({
   return (
     <div className="border-2 border-white rounded-xl p-3 space-y-2">
       {/* Top Bar: Score + Shot Clock */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-center gap-4">
         {/* Running Score - Left */}
         <div className="flex items-center gap-2">
           <TrendingUp className="h-4 w-4 text-success" />
