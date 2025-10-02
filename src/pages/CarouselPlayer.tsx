@@ -144,35 +144,6 @@ const CarouselPlayer = () => {
           totalCount={6}
         />
 
-        {/* Hints Display */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-          {currentQuestion.hints.map((hint) => (
-            <Alert 
-              key={hint.rank}
-              className={`p-3 ${usedHints.includes(hint.rank) ? 'bg-gold/10 border-gold/30' : 'bg-muted/30'}`}
-            >
-              <AlertDescription className="text-sm">
-                {usedHints.includes(hint.rank) ? (
-                  <>
-                    <Lightbulb className="h-4 w-4 inline mr-1 text-gold" />
-                    <span className="font-medium">#{hint.rank}:</span> {hint.text}
-                  </>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleRequestHint(hint.rank)}
-                    className="w-full h-auto p-0"
-                  >
-                    <Lightbulb className="h-4 w-4 mr-1" />
-                    Reveal hint #{hint.rank}
-                  </Button>
-                )}
-              </AlertDescription>
-            </Alert>
-          ))}
-        </div>
-
         <AnswerGrid
           answers={playerAnswers}
           lastGuessRank={lastGuessRank}
