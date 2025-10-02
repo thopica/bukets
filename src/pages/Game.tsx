@@ -85,6 +85,8 @@ const Index = () => {
       // Time ran out - we need to fetch the correct answer from server
       // For now, just mark as incomplete
       setTimeRemaining(24);
+      setCurrentHint(undefined);
+      setHintsUsed(0); // reset hints for next player
     }
   };
 
@@ -167,6 +169,8 @@ const Index = () => {
       setIncorrectGuess(null);
       setLastGuessRank(matchedAnswer.rank);
       setShowInputError(false);
+      // Reset hints after awarding animation
+      setTimeout(() => setHintsUsed(0), 800);
       
       // Check if all answered
       const allCorrect = newAnswers.every((a) => a.isCorrect);
