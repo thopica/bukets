@@ -21,7 +21,6 @@ const Training = () => {
     { rank: 1 }, { rank: 2 }, { rank: 3 }, { rank: 4 }, { rank: 5 }, { rank: 6 },
   ]);
   
-  const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [currentQuizPerfect, setCurrentQuizPerfect] = useState(true);
   const [hintsUsed, setHintsUsed] = useState(0);
@@ -40,7 +39,6 @@ const Training = () => {
     setUserAnswers([
       { rank: 1 }, { rank: 2 }, { rank: 3 }, { rank: 4 }, { rank: 5 }, { rank: 6 },
     ]);
-    setScore(0);
     setCurrentQuizPerfect(true);
     setHintsUsed(0);
     setCurrentHint(undefined);
@@ -149,12 +147,6 @@ const Training = () => {
     return null;
   };
 
-  const calculateTimeBonus = () => {
-    if (timeRemaining >= 15) return 2;
-    if (timeRemaining >= 10) return 1;
-    return 0;
-  };
-
   const handleGuess = async (guess: string) => {
     const result = await checkGuess(guess);
     
@@ -162,7 +154,7 @@ const Training = () => {
       if (result === "ALREADY_CORRECT") {
         toast.info("You already found this player!");
       } else {
-        toast.info("This player was revealed due to timeout. No points awarded.");
+        toast.info("This player was already revealed.");
       }
       return;
     }
@@ -170,9 +162,6 @@ const Training = () => {
     const matchedAnswer = result;
     
     if (matchedAnswer) {
-      const timeBonus = calculateTimeBonus();
-      const pointsEarned = 3 + timeBonus;
-      
       const newAnswers = [...userAnswers];
       const index = matchedAnswer.rank - 1;
       newAnswers[index] = {
@@ -183,7 +172,6 @@ const Training = () => {
       };
       
       setUserAnswers(newAnswers);
-      setScore((prev) => prev + pointsEarned);
       setStreak((prev) => prev + 1);
       setTimeRemaining(24);
       setCurrentHint(undefined);
@@ -191,11 +179,11 @@ const Training = () => {
       setShowInputError(false);
       
       if (timeRemaining >= 23) {
-        toast.success("🏀 BUZZER BEATER! +" + pointsEarned + " points", {
+        toast.success("🏀 BUZZER BEATER!", {
           duration: 3000,
         });
       } else {
-        toast.success(`Correct! +${pointsEarned} points (${timeBonus > 0 ? `+${timeBonus} time bonus` : 'no time bonus'})`);
+        toast.success("Correct!");
       }
       
       const allCorrect = newAnswers.every((a) => a.isCorrect);
@@ -225,8 +213,7 @@ const Training = () => {
       const hint = QUIZ_DATA.hints[unansweredIndex];
       setCurrentHint(hint.text);
       setHintsUsed((prev) => prev + 1);
-      setScore((prev) => Math.max(0, prev - 0.5));
-      toast.info("Hint revealed! -0.5 points");
+      toast.info("Hint revealed!");
     }
   };
 
@@ -286,7 +273,7 @@ const Training = () => {
             totalTime={0}
             playerTimeRemaining={timeRemaining}
             playerTotalTime={24}
-            score={score}
+            score={0}
             streak={0}
             hintsUsed={hintsUsed}
             maxHints={maxHints}
@@ -323,7 +310,7 @@ const Training = () => {
             resetQuiz();
           }
         }}
-        score={score}
+        score={0}
         correctCount={correctCount}
         totalCount={6}
         streak={0}
