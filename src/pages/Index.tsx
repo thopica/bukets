@@ -24,9 +24,6 @@ const Index = () => {
             Drop Your Daily Buckets
           </h1>
           
-          <p className="text-lg text-muted-foreground font-medium">
-            6 players. 2:40. Let's ball.
-          </p>
         </div>
 
         {/* CTA Button - MASSIVE with subtle gradient shift */}
