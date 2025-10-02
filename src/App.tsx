@@ -5,7 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Game from "./pages/Game";
-import Carousel from "./pages/Carousel";
+import CarouselMenu from "./pages/CarouselMenu";
+import CarouselSingle from "./pages/CarouselSingle";
+import CarouselPlayer from "./pages/CarouselPlayer";
 import Leaderboard from "./pages/Leaderboard";
 import Archive from "./pages/Archive";
 import HowToPlay from "./pages/HowToPlay";
@@ -25,7 +27,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/game" element={<Game />} />
-          <Route path="/carousel" element={<Carousel />} />
+          <Route path="/carousel" element={<CarouselMenu />} />
+          <Route path="/carousel/single" element={<CarouselSingle />} />
+          <Route path="/carousel/player" element={<CarouselPlayer />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/archive" element={<Archive />} />
           <Route path="/how-to-play" element={<HowToPlay />} />
