@@ -54,12 +54,12 @@ const QuizHeader = ({
   const showTimers = totalTime > 0;
 
   return (
-    <div className="border-2 border-white rounded-xl p-3 space-y-4">
+    <div className="border-2 border-white rounded-lg md:rounded-xl p-2 md:p-3 space-y-2 md:space-y-4">
       {/* Shot Clock - Center */}
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-2 md:gap-4">
         {/* NBA Shot Clock (only show when totalTime > 0) */}
         {showTimers && (
-          <div className="relative w-16 h-16 bg-black rounded-sm border-4 border-gray-400 shadow-2xl flex items-center justify-center"
+          <div className="relative w-10 h-10 md:w-16 md:h-16 bg-black rounded-sm border-2 md:border-4 border-gray-400 shadow-2xl flex items-center justify-center"
             style={{
               backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
               backgroundSize: '4px 4px'
@@ -70,7 +70,7 @@ const QuizHeader = ({
             
             {/* 24 Second Shot Clock - Red LED */}
             <div 
-              className={`font-shot-clock text-4xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
+              className={`font-shot-clock text-2xl md:text-4xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
                 isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
               }`}
               style={{
@@ -84,19 +84,19 @@ const QuizHeader = ({
       </div>
 
       {/* Category + Question */}
-      <div className="space-y-1 text-center mt-[3cm]">
-        <p className="text-2xl font-bold text-foreground leading-tight capitalize">
+      <div className="space-y-0.5 md:space-y-1 text-center">
+        <p className="text-sm md:text-2xl font-bold text-foreground leading-tight capitalize">
           {title}
         </p>
-        <h1 className="text-2xl font-bold text-foreground leading-tight">
+        <h1 className="text-sm md:text-2xl font-bold text-foreground leading-tight">
           Name the top {totalCount} scorers in NBA history
         </h1>
       </div>
 
       {/* Progress Pill */}
-      <div className="flex items-center justify-end gap-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted">
-          <span className="text-sm font-semibold text-foreground">
+      <div className="flex items-center justify-end gap-2 md:gap-4">
+        <div className="inline-flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-muted">
+          <span className="text-xs md:text-sm font-semibold text-foreground">
             {correctCount}/{totalCount}
           </span>
         </div>

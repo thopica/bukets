@@ -82,8 +82,8 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
   }, [lastGuessRank, answers, hintsUsed]);
 
   return (
-    <div className="border-2 border-white rounded-xl p-1.5">
-      <div className="grid grid-cols-1 gap-1">
+    <div className="border-2 border-white rounded-lg md:rounded-xl p-1 md:p-1.5">
+      <div className="grid grid-cols-1 gap-0.5 md:gap-1">
       {answers.map((answer) => {
         const isRevealed = !!answer.playerName;
         const isCorrect = answer.isCorrect;
@@ -93,7 +93,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
           <div
             key={answer.rank}
             ref={(el) => cardRefs.current[answer.rank] = el}
-            className={`grid grid-cols-[auto_1fr_auto] items-center gap-2 px-2 py-1.5 rounded-lg transition-all duration-150 border-2 ${
+            className={`grid grid-cols-[auto_1fr_auto] items-center gap-1.5 md:gap-2 px-1.5 md:px-2 py-1 md:py-1.5 rounded-md md:rounded-lg transition-all duration-150 border md:border-2 ${
               isCorrect
                 ? "bg-success/10 border-success animate-scale-pulse shadow-glow-green"
                 : isLastGuess && !isCorrect && isRevealed
@@ -104,7 +104,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
             }`}
           >
             {/* Rank badge */}
-            <div className={`flex items-center justify-center w-7 h-7 rounded-full font-bold text-xs flex-shrink-0 ${
+            <div className={`flex items-center justify-center w-5 h-5 md:w-7 md:h-7 rounded-full font-bold text-[10px] md:text-xs flex-shrink-0 ${
               isCorrect
                 ? 'bg-success text-white' 
                 : 'bg-muted text-foreground'
@@ -113,29 +113,29 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
             </div>
             
             {/* Player name or locked state */}
-            <div className="flex items-center gap-1.5 min-h-[24px]">
+            <div className="flex items-center gap-1 md:gap-1.5 min-h-[20px] md:min-h-[24px]">
               {isRevealed ? (
                 <>
                   {isCorrect && (
-                    <CheckCircle2 className="h-4 w-4 text-success flex-shrink-0 animate-bounce-in" />
+                    <CheckCircle2 className="h-3 w-3 md:h-4 md:w-4 text-success flex-shrink-0 animate-bounce-in" />
                   )}
-                  <span className={`font-semibold text-xs ${
+                  <span className={`font-semibold text-[10px] md:text-xs ${
                     isCorrect ? "text-success" : "text-foreground"
                   }`}>
                     {answer.playerName}
                   </span>
                 </>
               ) : (
-                <div className="flex items-center gap-1.5">
-                  <Lock className="h-3.5 w-3.5 text-muted-foreground opacity-50" />
-                  <span className="text-xs text-muted-foreground">Locked</span>
+                <div className="flex items-center gap-1 md:gap-1.5">
+                  <Lock className="h-2.5 w-2.5 md:h-3.5 md:w-3.5 text-muted-foreground opacity-50" />
+                  <span className="text-[10px] md:text-xs text-muted-foreground">Locked</span>
                 </div>
               )}
             </div>
 
             {/* Stats */}
             {isRevealed && answer.stat && (
-              <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">
+              <span className="text-[10px] md:text-xs text-muted-foreground font-medium whitespace-nowrap">
                 {answer.stat}
               </span>
             )}

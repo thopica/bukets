@@ -221,7 +221,7 @@ const Index = () => {
       <Header />
       
       {/* Scrollable Content Area - excludes fixed input bar */}
-      <main className="container max-w-2xl mx-auto px-4 py-2 flex-1 flex flex-col gap-2 overflow-y-auto pb-4" style={{ paddingBottom: 'calc(5rem + env(safe-area-inset-bottom))' }}>
+      <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto pb-4" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom))' }}>
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
