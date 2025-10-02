@@ -40,12 +40,12 @@
       "title": "Most Career Steals",
       "description": "Name the top 6 steal leaders in NBA history",
       "hints": [
-        { "rank": 1, "text": "Jazz legend, also all-time assist leader" },
-        { "rank": 2, "text": "Active guard, passed Kidd in 2024-25 season" },
-        { "rank": 3, "text": "Triple-double king, now third all-time" },
-        { "rank": 4, "text": "Bulls legend, 10× scoring champion" },
-        { "rank": 5, "text": "Nicknamed 'The Glove', defensive specialist" },
-        { "rank": 6, "text": "Active player, all-around defensive presence" }
+        { "rank": 1, "text": "Jazz point guard, also assist leader" },
+        { "rank": 2, "text": "Active defensive maestro, 'Point God'" },
+        { "rank": 3, "text": "Nets and Mavericks legend, great defender" },
+        { "rank": 4, "text": "Bulls legend, 3× Steals champion" },
+        { "rank": 5, "text": "Defensive specialist nicknamed 'The Glove'" },
+        { "rank": 6, "text": "76ers guard, 4× All-Defensive Team" }
       ]
     },
     {
