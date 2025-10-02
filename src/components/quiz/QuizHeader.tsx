@@ -67,7 +67,7 @@ const QuizHeader = ({
       {/* Mobile Layout: Title left, Shot Clock right */}
       <div className="md:hidden flex items-center justify-between gap-1.5">
         {/* Category + Question */}
-        <div className="space-y-0.5 text-left flex-1">
+        <div className="space-y-0.5 text-left flex-1 -mt-1 md:mt-0">
           <p className="text-xs font-bold text-foreground leading-tight capitalize">
             {title}
           </p>
