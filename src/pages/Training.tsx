@@ -12,6 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getQuizByIndex, getTotalQuizzes, type Quiz } from "@/utils/quizDate";
 
 const Training = () => {
+  const [displayedQuizNumber, setDisplayedQuizNumber] = useState(1);
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
   const [QUIZ_DATA, setQUIZ_DATA] = useState<Quiz>(getQuizByIndex(0));
   
@@ -49,25 +50,34 @@ const Training = () => {
     setShowInputError(false);
   };
 
-  const loadQuiz = (index: number) => {
+  const loadQuiz = (index: number, updateDisplay = true) => {
     const safeIndex = ((index % totalQuizzes) + totalQuizzes) % totalQuizzes;
     setCurrentQuizIndex(safeIndex);
     setQUIZ_DATA(getQuizByIndex(safeIndex));
+    if (updateDisplay) {
+      setDisplayedQuizNumber(safeIndex + 1);
+    }
     resetQuiz();
   };
 
   const handleRandomQuiz = () => {
     const randomIndex = Math.floor(Math.random() * totalQuizzes);
-    loadQuiz(randomIndex);
+    loadQuiz(randomIndex, false); // Don't update display number
     toast.success("Random quiz loaded!");
   };
 
   const handleNextQuiz = () => {
-    loadQuiz(currentQuizIndex + 1);
+    const nextIndex = currentQuizIndex + 1;
+    const safeIndex = ((nextIndex % totalQuizzes) + totalQuizzes) % totalQuizzes;
+    setDisplayedQuizNumber((prev) => (prev % totalQuizzes) + 1);
+    loadQuiz(nextIndex, false);
   };
 
   const handlePreviousQuiz = () => {
-    loadQuiz(currentQuizIndex - 1);
+    const prevIndex = currentQuizIndex - 1;
+    const safeIndex = ((prevIndex % totalQuizzes) + totalQuizzes) % totalQuizzes;
+    setDisplayedQuizNumber((prev) => prev === 1 ? totalQuizzes : prev - 1);
+    loadQuiz(prevIndex, false);
   };
 
   // No timer in training mode - unlimited time
@@ -245,7 +255,7 @@ const Training = () => {
             <div className="flex-1 text-center">
               <p className="text-sm text-muted-foreground">Unranked Training Mode</p>
               <div className="flex items-center justify-center gap-2">
-                <p className="font-semibold">Quiz {currentQuizIndex + 1}</p>
+                <p className="font-semibold">Quiz {displayedQuizNumber}</p>
                 {streak >= 2 && (
                   <div className="flex items-center gap-1 text-orange animate-bounce-in">
                     <Flame className="h-4 w-4" />
