@@ -2,18 +2,19 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Send, Lightbulb } from "lucide-react";
+import { Send, Lightbulb, Shuffle } from "lucide-react";
 
 interface GuessInputProps {
   onGuess: (guess: string) => void;
   onRequestHint?: () => void;
+  onShuffle?: () => void;
   disabled?: boolean;
   hintsRemaining?: number;
   currentHint?: string;
   showError?: boolean;
 }
 
-const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining = 0, currentHint, showError = false }: GuessInputProps) => {
+const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hintsRemaining = 0, currentHint, showError = false }: GuessInputProps) => {
   const [input, setInput] = useState("");
   const [isShaking, setIsShaking] = useState(false);
 
@@ -80,6 +81,18 @@ const GuessInput = ({ onGuess, onRequestHint, disabled = false, hintsRemaining =
           >
             <Lightbulb className="h-5 w-5" />
           </Button>
+          {onShuffle && (
+            <Button
+              onClick={onShuffle}
+              disabled={disabled}
+              variant="outline"
+              size="lg"
+              className="h-12 px-3 rounded-xl shrink-0 border-2"
+              title="Random quiz"
+            >
+              <Shuffle className="h-5 w-5" />
+            </Button>
+          )}
           <Button
             onClick={handleSubmit}
             disabled={disabled || !input.trim()}

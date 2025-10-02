@@ -7,10 +7,12 @@ import ResultsModal from "@/components/quiz/ResultsModal";
 import { Flame } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { getTodaysQuiz, type Quiz } from "@/utils/quizDate";
+import { getQuizByIndex, getTotalQuizzes, type Quiz } from "@/utils/quizDate";
 
 const Training = () => {
-  const QUIZ_DATA: Quiz = getTodaysQuiz();
+  const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
+  const [QUIZ_DATA, setQUIZ_DATA] = useState<Quiz>(getQuizByIndex(0));
+  const totalQuizzes = getTotalQuizzes();
   
   // State management for quiz game
   const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean; stat?: string }>>([
@@ -44,6 +46,14 @@ const Training = () => {
     setShowInputError(false);
   };
 
+  const handleRandomQuiz = () => {
+    const randomIndex = Math.floor(Math.random() * totalQuizzes);
+    setCurrentQuizIndex(randomIndex);
+    setQUIZ_DATA(getQuizByIndex(randomIndex));
+    resetQuiz();
+    toast.success("Random quiz loaded!");
+  };
+
   // No timer in training mode - unlimited time
 
   const handleTimeUp = () => {
@@ -66,11 +76,11 @@ const Training = () => {
         .filter(a => a.playerName)
         .map(a => a.rank);
 
-      // Call server-side verification for today's quiz
+      // Call server-side verification
       const { data, error } = await supabase.functions.invoke('verify-guess', {
         body: {
           guess,
-          quizIndex: undefined, // undefined = today's quiz
+          quizIndex: currentQuizIndex,
           alreadyAnswered
         }
       });
@@ -227,6 +237,7 @@ const Training = () => {
       <GuessInput
         onGuess={handleGuess}
         onRequestHint={handleRequestHint}
+        onShuffle={handleRandomQuiz}
         disabled={isCompleted}
         hintsRemaining={maxHints - hintsUsed}
         currentHint={currentHint}
