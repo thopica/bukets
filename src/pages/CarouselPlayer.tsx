@@ -85,7 +85,7 @@ const CarouselPlayer = () => {
             score={0}
             streak={0}
             hintsUsed={usedHints.length}
-            maxHints={6}
+            maxHints={2}
             correctCount={correctCount}
             totalCount={6}
           />
@@ -106,7 +106,7 @@ const CarouselPlayer = () => {
         onGuess={handleGuess}
         onShuffle={handleRandom}
         disabled={correctCount === 6}
-        hintsRemaining={6 - usedHints.length}
+        hintsRemaining={2 - usedHints.length}
         showError={showError}
       />
     </div>

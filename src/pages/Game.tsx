@@ -39,7 +39,7 @@ const Index = () => {
   const [lastGuessRank, setLastGuessRank] = useState<number | undefined>();
   const [showInputError, setShowInputError] = useState(false);
 
-  const maxHints = 3;
+  const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
 
   // Per-player timer countdown
