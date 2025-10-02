@@ -63,52 +63,6 @@ const QuizHeader = ({
           </span>
         </div>
 
-        {/* Two Compact Timers - Right */}
-        <div className="flex items-center gap-3">
-          {/* 24s Per-Player Timer */}
-          <div className="flex flex-col items-center">
-            <span className="text-xs text-muted-foreground mb-0.5">Player</span>
-            <div className={`px-3 py-1.5 rounded-lg border-2 transition-all ${
-              playerPercentage < 30
-                ? "border-danger bg-danger/10"
-                : playerPercentage < 50
-                ? "border-timerWarning bg-timerWarning/10"
-                : "border-success bg-success/10"
-            } ${isPlayerUrgent ? 'animate-pulse' : ''}`}>
-              <span className={`font-mono text-sm font-bold tabular-nums ${
-                playerPercentage < 30
-                  ? "text-danger"
-                  : playerPercentage < 50
-                  ? "text-timerWarning"
-                  : "text-success"
-              }`}>
-                {playerTimeRemaining}s
-              </span>
-            </div>
-          </div>
-
-          {/* 2:40 Overall Timer */}
-          <div className="flex flex-col items-center">
-            <span className="text-xs text-muted-foreground mb-0.5">Total</span>
-            <div className={`px-3 py-1.5 rounded-lg border-2 transition-all ${
-              percentage < 10
-                ? "border-danger bg-danger/10"
-                : percentage < 30
-                ? "border-timerWarning bg-timerWarning/10"
-                : "border-border bg-muted/30"
-            } ${isOverallUrgent ? 'animate-pulse' : ''}`}>
-              <span className={`font-mono text-sm font-bold tabular-nums ${
-                percentage < 10
-                  ? "text-danger"
-                  : percentage < 30
-                  ? "text-timerWarning"
-                  : "text-foreground"
-              }`}>
-                {formatTime(timeRemaining)}
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Category + Question */}
