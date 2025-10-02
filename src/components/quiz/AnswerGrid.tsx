@@ -94,6 +94,8 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
             key={answer.rank}
             ref={(el) => cardRefs.current[answer.rank] = el}
             className={`grid grid-cols-[auto_1fr_auto] items-center gap-1 md:gap-2 px-1 md:px-2 py-0.5 md:py-1.5 rounded-md md:rounded-lg transition-all duration-150 border md:border-2 ${
+              isRevealed ? '' : 'hidden md:grid'
+            } ${
               isCorrect
                 ? "bg-success/10 border-success animate-scale-pulse shadow-glow-green"
                 : isLastGuess && !isCorrect && isRevealed
