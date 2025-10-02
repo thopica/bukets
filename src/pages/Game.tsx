@@ -10,6 +10,30 @@ import { supabase } from "@/integrations/supabase/client";
 import { getTodaysQuiz, getQuizDate, type Quiz } from "@/utils/quizDate";
 
 const Index = () => {
+  // Visual Viewport API for mobile keyboard handling
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.visualViewport) return;
+
+    const inputBar = document.querySelector('.mobile-input-bar');
+    if (!inputBar) return;
+
+    const updatePosition = () => {
+      const vv = window.visualViewport!;
+      const bottomInset = Math.max(0, window.innerHeight - (vv.height + vv.offsetTop));
+      (inputBar as HTMLElement).style.transform = `translateY(-${bottomInset}px)`;
+    };
+
+    window.visualViewport.addEventListener('resize', updatePosition);
+    window.visualViewport.addEventListener('scroll', updatePosition);
+    window.addEventListener('orientationchange', updatePosition);
+    updatePosition();
+
+    return () => {
+      window.visualViewport?.removeEventListener('resize', updatePosition);
+      window.visualViewport?.removeEventListener('scroll', updatePosition);
+      window.removeEventListener('orientationchange', updatePosition);
+    };
+  }, []);
   // Get today's quiz metadata (no answers)
   const QUIZ_DATA: Quiz & { date: string } = {
     ...getTodaysQuiz(),
@@ -217,11 +241,11 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="h-[100dvh] bg-background flex flex-col animate-slide-up overflow-hidden">
+    <div className="h-[100dvh] supports-[height:100svh]:h-[100svh] bg-background flex flex-col animate-slide-up overflow-hidden">
       <Header />
       
       {/* Scrollable Content Area */}
-      <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto md:pb-28" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1.5 md:gap-2 overflow-y-auto md:pb-28 webkit-overflow-scrolling-touch" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 8rem)' }}>
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader

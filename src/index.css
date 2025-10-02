@@ -105,13 +105,19 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent page jumping on mobile keyboard */
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    min-height: 100vh;
   }
 
   /* Typography scale */
@@ -185,6 +191,11 @@ All colors MUST be HSL.
   .space-24 { @apply gap-6; }
   .space-32 { @apply gap-8; }
   .space-48 { @apply gap-12; }
+
+  /* Mobile webkit smooth scrolling */
+  .webkit-overflow-scrolling-touch {
+    -webkit-overflow-scrolling: touch;
+  }
 
   /* Confetti animation with CSS custom properties */
   @keyframes confetti-particle {
