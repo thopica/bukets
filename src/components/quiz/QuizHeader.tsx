@@ -67,8 +67,16 @@ const QuizHeader = ({
 
         {/* NBA Shot Clock - Right (only show when totalTime > 0) */}
         {showTimers && (
-          <div className="bg-black rounded-lg px-3 py-2.5 border-2 border-gray-800 shadow-2xl">
-            <div className="flex flex-col items-center gap-0.5">
+          <div className="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-sm px-3 py-2.5 border-4 border-gray-400 shadow-2xl"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
+              backgroundSize: '4px 4px'
+            }}
+          >
+            {/* Inner border effect */}
+            <div className="absolute inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
+            
+            <div className="flex flex-col items-center gap-0.5 relative z-10">
               {/* Total Time - Amber LED */}
               <div 
                 className={`font-shot-clock text-2xl font-normal tracking-[0.2em] ${
