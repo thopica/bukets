@@ -8,33 +8,33 @@ import basketballPlayer from "@/assets/basketball-player.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
 import type { User } from "@supabase/supabase-js";
-
 const Index = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
-
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
+    const {
+      data: {
+        subscription
       }
-    );
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
-
+    supabase.auth.getSession().then(({
+      data: {
+        session
+      }
+    }) => {
+      setUser(session?.user ?? null);
+    });
     return () => subscription.unsubscribe();
   }, []);
-
-  return (
-    <div className="min-h-screen bg-background flex flex-col animate-fade-in">
+  return <div className="min-h-screen bg-background flex flex-col animate-fade-in">
       <Header />
       
       <main className="container max-w-2xl mx-auto px-4 py-6 flex-1 flex flex-col justify-center gap-6">
-        {user ? (
-          // Logged-in view - Mobile Optimized
-          <>
+        {user ?
+      // Logged-in view - Mobile Optimized
+      <>
             <div className="text-center space-y-4">
               {/* Welcome Message - Larger */}
               <p className="text-base text-muted-foreground font-medium">
@@ -52,11 +52,7 @@ const Index = () => {
               </div>
 
               {/* CTA Button - 50% Smaller */}
-              <Button 
-                size="lg" 
-                onClick={() => navigate("/game")}
-                className="w-full h-12 rounded-2xl text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300"
-              >
+              <Button size="lg" onClick={() => navigate("/game")} className="w-full h-12 rounded-2xl text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300">
                 <span className="relative z-10 flex items-center gap-2">
                   <Clock className="h-5 w-5" />
                   <span>Start Today's Quiz</span>
@@ -69,15 +65,12 @@ const Index = () => {
                 2:47 left to play
               </p>
             </div>
-          </>
-        ) : (
-          // Not logged-in view
-          <>
+          </> :
+      // Not logged-in view
+      <>
             {/* Hero Section */}
             <div className="text-center space-y-4">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight tracking-tight">
-                For the real ones.
-              </h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight tracking-tight">Do you know Basketball?</h1>
               
               <div className="inline-flex items-center justify-center w-48 h-48">
                 <img src={basketballPlayer} alt="Basketball player dunking" className="w-full h-full object-contain" />
@@ -88,11 +81,7 @@ const Index = () => {
               </p>
             </div>
 
-            <Button 
-              size="lg" 
-              onClick={() => navigate("/game")}
-              className="w-full h-16 rounded-full text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300"
-            >
+            <Button size="lg" onClick={() => navigate("/game")} className="w-full h-16 rounded-full text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300">
               <span className="relative z-10 flex items-center gap-2">
                 <Clock className="h-6 w-6" />
                 Start Quiz
@@ -134,13 +123,10 @@ const Index = () => {
                 </p>
               </Card>
             </div>
-          </>
-        )}
+          </>}
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
