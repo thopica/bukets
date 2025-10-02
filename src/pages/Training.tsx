@@ -279,7 +279,6 @@ const Training = () => {
               size="icon"
               onClick={handleRandomQuiz}
               disabled={isCompleted}
-              className="bg-primary/10 hover:bg-primary/20"
             >
               <Shuffle className="h-4 w-4" />
             </Button>
