@@ -70,7 +70,7 @@ const QuizHeader = ({
             
             {/* 24 Second Shot Clock - Red LED */}
             <div 
-              className={`font-shot-clock text-5xl font-normal tracking-[0.1em] leading-none ${
+              className={`font-shot-clock text-5xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
                 isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
               }`}
               style={{
