@@ -37,18 +37,18 @@ const Index = () => {
       <>
             <div className="text-center space-y-4">
               {/* Welcome Message - Larger */}
-              <p className="text-base text-muted-foreground font-medium">
+              <p className="text-base font-medium text-slate-50">
                 Welcome back{user.email ? `, ${user.email.split('@')[0]}` : ''}
               </p>
 
               {/* Mini Streak Indicator */}
               <div className="space-y-2">
-                <p className="text-xs text-muted-foreground font-medium">Your current streak</p>
+                <p className="text-xs font-medium text-slate-50">Your current streak</p>
                 <div className="flex items-center justify-center gap-2">
                   <span className="text-3xl">🔥</span>
                   <span className="text-4xl font-bold text-foreground">3</span>
                 </div>
-                <p className="text-xs text-muted-foreground font-medium">Don't break your streak</p>
+                <p className="text-xs font-medium text-slate-50">Don't break your streak</p>
               </div>
 
               {/* CTA Button - 50% Smaller */}
@@ -61,9 +61,7 @@ const Index = () => {
               </Button>
 
               {/* Countdown Timer */}
-              <p className="text-sm text-muted-foreground font-medium">
-                2:47 left to play
-              </p>
+              
             </div>
           </> :
       // Not logged-in view
