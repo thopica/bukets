@@ -35,43 +35,48 @@ const Index = () => {
         {user ? (
           // Logged-in view
           <>
-            <div className="text-center space-y-3">
-              <div className="inline-flex items-center justify-center w-48 h-48">
+            <div className="text-center space-y-6">
+              {/* Welcome Message */}
+              <p className="text-sm text-muted-foreground font-medium">
+                Welcome back{user.email ? `, ${user.email.split('@')[0]}` : ''}
+              </p>
+
+              {/* Pixel Art Player - Smaller */}
+              <div className="inline-flex items-center justify-center w-32 h-32">
                 <img src={basketballPlayer} alt="Basketball player dunking" className="w-full h-full object-contain" />
               </div>
-              
-              <h1 className="text-4xl font-bold text-foreground leading-tight tracking-tight">
-                Drop Your Daily Buckets
-              </h1>
             </div>
 
+            {/* Massive CTA Button */}
             <Button 
               size="lg" 
               onClick={() => navigate("/game")}
-              className="w-full h-16 rounded-full text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300"
+              className="w-full h-20 rounded-2xl text-2xl font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                <Clock className="h-6 w-6" />
+              <span className="relative z-10 flex items-center gap-3">
+                <Clock className="h-8 w-8" />
                 Start Today's Quiz
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-hover to-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Button>
 
-            <div className="bg-gradient-to-br from-gold/20 to-orange/20 border-2 border-gold rounded-card p-6 text-center animate-fade-in">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-4xl animate-flicker">🔥</span>
-                <span className="text-5xl font-bold text-foreground">3</span>
+            {/* Streak Card - Prominent */}
+            <div className="bg-gradient-to-br from-gold/20 to-orange/20 border-2 border-gold rounded-card p-6 text-center animate-fade-in space-y-4">
+              {/* Current Streak */}
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-5xl animate-flicker">🔥</span>
+                <span className="text-6xl font-bold text-foreground">3</span>
               </div>
-              <p className="text-sm font-semibold text-foreground mb-3">Day Streak</p>
-              <p className="text-xs text-muted-foreground font-medium">Don't break the chain</p>
+              <p className="text-base font-semibold text-foreground">Day Streak</p>
               
-              <div className="flex justify-center gap-2 mt-4">
-                {[1, 2, 3, 0, 0, 0, 0].map((completed, index) => (
+              {/* Visual Calendar - Last 7 Days */}
+              <div className="flex justify-center gap-2">
+                {[1, 1, 1, 0, 0, 0, 0].map((completed, index) => (
                   <div
                     key={index}
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold transition-all ${
                       completed
-                        ? 'bg-success/20 border-2 border-success text-success'
+                        ? 'bg-success/20 border-2 border-success text-success scale-105'
                         : 'bg-muted border-2 border-border text-muted-foreground'
                     }`}
                   >
@@ -79,6 +84,20 @@ const Index = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Next Milestone */}
+              <div className="pt-3 border-t border-gold/30">
+                <p className="text-sm font-medium text-foreground mb-1">Next milestone: 7 days</p>
+                <div className="w-full bg-muted rounded-full h-2">
+                  <div className="bg-gradient-to-r from-gold to-orange h-2 rounded-full transition-all" style={{ width: '43%' }}></div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">4 more days to go</p>
+              </div>
+
+              {/* Motivational Copy */}
+              <p className="text-sm font-bold text-foreground pt-2">
+                Don't break the chain
+              </p>
             </div>
           </>
         ) : (
