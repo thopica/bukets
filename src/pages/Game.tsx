@@ -8,31 +8,15 @@ import ResultsModal from "@/components/quiz/ResultsModal";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-
-// Dummy data for v1
-const QUIZ_DATA = {
-  title: "All-Time Scoring Leaders",
-  description: "Name the top 6 scorers in NBA history (regular season)",
-  date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-  answers: [
-    { rank: 1, name: "LeBron James", aliases: ["lebron", "lbj", "king james"] },
-    { rank: 2, name: "Kareem Abdul-Jabbar", aliases: ["kareem", "abdul jabbar", "abdul-jabbar"] },
-    { rank: 3, name: "Karl Malone", aliases: ["malone", "mailman"] },
-    { rank: 4, name: "Kobe Bryant", aliases: ["kobe", "black mamba"] },
-    { rank: 5, name: "Michael Jordan", aliases: ["mj", "jordan", "goat"] },
-    { rank: 6, name: "Dirk Nowitzki", aliases: ["dirk", "nowitzki"] },
-  ],
-  hints: [
-    { rank: 1, text: "Active player, entered league in 2003, plays for Lakers" },
-    { rank: 2, text: "Legendary Lakers center, famous for skyhook" },
-    { rank: 3, text: "Power forward nicknamed 'The Mailman'" },
-    { rank: 4, text: "Lakers icon, wore #24 and #8" },
-    { rank: 5, text: "6× Finals MVP with Chicago Bulls" },
-    { rank: 6, text: "German forward, Dallas Mavericks legend" },
-  ],
-};
+import { getTodaysQuiz, getQuizDate, type Quiz } from "@/utils/quizDate";
 
 const Index = () => {
+  // Get today's quiz
+  const QUIZ_DATA: Quiz & { date: string } = {
+    ...getTodaysQuiz(),
+    date: getQuizDate()
+  };
+
   // State management for quiz game
   const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean }>>([
     { rank: 1 },
@@ -134,45 +118,26 @@ const Index = () => {
       .from('players_glossary' as any)
       .select('*') as any;
     
-    if (error) {
-      console.error('Error fetching glossary:', error);
-      // Fallback to hardcoded aliases if DB fails
-      for (const answer of QUIZ_DATA.answers) {
-        const isMatch = 
-          normalizeGuess(answer.name) === normalized ||
-          answer.aliases.some(alias => normalizeGuess(alias) === normalized);
-        
-        if (isMatch) {
-          const slot = userAnswers[answer.rank - 1];
-          if (slot?.playerName) {
-            return slot.isCorrect ? "ALREADY_CORRECT" : "ALREADY_REVEALED";
-          }
-          return answer;
-        }
-      }
-      return null;
-    }
-    
-    // Check against glossary data
+    // Check against quiz answers
     for (const answer of QUIZ_DATA.answers) {
-      const glossaryEntry = glossaryData?.find(
-        (entry: any) => normalizeGuess(entry.player_name) === normalizeGuess(answer.name)
-      );
-      
       let isMatch = normalizeGuess(answer.name) === normalized;
       
-      // Check nicknames, aliases, and common_misspellings from glossary
-      if (glossaryEntry && !isMatch) {
-        isMatch = [
-          ...(glossaryEntry.nicknames || []),
-          ...(glossaryEntry.aliases || []),
-          ...(glossaryEntry.common_misspellings || [])
-        ].some((variant: string) => normalizeGuess(variant) === normalized);
-      }
-      
-      // Fallback to hardcoded aliases if not in glossary
+      // Check JSON aliases
       if (!isMatch) {
         isMatch = answer.aliases.some(alias => normalizeGuess(alias) === normalized);
+      }
+      
+      // Check glossary variations if available
+      if (!isMatch && glossaryData && !error) {
+        const glossaryEntry = glossaryData.find(
+          (entry: any) => normalizeGuess(entry.player_name) === normalizeGuess(answer.name)
+        );
+        
+        if (glossaryEntry?.variations) {
+          isMatch = glossaryEntry.variations.some(
+            (variant: string) => normalizeGuess(variant) === normalized
+          );
+        }
       }
       
       if (isMatch) {
