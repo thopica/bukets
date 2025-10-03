@@ -237,7 +237,7 @@ const LeaderboardSkeleton = () => {
 const Leaderboard = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabValue>((searchParams.get('period') as TabValue) || "today");
-  const [countryFilter, setCountryFilter] = useState<string>("");
+  const [countryFilter, setCountryFilter] = useState<string>("all");
   const [isLoading, setIsLoading] = useState(true);
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
@@ -259,11 +259,11 @@ const Leaderboard = () => {
       setIsLoading(true);
       const params = new URLSearchParams({
         period: activeTab,
-        ...(countryFilter && { country_code: countryFilter })
+        ...(countryFilter !== "all" && { country_code: countryFilter })
       });
 
       const { data, error } = await supabase.functions.invoke('get-leaderboard', {
-        body: { period: activeTab, country_code: countryFilter || null, limit: 100 }
+        body: { period: activeTab, country_code: countryFilter === "all" ? null : countryFilter, limit: 100 }
       });
 
       if (error) throw error;
@@ -310,7 +310,7 @@ const Leaderboard = () => {
                 <SelectValue placeholder="All Countries" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Countries</SelectItem>
+                <SelectItem value="all">All Countries</SelectItem>
                 <SelectItem value="US">🇺🇸 United States</SelectItem>
                 <SelectItem value="CA">🇨🇦 Canada</SelectItem>
                 <SelectItem value="GB">🇬🇧 United Kingdom</SelectItem>
