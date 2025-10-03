@@ -58,12 +58,9 @@ const GuessInput = ({ onGuess, onRequestHint, onShuffle, disabled = false, hints
         {/* Hint Overlay - Slides up */}
         {currentHint && (
           <div className="p-1 md:p-3 bg-timerWarning/10 border md:border-2 border-timerWarning rounded-md md:rounded-xl animate-slide-up shadow-elevated">
-            <div className="flex items-start gap-1 md:gap-2">
-              <Lightbulb className="h-2 w-2 md:h-4 md:w-4 text-timerWarning flex-shrink-0 mt-0.5" />
-              <p className="text-[9px] md:text-xs text-foreground flex-1">
-                <span className="font-semibold">{hintsUsed === 1 ? "First Hint" : "Second Hint"}:</span> {currentHint}
-              </p>
-            </div>
+            <p className="text-[9px] md:text-xs text-foreground">
+              <span className="font-semibold">{hintsUsed === 1 ? "First Hint" : "Second Hint"}:</span> {currentHint}
+            </p>
           </div>
         )}
         
