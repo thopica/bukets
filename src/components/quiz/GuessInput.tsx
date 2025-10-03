@@ -63,7 +63,7 @@ const GuessInput = ({
         {currentHint && <div className="p-1 md:p-3 bg-timerWarning/10 border md:border-2 border-timerWarning rounded-md md:rounded-xl animate-slide-up shadow-elevated">
             <div className="flex items-start gap-1 md:gap-2">
               
-              <p className="text-[9px] md:text-xs text-foreground flex-1">
+              <p className="text-sm md:text-base text-foreground flex-1">
                 {currentHint}
               </p>
             </div>
