@@ -29,12 +29,12 @@ function getScoreMessage(totalScore: number): ScoreMessage {
 
 export default function AlreadyCompleted() {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
   const [scoreData, setScoreData] = useState<any>(null);
   const [countdown, setCountdown] = useState('');
 
   useEffect(() => {
     checkCompletion();
+    updateCountdown(); // Initial update
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -57,8 +57,6 @@ export default function AlreadyCompleted() {
       setScoreData(data);
     } catch (error) {
       console.error('Failed to check completion:', error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -75,21 +73,7 @@ export default function AlreadyCompleted() {
     setCountdown(`${hours}h ${minutes}m`);
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-primary/5">
-        <Header />
-        <main className="flex-1 flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (!scoreData) return null;
-
-  const scoreMessage = getScoreMessage(scoreData.total_score);
+  const scoreMessage = scoreData ? getScoreMessage(scoreData.total_score) : { title: "Outstanding!", message: "The league scouts are watching!", color: "text-green-400" };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-primary/5">
@@ -113,8 +97,8 @@ export default function AlreadyCompleted() {
           {/* Score Info */}
           <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
             <div className="space-y-2">
-              <p className="text-lg">Your score today: <span className="font-bold text-primary text-2xl">{scoreData.total_score} points</span></p>
-              <p className="text-muted-foreground">You're ranked <span className="font-semibold text-foreground">#{scoreData.rank}</span></p>
+              <p className="text-lg">Your score today: <span className="font-bold text-primary text-2xl">{scoreData?.total_score || 0} points</span></p>
+              {scoreData?.rank && <p className="text-muted-foreground">You're ranked <span className="font-semibold text-foreground">#{scoreData.rank}</span></p>}
             </div>
           </Card>
 
