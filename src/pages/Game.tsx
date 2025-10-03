@@ -486,22 +486,22 @@ const Index = () => {
               hintsUsed={hintsUsed}
             />
           </div>
-        </main>
-      </div>
 
-      {/* Input Section - Desktop: sticky at bottom */}
-      <div className="hidden md:block">
-        <GuessInput
-          onGuess={handleGuess}
-          onRequestHint={handleRequestHint}
-          disabled={isCompleted}
-          hintsRemaining={maxHints - hintsUsed}
-          currentHint={currentHint}
-          showError={showInputError}
-          showSuccess={showInputSuccess}
-          hintsUsed={hintsUsed}
-          onFocusChange={setIsInputFocused}
-        />
+          {/* Input Section - Desktop: inside content area */}
+          <div className="shrink-0 pb-4">
+            <GuessInput
+              onGuess={handleGuess}
+              onRequestHint={handleRequestHint}
+              disabled={isCompleted}
+              hintsRemaining={maxHints - hintsUsed}
+              currentHint={currentHint}
+              showError={showInputError}
+              showSuccess={showInputSuccess}
+              hintsUsed={hintsUsed}
+              onFocusChange={setIsInputFocused}
+            />
+          </div>
+        </main>
       </div>
 
       <ResultsModal
