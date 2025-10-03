@@ -251,10 +251,11 @@ const Index = () => {
       setHintsUsed((prev) => prev + 1);
       setScore((prev) => Math.max(0, prev - 1));
       
-      // Clear hint after 10 seconds
+      // Clear hint - first hint after 10 seconds, second hint after 4 seconds
+      const displayDuration = hintsUsed === 0 ? 10000 : 4000;
       setTimeout(() => {
         setCurrentHint(undefined);
-      }, 10000);
+      }, displayDuration);
     }
   };
 
