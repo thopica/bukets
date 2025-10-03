@@ -81,8 +81,12 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
     }
   }, [lastGuessRank, answers, hintsUsed]);
 
+  const hasRevealedCards = answers.some(a => !!a.playerName);
+
   return (
-    <div className="border border-white rounded-lg md:rounded-xl p-0.5 md:p-2">
+    <div className={`rounded-lg md:rounded-xl p-0.5 md:p-2 md:border md:border-white ${
+      hasRevealedCards ? 'border border-white' : ''
+    }`}>
       <div className="grid grid-cols-1 gap-0.5 md:gap-1.5">
       {answers.map((answer) => {
         const isRevealed = !!answer.playerName;
