@@ -64,32 +64,33 @@ const QuizHeader = ({
         </div>
       </div>
 
-      {/* Shot Clock - Top Right Corner - Mobile only */}
-      {showTimers && (
-        <div className="md:hidden absolute top-1.5 right-3 z-10">
-          <div className="relative w-7 h-7 bg-black rounded-sm border border-gray-400 shadow-lg flex items-center justify-center"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
-              backgroundSize: '3px 3px'
-            }}
-          >
-            <div className="absolute inset-0.5 border border-gray-700 rounded-sm pointer-events-none"></div>
-            <div 
-              className={`font-shot-clock text-lg font-normal tracking-[0.05em] leading-none ${
-                isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
-              }`}
+      {/* Mobile Layout */}
+      <div className="md:hidden space-y-3">
+        {/* Shot Clock - Centered */}
+        {showTimers && (
+          <div className="flex justify-center">
+            <div className="relative w-7 h-7 bg-black rounded-sm border border-gray-400 shadow-lg flex items-center justify-center"
               style={{
-                textShadow: '0 0 8px rgba(239, 68, 68, 0.9), 0 0 15px rgba(239, 68, 68, 0.7)'
+                backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
+                backgroundSize: '3px 3px'
               }}
             >
-              {playerTimeRemaining}
+              <div className="absolute inset-0.5 border border-gray-700 rounded-sm pointer-events-none"></div>
+              <div 
+                className={`font-shot-clock text-lg font-normal tracking-[0.05em] leading-none ${
+                  isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
+                }`}
+                style={{
+                  textShadow: '0 0 8px rgba(239, 68, 68, 0.9), 0 0 15px rgba(239, 68, 68, 0.7)'
+                }}
+              >
+                {playerTimeRemaining}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Mobile Layout: Title */}
-      <div className="md:hidden">
+        {/* Title */}
         <div className="space-y-0.5 text-left">
           <p className="text-sm font-bold text-foreground leading-tight capitalize">
             {title}
