@@ -273,12 +273,11 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="bg-background animate-slide-up grid" style={{ minHeight: 'calc(100 * var(--vh))', gridTemplateRows: '1fr auto' }}>
-      <div className="flex flex-col overflow-hidden">
-        <Header hideOnMobile={isInputFocused && !isCompleted} />
-        
-        {/* Scrollable Content Area */}
-        <main className={`container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300 ${isInputFocused && !isCompleted ? 'md:mt-0 -mt-14' : 'mt-0'}`}>
+    <div className="bg-background animate-slide-up flex flex-col" style={{ height: 'calc(100 * var(--vh))' }}>
+      <Header hideOnMobile={isInputFocused && !isCompleted} />
+      
+      {/* Scrollable Content Area */}
+      <main className={`container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300 ${isInputFocused && !isCompleted ? 'md:mt-0 -mt-14' : 'mt-0'}`}>
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
@@ -301,7 +300,7 @@ const Index = () => {
         </div>
 
         {/* Answer Grid */}
-        <div className="md:flex-1 md:min-h-0 flex flex-col gap-0">
+        <div className="flex-1 min-h-0 flex flex-col gap-0 mb-2">
           <AnswerGrid 
             answers={userAnswers} 
             lastGuessRank={lastGuessRank}
@@ -309,22 +308,21 @@ const Index = () => {
             hintsUsed={hintsUsed}
           />
         </div>
+      </main>
 
-        {/* Input Section - Mobile: below answer grid */}
-        <div className="md:hidden">
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
-            disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
-            showError={showInputError}
-            showSuccess={showInputSuccess}
-            hintsUsed={hintsUsed}
-            onFocusChange={setIsInputFocused}
-          />
-        </div>
-        </main>
+      {/* Input Section - Mobile: fixed at bottom */}
+      <div className="md:hidden shrink-0">
+        <GuessInput
+          onGuess={handleGuess}
+          onRequestHint={handleRequestHint}
+          disabled={isCompleted}
+          hintsRemaining={maxHints - hintsUsed}
+          currentHint={currentHint}
+          showError={showInputError}
+          showSuccess={showInputSuccess}
+          hintsUsed={hintsUsed}
+          onFocusChange={setIsInputFocused}
+        />
       </div>
 
       {/* Input Section - Desktop: sticky at bottom */}
