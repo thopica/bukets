@@ -54,7 +54,6 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
     { path: "/game", label: "Today's Quiz" },
     { path: "/carousel", label: "Playground" },
     { path: "/leaderboard", label: "Leaderboard" },
-    { path: "/archive", label: "Archive" },
     { path: "/how-to-play", label: "How to Play" },
   ];
 

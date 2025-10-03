@@ -9,7 +9,6 @@ import CarouselMenu from "./pages/CarouselMenu";
 import CarouselSingle from "./pages/CarouselSingle";
 import CarouselPlayer from "./pages/CarouselPlayer";
 import Leaderboard from "./pages/Leaderboard";
-import Archive from "./pages/Archive";
 import HowToPlay from "./pages/HowToPlay";
 import Account from "./pages/Account";
 import Auth from "./pages/Auth";
@@ -32,7 +31,6 @@ const App = () => (
           <Route path="/carousel/single" element={<CarouselSingle />} />
           <Route path="/carousel/player" element={<CarouselPlayer />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/archive" element={<Archive />} />
           <Route path="/results" element={<Results />} />
           <Route path="/already-completed" element={<AlreadyCompleted />} />
           <Route path="/how-to-play" element={<HowToPlay />} />
