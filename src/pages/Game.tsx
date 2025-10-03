@@ -241,7 +241,7 @@ const Index = () => {
   const handleRequestHint = () => {
     if (hintsUsed >= maxHints) return;
     
-    const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect);
+    const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect && !a.isRevealed);
     if (unansweredIndex !== -1) {
       const hint = QUIZ_DATA.hints[unansweredIndex];
       const parts = (hint?.text || '').split(',').map((p) => p.trim()).filter(Boolean);
