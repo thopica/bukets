@@ -12,14 +12,39 @@ import type { User } from "@supabase/supabase-js";
 import { useGameScore } from "@/hooks/useGameScore";
 
 const Index = () => {
-  // Dynamic vh fix for mobile
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+  // Dynamic vh fix for mobile + Visual Viewport API for keyboard
   useEffect(() => {
     const setVH = () => {
       document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
     };
     setVH();
     window.addEventListener('resize', setVH);
-    return () => window.removeEventListener('resize', setVH);
+
+    // Visual Viewport API for keyboard handling on mobile
+    const handleViewportResize = () => {
+      if (window.visualViewport) {
+        const viewport = window.visualViewport;
+        const viewportHeight = viewport.height;
+        const windowHeight = window.innerHeight;
+        const diff = windowHeight - viewportHeight;
+        setKeyboardHeight(diff > 0 ? diff : 0);
+      }
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleViewportResize);
+      window.visualViewport.addEventListener('scroll', handleViewportResize);
+    }
+
+    return () => {
+      window.removeEventListener('resize', setVH);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleViewportResize);
+        window.visualViewport.removeEventListener('scroll', handleViewportResize);
+      }
+    };
   }, []);
 
   // Get today's quiz metadata (no answers)
@@ -337,13 +362,13 @@ const Index = () => {
 
   return (
     <div className="bg-background animate-slide-up md:grid" style={{ minHeight: 'calc(100 * var(--vh))', gridTemplateRows: '1fr auto' }}>
-      {/* Mobile Layout: Fixed container with scrollable content */}
+      {/* Mobile Layout: Fixed header, scrollable content, fixed input */}
       <div className="md:hidden fixed inset-0 flex flex-col" style={{ height: 'calc(100 * var(--vh))' }}>
-        <Header hideOnMobile={isInputFocused && !isCompleted} />
+        <Header hideOnMobile={false} />
         
         {/* Scrollable Content Area - Mobile */}
-        <div className={`flex-1 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300 ${isInputFocused && !isCompleted ? '-mt-14' : 'mt-0'}`}>
-          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1">
+        <div className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch">
+          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1 pb-20">
             {/* Question Header */}
             <div className="shrink-0">
               <QuizHeader
@@ -374,22 +399,28 @@ const Index = () => {
                 hintsUsed={hintsUsed}
               />
             </div>
-
-            {/* Input Section - Below answer grid on Mobile */}
-            <div className="pb-2">
-              <GuessInput
-                onGuess={handleGuess}
-                onRequestHint={handleRequestHint}
-                disabled={isCompleted}
-                hintsRemaining={maxHints - hintsUsed}
-                currentHint={currentHint}
-                showError={showInputError}
-                showSuccess={showInputSuccess}
-                hintsUsed={hintsUsed}
-                onFocusChange={setIsInputFocused}
-              />
-            </div>
           </div>
+        </div>
+
+        {/* Fixed Input Section - Mobile */}
+        <div 
+          className="fixed left-0 right-0 z-[1000]"
+          style={{ 
+            bottom: `${keyboardHeight}px`,
+            transition: 'bottom 0.2s ease-out'
+          }}
+        >
+          <GuessInput
+            onGuess={handleGuess}
+            onRequestHint={handleRequestHint}
+            disabled={isCompleted}
+            hintsRemaining={maxHints - hintsUsed}
+            currentHint={currentHint}
+            showError={showInputError}
+            showSuccess={showInputSuccess}
+            hintsUsed={hintsUsed}
+            onFocusChange={setIsInputFocused}
+          />
         </div>
       </div>
 

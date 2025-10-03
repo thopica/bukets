@@ -65,7 +65,7 @@ const GuessInput = ({
   const handleBlur = () => {
     onFocusChange?.(false);
   };
-  return <div className="bg-background p-1 md:p-3 md:border-t md:border-t-2 border-border md:sticky md:bottom-0 md:shadow-floating z-[1000]" style={{
+  return <div className="bg-background p-1 md:p-3 md:border-t md:border-t-2 border-border md:sticky md:bottom-0 md:shadow-floating z-[1000] shadow-lg" style={{
     paddingBottom: `max(0.25rem, env(safe-area-inset-bottom))`
   }}>
       <div className="space-y-1 md:space-y-2 md:container md:max-w-5xl md:mx-auto">
