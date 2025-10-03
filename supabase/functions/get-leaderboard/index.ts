@@ -6,12 +6,12 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Skill level score ranges for bot generation
+// Skill level score ranges for bot generation (Today only - max 30 points per day)
 const SKILL_RANGES: Record<string, { min: number; max: number }> = {
-  elite: { min: 90, max: 102 },
-  advanced: { min: 70, max: 89 },
-  intermediate: { min: 50, max: 69 },
-  beginner: { min: 30, max: 49 },
+  elite: { min: 27, max: 30 },
+  advanced: { min: 22, max: 26 },
+  intermediate: { min: 16, max: 21 },
+  beginner: { min: 10, max: 15 },
 };
 
 function generateBotScore(skillLevel: string): number {
