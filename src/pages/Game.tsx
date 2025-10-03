@@ -12,39 +12,34 @@ import type { User } from "@supabase/supabase-js";
 import { useGameScore } from "@/hooks/useGameScore";
 
 const Index = () => {
-  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [initialHeight, setInitialHeight] = useState(window.innerHeight);
 
-  // Dynamic vh fix for mobile + Visual Viewport API for keyboard
+  // Lock initial viewport height for mobile shell - don't update on keyboard
   useEffect(() => {
+    const height = window.innerHeight;
+    setInitialHeight(height);
+    document.documentElement.style.setProperty('--initial-vh', `${height * 0.01}px`);
+    
+    // Standard vh for desktop
     const setVH = () => {
       document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
     };
     setVH();
-    window.addEventListener('resize', setVH);
-
-    // Visual Viewport API for keyboard handling on mobile
-    const handleViewportResize = () => {
-      if (window.visualViewport) {
-        const viewport = window.visualViewport;
-        const viewportHeight = viewport.height;
-        const windowHeight = window.innerHeight;
-        const diff = windowHeight - viewportHeight;
-        setKeyboardHeight(diff > 0 ? diff : 0);
+    
+    // Only update on actual orientation/window resize, not keyboard
+    const handleResize = () => {
+      setVH(); // Always update --vh for desktop
+      
+      // Only update initial-vh if it's a significant change (orientation, window resize)
+      if (Math.abs(window.innerHeight - height) > 100) {
+        const newHeight = window.innerHeight;
+        setInitialHeight(newHeight);
+        document.documentElement.style.setProperty('--initial-vh', `${newHeight * 0.01}px`);
       }
     };
 
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', handleViewportResize);
-      window.visualViewport.addEventListener('scroll', handleViewportResize);
-    }
-
-    return () => {
-      window.removeEventListener('resize', setVH);
-      if (window.visualViewport) {
-        window.visualViewport.removeEventListener('resize', handleViewportResize);
-        window.visualViewport.removeEventListener('scroll', handleViewportResize);
-      }
-    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Get today's quiz metadata (no answers)
@@ -361,14 +356,16 @@ const Index = () => {
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   return (
-    <div className="bg-background animate-slide-up md:grid" style={{ minHeight: 'calc(100 * var(--vh))', gridTemplateRows: '1fr auto' }}>
-      {/* Mobile Layout: Fixed header, scrollable content, fixed input */}
-      <div className="md:hidden fixed inset-0 flex flex-col" style={{ height: 'calc(100 * var(--vh))' }}>
-        <Header hideOnMobile={false} />
+    <div className="bg-background animate-slide-up md:grid" style={{ minHeight: 'calc(100 * var(--initial-vh, 1vh))', gridTemplateRows: '1fr auto' }}>
+      {/* Mobile Layout: Fixed shell that doesn't move with keyboard */}
+      <div className="md:hidden fixed inset-0 flex flex-col" style={{ height: `${initialHeight}px` }}>
+        <div className="shrink-0">
+          <Header hideOnMobile={false} />
+        </div>
         
         {/* Scrollable Content Area - Mobile */}
-        <div className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch">
-          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1 pb-20">
+        <div className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch overscroll-none">
+          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1 pb-24">
             {/* Question Header */}
             <div className="shrink-0">
               <QuizHeader
@@ -419,7 +416,7 @@ const Index = () => {
       </div>
 
       {/* Desktop Layout: Original grid structure */}
-      <div className="hidden md:flex md:flex-col md:overflow-hidden">
+      <div className="hidden md:flex md:flex-col md:overflow-hidden" style={{ minHeight: 'calc(100 * var(--vh))' }}>
         <Header hideOnMobile={isInputFocused && !isCompleted} />
         
         {/* Scrollable Content Area - Desktop */}
