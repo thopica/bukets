@@ -399,7 +399,7 @@ const Index = () => {
         
         {/* Scrollable Content Area - Mobile */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch overscroll-none">
-          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1" style={{ paddingBottom: `${INPUT_BAR_HEIGHT + 16}px` }}>
+          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1 pb-4">
 
             {/* Question Header */}
             <div className="shrink-0">
@@ -432,25 +432,27 @@ const Index = () => {
               />
             </div>
 
+            {/* Input bar directly under answer slots - Mobile */}
+            <div className="mt-1">
+              <GuessInput
+                onGuess={handleGuess}
+                onRequestHint={handleRequestHint}
+                disabled={isCompleted}
+                hintsRemaining={maxHints - hintsUsed}
+                currentHint={currentHint}
+                showError={showInputError}
+                showSuccess={showInputSuccess}
+                hintsUsed={hintsUsed}
+                onFocusChange={setIsInputFocused}
+              />
+            </div>
+
             {/* Spacer for fixed input overlay */}
             <div aria-hidden="true" style={{ height: `${INPUT_BAR_HEIGHT}px` }} />
           </div>
         </div>
 
-        {/* Fixed input overlay on mobile - stays above keyboard */}
-        <div className="md:hidden fixed left-0 right-0 z-[1000]" style={{ bottom: `calc(${keyboardHeight}px + env(safe-area-inset-bottom))` }}>
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
-            disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
-            showError={showInputError}
-            showSuccess={showInputSuccess}
-            hintsUsed={hintsUsed}
-            onFocusChange={setIsInputFocused}
-          />
-        </div>
+        {/* Removed fixed input overlay - now in content flow */}
       </div>
 
       {/* Desktop Layout: Original grid structure */}
