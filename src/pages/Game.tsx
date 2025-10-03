@@ -329,38 +329,21 @@ const Index = () => {
             hintsUsed={hintsUsed}
           />
         </div>
-
-        {/* Input Section - Below player cards */}
-        <div className="mt-2">
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
-            disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
-            showError={showInputError}
-            showSuccess={showInputSuccess}
-            hintsUsed={hintsUsed}
-            onFocusChange={setIsInputFocused}
-          />
-        </div>
         </main>
       </div>
 
-      {/* Desktop version kept separate for different behavior */}
-      <div className="hidden md:block">
-        <GuessInput
-          onGuess={handleGuess}
-          onRequestHint={handleRequestHint}
-          disabled={isCompleted}
-          hintsRemaining={maxHints - hintsUsed}
-          currentHint={currentHint}
-          showError={showInputError}
-          showSuccess={showInputSuccess}
-          hintsUsed={hintsUsed}
-          onFocusChange={setIsInputFocused}
-        />
-      </div>
+      {/* Input bar at bottom */}
+      <GuessInput
+        onGuess={handleGuess}
+        onRequestHint={handleRequestHint}
+        disabled={isCompleted}
+        hintsRemaining={maxHints - hintsUsed}
+        currentHint={currentHint}
+        showError={showInputError}
+        showSuccess={showInputSuccess}
+        hintsUsed={hintsUsed}
+        onFocusChange={setIsInputFocused}
+      />
 
       <ResultsModal
         open={showResults}
