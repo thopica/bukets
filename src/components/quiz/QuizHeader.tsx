@@ -64,10 +64,33 @@ const QuizHeader = ({
         </div>
       </div>
 
-      {/* Mobile Layout: Title on left, Shot Clock on right */}
-      <div className="md:hidden flex items-start justify-between gap-2">
-        {/* Category + Question - Left side */}
-        <div className="space-y-0.5 text-left flex-1">
+      {/* Shot Clock - Top Right Corner - Mobile only */}
+      {showTimers && (
+        <div className="md:hidden absolute top-1.5 right-1.5 z-10">
+          <div className="relative w-7 h-7 bg-black rounded-sm border border-gray-400 shadow-lg flex items-center justify-center"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
+              backgroundSize: '3px 3px'
+            }}
+          >
+            <div className="absolute inset-0.5 border border-gray-700 rounded-sm pointer-events-none"></div>
+            <div 
+              className={`font-shot-clock text-lg font-normal tracking-[0.05em] leading-none ${
+                isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
+              }`}
+              style={{
+                textShadow: '0 0 8px rgba(239, 68, 68, 0.9), 0 0 15px rgba(239, 68, 68, 0.7)'
+              }}
+            >
+              {playerTimeRemaining}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Layout: Title */}
+      <div className="md:hidden">
+        <div className="space-y-0.5 text-left">
           <p className="text-sm font-bold text-foreground leading-tight capitalize">
             {title}
           </p>
@@ -75,30 +98,6 @@ const QuizHeader = ({
             Name the top {totalCount} scorers in NBA history
           </h1>
         </div>
-
-        {/* Shot Clock - Right side, smaller */}
-        {showTimers && (
-          <div className="flex items-center justify-center shrink-0">
-            <div className="relative w-7 h-7 bg-black rounded-sm border border-gray-400 shadow-lg flex items-center justify-center"
-              style={{
-                backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
-                backgroundSize: '3px 3px'
-              }}
-            >
-              <div className="absolute inset-0.5 border border-gray-700 rounded-sm pointer-events-none"></div>
-              <div 
-                className={`font-shot-clock text-lg font-normal tracking-[0.05em] leading-none ${
-                  isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
-                }`}
-                style={{
-                  textShadow: '0 0 8px rgba(239, 68, 68, 0.9), 0 0 15px rgba(239, 68, 68, 0.7)'
-                }}
-              >
-                {playerTimeRemaining}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Desktop Layout: Centered Shot Clock and Title */}
