@@ -14,6 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
+      bot_pool: {
+        Row: {
+          country_code: string
+          created_at: string | null
+          id: string
+          is_active_bot: boolean | null
+          skill_level: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          country_code: string
+          created_at?: string | null
+          id?: string
+          is_active_bot?: boolean | null
+          skill_level: string
+          user_id: string
+          username: string
+        }
+        Update: {
+          country_code?: string
+          created_at?: string | null
+          id?: string
+          is_active_bot?: boolean | null
+          skill_level?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      daily_scores: {
+        Row: {
+          completed_at: string | null
+          correct_guesses: number
+          hints_used: number
+          id: string
+          quiz_date: string
+          quiz_index: number
+          time_used: number
+          total_score: number
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          correct_guesses: number
+          hints_used: number
+          id?: string
+          quiz_date: string
+          quiz_index: number
+          time_used: number
+          total_score: number
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          correct_guesses?: number
+          hints_used?: number
+          id?: string
+          quiz_date?: string
+          quiz_index?: number
+          time_used?: number
+          total_score?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       game_answers: {
         Row: {
           created_at: string
@@ -97,31 +163,37 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          bot_skill_level: string | null
           country_code: string | null
           created_at: string
           display_name: string | null
           email: string | null
           id: string
+          is_bot: boolean | null
           updated_at: string
           user_id: string
         }
         Insert: {
           avatar_url?: string | null
+          bot_skill_level?: string | null
           country_code?: string | null
           created_at?: string
           display_name?: string | null
           email?: string | null
           id?: string
+          is_bot?: boolean | null
           updated_at?: string
           user_id: string
         }
         Update: {
           avatar_url?: string | null
+          bot_skill_level?: string | null
           country_code?: string | null
           created_at?: string
           display_name?: string | null
           email?: string | null
           id?: string
+          is_bot?: boolean | null
           updated_at?: string
           user_id?: string
         }
@@ -159,6 +231,30 @@ export type Database = {
           total_games_played?: number
           total_score?: number
           updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_streaks: {
+        Row: {
+          current_streak: number | null
+          last_play_date: string | null
+          longest_streak: number | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          current_streak?: number | null
+          last_play_date?: string | null
+          longest_streak?: number | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          current_streak?: number | null
+          last_play_date?: string | null
+          longest_streak?: number | null
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []

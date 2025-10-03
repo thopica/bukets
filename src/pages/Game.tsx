@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
@@ -10,8 +11,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { getTodaysQuiz, getQuizDate, getQuizDateISO, getTodaysQuizIndex, type Quiz } from "@/utils/quizDate";
 import type { User } from "@supabase/supabase-js";
 import { useGameScore } from "@/hooks/useGameScore";
+import { toast } from "sonner";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [initialHeight, setInitialHeight] = useState(window.innerHeight);
 
   // Lock initial viewport height for mobile shell - don't update on keyboard
@@ -114,18 +117,38 @@ const Index = () => {
   const totalQuizTime = 160; // 2:40 minutes in seconds
   const { saveGameResult } = useGameScore();
 
-  // Check authentication state
+  // Check authentication state and quiz completion
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const checkAccess = async () => {
+      // Check auth
+      const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
-    });
+
+      // Check if user already completed today's quiz
+      try {
+        const today = new Date().toISOString().split('T')[0];
+        const { data: completionCheck } = await supabase.functions.invoke('check-daily-completion', {
+          body: { quiz_date: today }
+        });
+
+        if (completionCheck?.completed) {
+          // User already completed today, redirect
+          navigate('/already-completed');
+          return;
+        }
+      } catch (error) {
+        console.error('Failed to check completion:', error);
+      }
+    };
+
+    checkAccess();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [navigate]);
 
   // Initialize answer timings for all ranks
   useEffect(() => {
@@ -306,11 +329,21 @@ const Index = () => {
       const allCorrect = newAnswers.every((a) => a.isCorrect);
       if (allCorrect) {
         setIsCompleted(true);
-        // Save game results for logged-in users
-        if (user) {
-          saveGameResults(newAnswers);
-        }
-        setTimeout(() => setShowResults(true), 1000);
+        
+        // Navigate to results page with score data
+        const correctCount = newAnswers.filter((a) => a.isCorrect).length;
+        const totalHints = newAnswers.reduce((sum) => sum, hintsUsed);
+        
+        navigate('/results', {
+          state: {
+            total_score: score,
+            correct_guesses: correctCount,
+            hints_used: totalHints,
+            time_used: 160 - overallTimeRemaining,
+            quiz_date: getQuizDateISO(),
+            quiz_index: getTodaysQuizIndex()
+          }
+        });
       }
     } else {
       setLastGuessRank(undefined);

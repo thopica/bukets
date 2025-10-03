@@ -13,6 +13,8 @@ import Archive from "./pages/Archive";
 import HowToPlay from "./pages/HowToPlay";
 import Account from "./pages/Account";
 import Auth from "./pages/Auth";
+import Results from "./pages/Results";
+import AlreadyCompleted from "./pages/AlreadyCompleted";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +33,8 @@ const App = () => (
           <Route path="/carousel/player" element={<CarouselPlayer />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/archive" element={<Archive />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/already-completed" element={<AlreadyCompleted />} />
           <Route path="/how-to-play" element={<HowToPlay />} />
           <Route path="/account" element={<Account />} />
           <Route path="/auth" element={<Auth />} />
