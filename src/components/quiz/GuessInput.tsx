@@ -30,6 +30,22 @@ const GuessInput = ({
   const [input, setInput] = useState("");
   const [isShaking, setIsShaking] = useState(false);
   const [showSuccessBorder, setShowSuccessBorder] = useState(false);
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
+  useEffect(() => {
+    const vv = (window as any).visualViewport;
+    if (!vv) return;
+    const update = () => {
+      const offset = Math.max(0, (window.innerHeight - vv.height - vv.offsetTop));
+      setKeyboardOffset(offset);
+    };
+    vv.addEventListener('resize', update);
+    vv.addEventListener('scroll', update);
+    update();
+    return () => {
+      vv.removeEventListener('resize', update);
+      vv.removeEventListener('scroll', update);
+    };
+  }, []);
   useEffect(() => {
     if (showError) {
       setIsShaking(true);
@@ -65,9 +81,14 @@ const GuessInput = ({
   const handleBlur = () => {
     onFocusChange?.(false);
   };
-  return <div className="bg-background p-1 md:p-3 md:border-t md:border-t-2 border-border md:sticky md:bottom-0 md:shadow-floating z-[1000]" style={{
-    paddingBottom: `max(0.25rem, env(safe-area-inset-bottom))`
-  }}>
+  return <div
+      className="fixed bottom-0 left-0 right-0 bg-background p-1 md:p-3 border-t border-t-2 border-border shadow-floating z-[1000] md:sticky md:bottom-0"
+      style={{
+        paddingBottom: `max(0.25rem, env(safe-area-inset-bottom))`,
+        bottom: keyboardOffset,
+        transform: 'translateZ(0)'
+      }}
+    >
       <div className="space-y-1 md:space-y-2 md:container md:max-w-5xl md:mx-auto">
         {/* Hint Overlay - Slides up */}
         {currentHint && <div className="p-1 md:p-3 bg-timerWarning/10 border md:border-2 border-timerWarning rounded-md md:rounded-xl animate-slide-up shadow-elevated">
