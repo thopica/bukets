@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
@@ -42,6 +42,37 @@ const Index = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Visual Viewport: track keyboard height and keep scroll anchored
+  useEffect(() => {
+    const onVVUpdate = () => {
+      const vv = window.visualViewport;
+      if (!vv) return;
+      const diff = window.innerHeight - vv.height;
+      setKeyboardHeight(diff > 0 ? diff : 0);
+
+      // Preserve scroll position of the content area to avoid jumps
+      const el = scrollRef.current;
+      if (el) {
+        const current = el.scrollTop;
+        requestAnimationFrame(() => {
+          el.scrollTop = current;
+        });
+      }
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', onVVUpdate);
+      window.visualViewport.addEventListener('scroll', onVVUpdate);
+    }
+
+    return () => {
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', onVVUpdate);
+        window.visualViewport.removeEventListener('scroll', onVVUpdate);
+      }
+    };
+  }, []);
+
   // Get today's quiz metadata (no answers)
   const QUIZ_DATA: Quiz & { date: string } = {
     ...getTodaysQuiz(),
@@ -75,6 +106,9 @@ const Index = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [answerTimings, setAnswerTimings] = useState<Map<number, { startTime: number; endTime?: number }>>(new Map());
   const [quizStartTime] = useState(Date.now());
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const INPUT_BAR_HEIGHT = 72;
 
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
@@ -364,8 +398,9 @@ const Index = () => {
         </div>
         
         {/* Scrollable Content Area - Mobile */}
-        <div className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch overscroll-none">
-          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1 pb-24">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch overscroll-none">
+          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1" style={{ paddingBottom: `${INPUT_BAR_HEIGHT + 16}px` }}>
+
             {/* Question Header */}
             <div className="shrink-0">
               <QuizHeader
@@ -397,21 +432,24 @@ const Index = () => {
               />
             </div>
 
-            {/* Input Section - Below player cards */}
-            <div className="pb-2">
-              <GuessInput
-                onGuess={handleGuess}
-                onRequestHint={handleRequestHint}
-                disabled={isCompleted}
-                hintsRemaining={maxHints - hintsUsed}
-                currentHint={currentHint}
-                showError={showInputError}
-                showSuccess={showInputSuccess}
-                hintsUsed={hintsUsed}
-                onFocusChange={setIsInputFocused}
-              />
-            </div>
+            {/* Spacer for fixed input overlay */}
+            <div aria-hidden="true" style={{ height: `${INPUT_BAR_HEIGHT}px` }} />
           </div>
+        </div>
+
+        {/* Fixed input overlay on mobile - stays above keyboard */}
+        <div className="md:hidden fixed left-0 right-0 z-[1000]" style={{ bottom: `calc(${keyboardHeight}px + env(safe-area-inset-bottom))` }}>
+          <GuessInput
+            onGuess={handleGuess}
+            onRequestHint={handleRequestHint}
+            disabled={isCompleted}
+            hintsRemaining={maxHints - hintsUsed}
+            currentHint={currentHint}
+            showError={showInputError}
+            showSuccess={showInputSuccess}
+            hintsUsed={hintsUsed}
+            onFocusChange={setIsInputFocused}
+          />
         </div>
       </div>
 
