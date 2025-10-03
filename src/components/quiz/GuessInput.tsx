@@ -68,7 +68,7 @@ const GuessInput = ({
   return <div className="bg-background p-1 md:p-3 md:border-t md:border-t-2 border-border md:sticky md:bottom-0 md:shadow-floating z-[1000]" style={{
     paddingBottom: `max(0.25rem, env(safe-area-inset-bottom))`
   }}>
-      <div className="space-y-1 md:space-y-2 md:container md:max-w-5xl md:mx-auto">
+      <div className="space-y-1 md:space-y-2 md:container md:max-w-2xl md:mx-auto">
         {/* Hint Overlay - Slides up */}
         {currentHint && <div className="p-1 md:p-3 bg-timerWarning/10 border md:border-2 border-timerWarning rounded-md md:rounded-xl animate-slide-up shadow-elevated">
             <div className="flex items-start gap-1 md:gap-2">
