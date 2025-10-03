@@ -100,26 +100,32 @@ serve(async (req) => {
     // Get user profiles and streaks
     const userIds = Array.from(userScores.keys());
     
-    const { data: profiles } = await supabaseClient
+    // Fetch profiles with optional country filter
+    let profilesQuery = supabaseClient
       .from('profiles')
       .select('user_id, display_name, country_code, is_bot')
       .in('user_id', userIds);
+    
+    if (countryCode) {
+      profilesQuery = profilesQuery.eq('country_code', countryCode);
+    }
+    
+    const { data: profiles } = await profilesQuery;
 
     const { data: streaks } = await supabaseClient
       .from('user_streaks')
       .select('user_id, current_streak')
       .in('user_id', userIds);
 
-    // Combine real player data
-    const realPlayers = userIds.map(userId => {
-      const profile = profiles?.find(p => p.user_id === userId);
-      const streak = streaks?.find(s => s.user_id === userId);
+    // Build real players list (only includes users matching country filter)
+    const realPlayers = (profiles || []).map(profile => {
+      const streak = streaks?.find(s => s.user_id === profile.user_id);
       
       return {
-        user_id: userId,
-        username: profile?.display_name || 'Anonymous',
-        country_code: profile?.country_code || 'US',
-        total_score: userScores.get(userId),
+        user_id: profile.user_id,
+        username: profile.display_name || 'Anonymous',
+        country_code: profile.country_code || 'US',
+        total_score: userScores.get(profile.user_id) || 0,
         current_streak: streak?.current_streak || 0,
         is_bot: false
       };
@@ -127,37 +133,38 @@ serve(async (req) => {
 
     console.log('Real players:', realPlayers.length);
 
-    // Fetch active bots
-    let botQuery = supabaseClient
-      .from('bot_pool')
-      .select('id, username, country_code, skill_level')
-      .eq('is_active_bot', true);
+    // Bots only appear in TODAY leaderboard (not historical periods)
+    let botPlayers: any[] = [];
+    
+    if (period === 'today') {
+      let botQuery = supabaseClient
+        .from('bot_pool')
+        .select('id, username, country_code, skill_level')
+        .eq('is_active_bot', true);
 
-    if (countryCode) {
-      botQuery = botQuery.eq('country_code', countryCode);
+      if (countryCode) {
+        botQuery = botQuery.eq('country_code', countryCode);
+      }
+
+      const { data: bots } = await botQuery;
+
+      console.log('Bots fetched for today:', bots?.length || 0);
+
+      // Generate bot entries with random scores for today
+      botPlayers = (bots || []).map(bot => ({
+        user_id: bot.id,
+        username: bot.username,
+        country_code: bot.country_code,
+        total_score: generateBotScore(bot.skill_level),
+        current_streak: generateBotStreak(bot.skill_level),
+        is_bot: true
+      }));
+    } else {
+      console.log('Historical period - no bots included');
     }
 
-    const { data: bots } = await botQuery;
-
-    console.log('Bots fetched:', bots?.length || 0);
-
-    // Generate bot entries with random scores
-    const botPlayers = (bots || []).map(bot => ({
-      user_id: bot.id,
-      username: bot.username,
-      country_code: bot.country_code,
-      total_score: generateBotScore(bot.skill_level),
-      current_streak: generateBotStreak(bot.skill_level),
-      is_bot: true
-    }));
-
-    // Combine real players and bots
+    // Combine real players and bots (both already filtered by country)
     let combined = [...realPlayers, ...botPlayers];
-
-    // Filter by country if specified (already filtered bots, now filter real players)
-    if (countryCode) {
-      combined = combined.filter(u => u.country_code === countryCode);
-    }
 
     // Sort by score and limit
     combined.sort((a, b) => b.total_score - a.total_score);
