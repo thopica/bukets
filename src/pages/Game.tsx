@@ -399,28 +399,22 @@ const Index = () => {
                 hintsUsed={hintsUsed}
               />
             </div>
-          </div>
-        </div>
 
-        {/* Fixed Input Section - Mobile */}
-        <div 
-          className="fixed left-0 right-0 z-[1000]"
-          style={{ 
-            bottom: `${keyboardHeight}px`,
-            transition: 'bottom 0.2s ease-out'
-          }}
-        >
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
-            disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
-            showError={showInputError}
-            showSuccess={showInputSuccess}
-            hintsUsed={hintsUsed}
-            onFocusChange={setIsInputFocused}
-          />
+            {/* Input Section - Below player cards */}
+            <div className="pb-2">
+              <GuessInput
+                onGuess={handleGuess}
+                onRequestHint={handleRequestHint}
+                disabled={isCompleted}
+                hintsRemaining={maxHints - hintsUsed}
+                currentHint={currentHint}
+                showError={showInputError}
+                showSuccess={showInputSuccess}
+                hintsUsed={hintsUsed}
+                onFocusChange={setIsInputFocused}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
