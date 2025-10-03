@@ -303,7 +303,7 @@ const Index = () => {
             </div>
 
             {/* Answer Grid */}
-            <div className="flex flex-col gap-0 pb-2">
+            <div className="flex flex-col gap-0">
               <AnswerGrid 
                 answers={userAnswers} 
                 lastGuessRank={lastGuessRank}
@@ -311,22 +311,22 @@ const Index = () => {
                 hintsUsed={hintsUsed}
               />
             </div>
-          </div>
-        </div>
 
-        {/* Input Section - Fixed at bottom on Mobile */}
-        <div className="shrink-0">
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
-            disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
-            showError={showInputError}
-            showSuccess={showInputSuccess}
-            hintsUsed={hintsUsed}
-            onFocusChange={setIsInputFocused}
-          />
+            {/* Input Section - Below answer grid on Mobile */}
+            <div className="pb-2">
+              <GuessInput
+                onGuess={handleGuess}
+                onRequestHint={handleRequestHint}
+                disabled={isCompleted}
+                hintsRemaining={maxHints - hintsUsed}
+                currentHint={currentHint}
+                showError={showInputError}
+                showSuccess={showInputSuccess}
+                hintsUsed={hintsUsed}
+                onFocusChange={setIsInputFocused}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
