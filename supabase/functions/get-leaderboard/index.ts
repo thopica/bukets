@@ -36,10 +36,11 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_ANON_KEY') ?? ''
     );
 
-    const url = new URL(req.url);
-    const period = url.searchParams.get('period') || 'today';
-    const countryCode = url.searchParams.get('country_code');
-    const limit = parseInt(url.searchParams.get('limit') || '100');
+    // Read from request body
+    const body = await req.json();
+    const period = body.period || 'today';
+    const countryCode = body.country_code;
+    const limit = parseInt(body.limit || '100');
 
     // Calculate date filter
     const today = new Date().toISOString().split('T')[0];
