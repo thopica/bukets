@@ -46,3 +46,7 @@ export const getQuizDate = (): string => {
     year: 'numeric' 
   });
 };
+
+export const getQuizDateISO = (): string => {
+  return new Date().toISOString().split('T')[0];
+};

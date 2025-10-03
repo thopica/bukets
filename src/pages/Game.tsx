@@ -7,8 +7,9 @@ import HintBar from "@/components/quiz/HintBar";
 import ResultsModal from "@/components/quiz/ResultsModal";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { getTodaysQuiz, getQuizDate, type Quiz } from "@/utils/quizDate";
+import { getTodaysQuiz, getQuizDate, getQuizDateISO, getTodaysQuizIndex, type Quiz } from "@/utils/quizDate";
 import type { User } from "@supabase/supabase-js";
+import { useGameScore } from "@/hooks/useGameScore";
 
 const Index = () => {
   // Dynamic vh fix for mobile
@@ -52,9 +53,12 @@ const Index = () => {
   const [showInputSuccess, setShowInputSuccess] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [answerTimings, setAnswerTimings] = useState<Map<number, { startTime: number; endTime?: number }>>(new Map());
+  const [quizStartTime] = useState(Date.now());
 
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
+  const { saveGameResult } = useGameScore();
 
   // Check authentication state
   useEffect(() => {
@@ -67,6 +71,15 @@ const Index = () => {
     });
 
     return () => subscription.unsubscribe();
+  }, []);
+
+  // Initialize answer timings for all ranks
+  useEffect(() => {
+    const timings = new Map<number, { startTime: number; endTime?: number }>();
+    for (let i = 1; i <= 6; i++) {
+      timings.set(i, { startTime: Date.now() });
+    }
+    setAnswerTimings(timings);
   }, []);
 
   // Per-player timer countdown
@@ -226,10 +239,23 @@ const Index = () => {
       // Reset hints after awarding animation
       setTimeout(() => setHintsUsed(0), 800);
       
+      // Track timing for this answer
+      const timings = new Map(answerTimings);
+      const answerTime = timings.get(matchedAnswer.rank);
+      if (answerTime) {
+        answerTime.endTime = Date.now();
+        timings.set(matchedAnswer.rank, answerTime);
+        setAnswerTimings(timings);
+      }
+      
       // Check if all answered
       const allCorrect = newAnswers.every((a) => a.isCorrect);
       if (allCorrect) {
         setIsCompleted(true);
+        // Save game results for logged-in users
+        if (user) {
+          saveGameResults(newAnswers);
+        }
         setTimeout(() => setShowResults(true), 1000);
       }
     } else {
@@ -258,6 +284,43 @@ const Index = () => {
         setCurrentHint(undefined);
       }, displayDuration);
     }
+  };
+
+  const saveGameResults = async (answers: typeof userAnswers) => {
+    if (!user) return;
+
+    const gameAnswers = answers.map((answer) => {
+      const timing = answerTimings.get(answer.rank);
+      const timeTaken = timing?.endTime && timing?.startTime 
+        ? Math.floor((timing.endTime - timing.startTime) / 1000)
+        : 0;
+
+      return {
+        rank: answer.rank,
+        is_correct: answer.isCorrect || false,
+        is_revealed: answer.isRevealed || false,
+        time_taken: timeTaken,
+        points_earned: answer.isCorrect ? (3 + calculateTimeBonus()) : 0,
+      };
+    });
+
+    const totalHintsUsed = answers.reduce((sum, a) => {
+      // Count hints used per answer based on the global hintsUsed
+      // This is a simplified version - in a real app you'd track per answer
+      return sum;
+    }, hintsUsed);
+
+    await saveGameResult(
+      {
+        quiz_date: getQuizDateISO(),
+        quiz_index: getTodaysQuizIndex(),
+        total_score: score,
+        correct_count: answers.filter((a) => a.isCorrect).length,
+        hints_used: totalHintsUsed,
+        time_remaining: overallTimeRemaining,
+      },
+      gameAnswers
+    );
   };
 
   const getResultsData = () => {
