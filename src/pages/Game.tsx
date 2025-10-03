@@ -299,7 +299,17 @@ const Index = () => {
           />
         </div>
 
-        {/* Input Section - Mobile: above answer grid */}
+        {/* Answer Grid */}
+        <div className="md:flex-1 md:min-h-0 flex flex-col gap-0">
+          <AnswerGrid 
+            answers={userAnswers} 
+            lastGuessRank={lastGuessRank}
+            disabled={isCompleted}
+            hintsUsed={hintsUsed}
+          />
+        </div>
+
+        {/* Input Section - Mobile: below answer grid */}
         <div className="md:hidden">
           <GuessInput
             onGuess={handleGuess}
@@ -309,16 +319,6 @@ const Index = () => {
             currentHint={currentHint}
             showError={showInputError}
             showSuccess={showInputSuccess}
-            hintsUsed={hintsUsed}
-          />
-        </div>
-
-        {/* Answer Grid */}
-        <div className="md:flex-1 md:min-h-0 flex flex-col gap-0">
-          <AnswerGrid 
-            answers={userAnswers} 
-            lastGuessRank={lastGuessRank}
-            disabled={isCompleted}
             hintsUsed={hintsUsed}
           />
         </div>
