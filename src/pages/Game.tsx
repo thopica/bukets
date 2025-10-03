@@ -51,6 +51,7 @@ const Index = () => {
   const [showInputError, setShowInputError] = useState(false);
   const [showInputSuccess, setShowInputSuccess] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
@@ -274,10 +275,10 @@ const Index = () => {
   return (
     <div className="bg-background animate-slide-up grid" style={{ minHeight: 'calc(100 * var(--vh))', gridTemplateRows: '1fr auto' }}>
       <div className="flex flex-col overflow-hidden">
-        <Header />
+        <Header hideOnMobile={isInputFocused && !isCompleted} />
         
         {/* Scrollable Content Area */}
-        <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch">
+        <main className={`container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300 ${isInputFocused && !isCompleted ? 'md:mt-0 -mt-14' : 'mt-0'}`}>
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
@@ -320,6 +321,7 @@ const Index = () => {
             showError={showInputError}
             showSuccess={showInputSuccess}
             hintsUsed={hintsUsed}
+            onFocusChange={setIsInputFocused}
           />
         </div>
         </main>
@@ -336,6 +338,7 @@ const Index = () => {
           showError={showInputError}
           showSuccess={showInputSuccess}
           hintsUsed={hintsUsed}
+          onFocusChange={setIsInputFocused}
         />
       </div>
 
