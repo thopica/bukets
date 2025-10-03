@@ -28,7 +28,7 @@ const Index = () => {
   };
 
   // State management for quiz game
-  const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean; stat?: string }>>([
+  const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean; isRevealed?: boolean; stat?: string }>>([
     { rank: 1 },
     { rank: 2 },
     { rank: 3 },
@@ -105,14 +105,40 @@ const Index = () => {
     return () => clearInterval(overallTimer);
   }, [overallTimeRemaining, isCompleted]);
 
-  const handleTimeUp = () => {
+  const handleTimeUp = async () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
     if (unansweredIndex !== -1) {
-      // Time ran out - we need to fetch the correct answer from server
-      // For now, just mark as incomplete
+      // Reveal the answer for the first unanswered player
+      const rank = unansweredIndex + 1;
+      
+      try {
+        // Call server to get the correct answer for this rank
+        const { data, error } = await supabase.functions.invoke('verify-guess', {
+          body: {
+            revealRank: rank,
+            quizIndex: undefined
+          }
+        });
+
+        if (!error && data?.answer) {
+          const newAnswers = [...userAnswers];
+          newAnswers[unansweredIndex] = {
+            rank: data.answer.rank,
+            playerName: data.answer.name,
+            isCorrect: false,
+            isRevealed: true,
+            stat: data.answer.stat,
+          };
+          setUserAnswers(newAnswers);
+          setLastGuessRank(data.answer.rank);
+        }
+      } catch (error) {
+        console.error('Error revealing answer:', error);
+      }
+      
       setTimeRemaining(24);
       setCurrentHint(undefined);
-      setHintsUsed(0); // reset hints for next player
+      setHintsUsed(0);
     }
   };
 

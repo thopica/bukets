@@ -87,6 +87,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
       {answers.map((answer) => {
         const isRevealed = !!answer.playerName;
         const isCorrect = answer.isCorrect;
+        const isTimedOut = answer.isRevealed && !answer.isCorrect;
         const isLastGuess = lastGuessRank === answer.rank;
 
         return (
@@ -98,6 +99,8 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0 }:
             } ${
               isCorrect
                 ? "bg-success/10 border-success animate-scale-pulse shadow-glow-green"
+                : isTimedOut
+                ? "bg-timerWarning/5 border-timerWarning/50 opacity-60"
                 : isLastGuess && !isCorrect && isRevealed
                 ? "bg-danger/10 border-danger animate-shake-horizontal"
                 : isRevealed

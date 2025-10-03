@@ -171,9 +171,37 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { guess, quizIndex, alreadyAnswered } = await req.json();
+    const { guess, quizIndex, alreadyAnswered, revealRank } = await req.json();
     
-    console.log('Verifying guess:', { guess, quizIndex, alreadyAnsweredCount: alreadyAnswered?.length });
+    console.log('Verifying guess:', { guess, quizIndex, alreadyAnsweredCount: alreadyAnswered?.length, revealRank });
+
+    // Handle reveal request (when timer runs out)
+    if (revealRank !== undefined) {
+      const targetQuizIndex = quizIndex !== undefined ? quizIndex : getTodaysQuizIndex();
+      const quiz = quizzes[targetQuizIndex];
+
+      if (!quiz) {
+        return new Response(
+          JSON.stringify({ error: 'Quiz not found' }),
+          { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+
+      const answer = quiz.answers.find(a => a.rank === revealRank);
+      if (answer) {
+        return new Response(
+          JSON.stringify({
+            correct: true,
+            answer: {
+              rank: answer.rank,
+              name: answer.name,
+              stat: answer.stat
+            }
+          }),
+          { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+    }
 
     if (!guess || typeof guess !== 'string') {
       return new Response(
