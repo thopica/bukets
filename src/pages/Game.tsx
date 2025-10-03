@@ -330,29 +330,24 @@ const Index = () => {
           />
         </div>
 
-        {/* Mobile GuessInput moved to fixed footer to avoid keyboard pushing content */}
+        {/* Input Section - Below player cards */}
+        <div className="mt-2">
+          <GuessInput
+            onGuess={handleGuess}
+            onRequestHint={handleRequestHint}
+            disabled={isCompleted}
+            hintsRemaining={maxHints - hintsUsed}
+            currentHint={currentHint}
+            showError={showInputError}
+            showSuccess={showInputSuccess}
+            hintsUsed={hintsUsed}
+            onFocusChange={setIsInputFocused}
+          />
+        </div>
         </main>
       </div>
 
-      {/* Input Section - Mobile: fixed above keyboard */}
-      <div
-        className="md:hidden fixed inset-x-0 z-50"
-        style={{ bottom: `calc(env(safe-area-inset-bottom) + ${keyboardOffset}px)` }}
-      >
-        <GuessInput
-          onGuess={handleGuess}
-          onRequestHint={handleRequestHint}
-          disabled={isCompleted}
-          hintsRemaining={maxHints - hintsUsed}
-          currentHint={currentHint}
-          showError={showInputError}
-          showSuccess={showInputSuccess}
-          hintsUsed={hintsUsed}
-          onFocusChange={setIsInputFocused}
-        />
-      </div>
-
-      {/* Input Section - Desktop: sticky at bottom */}
+      {/* Desktop version kept separate for different behavior */}
       <div className="hidden md:block">
         <GuessInput
           onGuess={handleGuess}
