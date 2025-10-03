@@ -7,14 +7,17 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Trophy, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { COUNTRIES } from "@/utils/countries";
 
 const Auth = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [countryCode, setCountryCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [showVerificationMessage, setShowVerificationMessage] = useState(false);
   const [pendingVerificationEmail, setPendingVerificationEmail] = useState("");
@@ -39,21 +42,33 @@ const Auth = () => {
       const redirectUrl = `${window.location.origin}/`;
 
       if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
+        const { data: authData, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             emailRedirectTo: redirectUrl,
+            data: {
+              country_code: countryCode || null,
+            },
           },
         });
 
         if (error) throw error;
+
+        // Update profile with country code if user was created
+        if (authData.user) {
+          await supabase
+            .from('profiles')
+            .update({ country_code: countryCode || null })
+            .eq('user_id', authData.user.id);
+        }
 
         // Show verification message instead of navigating
         setShowVerificationMessage(true);
         setPendingVerificationEmail(email);
         setEmail("");
         setPassword("");
+        setCountryCode("");
       } else {
         const { error } = await supabase.auth.signInWithPassword({
           email,
@@ -270,13 +285,28 @@ const Auth = () => {
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleEmailAuth(true)}
                       disabled={loading}
                     />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="country">Country (Optional)</Label>
+                    <Select value={countryCode} onValueChange={setCountryCode} disabled={loading}>
+                      <SelectTrigger id="country">
+                        <SelectValue placeholder="Select your country" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {COUNTRIES.map((country) => (
+                          <SelectItem key={country.code} value={country.code}>
+                            {country.flag} {country.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                   <Button
                     className="w-full"
                     onClick={() => handleEmailAuth(true)}
+                    onKeyDown={(e) => e.key === "Enter" && handleEmailAuth(true)}
                     disabled={loading}
                   >
                     {loading ? "Creating account..." : "Create Account"}
