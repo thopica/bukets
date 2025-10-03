@@ -64,7 +64,7 @@ const GuessInput = ({
             <div className="flex items-start gap-1 md:gap-2">
               
               <p className="text-[9px] md:text-xs text-foreground flex-1">
-                <span className="font-semibold">{hintsUsed === 1 ? "First Hint" : "Second Hint"}:</span> {currentHint}
+                {currentHint}
               </p>
             </div>
           </div>}
