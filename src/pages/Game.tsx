@@ -52,6 +52,7 @@ const Index = () => {
   const [showInputSuccess, setShowInputSuccess] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
 
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
@@ -68,6 +69,25 @@ const Index = () => {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  // Detect mobile keyboard using VisualViewport and offset input bar
+  useEffect(() => {
+    const vv = (window as any).visualViewport as any;
+    if (!vv) return;
+
+    const updateOffset = () => {
+      const offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      setKeyboardOffset(isInputFocused ? offset : 0);
+    };
+
+    updateOffset();
+    vv.addEventListener('resize', updateOffset);
+    vv.addEventListener('scroll', updateOffset);
+    return () => {
+      vv.removeEventListener('resize', updateOffset);
+      vv.removeEventListener('scroll', updateOffset);
+    };
+  }, [isInputFocused]);
 
   // Per-player timer countdown
   useEffect(() => {
@@ -278,7 +298,7 @@ const Index = () => {
         <Header hideOnMobile={isInputFocused && !isCompleted} />
         
         {/* Scrollable Content Area */}
-        <main className={`container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300 ${isInputFocused && !isCompleted ? 'md:mt-0 -mt-14' : 'mt-0'}`}>
+        <main className={`container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 pb-24 md:pb-2 flex-1 flex flex-col ${isInputFocused ? 'gap-0' : 'gap-1'} md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300 ${isInputFocused && !isCompleted ? 'md:mt-0 -mt-14' : 'mt-0'}`}>
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
@@ -310,21 +330,26 @@ const Index = () => {
           />
         </div>
 
-        {/* Input Section - Mobile: below answer grid */}
-        <div className="md:hidden">
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
-            disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
-            showError={showInputError}
-            showSuccess={showInputSuccess}
-            hintsUsed={hintsUsed}
-            onFocusChange={setIsInputFocused}
-          />
-        </div>
+        {/* Mobile GuessInput moved to fixed footer to avoid keyboard pushing content */}
         </main>
+      </div>
+
+      {/* Input Section - Mobile: fixed above keyboard */}
+      <div
+        className="md:hidden fixed inset-x-0 z-50"
+        style={{ bottom: `calc(env(safe-area-inset-bottom) + ${keyboardOffset}px)` }}
+      >
+        <GuessInput
+          onGuess={handleGuess}
+          onRequestHint={handleRequestHint}
+          disabled={isCompleted}
+          hintsRemaining={maxHints - hintsUsed}
+          currentHint={currentHint}
+          showError={showInputError}
+          showSuccess={showInputSuccess}
+          hintsUsed={hintsUsed}
+          onFocusChange={setIsInputFocused}
+        />
       </div>
 
       {/* Input Section - Desktop: sticky at bottom */}
