@@ -66,7 +66,7 @@ const QuizHeader = ({
 
       {/* Shot Clock - Top Right Corner - Mobile only */}
       {showTimers && (
-        <div className="md:hidden absolute top-1.5 right-1.5 z-10">
+        <div className="md:hidden absolute top-1.5 right-3 z-10">
           <div className="relative w-7 h-7 bg-black rounded-sm border border-gray-400 shadow-lg flex items-center justify-center"
             style={{
               backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
