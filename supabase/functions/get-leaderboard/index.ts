@@ -133,10 +133,11 @@ serve(async (req) => {
 
     console.log('Real players:', realPlayers.length);
 
-    // Bots only appear in TODAY leaderboard (not historical periods)
+    // Fetch bots and their scores
     let botPlayers: any[] = [];
     
     if (period === 'today') {
+      // For TODAY: Generate random scores dynamically
       let botQuery = supabaseClient
         .from('bot_pool')
         .select('id, username, country_code, skill_level')
@@ -147,10 +148,8 @@ serve(async (req) => {
       }
 
       const { data: bots } = await botQuery;
-
       console.log('Bots fetched for today:', bots?.length || 0);
 
-      // Generate bot entries with random scores for today
       botPlayers = (bots || []).map(bot => ({
         user_id: bot.id,
         username: bot.username,
@@ -160,7 +159,56 @@ serve(async (req) => {
         is_bot: true
       }));
     } else {
-      console.log('Historical period - no bots included');
+      // For historical periods: Query bot_daily_scores
+      let botScoresQuery = supabaseClient
+        .from('bot_daily_scores')
+        .select('bot_id, total_score, quiz_date');
+
+      // Apply same date filter as real players
+      if (dateFilter) {
+        const parts = dateFilter.split('.');
+        if (parts[1] === 'eq') {
+          botScoresQuery = botScoresQuery.eq('quiz_date', parts[2]);
+        } else if (parts[1] === 'gte') {
+          botScoresQuery = botScoresQuery.gte('quiz_date', parts[2]);
+        }
+      }
+
+      const { data: botScores } = await botScoresQuery;
+
+      // Aggregate bot scores by bot_id
+      const botScoresMap = new Map<string, number>();
+      botScores?.forEach(score => {
+        const current = botScoresMap.get(score.bot_id) || 0;
+        botScoresMap.set(score.bot_id, current + score.total_score);
+      });
+
+      // Get bot profiles
+      const botIds = Array.from(botScoresMap.keys());
+      if (botIds.length > 0) {
+        let botProfilesQuery = supabaseClient
+          .from('bot_pool')
+          .select('id, username, country_code, skill_level')
+          .in('id', botIds)
+          .eq('is_active_bot', true);
+
+        if (countryCode) {
+          botProfilesQuery = botProfilesQuery.eq('country_code', countryCode);
+        }
+
+        const { data: botProfiles } = await botProfilesQuery;
+
+        botPlayers = (botProfiles || []).map(bot => ({
+          user_id: bot.id,
+          username: bot.username,
+          country_code: bot.country_code,
+          total_score: botScoresMap.get(bot.id) || 0,
+          current_streak: generateBotStreak(bot.skill_level),
+          is_bot: true
+        }));
+
+        console.log('Historical bots included:', botPlayers.length);
+      }
     }
 
     // Combine real players and bots (both already filtered by country)

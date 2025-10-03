@@ -14,6 +14,38 @@ export type Database = {
   }
   public: {
     Tables: {
+      bot_daily_scores: {
+        Row: {
+          bot_id: string
+          created_at: string | null
+          id: string
+          quiz_date: string
+          total_score: number
+        }
+        Insert: {
+          bot_id: string
+          created_at?: string | null
+          id?: string
+          quiz_date: string
+          total_score: number
+        }
+        Update: {
+          bot_id?: string
+          created_at?: string | null
+          id?: string
+          quiz_date?: string
+          total_score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bot_daily_scores_bot_id_fkey"
+            columns: ["bot_id"]
+            isOneToOne: false
+            referencedRelation: "bot_pool"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       bot_pool: {
         Row: {
           country_code: string
@@ -148,7 +180,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_bot_score: {
+        Args: { skill_level: string }
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never
