@@ -298,7 +298,7 @@ const Index = () => {
         <Header hideOnMobile={isInputFocused && !isCompleted} />
         
         {/* Scrollable Content Area */}
-        <main className={`container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 pb-32 md:pb-2 flex-1 flex flex-col ${isInputFocused ? 'gap-1' : 'gap-1'} md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300`}>
+        <main className={`container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 pb-24 md:pb-2 flex-1 flex flex-col ${isInputFocused ? 'gap-0' : 'gap-1'} md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300 ${isInputFocused && !isCompleted ? 'md:mt-0 -mt-14' : 'mt-0'}`}>
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
@@ -329,28 +329,25 @@ const Index = () => {
             hintsUsed={hintsUsed}
           />
         </div>
+
+        {/* Input Section - Below player cards */}
+        <div className="mt-2">
+          <GuessInput
+            onGuess={handleGuess}
+            onRequestHint={handleRequestHint}
+            disabled={isCompleted}
+            hintsRemaining={maxHints - hintsUsed}
+            currentHint={currentHint}
+            showError={showInputError}
+            showSuccess={showInputSuccess}
+            hintsUsed={hintsUsed}
+            onFocusChange={setIsInputFocused}
+          />
+        </div>
         </main>
       </div>
 
-      {/* Input Section - Mobile: fixed at bottom above keyboard */}
-      <div
-        className="md:hidden fixed inset-x-0 z-50 transition-all duration-200"
-        style={{ bottom: `${keyboardOffset}px` }}
-      >
-        <GuessInput
-          onGuess={handleGuess}
-          onRequestHint={handleRequestHint}
-          disabled={isCompleted}
-          hintsRemaining={maxHints - hintsUsed}
-          currentHint={currentHint}
-          showError={showInputError}
-          showSuccess={showInputSuccess}
-          hintsUsed={hintsUsed}
-          onFocusChange={setIsInputFocused}
-        />
-      </div>
-
-      {/* Input Section - Desktop: sticky at bottom */}
+      {/* Desktop version kept separate for different behavior */}
       <div className="hidden md:block">
         <GuessInput
           onGuess={handleGuess}
