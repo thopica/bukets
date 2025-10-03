@@ -19,11 +19,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { User as SupabaseUser } from "@supabase/supabase-js";
 
-interface HeaderProps {
-  hideOnMobile?: boolean;
-}
-
-const Header = ({ hideOnMobile = false }: HeaderProps) => {
+const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState<SupabaseUser | null>(null);
@@ -77,7 +73,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
   );
 
   return (
-    <header className={`sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md transition-transform duration-300 ${hideOnMobile ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'}`}>
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md">
       <div className="container flex h-14 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Trophy className="h-5 w-5 text-orange" />

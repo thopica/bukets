@@ -51,8 +51,6 @@ const Index = () => {
   const [showInputError, setShowInputError] = useState(false);
   const [showInputSuccess, setShowInputSuccess] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [isInputFocused, setIsInputFocused] = useState(false);
-  const [keyboardOffset, setKeyboardOffset] = useState(0);
 
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
@@ -69,25 +67,6 @@ const Index = () => {
 
     return () => subscription.unsubscribe();
   }, []);
-
-  // Detect mobile keyboard using VisualViewport and offset input bar
-  useEffect(() => {
-    const vv = (window as any).visualViewport as any;
-    if (!vv) return;
-
-    const updateOffset = () => {
-      const offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-      setKeyboardOffset(isInputFocused ? offset : 0);
-    };
-
-    updateOffset();
-    vv.addEventListener('resize', updateOffset);
-    vv.addEventListener('scroll', updateOffset);
-    return () => {
-      vv.removeEventListener('resize', updateOffset);
-      vv.removeEventListener('scroll', updateOffset);
-    };
-  }, [isInputFocused]);
 
   // Per-player timer countdown
   useEffect(() => {
@@ -295,10 +274,10 @@ const Index = () => {
   return (
     <div className="bg-background animate-slide-up grid" style={{ minHeight: 'calc(100 * var(--vh))', gridTemplateRows: '1fr auto' }}>
       <div className="flex flex-col overflow-hidden">
-        <Header hideOnMobile={isInputFocused && !isCompleted} />
+        <Header />
         
         {/* Scrollable Content Area */}
-        <main className={`container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 pb-24 md:pb-2 flex-1 flex flex-col ${isInputFocused ? 'gap-0' : 'gap-1'} md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch transition-all duration-300 ${isInputFocused && !isCompleted ? 'md:mt-0 -mt-14' : 'mt-0'}`}>
+        <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch">
         {/* Question Header */}
         <div className="shrink-0">
           <QuizHeader
@@ -329,21 +308,36 @@ const Index = () => {
             hintsUsed={hintsUsed}
           />
         </div>
+
+        {/* Input Section - Mobile: below answer grid */}
+        <div className="md:hidden">
+          <GuessInput
+            onGuess={handleGuess}
+            onRequestHint={handleRequestHint}
+            disabled={isCompleted}
+            hintsRemaining={maxHints - hintsUsed}
+            currentHint={currentHint}
+            showError={showInputError}
+            showSuccess={showInputSuccess}
+            hintsUsed={hintsUsed}
+          />
+        </div>
         </main>
       </div>
 
-      {/* Input bar at bottom */}
-      <GuessInput
-        onGuess={handleGuess}
-        onRequestHint={handleRequestHint}
-        disabled={isCompleted}
-        hintsRemaining={maxHints - hintsUsed}
-        currentHint={currentHint}
-        showError={showInputError}
-        showSuccess={showInputSuccess}
-        hintsUsed={hintsUsed}
-        onFocusChange={setIsInputFocused}
-      />
+      {/* Input Section - Desktop: sticky at bottom */}
+      <div className="hidden md:block">
+        <GuessInput
+          onGuess={handleGuess}
+          onRequestHint={handleRequestHint}
+          disabled={isCompleted}
+          hintsRemaining={maxHints - hintsUsed}
+          currentHint={currentHint}
+          showError={showInputError}
+          showSuccess={showInputSuccess}
+          hintsUsed={hintsUsed}
+        />
+      </div>
 
       <ResultsModal
         open={showResults}
