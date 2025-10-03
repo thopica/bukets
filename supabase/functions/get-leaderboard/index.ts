@@ -6,6 +6,25 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Skill level score ranges for bot generation
+const SKILL_RANGES: Record<string, { min: number; max: number }> = {
+  elite: { min: 90, max: 102 },
+  advanced: { min: 70, max: 89 },
+  intermediate: { min: 50, max: 69 },
+  beginner: { min: 30, max: 49 },
+};
+
+function generateBotScore(skillLevel: string): number {
+  const range = SKILL_RANGES[skillLevel] || SKILL_RANGES.intermediate;
+  return Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
+}
+
+function generateBotStreak(skillLevel: string): number {
+  const maxStreaks: Record<string, number> = { elite: 15, advanced: 10, intermediate: 5, beginner: 2 };
+  const max = maxStreaks[skillLevel] || 3;
+  return Math.floor(Math.random() * (max + 1));
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -91,8 +110,8 @@ serve(async (req) => {
       .select('user_id, current_streak')
       .in('user_id', userIds);
 
-    // Combine data
-    const leaderboard = userIds.map(userId => {
+    // Combine real player data
+    const realPlayers = userIds.map(userId => {
       const profile = profiles?.find(p => p.user_id === userId);
       const streak = streaks?.find(s => s.user_id === userId);
       
@@ -100,20 +119,49 @@ serve(async (req) => {
         user_id: userId,
         username: profile?.display_name || 'Anonymous',
         country_code: profile?.country_code || 'US',
-        is_bot: profile?.is_bot || false,
         total_score: userScores.get(userId),
-        current_streak: streak?.current_streak || 0
+        current_streak: streak?.current_streak || 0,
+        is_bot: false
       };
     });
 
-    // Filter by country if specified
-    let filtered = countryCode 
-      ? leaderboard.filter(u => u.country_code === countryCode)
-      : leaderboard;
+    console.log('Real players:', realPlayers.length);
 
-    // Sort and limit
-    filtered.sort((a, b) => b.total_score - a.total_score);
-    const limited = filtered.slice(0, limit);
+    // Fetch active bots
+    let botQuery = supabaseClient
+      .from('bot_pool')
+      .select('id, username, country_code, skill_level')
+      .eq('is_active_bot', true);
+
+    if (countryCode) {
+      botQuery = botQuery.eq('country_code', countryCode);
+    }
+
+    const { data: bots } = await botQuery;
+
+    console.log('Bots fetched:', bots?.length || 0);
+
+    // Generate bot entries with random scores
+    const botPlayers = (bots || []).map(bot => ({
+      user_id: bot.id,
+      username: bot.username,
+      country_code: bot.country_code,
+      total_score: generateBotScore(bot.skill_level),
+      current_streak: generateBotStreak(bot.skill_level),
+      is_bot: true
+    }));
+
+    // Combine real players and bots
+    let combined = [...realPlayers, ...botPlayers];
+
+    // Filter by country if specified (already filtered bots, now filter real players)
+    if (countryCode) {
+      combined = combined.filter(u => u.country_code === countryCode);
+    }
+
+    // Sort by score and limit
+    combined.sort((a, b) => b.total_score - a.total_score);
+    const limited = combined.slice(0, limit);
 
     // Add ranks
     const ranked = limited.map((user, index) => ({
@@ -121,10 +169,14 @@ serve(async (req) => {
       rank: index + 1
     }));
 
+    console.log('Final leaderboard:', ranked.length, '(', realPlayers.length, 'real +', botPlayers.length, 'bots)');
+
     return new Response(
       JSON.stringify({
         leaderboard: ranked,
-        total_users: filtered.length,
+        total_users: combined.length,
+        real_players: realPlayers.length,
+        bot_players: botPlayers.length,
         period,
         country_filter: countryCode
       }),

@@ -21,7 +21,7 @@ export type Database = {
           id: string
           is_active_bot: boolean | null
           skill_level: string
-          user_id: string
+          user_id: string | null
           username: string
         }
         Insert: {
@@ -30,7 +30,7 @@ export type Database = {
           id?: string
           is_active_bot?: boolean | null
           skill_level: string
-          user_id: string
+          user_id?: string | null
           username: string
         }
         Update: {
@@ -39,7 +39,7 @@ export type Database = {
           id?: string
           is_active_bot?: boolean | null
           skill_level?: string
-          user_id?: string
+          user_id?: string | null
           username?: string
         }
         Relationships: []
@@ -80,86 +80,6 @@ export type Database = {
         }
         Relationships: []
       }
-      game_answers: {
-        Row: {
-          created_at: string
-          game_result_id: string
-          id: string
-          is_correct: boolean
-          is_revealed: boolean
-          points_earned: number
-          rank: number
-          time_taken: number
-        }
-        Insert: {
-          created_at?: string
-          game_result_id: string
-          id?: string
-          is_correct?: boolean
-          is_revealed?: boolean
-          points_earned?: number
-          rank: number
-          time_taken?: number
-        }
-        Update: {
-          created_at?: string
-          game_result_id?: string
-          id?: string
-          is_correct?: boolean
-          is_revealed?: boolean
-          points_earned?: number
-          rank?: number
-          time_taken?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "game_answers_game_result_id_fkey"
-            columns: ["game_result_id"]
-            isOneToOne: false
-            referencedRelation: "game_results"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      game_results: {
-        Row: {
-          completed_at: string
-          correct_count: number
-          created_at: string
-          hints_used: number
-          id: string
-          quiz_date: string
-          quiz_index: number
-          time_remaining: number
-          total_score: number
-          user_id: string
-        }
-        Insert: {
-          completed_at?: string
-          correct_count?: number
-          created_at?: string
-          hints_used?: number
-          id?: string
-          quiz_date: string
-          quiz_index: number
-          time_remaining?: number
-          total_score?: number
-          user_id: string
-        }
-        Update: {
-          completed_at?: string
-          correct_count?: number
-          created_at?: string
-          hints_used?: number
-          id?: string
-          quiz_date?: string
-          quiz_index?: number
-          time_remaining?: number
-          total_score?: number
-          user_id?: string
-        }
-        Relationships: []
-      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -194,42 +114,6 @@ export type Database = {
           email?: string | null
           id?: string
           is_bot?: boolean | null
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
-      user_stats: {
-        Row: {
-          average_score: number
-          current_streak: number
-          last_played_date: string | null
-          longest_streak: number
-          perfect_games: number
-          total_games_played: number
-          total_score: number
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          average_score?: number
-          current_streak?: number
-          last_played_date?: string | null
-          longest_streak?: number
-          perfect_games?: number
-          total_games_played?: number
-          total_score?: number
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          average_score?: number
-          current_streak?: number
-          last_played_date?: string | null
-          longest_streak?: number
-          perfect_games?: number
-          total_games_played?: number
-          total_score?: number
           updated_at?: string
           user_id?: string
         }

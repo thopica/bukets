@@ -115,7 +115,6 @@ const Index = () => {
 
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
-  const { saveGameResult } = useGameScore();
 
   // Check authentication state and quiz completion
   useEffect(() => {
@@ -371,43 +370,6 @@ const Index = () => {
         setCurrentHint(undefined);
       }, displayDuration);
     }
-  };
-
-  const saveGameResults = async (answers: typeof userAnswers) => {
-    if (!user) return;
-
-    const gameAnswers = answers.map((answer) => {
-      const timing = answerTimings.get(answer.rank);
-      const timeTaken = timing?.endTime && timing?.startTime 
-        ? Math.floor((timing.endTime - timing.startTime) / 1000)
-        : 0;
-
-      return {
-        rank: answer.rank,
-        is_correct: answer.isCorrect || false,
-        is_revealed: answer.isRevealed || false,
-        time_taken: timeTaken,
-        points_earned: answer.isCorrect ? (3 + calculateTimeBonus()) : 0,
-      };
-    });
-
-    const totalHintsUsed = answers.reduce((sum, a) => {
-      // Count hints used per answer based on the global hintsUsed
-      // This is a simplified version - in a real app you'd track per answer
-      return sum;
-    }, hintsUsed);
-
-    await saveGameResult(
-      {
-        quiz_date: getQuizDateISO(),
-        quiz_index: getTodaysQuizIndex(),
-        total_score: score,
-        correct_count: answers.filter((a) => a.isCorrect).length,
-        hints_used: totalHintsUsed,
-        time_remaining: overallTimeRemaining,
-      },
-      gameAnswers
-    );
   };
 
   const getResultsData = () => {

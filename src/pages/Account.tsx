@@ -51,14 +51,30 @@ const Account = () => {
         setCountryCode(profileData.country_code || "");
       }
 
-      // Load stats
-      const { data: statsData } = await supabase
-        .from('user_stats')
-        .select('*')
-        .eq('user_id', user.id)
-        .single();
+      // Load stats from daily_scores and user_streaks
+      const { data: scoresData } = await supabase
+        .from('daily_scores')
+        .select('total_score, correct_guesses')
+        .eq('user_id', user.id);
 
-      setStats(statsData);
+      const { data: streakData } = await supabase
+        .from('user_streaks')
+        .select('current_streak, longest_streak')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      // Calculate aggregate stats
+      const totalScore = scoresData?.reduce((sum, s) => sum + s.total_score, 0) || 0;
+      const totalGames = scoresData?.length || 0;
+      const totalCorrect = scoresData?.reduce((sum, s) => sum + s.correct_guesses, 0) || 0;
+
+      setStats({
+        total_score: totalScore,
+        total_games_played: totalGames,
+        current_streak: streakData?.current_streak || 0,
+        longest_streak: streakData?.longest_streak || 0,
+        total_correct: totalCorrect,
+      });
     } catch (error) {
       console.error('Error loading user data:', error);
     } finally {
@@ -109,7 +125,7 @@ const Account = () => {
 
   const country = countryCode ? getCountryByCode(countryCode) : null;
   const accuracy = stats && stats.total_games_played > 0 
-    ? Math.round((stats.total_score / (stats.total_games_played * 60)) * 100) 
+    ? Math.round((stats.total_correct / (stats.total_games_played * 6)) * 100) 
     : 0;
 
   return (
