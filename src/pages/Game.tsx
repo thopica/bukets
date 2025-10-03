@@ -110,6 +110,7 @@ const Index = () => {
   const [answerTimings, setAnswerTimings] = useState<Map<number, { startTime: number; endTime?: number }>>(new Map());
   const [quizStartTime] = useState(Date.now());
   const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [isCheckingCompletion, setIsCheckingCompletion] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const INPUT_BAR_HEIGHT = 72;
 
@@ -119,6 +120,8 @@ const Index = () => {
   // Check authentication state and quiz completion
   useEffect(() => {
     const checkAccess = async () => {
+      setIsCheckingCompletion(true);
+      
       // Check auth
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
@@ -138,6 +141,8 @@ const Index = () => {
       } catch (error) {
         console.error('Failed to check completion:', error);
       }
+      
+      setIsCheckingCompletion(false);
     };
 
     checkAccess();
@@ -383,6 +388,18 @@ const Index = () => {
   };
 
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
+
+  // Show loading spinner while checking completion
+  if (isCheckingCompletion) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <Header />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-background animate-slide-up md:grid" style={{ minHeight: 'calc(100 * var(--initial-vh, 1vh))', gridTemplateRows: '1fr auto' }}>
