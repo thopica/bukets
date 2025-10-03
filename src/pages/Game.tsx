@@ -301,23 +301,30 @@ const Index = () => {
         {/* Answer Grid */}
         <div className="md:flex-1 md:min-h-0 flex flex-col gap-0">
           <AnswerGrid 
-            answers={userAnswers} 
+            answers={userAnswers.slice(0, 1)} 
             lastGuessRank={lastGuessRank}
             disabled={isCompleted}
             hintsUsed={hintsUsed}
           />
-        </div>
-
-        {/* Input Section - Mobile: below answer grid */}
-        <div className="md:hidden">
-          <GuessInput
-            onGuess={handleGuess}
-            onRequestHint={handleRequestHint}
+          
+          {/* Input Section - Mobile: below first card */}
+          <div className="md:hidden">
+            <GuessInput
+              onGuess={handleGuess}
+              onRequestHint={handleRequestHint}
+              disabled={isCompleted}
+              hintsRemaining={maxHints - hintsUsed}
+              currentHint={currentHint}
+              showError={showInputError}
+              showSuccess={showInputSuccess}
+              hintsUsed={hintsUsed}
+            />
+          </div>
+          
+          <AnswerGrid 
+            answers={userAnswers.slice(1)} 
+            lastGuessRank={lastGuessRank}
             disabled={isCompleted}
-            hintsRemaining={maxHints - hintsUsed}
-            currentHint={currentHint}
-            showError={showInputError}
-            showSuccess={showInputSuccess}
             hintsUsed={hintsUsed}
           />
         </div>
