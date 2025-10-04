@@ -183,11 +183,11 @@ const Index = () => {
           setOverallTimeRemaining(remaining);
           
           // Restore saved progress
-          if (sessionData.saved_score) {
+          if (typeof sessionData.saved_score === 'number') {
             setScore(sessionData.saved_score);
             console.log(`Restored score: ${sessionData.saved_score}`);
           }
-          if (sessionData.saved_hints) {
+          if (typeof sessionData.saved_hints === 'number') {
             setHintsUsed(sessionData.saved_hints);
           }
           
@@ -295,6 +295,26 @@ const Index = () => {
 
     return () => clearInterval(overallTimer);
   }, [overallTimeRemaining, isCompleted, userAnswers, hintsUsed, score, navigate]);
+
+  // Auto-save progress periodically to survive refreshes
+  useEffect(() => {
+    if (isCompleted) return;
+    const interval = setInterval(() => {
+      const answeredRanks = userAnswers.filter(a => a.isCorrect).map(a => a.rank);
+      if (answeredRanks.length > 0 || hintsUsed > 0 || score > 0) {
+        supabase.functions.invoke('save-quiz-progress', {
+          body: {
+            quiz_date: getQuizDateISO(),
+            current_score: score,
+            correct_guesses: answeredRanks.length,
+            hints_used: hintsUsed,
+            answered_ranks: answeredRanks,
+          }
+        }).catch(() => {});
+      }
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [userAnswers, hintsUsed, score, isCompleted]);
 
   const handleTimeUp = async () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
@@ -445,15 +465,19 @@ const Index = () => {
         .filter((a) => a.isCorrect)
         .map((a) => a.rank);
       
-      supabase.functions.invoke('save-quiz-progress', {
-        body: {
-          quiz_date: getQuizDateISO(),
-          current_score: newScore,
-          correct_guesses: newCorrectCount,
-          hints_used: hintsUsed,
-          answered_ranks: answeredRanks
-        }
-      }).catch(err => console.error('Failed to save progress:', err));
+      try {
+        await supabase.functions.invoke('save-quiz-progress', {
+          body: {
+            quiz_date: getQuizDateISO(),
+            current_score: newScore,
+            correct_guesses: newCorrectCount,
+            hints_used: hintsUsed,
+            answered_ranks: answeredRanks
+          }
+        });
+      } catch (err) {
+        console.error('Failed to save progress:', err);
+      }
       
       // Track timing for this answer
       const timings = new Map(answerTimings);
