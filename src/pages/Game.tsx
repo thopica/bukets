@@ -371,10 +371,11 @@ const Index = () => {
         // Navigate to results page with score data
         const correctCount = newAnswers.filter((a) => a.isCorrect).length;
         const totalHints = newAnswers.reduce((sum) => sum, hintsUsed);
+        const finalScore = score + pointsEarned; // Use updated score including this answer
         
         navigate('/results', {
           state: {
-            total_score: score,
+            total_score: finalScore,
             correct_guesses: correctCount,
             hints_used: totalHints,
             time_used: 160 - overallTimeRemaining,
