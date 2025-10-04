@@ -36,12 +36,11 @@ Deno.serve(async (req) => {
 
     // Update the in-progress session with current score
     const { error: updateError } = await supabaseClient
-      .from('daily_scores')
+      .from('quiz_sessions')
       .update({
-        total_score: current_score,
-        correct_guesses: correct_guesses,
+        score: current_score,
         hints_used: hints_used,
-        answered_ranks: answered_ranks
+        correct_ranks: answered_ranks
       })
       .eq('user_id', user.id)
       .eq('quiz_date', quiz_date)

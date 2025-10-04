@@ -36,8 +36,8 @@ Deno.serve(async (req) => {
 
     // Check if there's already a session started for today
     const { data: existingSession } = await supabaseClient
-      .from('daily_scores')
-      .select('started_at, completed_at, total_score, correct_guesses, hints_used, answered_ranks')
+      .from('quiz_sessions')
+      .select('started_at, completed_at, score, hints_used, correct_ranks')
       .eq('user_id', user.id)
       .eq('quiz_date', quiz_date)
       .maybeSingle();
@@ -65,24 +65,24 @@ Deno.serve(async (req) => {
       if (elapsedSeconds >= totalQuizTime) {
         // Update session as completed with partial score
         await supabaseClient
-          .from('daily_scores')
+          .from('quiz_sessions')
           .update({
-            time_used: totalQuizTime,
-            completed_at: new Date().toISOString()
+            completed_at: new Date().toISOString(),
+            status: 'completed'
           })
           .eq('user_id', user.id)
           .eq('quiz_date', quiz_date);
 
-        console.log(`Session expired - crediting partial progress: ${existingSession.total_score} points, ${existingSession.correct_guesses} correct`);
+        console.log(`Session expired - crediting partial progress: ${existingSession.score || 0} points, ${(existingSession.correct_ranks || []).length} correct`);
 
         return new Response(
           JSON.stringify({ 
             session_expired: true,
             started_at: existingSession.started_at,
             elapsed_seconds: elapsedSeconds,
-            partial_score: existingSession.total_score || 0,
-            correct_guesses: existingSession.correct_guesses || 0,
-            hints_used: existingSession.hints_used || 0
+             partial_score: existingSession.score || 0,
+             correct_guesses: (existingSession.correct_ranks || []).length,
+             hints_used: existingSession.hints_used || 0
           }),
           { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
@@ -94,10 +94,10 @@ Deno.serve(async (req) => {
           started_at: existingSession.started_at,
           elapsed_seconds: elapsedSeconds,
           remaining_seconds: totalQuizTime - elapsedSeconds,
-          saved_score: existingSession.total_score || 0,
-          saved_correct: existingSession.correct_guesses || 0,
+          saved_score: existingSession.score || 0,
+          saved_correct: (existingSession.correct_ranks || []).length,
           saved_hints: existingSession.hints_used || 0,
-          answered_ranks: existingSession.answered_ranks || []
+          answered_ranks: existingSession.correct_ranks || []
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
@@ -106,16 +106,16 @@ Deno.serve(async (req) => {
     // No existing session - create a new one
     const now = new Date().toISOString();
     const { error: insertError } = await supabaseClient
-      .from('daily_scores')
+      .from('quiz_sessions')
       .insert({
         user_id: user.id,
         quiz_date: quiz_date,
-        quiz_index: quiz_index,
-        total_score: 0,
-        correct_guesses: 0,
+        score: 0,
         hints_used: 0,
-        time_used: 0,
+        correct_ranks: [],
         started_at: now,
+        status: 'in_progress',
+        current_question_index: 0,
         completed_at: null
       });
 
