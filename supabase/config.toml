@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.get-quiz-metadata]
 verify_jwt = false
+
+[functions.start-quiz-session]
+verify_jwt = false

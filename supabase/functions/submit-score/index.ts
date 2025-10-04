@@ -29,10 +29,10 @@ serve(async (req) => {
 
     const { quiz_date, quiz_index, total_score, correct_guesses, hints_used, time_used } = await req.json();
 
-    // Check if user already completed today
+    // Check if user already has a session for today
     const { data: existing, error: checkError } = await supabaseClient
       .from('daily_scores')
-      .select('id')
+      .select('id, completed_at')
       .eq('user_id', user.id)
       .eq('quiz_date', quiz_date)
       .maybeSingle();
@@ -42,29 +42,52 @@ serve(async (req) => {
       throw checkError;
     }
 
-    if (existing) {
+    // If already completed, don't allow resubmission
+    if (existing && existing.completed_at) {
       return new Response(
         JSON.stringify({ error: 'Already completed today' }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 }
       );
     }
 
-    // Insert score
-    const { error: insertError } = await supabaseClient
-      .from('daily_scores')
-      .insert({
-        user_id: user.id,
-        quiz_date,
-        quiz_index,
-        total_score,
-        correct_guesses,
-        hints_used,
-        time_used
-      });
+    // Update existing session or insert new score
+    if (existing) {
+      // Update the existing session with final score
+      const { error: updateError } = await supabaseClient
+        .from('daily_scores')
+        .update({
+          total_score,
+          correct_guesses,
+          hints_used,
+          time_used,
+          completed_at: new Date().toISOString()
+        })
+        .eq('id', existing.id);
 
-    if (insertError) {
-      console.error('Insert error:', insertError);
-      throw insertError;
+      if (updateError) {
+        console.error('Update error:', updateError);
+        throw updateError;
+      }
+    } else {
+      // Insert new score (fallback for old sessions)
+      const { error: insertError } = await supabaseClient
+        .from('daily_scores')
+        .insert({
+          user_id: user.id,
+          quiz_date,
+          quiz_index,
+          total_score,
+          correct_guesses,
+          hints_used,
+          time_used,
+          started_at: new Date().toISOString(),
+          completed_at: new Date().toISOString()
+        });
+
+      if (insertError) {
+        console.error('Insert error:', insertError);
+        throw insertError;
+      }
     }
 
     // Update streak

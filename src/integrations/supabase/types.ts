@@ -84,6 +84,7 @@ export type Database = {
           id: string
           quiz_date: string
           quiz_index: number
+          started_at: string | null
           time_used: number
           total_score: number
           user_id: string
@@ -95,6 +96,7 @@ export type Database = {
           id?: string
           quiz_date: string
           quiz_index: number
+          started_at?: string | null
           time_used: number
           total_score: number
           user_id: string
@@ -106,6 +108,7 @@ export type Database = {
           id?: string
           quiz_date?: string
           quiz_index?: number
+          started_at?: string | null
           time_used?: number
           total_score?: number
           user_id?: string

@@ -43,7 +43,7 @@ serve(async (req) => {
       throw scoreError;
     }
 
-    if (!scoreData) {
+    if (!scoreData || !scoreData.completed_at) {
       return new Response(
         JSON.stringify({ completed: false }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }

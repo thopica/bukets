@@ -125,20 +125,60 @@ const Index = () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
 
-      // Check if user already completed today's quiz
+      if (!session?.user) {
+        setIsCheckingCompletion(false);
+        return;
+      }
+
+      // Start or restore quiz session
       try {
-        const today = new Date().toISOString().split('T')[0];
-        const { data: completionCheck } = await supabase.functions.invoke('check-daily-completion', {
-          body: { quiz_date: today }
+        const today = getQuizDateISO();
+        const { data: sessionData, error: sessionError } = await supabase.functions.invoke('start-quiz-session', {
+          body: { 
+            quiz_date: today,
+            quiz_index: getTodaysQuizIndex()
+          }
         });
 
-        if (completionCheck?.completed) {
-          // User already completed today, redirect
+        if (sessionError) {
+          console.error('Session error:', sessionError);
+          setIsCheckingCompletion(false);
+          return;
+        }
+
+        console.log('Quiz session data:', sessionData);
+
+        // Already completed
+        if (sessionData?.already_completed) {
           navigate('/already-completed');
           return;
         }
+
+        // Session expired (time ran out before completing)
+        if (sessionData?.session_expired) {
+          toast.error("Quiz session expired. Time ran out!");
+          navigate('/results', {
+            state: {
+              total_score: 0,
+              correct_guesses: 0,
+              hints_used: 0,
+              time_used: 160,
+              quiz_date: today,
+              quiz_index: getTodaysQuizIndex()
+            }
+          });
+          return;
+        }
+
+        // Restore existing session
+        if (sessionData?.session_exists || sessionData?.session_started) {
+          const remaining = sessionData.remaining_seconds || 160;
+          console.log(`Restoring quiz with ${remaining} seconds remaining`);
+          setOverallTimeRemaining(remaining);
+        }
+
       } catch (error) {
-        console.error('Failed to check completion:', error);
+        console.error('Failed to initialize quiz session:', error);
       }
       
       setIsCheckingCompletion(false);
