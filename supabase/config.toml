@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.start-quiz-session]
 verify_jwt = false
+
+[functions.save-quiz-progress]
+verify_jwt = false

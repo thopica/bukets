@@ -37,7 +37,7 @@ Deno.serve(async (req) => {
     // Check if there's already a session started for today
     const { data: existingSession } = await supabaseClient
       .from('daily_scores')
-      .select('started_at, completed_at')
+      .select('started_at, completed_at, total_score, correct_guesses, hints_used')
       .eq('user_id', user.id)
       .eq('quiz_date', quiz_date)
       .maybeSingle();
@@ -61,13 +61,28 @@ Deno.serve(async (req) => {
       const elapsedSeconds = Math.floor((now.getTime() - startedAt.getTime()) / 1000);
       const totalQuizTime = 160; // 2:40 in seconds
       
-      // If time expired, mark as expired
+      // If time expired, return partial progress and mark as completed
       if (elapsedSeconds >= totalQuizTime) {
+        // Update session as completed with partial score
+        await supabaseClient
+          .from('daily_scores')
+          .update({
+            time_used: totalQuizTime,
+            completed_at: new Date().toISOString()
+          })
+          .eq('user_id', user.id)
+          .eq('quiz_date', quiz_date);
+
+        console.log(`Session expired - crediting partial progress: ${existingSession.total_score} points, ${existingSession.correct_guesses} correct`);
+
         return new Response(
           JSON.stringify({ 
             session_expired: true,
             started_at: existingSession.started_at,
-            elapsed_seconds: elapsedSeconds
+            elapsed_seconds: elapsedSeconds,
+            partial_score: existingSession.total_score || 0,
+            correct_guesses: existingSession.correct_guesses || 0,
+            hints_used: existingSession.hints_used || 0
           }),
           { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );

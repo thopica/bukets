@@ -156,12 +156,18 @@ const Index = () => {
 
         // Session expired (time ran out before completing)
         if (sessionData?.session_expired) {
-          toast.error("Quiz session expired. Time ran out!");
+          const partialScore = sessionData.partial_score || 0;
+          const correctGuesses = sessionData.correct_guesses || 0;
+          const hintsUsed = sessionData.hints_used || 0;
+          
+          console.log(`Session expired - crediting ${partialScore} points for ${correctGuesses} correct answers`);
+          
+          toast.info(`Time expired! You earned ${partialScore} points for ${correctGuesses} correct answers.`);
           navigate('/results', {
             state: {
-              total_score: 0,
-              correct_guesses: 0,
-              hints_used: 0,
+              total_score: partialScore,
+              correct_guesses: correctGuesses,
+              hints_used: hintsUsed,
               time_used: 160,
               quiz_date: today,
               quiz_index: getTodaysQuizIndex()
@@ -393,6 +399,18 @@ const Index = () => {
       setShowInputSuccess(true);
       // Reset hints after awarding animation
       setTimeout(() => setHintsUsed(0), 800);
+      
+      // Save progress to database after each correct answer
+      const newScore = score + pointsEarned;
+      const newCorrectCount = newAnswers.filter((a) => a.isCorrect).length;
+      supabase.functions.invoke('save-quiz-progress', {
+        body: {
+          quiz_date: getQuizDateISO(),
+          current_score: newScore,
+          correct_guesses: newCorrectCount,
+          hints_used: hintsUsed
+        }
+      }).catch(err => console.error('Failed to save progress:', err));
       
       // Track timing for this answer
       const timings = new Map(answerTimings);
