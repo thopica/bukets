@@ -181,6 +181,44 @@ const Index = () => {
           const remaining = sessionData.remaining_seconds || 160;
           console.log(`Restoring quiz with ${remaining} seconds remaining`);
           setOverallTimeRemaining(remaining);
+          
+          // Restore saved progress
+          if (sessionData.saved_score) {
+            setScore(sessionData.saved_score);
+            console.log(`Restored score: ${sessionData.saved_score}`);
+          }
+          if (sessionData.saved_hints) {
+            setHintsUsed(sessionData.saved_hints);
+          }
+          
+          // Restore answered players
+          if (sessionData.answered_ranks && sessionData.answered_ranks.length > 0) {
+            console.log(`Restoring ${sessionData.answered_ranks.length} answered players`);
+            
+            // Fetch the answers for these ranks
+            const answersToRestore = await Promise.all(
+              sessionData.answered_ranks.map(async (rank: number) => {
+                const { data } = await supabase.functions.invoke('verify-guess', {
+                  body: { revealRank: rank }
+                });
+                return data?.answer;
+              })
+            );
+            
+            // Rebuild userAnswers with restored data
+            const restoredAnswers = [...userAnswers];
+            answersToRestore.forEach((answer: any) => {
+              if (answer) {
+                restoredAnswers[answer.rank - 1] = {
+                  rank: answer.rank,
+                  playerName: answer.name,
+                  isCorrect: true,
+                  stat: answer.stat,
+                };
+              }
+            });
+            setUserAnswers(restoredAnswers);
+          }
         }
 
       } catch (error) {
@@ -403,12 +441,17 @@ const Index = () => {
       // Save progress to database after each correct answer
       const newScore = score + pointsEarned;
       const newCorrectCount = newAnswers.filter((a) => a.isCorrect).length;
+      const answeredRanks = newAnswers
+        .filter((a) => a.isCorrect)
+        .map((a) => a.rank);
+      
       supabase.functions.invoke('save-quiz-progress', {
         body: {
           quiz_date: getQuizDateISO(),
           current_score: newScore,
           correct_guesses: newCorrectCount,
-          hints_used: hintsUsed
+          hints_used: hintsUsed,
+          answered_ranks: answeredRanks
         }
       }).catch(err => console.error('Failed to save progress:', err));
       

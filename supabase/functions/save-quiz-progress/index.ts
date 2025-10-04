@@ -30,9 +30,9 @@ Deno.serve(async (req) => {
       );
     }
 
-    const { quiz_date, current_score, correct_guesses, hints_used } = await req.json();
+    const { quiz_date, current_score, correct_guesses, hints_used, answered_ranks } = await req.json();
 
-    console.log(`Saving progress for user ${user.id}: score=${current_score}, correct=${correct_guesses}`);
+    console.log(`Saving progress for user ${user.id}: score=${current_score}, correct=${correct_guesses}, answered=${answered_ranks}`);
 
     // Update the in-progress session with current score
     const { error: updateError } = await supabaseClient
@@ -40,7 +40,8 @@ Deno.serve(async (req) => {
       .update({
         total_score: current_score,
         correct_guesses: correct_guesses,
-        hints_used: hints_used
+        hints_used: hints_used,
+        answered_ranks: answered_ranks
       })
       .eq('user_id', user.id)
       .eq('quiz_date', quiz_date)

@@ -37,7 +37,7 @@ Deno.serve(async (req) => {
     // Check if there's already a session started for today
     const { data: existingSession } = await supabaseClient
       .from('daily_scores')
-      .select('started_at, completed_at, total_score, correct_guesses, hints_used')
+      .select('started_at, completed_at, total_score, correct_guesses, hints_used, answered_ranks')
       .eq('user_id', user.id)
       .eq('quiz_date', quiz_date)
       .maybeSingle();
@@ -93,7 +93,11 @@ Deno.serve(async (req) => {
           session_exists: true,
           started_at: existingSession.started_at,
           elapsed_seconds: elapsedSeconds,
-          remaining_seconds: totalQuizTime - elapsedSeconds
+          remaining_seconds: totalQuizTime - elapsedSeconds,
+          saved_score: existingSession.total_score || 0,
+          saved_correct: existingSession.correct_guesses || 0,
+          saved_hints: existingSession.hints_used || 0,
+          answered_ranks: existingSession.answered_ranks || []
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );

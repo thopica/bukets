@@ -78,6 +78,7 @@ export type Database = {
       }
       daily_scores: {
         Row: {
+          answered_ranks: number[] | null
           completed_at: string | null
           correct_guesses: number
           hints_used: number
@@ -90,6 +91,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          answered_ranks?: number[] | null
           completed_at?: string | null
           correct_guesses: number
           hints_used: number
@@ -102,6 +104,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          answered_ranks?: number[] | null
           completed_at?: string | null
           correct_guesses?: number
           hints_used?: number
