@@ -95,6 +95,7 @@ const Index = () => {
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(3);
   const [hintsUsed, setHintsUsed] = useState(0);
+  const [totalHintsUsed, setTotalHintsUsed] = useState(0);
   const [currentHint, setCurrentHint] = useState<string | undefined>();
   const [timeRemaining, setTimeRemaining] = useState(24);
   const [overallTimeRemaining, setOverallTimeRemaining] = useState(160);
@@ -289,13 +290,12 @@ const Index = () => {
           setIsCompleted(true);
           
           const correctCount = userAnswers.filter((a) => a.isCorrect).length;
-          const totalHints = userAnswers.reduce((sum, a) => sum + (a.isRevealed ? 0 : 0), hintsUsed);
           
           navigate('/results', {
             state: {
               total_score: score,
               correct_guesses: correctCount,
-              hints_used: totalHints,
+              hints_used: totalHintsUsed,
               time_used: 160,
               quiz_date: getQuizDateISO(),
               quiz_index: getTodaysQuizIndex()
@@ -383,13 +383,12 @@ const Index = () => {
             
             // Navigate to results page
             const correctCount = newAnswers.filter((a) => a.isCorrect).length;
-            const totalHints = newAnswers.reduce((sum) => sum, hintsUsed);
             
             navigate('/results', {
               state: {
                 total_score: score,
                 correct_guesses: correctCount,
-                hints_used: totalHints,
+                hints_used: totalHintsUsed,
                 time_used: 160 - overallTimeRemaining,
                 quiz_date: getQuizDateISO(),
                 quiz_index: getTodaysQuizIndex()
@@ -488,7 +487,8 @@ const Index = () => {
       setLastGuessRank(matchedAnswer.rank);
       setShowInputError(false);
       setShowInputSuccess(true);
-      // Reset hints after awarding animation
+      // Accumulate hints used before resetting for next player
+      setTotalHintsUsed((prev) => prev + hintsUsed);
       setTimeout(() => setHintsUsed(0), 800);
       
       // Save progress to database after each correct answer
@@ -533,14 +533,14 @@ const Index = () => {
         
         // Navigate to results page with score data
         const correctCount = newAnswers.filter((a) => a.isCorrect).length;
-        const totalHints = newAnswers.reduce((sum) => sum, hintsUsed);
         const finalScore = score + pointsEarned; // Use updated score including this answer
+        const finalTotalHints = totalHintsUsed + hintsUsed; // Include current player's hints
         
         navigate('/results', {
           state: {
             total_score: finalScore,
             correct_guesses: correctCount,
-            hints_used: totalHints,
+            hints_used: finalTotalHints,
             time_used: 160 - overallTimeRemaining,
             quiz_date: getQuizDateISO(),
             quiz_index: getTodaysQuizIndex()
