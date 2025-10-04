@@ -263,7 +263,11 @@ const Index = () => {
 
   // Per-player timer countdown
   useEffect(() => {
-    if (isCompleted || timeRemaining === 0 || !initializedTurnTimer) return;
+    // Don't start timer until session is initialized
+    if (!initializedTurnTimer) return;
+    
+    // Once initialized, timer runs unless game is completed or time is 0
+    if (isCompleted || timeRemaining === 0) return;
 
     const timer = setInterval(() => {
       setTimeRemaining((prev) => {
@@ -277,7 +281,7 @@ const Index = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeRemaining, isCompleted, currentPlayerIndex]);
+  }, [timeRemaining, isCompleted, currentPlayerIndex, initializedTurnTimer]);
 
   // Overall quiz timer countdown
   useEffect(() => {
