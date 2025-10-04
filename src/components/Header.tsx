@@ -52,8 +52,8 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
   const navLinks = [
     { path: "/", label: "Home" },
     { path: "/game", label: "Today's Quiz" },
-    { path: "/carousel", label: "Playground" },
     { path: "/leaderboard", label: "Leaderboard" },
+    { path: "/carousel", label: "Playground" },
     { path: "/how-to-play", label: "How to Play" },
   ];
 
