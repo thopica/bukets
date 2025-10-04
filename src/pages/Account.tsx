@@ -125,7 +125,7 @@ const Account = () => {
 
   const country = countryCode ? getCountryByCode(countryCode) : null;
   const accuracy = stats && stats.total_games_played > 0 
-    ? Math.round((stats.total_correct / (stats.total_games_played * 6)) * 100) 
+    ? Math.round((stats.total_score / (stats.total_games_played * 30)) * 100) 
     : 0;
 
   return (
