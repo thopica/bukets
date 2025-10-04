@@ -465,6 +465,7 @@ const Index = () => {
                 lastGuessRank={lastGuessRank}
                 disabled={isCompleted}
                 hintsUsed={hintsUsed}
+                currentHint={currentHint}
               />
             </div>
 
@@ -525,6 +526,7 @@ const Index = () => {
               lastGuessRank={lastGuessRank}
               disabled={isCompleted}
               hintsUsed={hintsUsed}
+              currentHint={currentHint}
             />
           </div>
 
