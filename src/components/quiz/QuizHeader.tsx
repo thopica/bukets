@@ -129,10 +129,10 @@ const QuizHeader = ({
 
         {/* Category + Question */}
         <div className="space-y-1 text-center">
-          <p className="text-2xl font-bold text-foreground leading-tight capitalize">
+          <p className="text-[1.725rem] font-bold text-foreground leading-tight capitalize">
             {title}
           </p>
-          <h1 className="text-2xl font-bold text-foreground leading-tight">
+          <h1 className="text-[1.725rem] font-bold text-foreground leading-tight">
             Name the top {totalCount} scorers in NBA history
           </h1>
         </div>
