@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trophy, Mail } from "lucide-react";
+import { Trophy, Mail, Check, X } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { COUNTRIES } from "@/utils/countries";
@@ -21,6 +21,20 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const [showVerificationMessage, setShowVerificationMessage] = useState(false);
   const [pendingVerificationEmail, setPendingVerificationEmail] = useState("");
+
+  // Password validation
+  const validatePassword = (pwd: string) => {
+    return {
+      minLength: pwd.length >= 8,
+      hasUpperCase: /[A-Z]/.test(pwd),
+      hasLowerCase: /[a-z]/.test(pwd),
+      hasNumber: /[0-9]/.test(pwd),
+      hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(pwd),
+    };
+  };
+
+  const passwordRequirements = validatePassword(password);
+  const isPasswordValid = Object.values(passwordRequirements).every(Boolean);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -287,6 +301,63 @@ const Auth = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       disabled={loading}
                     />
+                    {password && (
+                      <div className="text-xs space-y-1 pt-1">
+                        <p className="text-muted-foreground font-medium mb-2">Password must contain:</p>
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            {passwordRequirements.minLength ? (
+                              <Check className="h-3 w-3 text-green-500" />
+                            ) : (
+                              <X className="h-3 w-3 text-muted-foreground" />
+                            )}
+                            <span className={passwordRequirements.minLength ? "text-green-500" : "text-muted-foreground"}>
+                              At least 8 characters
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {passwordRequirements.hasUpperCase ? (
+                              <Check className="h-3 w-3 text-green-500" />
+                            ) : (
+                              <X className="h-3 w-3 text-muted-foreground" />
+                            )}
+                            <span className={passwordRequirements.hasUpperCase ? "text-green-500" : "text-muted-foreground"}>
+                              One uppercase letter
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {passwordRequirements.hasLowerCase ? (
+                              <Check className="h-3 w-3 text-green-500" />
+                            ) : (
+                              <X className="h-3 w-3 text-muted-foreground" />
+                            )}
+                            <span className={passwordRequirements.hasLowerCase ? "text-green-500" : "text-muted-foreground"}>
+                              One lowercase letter
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {passwordRequirements.hasNumber ? (
+                              <Check className="h-3 w-3 text-green-500" />
+                            ) : (
+                              <X className="h-3 w-3 text-muted-foreground" />
+                            )}
+                            <span className={passwordRequirements.hasNumber ? "text-green-500" : "text-muted-foreground"}>
+                              One number
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {passwordRequirements.hasSpecialChar ? (
+                              <Check className="h-3 w-3 text-green-500" />
+                            ) : (
+                              <X className="h-3 w-3 text-muted-foreground" />
+                            )}
+                            <span className={passwordRequirements.hasSpecialChar ? "text-green-500" : "text-muted-foreground"}>
+                              One special character (!@#$%^&*...)
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="country">Country (Optional)</Label>
@@ -307,7 +378,7 @@ const Auth = () => {
                     className="w-full"
                     onClick={() => handleEmailAuth(true)}
                     onKeyDown={(e) => e.key === "Enter" && handleEmailAuth(true)}
-                    disabled={loading}
+                    disabled={loading || !isPasswordValid}
                   >
                     {loading ? "Creating account..." : "Create Account"}
                   </Button>
