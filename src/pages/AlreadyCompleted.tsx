@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Loader2, Trophy, Clock } from 'lucide-react';
+import { Loader2, Trophy, Clock, Flame, TrendingUp } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -31,6 +31,7 @@ export default function AlreadyCompleted() {
   const navigate = useNavigate();
   const [scoreData, setScoreData] = useState<any>(null);
   const [countdown, setCountdown] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     checkCompletion();
@@ -57,6 +58,8 @@ export default function AlreadyCompleted() {
       setScoreData(data);
     } catch (error) {
       console.error('Failed to check completion:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,32 +76,89 @@ export default function AlreadyCompleted() {
     setCountdown(`${hours}h ${minutes}m`);
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-primary/5">
+        <Header />
+        <main className="flex-1 container max-w-2xl mx-auto px-4 py-8 flex items-center justify-center">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   const scoreMessage = scoreData ? getScoreMessage(scoreData.total_score) : { title: "Outstanding!", message: "The league scouts are watching!", color: "text-green-400" };
+  const speedBonus = scoreData ? scoreData.total_score - (scoreData.correct_guesses * 3) : 0;
+  const timedOut = scoreData ? 6 - scoreData.correct_guesses : 0;
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-primary/5">
       <Header />
       
       <main className="flex-1 container max-w-2xl mx-auto px-4 py-8 flex flex-col items-center justify-center">
-        <div className="w-full space-y-6 text-center">
-          {/* Icon */}
-          <div className="flex justify-center">
-            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
-              <Trophy className="w-12 h-12 text-primary" />
+        <div className="w-full space-y-6">
+          {/* Score Display */}
+          <div className="text-center space-y-4">
+            <h1 className="text-5xl md:text-6xl font-bold text-primary">
+              {scoreData?.total_score || 0} POINTS
+            </h1>
+            <div className={`${scoreMessage.color}`}>
+              <h2 className="text-2xl md:text-3xl font-bold">{scoreMessage.title}</h2>
+              <p className="text-lg md:text-xl opacity-90">{scoreMessage.message}</p>
             </div>
           </div>
 
-          {/* Message */}
-          <div className={`${scoreMessage.color} space-y-2`}>
-            <h1 className="text-3xl md:text-4xl font-bold">{scoreMessage.title}</h1>
-            <p className="text-xl md:text-2xl opacity-90">{scoreMessage.message}</p>
-          </div>
-
-          {/* Score Info */}
+          {/* Score Breakdown */}
           <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
-            <div className="space-y-2">
-              <p className="text-lg">Your score today: <span className="font-bold text-primary text-2xl">{scoreData?.total_score || 0} points</span></p>
-              {scoreData?.rank && <p className="text-muted-foreground">You're ranked <span className="font-semibold text-foreground">#{scoreData.rank}</span></p>}
+            <h3 className="text-xl font-semibold text-center">Score Breakdown</h3>
+            <div className="space-y-3 text-base">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">✓ Correct Guesses: {scoreData?.correct_guesses || 0}/6</span>
+                <span className="font-semibold text-green-400">+{(scoreData?.correct_guesses || 0) * 3} pts</span>
+              </div>
+              {speedBonus > 0 && (
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">⚡ Speed Bonuses</span>
+                  <span className="font-semibold text-blue-400">+{speedBonus} pts</span>
+                </div>
+              )}
+              {scoreData?.hints_used > 0 && (
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">💡 Hints Used: {scoreData.hints_used}</span>
+                  <span className="font-semibold text-orange-400">-{scoreData.hints_used} pts</span>
+                </div>
+              )}
+              {timedOut > 0 && (
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">⏱️ Timer Expired: {timedOut} players</span>
+                  <span className="font-semibold text-gray-400">0 pts</span>
+                </div>
+              )}
+              <div className="border-t border-border pt-3 mt-3">
+                <div className="flex justify-between items-center text-lg">
+                  <span className="font-bold">TOTAL</span>
+                  <span className="font-bold text-primary">{scoreData?.total_score || 0} POINTS</span>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Rank and Streaks */}
+          <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
+            <div className="flex items-center justify-center gap-2 text-xl">
+              <Trophy className="w-6 h-6 text-yellow-400" />
+              <span>You're ranked <span className="font-bold text-primary">#{scoreData?.rank || 0}</span> today!</span>
+            </div>
+            <div className="flex items-center justify-center gap-6 text-lg">
+              <div className="flex items-center gap-2">
+                <Flame className="w-5 h-5 text-orange-400" />
+                <span>Current streak: <span className="font-semibold">{scoreData?.current_streak || 0}</span></span>
+              </div>
+              <div className="flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-green-400" />
+                <span>Best: <span className="font-semibold">{scoreData?.longest_streak || 0}</span></span>
+              </div>
             </div>
           </Card>
 
