@@ -23,11 +23,6 @@ const Footer = () => {
                   Leaderboard
                 </Link>
               </li>
-              <li>
-                <Link to="/archive" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Archive
-                </Link>
-              </li>
             </ul>
           </div>
 
