@@ -69,16 +69,6 @@ const GuessInput = ({
     paddingBottom: `max(0.25rem, env(safe-area-inset-bottom))`
   }}>
       <div className="space-y-1 md:space-y-2 md:container md:max-w-5xl md:mx-auto">
-        {/* Hint Overlay - Slides up */}
-        {currentHint && <div className="p-1 md:p-3 bg-timerWarning/10 border md:border-2 border-timerWarning rounded-md md:rounded-xl animate-slide-up shadow-elevated">
-            <div className="flex items-start gap-1 md:gap-2">
-              
-              <p className="text-sm md:text-base text-foreground flex-1">
-                {currentHint}
-              </p>
-            </div>
-          </div>}
-        
         {/* Input Row */}
         <div className="flex gap-1 md:gap-2 items-center w-full">
           <Input value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} onFocus={handleFocus} onBlur={handleBlur} placeholder="Type player name..." disabled={disabled} className={`flex-1 min-w-0 h-8 md:h-12 text-base md:text-sm text-foreground bg-card border md:border-2 rounded-md md:rounded-xl px-2 md:px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${isShaking ? 'animate-shake-horizontal border-destructive focus-visible:border-destructive focus-visible:ring-destructive' : showSuccessBorder ? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500' : 'border-border focus-visible:border-white focus-visible:ring-white'}`} />
