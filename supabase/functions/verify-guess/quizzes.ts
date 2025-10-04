@@ -1,5 +1,7 @@
 // All quiz data with answers (server-side only)
+// START_DATE: October 2, 2025 - Quizzes cycle every 30 days
 export const quizzes = [
+  // Quiz #0 - Presented on: October 2, 2025 (and every 30 days after)
   {
     "title": "All-Time Scoring Leaders",
     "description": "Name the top 6 scorers in NBA history (regular season)",
@@ -20,6 +22,7 @@ export const quizzes = [
       { "rank": 6, "text": "German forward, Dallas Mavericks legend" }
     ]
   },
+  // Quiz #1 - Presented on: October 3, 2025 (and every 30 days after)
   {
     "title": "Most Career Assists",
     "description": "Name the top 6 assist leaders in NBA history",
@@ -40,6 +43,7 @@ export const quizzes = [
       { "rank": 6, "text": "Former Knicks guard, now commentator" }
     ]
   },
+  // Quiz #2 - Presented on: October 4, 2025 (and every 30 days after)
   {
     "title": "Most Career Rebounds",
     "description": "Name the top 6 rebounders in NBA history",
@@ -60,6 +64,7 @@ export const quizzes = [
       { "rank": 6, "text": "5 championships with Spurs, Mr. Fundamental" }
     ]
   },
+  // Quiz #3 - Presented on: October 5, 2025 (and every 30 days after)
   {
     "title": "Most Career Steals",
     "description": "Name the top 6 steal leaders in NBA history",
@@ -80,6 +85,7 @@ export const quizzes = [
       { "rank": 6, "text": "76ers guard, 4× All-Defensive Team" }
     ]
   },
+  // Quiz #4 - Presented on: October 6, 2025 (and every 30 days after)
   {
     "title": "Most Career Blocks",
     "description": "Name the top 6 shot blockers in NBA history",
@@ -100,6 +106,7 @@ export const quizzes = [
       { "rank": 6, "text": "Spurs center, 'The Admiral', MVP 1995" }
     ]
   },
+  // Quiz #5 - Presented on: October 7, 2025 (and every 30 days after)
   {
     "title": "Most 3-Pointers Made",
     "description": "Name the top 6 three-point shooters in NBA history",
@@ -120,6 +127,7 @@ export const quizzes = [
       { "rank": 6, "text": "47% career 3P%, elite spot-up shooter" }
     ]
   },
+  // Quiz #6 - Presented on: October 8, 2025 (and every 30 days after)
   {
     "title": "Most NBA Championships (Players)",
     "description": "Name the top 6 players with most championship rings",
@@ -140,6 +148,7 @@ export const quizzes = [
       { "rank": 6, "text": "Defensive specialist for Celtics dynasty" }
     ]
   },
+  // Quiz #7 - Presented on: October 9, 2025 (and every 30 days after)
   {
     "title": "Most MVP Awards",
     "description": "Name the top 6 players with most regular season MVP awards",
@@ -160,6 +169,7 @@ export const quizzes = [
       { "rank": 6, "text": "Showtime Lakers, 3 MVPs in 1980s" }
     ]
   },
+  // Quiz #8 - Presented on: October 10, 2025 (and every 30 days after)
   {
     "title": "Most Finals MVP Awards",
     "description": "Name the top 6 players with most Finals MVP awards",
@@ -180,6 +190,7 @@ export const quizzes = [
       { "rank": 6, "text": "Back-to-back Finals MVP 2009-2010" }
     ]
   },
+  // Quiz #9 - Presented on: October 11, 2025 (and every 30 days after)
   {
     "title": "Most All-Star Appearances",
     "description": "Name the top 6 players with most All-Star selections",
@@ -200,6 +211,7 @@ export const quizzes = [
       { "rank": 6, "text": "Dominant center, 15 selections" }
     ]
   },
+  // Quiz #10 - Presented on: October 12, 2025 (and every 30 days after)
   {
     "title": "Highest Career PPG",
     "description": "Name the top 6 players with highest career points per game",
@@ -220,6 +232,7 @@ export const quizzes = [
       { "rank": 6, "text": "Lakers guard, 'The Logo', clutch scorer" }
     ]
   },
+  // Quiz #11 - Presented on: October 13, 2025 (and every 30 days after)
   {
     "title": "Most Triple-Doubles",
     "description": "Name the top 6 players with most career triple-doubles",
@@ -240,6 +253,7 @@ export const quizzes = [
       { "rank": 6, "text": "Point guard, great all-around player" }
     ]
   },
+  // Quiz #12 - Presented on: October 14, 2025 (and every 30 days after)
   {
     "title": "Most Career Games Played",
     "description": "Name the top 6 players with most games played",
@@ -260,6 +274,7 @@ export const quizzes = [
       { "rank": 6, "text": "Active at 40, still adding to total" }
     ]
   },
+  // Quiz #13 - Presented on: October 15, 2025 (and every 30 days after)
   {
     "title": "Most Career Minutes Played",
     "description": "Name the top 6 players with most career minutes",
@@ -280,6 +295,7 @@ export const quizzes = [
       { "rank": 6, "text": "19 seasons, all with Spurs" }
     ]
   },
+  // Quiz #14 - Presented on: October 16, 2025 (and every 30 days after)
   {
     "title": "Most Career Free Throws Made",
     "description": "Name the top 6 free throw leaders in NBA history",
@@ -300,6 +316,7 @@ export const quizzes = [
       { "rank": 6, "text": "Bulls legend, clutch at the line" }
     ]
   },
+  // Quiz #15 - Presented on: October 17, 2025 (and every 30 days after)
   {
     "title": "Most Career Field Goals Made",
     "description": "Name the top 6 players with most field goals made",
@@ -320,6 +337,7 @@ export const quizzes = [
       { "rank": 6, "text": "Lakers icon, tough shot-maker" }
     ]
   },
+  // Quiz #16 - Presented on: October 18, 2025 (and every 30 days after)
   {
     "title": "Most Career Turnovers",
     "description": "Name the top 6 players with most career turnovers",
@@ -340,6 +358,7 @@ export const quizzes = [
       { "rank": 6, "text": "High volume scorer, tough shots" }
     ]
   },
+  // Quiz #17 - Presented on: October 19, 2025 (and every 30 days after)
   {
     "title": "Most Career Personal Fouls",
     "description": "Name the top 6 players with most career personal fouls",
@@ -360,6 +379,7 @@ export const quizzes = [
       { "rank": 6, "text": "Physical rebounder, Nets/Blazers" }
     ]
   },
+  // Quiz #18 - Presented on: October 20, 2025 (and every 30 days after)
   {
     "title": "Tallest NBA Players Ever",
     "description": "Name the 6 tallest players in NBA history",
@@ -380,6 +400,7 @@ export const quizzes = [
       { "rank": 6, "text": "Journeyman center, 1980s" }
     ]
   },
+  // Quiz #19 - Presented on: October 21, 2025 (and every 30 days after)
   {
     "title": "Shortest NBA Players Ever",
     "description": "Name the 6 shortest players in NBA history",
@@ -400,6 +421,7 @@ export const quizzes = [
       { "rank": 6, "text": "Warriors guard in early 90s" }
     ]
   },
+  // Quiz #20 - Presented on: October 22, 2025 (and every 30 days after)
   {
     "title": "Most Career Double-Doubles",
     "description": "Name the top 6 players with most career double-doubles",
@@ -420,6 +442,7 @@ export const quizzes = [
       { "rank": 6, "text": "Statistical monster from 1960s" }
     ]
   },
+  // Quiz #21 - Presented on: October 23, 2025 (and every 30 days after)
   {
     "title": "Most Career Playoff Points",
     "description": "Name the top 6 playoff scoring leaders",
@@ -440,6 +463,7 @@ export const quizzes = [
       { "rank": 6, "text": "5 championships, Mr. Consistent" }
     ]
   },
+  // Quiz #22 - Presented on: October 24, 2025 (and every 30 days after)
   {
     "title": "Most Career Playoff Assists",
     "description": "Name the top 6 playoff assist leaders",
@@ -460,6 +484,7 @@ export const quizzes = [
       { "rank": 6, "text": "Spurs point guard, 4 championships" }
     ]
   },
+  // Quiz #23 - Presented on: October 25, 2025 (and every 30 days after)
   {
     "title": "Most Career Playoff Rebounds",
     "description": "Name the top 6 playoff rebounding leaders",
@@ -480,6 +505,7 @@ export const quizzes = [
       { "rank": 6, "text": "Active player, all-around great" }
     ]
   },
+  // Quiz #24 - Presented on: October 26, 2025 (and every 30 days after)
   {
     "title": "Youngest NBA MVPs",
     "description": "Name the 6 youngest players to win MVP",
@@ -500,6 +526,7 @@ export const quizzes = [
       { "rank": 6, "text": "Lakers guard, 1987 MVP" }
     ]
   },
+  // Quiz #25 - Presented on: October 27, 2025 (and every 30 days after)
   {
     "title": "Oldest NBA Champions",
     "description": "Name the 6 oldest players to win a championship",
@@ -520,6 +547,7 @@ export const quizzes = [
       { "rank": 6, "text": "Never won but played until 40" }
     ]
   },
+  // Quiz #26 - Presented on: October 28, 2025 (and every 30 days after)
   {
     "title": "Most 50-Point Games",
     "description": "Name the top 6 players with most 50-point games",
@@ -540,6 +568,7 @@ export const quizzes = [
       { "rank": 6, "text": "Active player, all-time leading scorer" }
     ]
   },
+  // Quiz #27 - Presented on: October 29, 2025 (and every 30 days after)
   {
     "title": "Most Consecutive Games Played",
     "description": "Name the top 6 players with longest consecutive games streaks",
@@ -560,6 +589,7 @@ export const quizzes = [
       { "rank": 6, "text": "Syracuse forward, 1950s-60s" }
     ]
   },
+  // Quiz #28 - Presented on: October 30, 2025 (and every 30 days after)
   {
     "title": "Highest Single Season PPG",
     "description": "Name the top 6 single-season scoring averages",
@@ -580,6 +610,7 @@ export const quizzes = [
       { "rank": 6, "text": "1986-87 season, Bulls legend" }
     ]
   },
+  // Quiz #29 - Presented on: October 31, 2025 (and every 30 days after)
   {
     "title": "Most Career 30-Point Games",
     "description": "Name the top 6 players with most 30-point games",
