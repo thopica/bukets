@@ -157,6 +157,54 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_sessions: {
+        Row: {
+          completed_at: string | null
+          correct_answers: Json
+          correct_ranks: number[]
+          current_question_index: number
+          hints_used: number
+          id: string
+          locked_questions: Json
+          quiz_date: string
+          score: number
+          started_at: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          correct_answers?: Json
+          correct_ranks?: number[]
+          current_question_index?: number
+          hints_used?: number
+          id?: string
+          locked_questions?: Json
+          quiz_date: string
+          score?: number
+          started_at?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          correct_answers?: Json
+          correct_ranks?: number[]
+          current_question_index?: number
+          hints_used?: number
+          id?: string
+          locked_questions?: Json
+          quiz_date?: string
+          score?: number
+          started_at?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_streaks: {
         Row: {
           current_streak: number | null
