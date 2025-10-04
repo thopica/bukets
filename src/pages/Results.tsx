@@ -46,6 +46,7 @@ export default function Results() {
   const [rank, setRank] = useState<number | null>(null);
   const [currentStreak, setCurrentStreak] = useState<number>(0);
   const [longestStreak, setLongestStreak] = useState<number>(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (!resultsData) {
@@ -53,8 +54,22 @@ export default function Results() {
       return;
     }
 
-    submitScore();
+    checkAuthAndSubmit();
   }, []);
+
+  const checkAuthAndSubmit = async () => {
+    // Check if user is logged in
+    const { data: { session } } = await supabase.auth.getSession();
+    setIsLoggedIn(!!session);
+
+    if (session) {
+      // Only submit score if logged in
+      await submitScore();
+    } else {
+      // Not logged in - skip submission
+      setIsSubmitting(false);
+    }
+  };
 
   const submitScore = async () => {
     try {
@@ -142,9 +157,25 @@ export default function Results() {
             </div>
           </Card>
 
-          {/* Rank and Streak */}
+          {/* Rank and Streak - or Sign Up Prompt */}
           <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
-            {isSubmitting ? (
+            {!isLoggedIn ? (
+              <div className="space-y-3 text-center">
+                <p className="text-muted-foreground">
+                  🏆 Your score wasn't saved because you're not logged in.
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Create a free account to save your scores, climb the leaderboard, and track your streak!
+                </p>
+                <Button
+                  onClick={() => navigate('/auth')}
+                  size="lg"
+                  className="w-full mt-2"
+                >
+                  Create Account or Log In
+                </Button>
+              </div>
+            ) : isSubmitting ? (
               <div className="flex items-center justify-center gap-2 text-muted-foreground">
                 <Loader2 className="w-5 h-5 animate-spin" />
                 <span>Calculating your rank...</span>
@@ -171,13 +202,15 @@ export default function Results() {
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-3">
-            <Button
-              onClick={() => navigate('/leaderboard?period=today')}
-              size="lg"
-              className="w-full text-lg"
-            >
-              View Full Leaderboard
-            </Button>
+            {isLoggedIn && (
+              <Button
+                onClick={() => navigate('/leaderboard?period=today')}
+                size="lg"
+                className="w-full text-lg"
+              >
+                View Full Leaderboard
+              </Button>
+            )}
             <Button
               onClick={() => navigate('/training')}
               variant="outline"

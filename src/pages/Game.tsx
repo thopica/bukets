@@ -5,7 +5,7 @@ import QuizHeader from "@/components/quiz/QuizHeader";
 import AnswerGrid from "@/components/quiz/AnswerGrid";
 import GuessInput from "@/components/quiz/GuessInput";
 import HintBar from "@/components/quiz/HintBar";
-import ResultsModal from "@/components/quiz/ResultsModal";
+
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { getTodaysQuiz, getQuizDate, getQuizDateISO, getTodaysQuizIndex, type Quiz } from "@/utils/quizDate";
@@ -98,7 +98,6 @@ const Index = () => {
   const [currentHint, setCurrentHint] = useState<string | undefined>();
   const [timeRemaining, setTimeRemaining] = useState(24);
   const [overallTimeRemaining, setOverallTimeRemaining] = useState(160);
-  const [showResults, setShowResults] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [incorrectGuess, setIncorrectGuess] = useState<number | null>(null);
@@ -188,9 +187,22 @@ const Index = () => {
     const overallTimer = setInterval(() => {
       setOverallTimeRemaining((prev) => {
         if (prev <= 1) {
-          // End quiz when overall time is up
+          // End quiz when overall time is up - navigate to results
           setIsCompleted(true);
-          setTimeout(() => setShowResults(true), 1500);
+          
+          const correctCount = userAnswers.filter((a) => a.isCorrect).length;
+          const totalHints = userAnswers.reduce((sum, a) => sum + (a.isRevealed ? 0 : 0), hintsUsed);
+          
+          navigate('/results', {
+            state: {
+              total_score: score,
+              correct_guesses: correctCount,
+              hints_used: totalHints,
+              time_used: 160,
+              quiz_date: getQuizDateISO(),
+              quiz_index: getTodaysQuizIndex()
+            }
+          });
           return 0;
         }
         return prev - 1;
@@ -198,7 +210,7 @@ const Index = () => {
     }, 1000);
 
     return () => clearInterval(overallTimer);
-  }, [overallTimeRemaining, isCompleted]);
+  }, [overallTimeRemaining, isCompleted, userAnswers, hintsUsed, score, navigate]);
 
   const handleTimeUp = async () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
@@ -226,6 +238,28 @@ const Index = () => {
           };
           setUserAnswers(newAnswers);
           setLastGuessRank(data.answer.rank);
+          
+          // Check if all 6 slots are now filled (mix of correct + auto-revealed)
+          const allFilled = newAnswers.every((a) => a.playerName);
+          if (allFilled) {
+            setIsCompleted(true);
+            
+            // Navigate to results page
+            const correctCount = newAnswers.filter((a) => a.isCorrect).length;
+            const totalHints = newAnswers.reduce((sum) => sum, hintsUsed);
+            
+            navigate('/results', {
+              state: {
+                total_score: score,
+                correct_guesses: correctCount,
+                hints_used: totalHints,
+                time_used: 160 - overallTimeRemaining,
+                quiz_date: getQuizDateISO(),
+                quiz_index: getTodaysQuizIndex()
+              }
+            });
+            return;
+          }
         }
       } catch (error) {
         console.error('Error revealing answer:', error);
@@ -377,16 +411,6 @@ const Index = () => {
     }
   };
 
-  const getResultsData = () => {
-    // We don't have answers client-side, so just return user's guesses
-    return userAnswers.map((userAnswer) => ({
-      rank: userAnswer.rank,
-      correctName: userAnswer.playerName || "Not answered",
-      userGuess: userAnswer.playerName,
-      isCorrect: userAnswer.isCorrect || false,
-    }));
-  };
-
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
   // Show loading spinner while checking completion
@@ -521,19 +545,6 @@ const Index = () => {
         </main>
       </div>
 
-      <ResultsModal
-        open={showResults}
-        onOpenChange={setShowResults}
-        score={score}
-        correctCount={correctCount}
-        totalCount={6}
-        streak={streak}
-        answers={getResultsData()}
-        timeBonus={2}
-        speedBonus={overallTimeRemaining > 100 ? 3 : 0}
-        hintsUsed={hintsUsed}
-        isLoggedIn={!!user}
-      />
     </div>
   );
 };
