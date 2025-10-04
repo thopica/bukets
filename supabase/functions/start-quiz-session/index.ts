@@ -37,7 +37,7 @@ Deno.serve(async (req) => {
     // Check if there's already a session started for today
     const { data: existingSession } = await supabaseClient
       .from('quiz_sessions')
-      .select('started_at, completed_at, score, hints_used, correct_ranks')
+      .select('started_at, completed_at, score, hints_used, correct_ranks, turn_started_at')
       .eq('user_id', user.id)
       .eq('quiz_date', quiz_date)
       .maybeSingle();
@@ -60,6 +60,11 @@ Deno.serve(async (req) => {
       const now = new Date();
       const elapsedSeconds = Math.floor((now.getTime() - startedAt.getTime()) / 1000);
       const totalQuizTime = 160; // 2:40 in seconds
+
+      // Per-turn timer remaining based on when this turn started
+      const turnStartedAt = existingSession.turn_started_at ? new Date(existingSession.turn_started_at) : startedAt;
+      const elapsedTurnSeconds = Math.floor((now.getTime() - turnStartedAt.getTime()) / 1000);
+      const perTurnRemaining = Math.max(0, 24 - elapsedTurnSeconds);
       
       // If time expired, return partial progress and mark as completed
       if (elapsedSeconds >= totalQuizTime) {
@@ -94,6 +99,7 @@ Deno.serve(async (req) => {
           started_at: existingSession.started_at,
           elapsed_seconds: elapsedSeconds,
           remaining_seconds: totalQuizTime - elapsedSeconds,
+          per_turn_remaining_seconds: perTurnRemaining,
           saved_score: existingSession.score || 0,
           saved_correct: (existingSession.correct_ranks || []).length,
           saved_hints: existingSession.hints_used || 0,
@@ -114,6 +120,7 @@ Deno.serve(async (req) => {
         hints_used: 0,
         correct_ranks: [],
         started_at: now,
+        turn_started_at: now,
         status: 'in_progress',
         current_question_index: 0,
         completed_at: null
@@ -134,7 +141,8 @@ Deno.serve(async (req) => {
         session_started: true,
         started_at: now,
         elapsed_seconds: 0,
-        remaining_seconds: 160
+        remaining_seconds: 160,
+        per_turn_remaining_seconds: 24
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );

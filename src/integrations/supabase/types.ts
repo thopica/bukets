@@ -170,6 +170,7 @@ export type Database = {
           score: number
           started_at: string
           status: string
+          turn_started_at: string
           updated_at: string
           user_id: string
         }
@@ -185,6 +186,7 @@ export type Database = {
           score?: number
           started_at?: string
           status?: string
+          turn_started_at?: string
           updated_at?: string
           user_id: string
         }
@@ -200,6 +202,7 @@ export type Database = {
           score?: number
           started_at?: string
           status?: string
+          turn_started_at?: string
           updated_at?: string
           user_id?: string
         }

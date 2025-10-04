@@ -182,6 +182,12 @@ const Index = () => {
           console.log(`Restoring quiz with ${remaining} seconds remaining`);
           setOverallTimeRemaining(remaining);
           
+          // Restore per-turn 24s shot clock based on server time
+          if (typeof sessionData.per_turn_remaining_seconds === 'number') {
+            const turnRemain = Math.max(1, Math.min(24, sessionData.per_turn_remaining_seconds));
+            setTimeRemaining(turnRemain);
+          }
+          
           // Restore saved progress
           if (typeof sessionData.saved_score === 'number') {
             setScore(sessionData.saved_score);
@@ -343,6 +349,21 @@ const Index = () => {
           setUserAnswers(newAnswers);
           setLastGuessRank(data.answer.rank);
           
+          // Reset server-side turn start so 24s clock is correct after refresh
+          try {
+            const answeredRanksNow = newAnswers.filter(a => a.isCorrect).map(a => a.rank);
+            await supabase.functions.invoke('save-quiz-progress', {
+              body: {
+                quiz_date: getQuizDateISO(),
+                current_score: score, // no points for auto-reveal
+                correct_guesses: answeredRanksNow.length,
+                hints_used: hintsUsed,
+                answered_ranks: answeredRanksNow,
+                reset_turn: true
+              }
+            });
+          } catch {}
+          
           // Check if all 6 slots are now filled (mix of correct + auto-revealed)
           const allFilled = newAnswers.every((a) => a.playerName);
           if (allFilled) {
@@ -472,7 +493,8 @@ const Index = () => {
             current_score: newScore,
             correct_guesses: newCorrectCount,
             hints_used: hintsUsed,
-            answered_ranks: answeredRanks
+            answered_ranks: answeredRanks,
+            reset_turn: true
           }
         });
       } catch (err) {
