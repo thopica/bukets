@@ -167,6 +167,7 @@ export type Database = {
           id: string
           locked_questions: Json
           quiz_date: string
+          revealed_ranks: number[] | null
           score: number
           started_at: string
           status: string
@@ -183,6 +184,7 @@ export type Database = {
           id?: string
           locked_questions?: Json
           quiz_date: string
+          revealed_ranks?: number[] | null
           score?: number
           started_at?: string
           status?: string
@@ -199,6 +201,7 @@ export type Database = {
           id?: string
           locked_questions?: Json
           quiz_date?: string
+          revealed_ranks?: number[] | null
           score?: number
           started_at?: string
           status?: string

@@ -30,15 +30,16 @@ Deno.serve(async (req) => {
       );
     }
 
-    const { quiz_date, current_score, correct_guesses, hints_used, answered_ranks, reset_turn } = await req.json();
+    const { quiz_date, current_score, correct_guesses, hints_used, answered_ranks, revealed_ranks, reset_turn } = await req.json();
 
-    console.log(`Saving progress for user ${user.id}: score=${current_score}, correct=${correct_guesses}, answered=${answered_ranks}`);
+    console.log(`Saving progress for user ${user.id}: score=${current_score}, correct=${correct_guesses}, answered=${answered_ranks}, revealed=${revealed_ranks}`);
 
     // Update the in-progress session with current score
     const updatePayload: Record<string, unknown> = {
       score: current_score,
       hints_used: hints_used,
-      correct_ranks: answered_ranks
+      correct_ranks: answered_ranks,
+      revealed_ranks: revealed_ranks || []
     };
     if (reset_turn) {
       updatePayload.turn_started_at = new Date().toISOString();

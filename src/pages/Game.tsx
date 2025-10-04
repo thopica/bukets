@@ -200,17 +200,21 @@ const Index = () => {
           
           setInitializedTurnTimer(true);
           
-          // Restore answered players
-          if (sessionData.answered_ranks && sessionData.answered_ranks.length > 0) {
-            console.log(`Restoring ${sessionData.answered_ranks.length} answered players`);
+          // Restore answered players (both correct and revealed)
+          const correctRanks = sessionData.answered_ranks || [];
+          const revealedRanks = sessionData.revealed_ranks || [];
+          
+          if (correctRanks.length > 0 || revealedRanks.length > 0) {
+            console.log(`Restoring ${correctRanks.length} correct + ${revealedRanks.length} revealed players`);
             
             // Fetch the answers for these ranks
+            const allRanks = [...correctRanks, ...revealedRanks];
             const answersToRestore = await Promise.all(
-              sessionData.answered_ranks.map(async (rank: number) => {
+              allRanks.map(async (rank: number) => {
                 const { data } = await supabase.functions.invoke('verify-guess', {
                   body: { revealRank: rank }
                 });
-                return data?.answer;
+                return { ...data?.answer, isCorrect: correctRanks.includes(rank) };
               })
             );
             
@@ -221,7 +225,8 @@ const Index = () => {
                 restoredAnswers[answer.rank - 1] = {
                   rank: answer.rank,
                   playerName: answer.name,
-                  isCorrect: true,
+                  isCorrect: answer.isCorrect,
+                  isRevealed: !answer.isCorrect,
                   stat: answer.stat,
                 };
               }
@@ -310,7 +315,8 @@ const Index = () => {
     if (isCompleted) return;
     const interval = setInterval(() => {
       const answeredRanks = userAnswers.filter(a => a.isCorrect).map(a => a.rank);
-      if (answeredRanks.length > 0 || hintsUsed > 0 || score > 0) {
+      const revealedRanks = userAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
+      if (answeredRanks.length > 0 || revealedRanks.length > 0 || hintsUsed > 0 || score > 0) {
         supabase.functions.invoke('save-quiz-progress', {
           body: {
             quiz_date: getQuizDateISO(),
@@ -318,6 +324,7 @@ const Index = () => {
             correct_guesses: answeredRanks.length,
             hints_used: hintsUsed,
             answered_ranks: answeredRanks,
+            revealed_ranks: revealedRanks,
           }
         }).catch(() => {});
       }
@@ -355,6 +362,7 @@ const Index = () => {
           // Reset server-side turn start so 24s clock is correct after refresh
           try {
             const answeredRanksNow = newAnswers.filter(a => a.isCorrect).map(a => a.rank);
+            const revealedRanksNow = newAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
             await supabase.functions.invoke('save-quiz-progress', {
               body: {
                 quiz_date: getQuizDateISO(),
@@ -362,6 +370,7 @@ const Index = () => {
                 correct_guesses: answeredRanksNow.length,
                 hints_used: hintsUsed,
                 answered_ranks: answeredRanksNow,
+                revealed_ranks: revealedRanksNow,
                 reset_turn: true
               }
             });
@@ -488,6 +497,9 @@ const Index = () => {
       const answeredRanks = newAnswers
         .filter((a) => a.isCorrect)
         .map((a) => a.rank);
+      const revealedRanks = newAnswers
+        .filter((a) => a.isRevealed && !a.isCorrect)
+        .map((a) => a.rank);
       
       try {
         await supabase.functions.invoke('save-quiz-progress', {
@@ -497,6 +509,7 @@ const Index = () => {
             correct_guesses: newCorrectCount,
             hints_used: hintsUsed,
             answered_ranks: answeredRanks,
+            revealed_ranks: revealedRanks,
             reset_turn: true
           }
         });
