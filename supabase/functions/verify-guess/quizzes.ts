@@ -1,73 +1,9 @@
 // All quiz data with answers (server-side only)
-// START_DATE: October 2, 2025 - Quizzes cycle every 30 days
+// START_DATE: October 5, 2025 - Quizzes cycle every 27 days
 export const quizzes = [
-  // Quiz #0 - Presented on: October 2, 2025 (and every 30 days after)
+  // Quiz #0 - Presented on: October 5, 2025
   {
-    "title": "All-Time Scoring Leaders",
-    "description": "Name the top 6 scorers in NBA history (regular season)",
-    "answers": [
-      { "rank": 1, "name": "LeBron James", "stat": "42,184 points", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james", "le bron", "lebronjames"] },
-      { "rank": 2, "name": "Kareem Abdul-Jabbar", "stat": "38,387 points", "aliases": ["kareem", "abdul jabbar", "abdul-jabbar", "kareem abdul jabbar", "jabbar", "cap", "the captain", "kareem abduljabbar"] },
-      { "rank": 3, "name": "Karl Malone", "stat": "36,928 points", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] },
-      { "rank": 4, "name": "Kobe Bryant", "stat": "33,643 points", "aliases": ["kobe", "black mamba", "mamba", "kb24", "bean", "kobe bryant"] },
-      { "rank": 5, "name": "Michael Jordan", "stat": "32,292 points", "aliases": ["mj", "jordan", "goat", "mike", "air jordan", "his airness", "michael", "michael jordan"] },
-      { "rank": 6, "name": "Dirk Nowitzki", "stat": "31,560 points", "aliases": ["dirk", "nowitzki", "dirk nowitzki", "nowitski", "dirk nowitski", "german jesus"] }
-    ],
-    "hints": [
-      { "rank": 1, "text": "Active player at age 40, all-time leading scorer" },
-      { "rank": 2, "text": "Legendary Lakers center, famous for skyhook" },
-      { "rank": 3, "text": "Power forward nicknamed 'The Mailman'" },
-      { "rank": 4, "text": "Lakers icon, wore #24 and #8" },
-      { "rank": 5, "text": "6× Finals MVP with Chicago Bulls" },
-      { "rank": 6, "text": "German forward, Dallas Mavericks legend" }
-    ]
-  },
-  // Quiz #1 - Presented on: October 3, 2025 (and every 30 days after)
-  {
-    "title": "Most Career Assists",
-    "description": "Name the top 6 assist leaders in NBA history",
-    "answers": [
-      { "rank": 1, "name": "John Stockton", "stat": "15,806 assists", "aliases": ["stockton", "john", "john stockton"] },
-      { "rank": 2, "name": "Chris Paul", "stat": "12,499 assists", "aliases": ["cp3", "paul", "chris", "chris paul", "point god", "cp 3"] },
-      { "rank": 3, "name": "Jason Kidd", "stat": "12,091 assists", "aliases": ["kidd", "jason", "jason kidd", "j kidd"] },
-      { "rank": 4, "name": "LeBron James", "stat": "11,584 assists", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
-      { "rank": 5, "name": "Steve Nash", "stat": "10,335 assists", "aliases": ["nash", "steve", "steve nash"] },
-      { "rank": 6, "name": "Mark Jackson", "stat": "10,334 assists", "aliases": ["jackson", "mark", "mark jackson"] }
-    ],
-    "hints": [
-      { "rank": 1, "text": "Jazz legend with huge lead over second place" },
-      { "rank": 2, "text": "Active point guard, passed Kidd in 2024-25" },
-      { "rank": 3, "text": "Triple-double machine, coached multiple teams" },
-      { "rank": 4, "text": "Active player, all-around great passer" },
-      { "rank": 5, "text": "Two-time MVP, Canadian point guard" },
-      { "rank": 6, "text": "Former Knicks guard, now commentator" }
-    ]
-  },
-  // Quiz #2 - Presented on: October 4, 2025 (and every 30 days after)
-  {
-    "title": "Most Career Rebounds",
-    "description": "Name the top 6 rebounders in NBA history",
-    "answers": [
-      { "rank": 1, "name": "Wilt Chamberlain", "stat": "23,924 rebounds", "aliases": ["wilt", "chamberlain", "stilt", "the stilt", "wilt the stilt", "wilt chamberlain"] },
-      { "rank": 2, "name": "Bill Russell", "stat": "21,620 rebounds", "aliases": ["russell", "bill", "bill russell"] },
-      { "rank": 3, "name": "Kareem Abdul-Jabbar", "stat": "17,440 rebounds", "aliases": ["kareem", "abdul jabbar", "abdul-jabbar", "kareem abdul jabbar", "jabbar"] },
-      { "rank": 4, "name": "Elvin Hayes", "stat": "16,279 rebounds", "aliases": ["hayes", "elvin", "big e", "elvin hayes", "the big e"] },
-      { "rank": 5, "name": "Moses Malone", "stat": "16,212 rebounds", "aliases": ["moses", "malone", "moses malone"] },
-      { "rank": 6, "name": "Tim Duncan", "stat": "15,091 rebounds", "aliases": ["duncan", "tim", "big fundamental", "tim duncan", "the big fundamental", "timmy"] }
-    ],
-    "hints": [
-      { "rank": 1, "text": "Scored 100 points in a game, dominant rebounder" },
-      { "rank": 2, "text": "11-time champion, defensive master" },
-      { "rank": 3, "text": "All-time scoring leader with skyhook" },
-      { "rank": 4, "text": "Bullets/Rockets star, over 27,000 points" },
-      { "rank": 5, "text": "3× MVP, fierce offensive rebounder" },
-      { "rank": 6, "text": "5 championships with Spurs, Mr. Fundamental" }
-    ]
-  },
-  // Quiz #3 - Presented on: October 5, 2025 (and every 30 days after)
-  {
-    "title": "Most Career Steals",
-    "description": "Name the top 6 steal leaders in NBA history",
+    "title": "All-Time NBA Steals Leaders By Total Steals",
     "answers": [
       { "rank": 1, "name": "John Stockton", "stat": "3,265 steals", "aliases": ["stockton", "john", "john stockton"] },
       { "rank": 2, "name": "Chris Paul", "stat": "2,755 steals", "aliases": ["cp3", "paul", "chris", "chris paul", "point god"] },
@@ -85,10 +21,9 @@ export const quizzes = [
       { "rank": 6, "text": "76ers guard, 4× All-Defensive Team" }
     ]
   },
-  // Quiz #4 - Presented on: October 6, 2025 (and every 30 days after)
+  // Quiz #1 - Presented on: October 6, 2025
   {
-    "title": "Most Career Blocks",
-    "description": "Name the top 6 shot blockers in NBA history",
+    "title": "All-Time NBA Blocked Shots Leaders By Total Blocks",
     "answers": [
       { "rank": 1, "name": "Hakeem Olajuwon", "stat": "3,830 blocks", "aliases": ["hakeem", "olajuwon", "dream", "the dream", "hakeem olajuwon", "akeem"] },
       { "rank": 2, "name": "Dikembe Mutombo", "stat": "3,289 blocks", "aliases": ["mutombo", "dikembe", "deke", "dikembe mutombo", "mutumbo"] },
@@ -106,10 +41,9 @@ export const quizzes = [
       { "rank": 6, "text": "Spurs center, 'The Admiral', MVP 1995" }
     ]
   },
-  // Quiz #5 - Presented on: October 7, 2025 (and every 30 days after)
+  // Quiz #2 - Presented on: October 7, 2025
   {
-    "title": "Most 3-Pointers Made",
-    "description": "Name the top 6 three-point shooters in NBA history",
+    "title": "All-Time NBA 3-Point Leaders By Total Made",
     "answers": [
       { "rank": 1, "name": "Stephen Curry", "stat": "3,867 threes", "aliases": ["curry", "steph", "stephen", "stephen curry", "chef curry", "wardell"] },
       { "rank": 2, "name": "Ray Allen", "stat": "2,973 threes", "aliases": ["allen", "ray", "jesus shuttlesworth", "ray allen", "shuttlesworth"] },
@@ -127,10 +61,9 @@ export const quizzes = [
       { "rank": 6, "text": "47% career 3P%, elite spot-up shooter" }
     ]
   },
-  // Quiz #6 - Presented on: October 8, 2025 (and every 30 days after)
+  // Quiz #3 - Presented on: October 8, 2025
   {
-    "title": "Most NBA Championships (Players)",
-    "description": "Name the top 6 players with most championship rings",
+    "title": "Players With The Most NBA Championships (All-Time)",
     "answers": [
       { "rank": 1, "name": "Bill Russell", "stat": "11 championships", "aliases": ["russell", "bill", "bill russell"] },
       { "rank": 2, "name": "Sam Jones", "stat": "10 championships", "aliases": ["jones", "sam", "samuel", "sam jones", "samuel jones"] },
@@ -148,10 +81,9 @@ export const quizzes = [
       { "rank": 6, "text": "Defensive specialist for Celtics dynasty" }
     ]
   },
-  // Quiz #7 - Presented on: October 9, 2025 (and every 30 days after)
+  // Quiz #4 - Presented on: October 9, 2025
   {
-    "title": "Most MVP Awards",
-    "description": "Name the top 6 players with most regular season MVP awards",
+    "title": "NBA All-Time Record For Most MVP Awards",
     "answers": [
       { "rank": 1, "name": "Kareem Abdul-Jabbar", "stat": "6 MVPs", "aliases": ["kareem", "abdul jabbar", "abdul-jabbar", "kareem abdul jabbar", "jabbar"] },
       { "rank": 2, "name": "Michael Jordan", "stat": "5 MVPs", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan"] },
@@ -169,10 +101,9 @@ export const quizzes = [
       { "rank": 6, "text": "Showtime Lakers, 3 MVPs in 1980s" }
     ]
   },
-  // Quiz #8 - Presented on: October 10, 2025 (and every 30 days after)
+  // Quiz #5 - Presented on: October 10, 2025
   {
-    "title": "Most Finals MVP Awards",
-    "description": "Name the top 6 players with most Finals MVP awards",
+    "title": "NBA All-Time Record For Finals MVP Awards",
     "answers": [
       { "rank": 1, "name": "Michael Jordan", "stat": "6 Finals MVPs", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan"] },
       { "rank": 2, "name": "LeBron James", "stat": "4 Finals MVPs", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
@@ -190,10 +121,9 @@ export const quizzes = [
       { "rank": 6, "text": "Back-to-back Finals MVP 2009-2010" }
     ]
   },
-  // Quiz #9 - Presented on: October 11, 2025 (and every 30 days after)
+  // Quiz #6 - Presented on: October 11, 2025
   {
-    "title": "Most All-Star Appearances",
-    "description": "Name the top 6 players with most All-Star selections",
+    "title": "NBA All-Time Leaders In Total All-Star Games",
     "answers": [
       { "rank": 1, "name": "LeBron James", "stat": "20 All-Stars", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
       { "rank": 2, "name": "Kareem Abdul-Jabbar", "stat": "19 All-Stars", "aliases": ["kareem", "abdul jabbar", "abdul-jabbar", "kareem abdul jabbar", "jabbar"] },
@@ -211,10 +141,9 @@ export const quizzes = [
       { "rank": 6, "text": "Dominant center, 15 selections" }
     ]
   },
-  // Quiz #10 - Presented on: October 12, 2025 (and every 30 days after)
+  // Quiz #7 - Presented on: October 12, 2025
   {
-    "title": "Highest Career PPG",
-    "description": "Name the top 6 players with highest career points per game",
+    "title": "All-Time NBA Scoring Leaders By Career Points Per Game",
     "answers": [
       { "rank": 1, "name": "Michael Jordan", "stat": "30.1 PPG", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan"] },
       { "rank": 2, "name": "Wilt Chamberlain", "stat": "30.1 PPG", "aliases": ["wilt", "chamberlain", "wilt chamberlain", "the stilt"] },
@@ -232,10 +161,9 @@ export const quizzes = [
       { "rank": 6, "text": "Lakers guard, 'The Logo', clutch scorer" }
     ]
   },
-  // Quiz #11 - Presented on: October 13, 2025 (and every 30 days after)
+  // Quiz #8 - Presented on: October 13, 2025
   {
-    "title": "Most Triple-Doubles",
-    "description": "Name the top 6 players with most career triple-doubles",
+    "title": "All-Time NBA Leaders In Career Triple-Doubles",
     "answers": [
       { "rank": 1, "name": "Russell Westbrook", "stat": "200 triple-doubles", "aliases": ["westbrook", "russ", "russell", "russell westbrook", "brodie"] },
       { "rank": 2, "name": "Oscar Robertson", "stat": "181 triple-doubles", "aliases": ["robertson", "oscar", "big o", "the big o", "oscar robertson"] },
@@ -253,10 +181,9 @@ export const quizzes = [
       { "rank": 6, "text": "Point guard, great all-around player" }
     ]
   },
-  // Quiz #12 - Presented on: October 14, 2025 (and every 30 days after)
+  // Quiz #9 - Presented on: October 14, 2025
   {
-    "title": "Most Career Games Played",
-    "description": "Name the top 6 players with most games played",
+    "title": "NBA All-Time Record For Most Career Games Played",
     "answers": [
       { "rank": 1, "name": "Robert Parish", "stat": "1,611 games", "aliases": ["parish", "robert", "chief", "the chief", "robert parish"] },
       { "rank": 2, "name": "Kareem Abdul-Jabbar", "stat": "1,560 games", "aliases": ["kareem", "abdul jabbar", "abdul-jabbar", "kareem abdul jabbar", "jabbar"] },
@@ -274,10 +201,9 @@ export const quizzes = [
       { "rank": 6, "text": "Active at 40, still adding to total" }
     ]
   },
-  // Quiz #13 - Presented on: October 15, 2025 (and every 30 days after)
+  // Quiz #10 - Presented on: October 15, 2025
   {
-    "title": "Most Career Minutes Played",
-    "description": "Name the top 6 players with most career minutes",
+    "title": "NBA All-Time Career Minutes Leaders",
     "answers": [
       { "rank": 1, "name": "Kareem Abdul-Jabbar", "stat": "57,446 minutes", "aliases": ["kareem", "abdul jabbar", "abdul-jabbar", "kareem abdul jabbar", "jabbar"] },
       { "rank": 2, "name": "LeBron James", "stat": "57,979 minutes", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
@@ -295,10 +221,9 @@ export const quizzes = [
       { "rank": 6, "text": "19 seasons, all with Spurs" }
     ]
   },
-  // Quiz #14 - Presented on: October 16, 2025 (and every 30 days after)
+  // Quiz #11 - Presented on: October 16, 2025
   {
-    "title": "Most Career Free Throws Made",
-    "description": "Name the top 6 free throw leaders in NBA history",
+    "title": "NBA All-Time Career Free Throw Leaders (Total Made)",
     "answers": [
       { "rank": 1, "name": "Karl Malone", "stat": "9,787 FT", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] },
       { "rank": 2, "name": "Moses Malone", "stat": "8,531 FT", "aliases": ["moses", "malone", "moses malone"] },
@@ -316,10 +241,9 @@ export const quizzes = [
       { "rank": 6, "text": "Bulls legend, clutch at the line" }
     ]
   },
-  // Quiz #15 - Presented on: October 17, 2025 (and every 30 days after)
+  // Quiz #12 - Presented on: October 17, 2025
   {
-    "title": "Most Career Field Goals Made",
-    "description": "Name the top 6 players with most field goals made",
+    "title": "NBA All-Time Career Field Goal Leaders (Total Made)",
     "answers": [
       { "rank": 1, "name": "LeBron James", "stat": "15,726 FG", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
       { "rank": 2, "name": "Kareem Abdul-Jabbar", "stat": "15,837 FG", "aliases": ["kareem", "abdul jabbar", "abdul-jabbar", "kareem abdul jabbar", "jabbar"] },
@@ -337,10 +261,9 @@ export const quizzes = [
       { "rank": 6, "text": "Lakers icon, tough shot-maker" }
     ]
   },
-  // Quiz #16 - Presented on: October 18, 2025 (and every 30 days after)
+  // Quiz #13 - Presented on: October 18, 2025
   {
-    "title": "Most Career Turnovers",
-    "description": "Name the top 6 players with most career turnovers",
+    "title": "NBA All-Time Career Turnover Leaders",
     "answers": [
       { "rank": 1, "name": "LeBron James", "stat": "5,366 TO", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
       { "rank": 2, "name": "Russell Westbrook", "stat": "4,650 TO", "aliases": ["westbrook", "russ", "russell", "russell westbrook", "brodie"] },
@@ -358,10 +281,9 @@ export const quizzes = [
       { "rank": 6, "text": "High volume scorer, tough shots" }
     ]
   },
-  // Quiz #17 - Presented on: October 19, 2025 (and every 30 days after)
+  // Quiz #14 - Presented on: October 19, 2025
   {
-    "title": "Most Career Personal Fouls",
-    "description": "Name the top 6 players with most career personal fouls",
+    "title": "NBA All-Time Record For Most Career Personal Fouls",
     "answers": [
       { "rank": 1, "name": "Kareem Abdul-Jabbar", "stat": "4,657 PF", "aliases": ["kareem", "abdul jabbar", "abdul-jabbar", "kareem abdul jabbar", "jabbar"] },
       { "rank": 2, "name": "Karl Malone", "stat": "4,578 PF", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] },
@@ -379,10 +301,9 @@ export const quizzes = [
       { "rank": 6, "text": "Physical rebounder, Nets/Blazers" }
     ]
   },
-  // Quiz #18 - Presented on: October 20, 2025 (and every 30 days after)
+  // Quiz #15 - Presented on: October 20, 2025
   {
-    "title": "Tallest NBA Players Ever",
-    "description": "Name the 6 tallest players in NBA history",
+    "title": "Tallest Players In NBA History (All-Time Record)",
     "answers": [
       { "rank": 1, "name": "Gheorghe Muresan", "stat": "7'7\"", "aliases": ["muresan", "gheorghe", "gheorghe muresan", "murishan"] },
       { "rank": 2, "name": "Manute Bol", "stat": "7'7\"", "aliases": ["bol", "manute", "manute bol"] },
@@ -400,10 +321,9 @@ export const quizzes = [
       { "rank": 6, "text": "Journeyman center, 1980s" }
     ]
   },
-  // Quiz #19 - Presented on: October 21, 2025 (and every 30 days after)
+  // Quiz #16 - Presented on: October 21, 2025
   {
-    "title": "Shortest NBA Players Ever",
-    "description": "Name the 6 shortest players in NBA history",
+    "title": "Shortest Players In NBA History (All-Time Record)",
     "answers": [
       { "rank": 1, "name": "Muggsy Bogues", "stat": "5'3\"", "aliases": ["bogues", "muggsy", "muggsy bogues", "tyrone bogues"] },
       { "rank": 2, "name": "Earl Boykins", "stat": "5'5\"", "aliases": ["boykins", "earl", "earl boykins"] },
@@ -421,10 +341,9 @@ export const quizzes = [
       { "rank": 6, "text": "Warriors guard in early 90s" }
     ]
   },
-  // Quiz #20 - Presented on: October 22, 2025 (and every 30 days after)
+  // Quiz #17 - Presented on: October 22, 2025
   {
-    "title": "Most Career Double-Doubles",
-    "description": "Name the top 6 players with most career double-doubles",
+    "title": "All-Time NBA Leaders In Career Double-Doubles",
     "answers": [
       { "rank": 1, "name": "Tim Duncan", "stat": "841 double-doubles", "aliases": ["duncan", "tim", "tim duncan", "big fundamental", "the big fundamental"] },
       { "rank": 2, "name": "Karl Malone", "stat": "814 double-doubles", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] },
@@ -442,10 +361,9 @@ export const quizzes = [
       { "rank": 6, "text": "Statistical monster from 1960s" }
     ]
   },
-  // Quiz #21 - Presented on: October 23, 2025 (and every 30 days after)
+  // Quiz #18 - Presented on: October 23, 2025
   {
-    "title": "Most Career Playoff Points",
-    "description": "Name the top 6 playoff scoring leaders",
+    "title": "NBA All-Time Career Playoff Points Leaders",
     "answers": [
       { "rank": 1, "name": "LeBron James", "stat": "8,162 points", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
       { "rank": 2, "name": "Michael Jordan", "stat": "5,987 points", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan"] },
@@ -463,10 +381,9 @@ export const quizzes = [
       { "rank": 6, "text": "5 championships, Mr. Consistent" }
     ]
   },
-  // Quiz #22 - Presented on: October 24, 2025 (and every 30 days after)
+  // Quiz #19 - Presented on: October 24, 2025
   {
-    "title": "Most Career Playoff Assists",
-    "description": "Name the top 6 playoff assist leaders",
+    "title": "NBA All-Time Career Playoff Assist Leaders",
     "answers": [
       { "rank": 1, "name": "LeBron James", "stat": "2,253 assists", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
       { "rank": 2, "name": "Magic Johnson", "stat": "2,346 assists", "aliases": ["magic", "johnson", "earvin", "magic johnson"] },
@@ -484,10 +401,9 @@ export const quizzes = [
       { "rank": 6, "text": "Spurs point guard, 4 championships" }
     ]
   },
-  // Quiz #23 - Presented on: October 25, 2025 (and every 30 days after)
+  // Quiz #20 - Presented on: October 25, 2025
   {
-    "title": "Most Career Playoff Rebounds",
-    "description": "Name the top 6 playoff rebounding leaders",
+    "title": "NBA All-Time Career Playoff Rebound Leaders",
     "answers": [
       { "rank": 1, "name": "Bill Russell", "stat": "4,104 rebounds", "aliases": ["russell", "bill", "bill russell"] },
       { "rank": 2, "name": "Wilt Chamberlain", "stat": "3,913 rebounds", "aliases": ["wilt", "chamberlain", "wilt chamberlain", "the stilt"] },
@@ -505,10 +421,9 @@ export const quizzes = [
       { "rank": 6, "text": "Active player, all-around great" }
     ]
   },
-  // Quiz #24 - Presented on: October 26, 2025 (and every 30 days after)
+  // Quiz #21 - Presented on: October 26, 2025
   {
-    "title": "Youngest NBA MVPs",
-    "description": "Name the 6 youngest players to win MVP",
+    "title": "NBA All-Time Record For Youngest MVP Winners",
     "answers": [
       { "rank": 1, "name": "Derrick Rose", "stat": "22 years old", "aliases": ["rose", "derrick", "derrick rose", "d rose", "drose"] },
       { "rank": 2, "name": "Wes Unseld", "stat": "23 years old", "aliases": ["unseld", "wes", "westley", "wes unseld"] },
@@ -526,10 +441,9 @@ export const quizzes = [
       { "rank": 6, "text": "Lakers guard, 1987 MVP" }
     ]
   },
-  // Quiz #25 - Presented on: October 27, 2025 (and every 30 days after)
+  // Quiz #22 - Presented on: October 27, 2025
   {
-    "title": "Oldest NBA Champions",
-    "description": "Name the 6 oldest players to win a championship",
+    "title": "NBA All-Time Record For Oldest Champions",
     "answers": [
       { "rank": 1, "name": "Nat Hickey", "stat": "45 years old", "aliases": ["hickey", "nat", "nat hickey", "nathaniel"] },
       { "rank": 2, "name": "Robert Parish", "stat": "43 years old", "aliases": ["parish", "robert", "chief", "the chief", "robert parish"] },
@@ -547,10 +461,9 @@ export const quizzes = [
       { "rank": 6, "text": "Never won but played until 40" }
     ]
   },
-  // Quiz #26 - Presented on: October 28, 2025 (and every 30 days after)
+  // Quiz #23 - Presented on: October 28, 2025
   {
-    "title": "Most 50-Point Games",
-    "description": "Name the top 6 players with most 50-point games",
+    "title": "NBA All-Time Record For Career 50-Point Games",
     "answers": [
       { "rank": 1, "name": "Wilt Chamberlain", "stat": "118 games", "aliases": ["wilt", "chamberlain", "wilt chamberlain", "the stilt"] },
       { "rank": 2, "name": "Michael Jordan", "stat": "31 games", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan"] },
@@ -568,10 +481,9 @@ export const quizzes = [
       { "rank": 6, "text": "Active player, all-time leading scorer" }
     ]
   },
-  // Quiz #27 - Presented on: October 29, 2025 (and every 30 days after)
+  // Quiz #24 - Presented on: October 29, 2025
   {
-    "title": "Most Consecutive Games Played",
-    "description": "Name the top 6 players with longest consecutive games streaks",
+    "title": "NBA All-Time Record For Consecutive Games Played",
     "answers": [
       { "rank": 1, "name": "A.C. Green", "stat": "1,192 games", "aliases": ["green", "ac", "a.c.", "ac green", "a.c. green"] },
       { "rank": 2, "name": "Randy Smith", "stat": "906 games", "aliases": ["smith", "randy", "randy smith"] },
@@ -589,10 +501,9 @@ export const quizzes = [
       { "rank": 6, "text": "Syracuse forward, 1950s-60s" }
     ]
   },
-  // Quiz #28 - Presented on: October 30, 2025 (and every 30 days after)
+  // Quiz #25 - Presented on: October 30, 2025
   {
-    "title": "Highest Single Season PPG",
-    "description": "Name the top 6 single-season scoring averages",
+    "title": "NBA All-Time Record For Highest Single-Season PPG",
     "answers": [
       { "rank": 1, "name": "Wilt Chamberlain", "stat": "50.4 PPG", "aliases": ["wilt", "chamberlain", "wilt chamberlain", "the stilt"] },
       { "rank": 2, "name": "Wilt Chamberlain", "stat": "44.8 PPG", "aliases": ["wilt", "chamberlain", "wilt chamberlain", "the stilt"] },
@@ -610,10 +521,9 @@ export const quizzes = [
       { "rank": 6, "text": "1986-87 season, Bulls legend" }
     ]
   },
-  // Quiz #29 - Presented on: October 31, 2025 (and every 30 days after)
+  // Quiz #26 - Presented on: October 31, 2025
   {
-    "title": "Most Career 30-Point Games",
-    "description": "Name the top 6 players with most 30-point games",
+    "title": "NBA All-Time Record For Career 30-Point Games",
     "answers": [
       { "rank": 1, "name": "Wilt Chamberlain", "stat": "562 games", "aliases": ["wilt", "chamberlain", "wilt chamberlain", "the stilt"] },
       { "rank": 2, "name": "Michael Jordan", "stat": "562 games", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan"] },
@@ -632,3 +542,5 @@ export const quizzes = [
     ]
   }
 ];
+
+
