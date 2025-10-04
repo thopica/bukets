@@ -110,6 +110,7 @@ const Index = () => {
   const [quizStartTime] = useState(Date.now());
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [isCheckingCompletion, setIsCheckingCompletion] = useState(true);
+  const [initializedTurnTimer, setInitializedTurnTimer] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const INPUT_BAR_HEIGHT = 72;
 
@@ -197,6 +198,8 @@ const Index = () => {
             setHintsUsed(sessionData.saved_hints);
           }
           
+          setInitializedTurnTimer(true);
+          
           // Restore answered players
           if (sessionData.answered_ranks && sessionData.answered_ranks.length > 0) {
             console.log(`Restoring ${sessionData.answered_ranks.length} answered players`);
@@ -254,7 +257,7 @@ const Index = () => {
 
   // Per-player timer countdown
   useEffect(() => {
-    if (isCompleted || timeRemaining === 0) return;
+    if (isCompleted || timeRemaining === 0 || !initializedTurnTimer) return;
 
     const timer = setInterval(() => {
       setTimeRemaining((prev) => {
