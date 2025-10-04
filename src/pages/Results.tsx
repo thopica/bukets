@@ -24,17 +24,11 @@ interface ScoreMessage {
 }
 
 function getScoreMessage(totalScore: number): ScoreMessage {
-  if (totalScore === 30) return { title: "Perfect Score!", message: "Flawless victory!", color: "text-yellow-400" };
-  if (totalScore >= 27) return { title: "Incredible!", message: "You're an NBA encyclopedia!", color: "text-yellow-400" };
-  if (totalScore >= 24) return { title: "Outstanding!", message: "The league scouts are watching!", color: "text-green-400" };
-  if (totalScore >= 21) return { title: "Great job!", message: "You know your hoops!", color: "text-green-400" };
-  if (totalScore >= 18) return { title: "Solid performance!", message: "Keep that streak going!", color: "text-blue-400" };
-  if (totalScore >= 15) return { title: "Not bad!", message: "Room for improvement tomorrow.", color: "text-blue-400" };
-  if (totalScore >= 12) return { title: "Decent effort!", message: "Study up for tomorrow's quiz.", color: "text-orange-400" };
-  if (totalScore >= 9) return { title: "Tough one today!", message: "Tomorrow's a new chance.", color: "text-orange-400" };
-  if (totalScore >= 6) return { title: "Rough day at the office!", message: "Time to hit the film room.", color: "text-red-400" };
-  if (totalScore >= 3) return { title: "Even legends have off days!", message: "Comeback tomorrow?", color: "text-red-400" };
-  return { title: "Time to call it a day...", message: "Maybe grab a coffee first?", color: "text-gray-400" };
+  if (totalScore === 30) return { title: "Goat", message: "Perfect game! You didn't just win, you dominated.", color: "text-yellow-400" };
+  if (totalScore >= 25) return { title: "Legend", message: "You proved you're elite. Now stay there.", color: "text-yellow-400" };
+  if (totalScore >= 19) return { title: "All-Star", message: "You just proved you belong at the top of the board.", color: "text-green-400" };
+  if (totalScore >= 13) return { title: "Starter Material", message: "You're in the rotation, keep grinding to reach the top.", color: "text-blue-400" };
+  return { title: "Bench Player", message: "Hit the film room and study up for tomorrow's quiz.", color: "text-orange-400" };
 }
 
 export default function Results() {
