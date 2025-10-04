@@ -111,7 +111,8 @@ Deno.serve(async (req) => {
         correct_guesses: 0,
         hints_used: 0,
         time_used: 0,
-        started_at: now
+        started_at: now,
+        completed_at: null
       });
 
     if (insertError) {
