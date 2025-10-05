@@ -456,7 +456,7 @@ const Leaderboard = () => {
           </div>
 
           {/* iOS-style Segmented Control */}
-          <div className="bg-muted/50 p-1 rounded-xl border-2 border-border inline-flex w-full max-w-2xl mx-auto">
+          <div className="bg-muted/50 p-1 rounded-xl border-2 border-border inline-flex w-full max-w-3xl mx-auto">
             {tabs.map((tab) => (
               <button
                 key={tab.value}
