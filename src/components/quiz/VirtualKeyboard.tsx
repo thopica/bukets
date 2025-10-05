@@ -27,7 +27,7 @@ const VirtualKeyboard = ({
   const isMobile = useIsMobile();
   const [pressedKey, setPressedKey] = useState<string | null>(null);
   const [isShaking, setIsShaking] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(true);
 
   useEffect(() => {
     if (showError) {
@@ -93,10 +93,8 @@ const VirtualKeyboard = ({
                 <span>{currentValue}</span>
                 <span className="inline-block w-0.5 h-5 bg-foreground ml-0.5 animate-pulse" />
               </>
-            ) : isFocused ? (
-              <span className="inline-block w-0.5 h-5 bg-foreground animate-pulse" />
             ) : (
-              <span className="text-muted-foreground">Type player name...</span>
+              <span className="inline-block w-0.5 h-5 bg-foreground animate-pulse" />
             )}
           </div>
         </div>
