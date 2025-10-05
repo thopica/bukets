@@ -426,10 +426,7 @@ const Leaderboard = () => {
         <div className="space-y-6">
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-2 text-foreground">Leaderboard</h1>
-            <p className="text-muted-foreground text-sm">
-              Compete with NBA quiz enthusiasts worldwide
-            </p>
+            <h1 className="text-3xl font-bold text-foreground">Leaderboard</h1>
           </div>
 
           {/* Country Filter */}
