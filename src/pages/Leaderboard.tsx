@@ -212,9 +212,7 @@ const LeaderboardTable = ({
               return (
                 <div
                   key={player.user_id}
-                  className={`transition-all h-[84px] border-b border-border/30 ${
-                    isCurrentUser ? "border-l-4 border-l-orange" : ""
-                  }`}
+                  className="transition-all h-[84px] border-b border-border/30"
                 >
                   <div className="flex items-center gap-4 px-4 h-full">
                     {/* Flag + Username */}
@@ -255,9 +253,7 @@ const LeaderboardTable = ({
               return (
                 <div
                   key={player.user_id}
-                  className={`border-b border-border/30 transition-all hover:bg-muted/20 h-[68px] ${
-                    isCurrentUser ? "border-l-4 border-l-orange" : ""
-                  }`}
+                  className="border-b border-border/30 transition-all hover:bg-muted/20 h-[68px]"
                 >
                   <div className="flex items-center gap-4 px-4 h-full">
                     {/* Flag + Username */}
