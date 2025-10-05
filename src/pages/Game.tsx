@@ -603,8 +603,8 @@ const Index = () => {
         </div>
         
         {/* Scrollable Content Area - Mobile */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch overscroll-none">
-          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1 pb-4">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch overscroll-none pb-[320px]">
+          <div className="container max-w-2xl mx-auto px-2 py-1 flex flex-col gap-1">
 
             {/* Question Header */}
             <div className="shrink-0">
@@ -652,9 +652,6 @@ const Index = () => {
                 onFocusChange={setIsInputFocused}
               />
             </div>
-
-            {/* Spacer for fixed input overlay */}
-            <div aria-hidden="true" style={{ height: `${INPUT_BAR_HEIGHT}px` }} />
           </div>
         </div>
 

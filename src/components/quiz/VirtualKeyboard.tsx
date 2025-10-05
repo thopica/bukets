@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Delete, Lightbulb } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface VirtualKeyboardProps {
   onKeyPress: (key: string) => void;
@@ -21,6 +22,7 @@ const VirtualKeyboard = ({
   hintsRemaining = 0,
   currentValue
 }: VirtualKeyboardProps) => {
+  const isMobile = useIsMobile();
   const [pressedKey, setPressedKey] = useState<string | null>(null);
 
   useEffect(() => {
@@ -57,7 +59,14 @@ const VirtualKeyboard = ({
   ];
 
   return (
-    <div className="w-full bg-card/50 backdrop-blur-sm pb-safe pt-4">
+    <div 
+      className={`w-full bg-card/50 backdrop-blur-sm pt-4 ${
+        isMobile ? 'fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]' : ''
+      }`}
+      style={isMobile ? {
+        paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))'
+      } : undefined}
+    >
       {/* Input Display */}
       <div className="px-2 pb-1">
         <div className="bg-background border-2 border-border rounded-lg px-3 py-2 min-h-[40px] text-base text-foreground">
