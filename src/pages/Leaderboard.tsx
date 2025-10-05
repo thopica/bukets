@@ -135,7 +135,7 @@ const LeaderboardTable = ({
       {/* Wrapper for synchronized horizontal scrolling */}
       <div className="flex">
         {/* Fixed Rank Column */}
-        <div className="flex-shrink-0 w-16 md:w-20 bg-muted/30 z-10">
+        <div className="flex-shrink-0 w-16 md:w-20 bg-background z-10">
           {/* Header */}
           <div className="h-12 border-b-2 border-border"></div>
           {/* Top 3 Ranks */}
@@ -144,11 +144,7 @@ const LeaderboardTable = ({
             return (
               <div
                 key={`rank-${player.user_id}`}
-                className={`px-4 flex items-center justify-center h-[84px] ${
-                  player.rank === 1
-                    ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
-                    : "bg-muted/30 border-b-2 border-border/50"
-                }`}
+                className="px-4 flex items-center justify-center h-[84px] border-b border-border/30"
               >
                 <span className="text-3xl leading-none">{medal}</span>
               </div>
@@ -171,7 +167,7 @@ const LeaderboardTable = ({
         <div className="flex-1 overflow-x-auto scrollbar-hide relative">
           <div className="min-w-max">
             {/* Header Row */}
-            <div className="sticky top-0 z-20 bg-muted/30 border-b-2 border-border h-12">
+            <div className="sticky top-0 z-20 bg-background border-b-2 border-border h-12">
               <div className="flex items-center gap-4 px-4 h-full">
                 {/* Username spacer */}
                 <div className="flex-1 min-w-[120px]"></div>
@@ -216,11 +212,9 @@ const LeaderboardTable = ({
               return (
                 <div
                   key={player.user_id}
-                  className={`transition-all h-[84px] ${
-                    player.rank === 1
-                      ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
-                      : "bg-muted/30 border-b-2 border-border/50"
-                  } ${isCurrentUser ? "border-l-4 border-l-orange" : ""}`}
+                  className={`transition-all h-[84px] border-b border-border/30 ${
+                    isCurrentUser ? "border-l-4 border-l-orange" : ""
+                  }`}
                 >
                   <div className="flex items-center gap-4 px-4 h-full">
                     {/* Flag + Username */}
