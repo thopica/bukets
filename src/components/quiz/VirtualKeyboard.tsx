@@ -27,9 +27,9 @@ const VirtualKeyboard = ({
   ];
 
   return (
-    <div className="w-full bg-card/50 backdrop-blur-sm pb-safe">
+    <div className="w-full bg-card/50 backdrop-blur-sm pb-safe pt-4">
       {/* Input Display */}
-      <div className="px-2 pt-2 pb-1">
+      <div className="px-2 pb-1">
         <div className="bg-background border-2 border-border rounded-lg px-3 py-2 min-h-[40px] text-base text-foreground">
           {currentValue || <span className="text-muted-foreground">Type player name...</span>}
         </div>
