@@ -220,7 +220,7 @@ const LeaderboardTable = ({
                     player.rank === 1
                       ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
                       : "bg-muted/30 border-b-2 border-border/50"
-                  } ${isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""}`}
+                  } ${isCurrentUser ? "border-l-4 border-l-orange" : ""}`}
                 >
                   <div className="flex items-center gap-4 px-4 h-full">
                     {/* Flag + Username */}
@@ -262,7 +262,7 @@ const LeaderboardTable = ({
                 <div
                   key={player.user_id}
                   className={`border-b border-border/30 transition-all hover:bg-muted/20 h-[68px] ${
-                    isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""
+                    isCurrentUser ? "border-l-4 border-l-orange" : ""
                   }`}
                 >
                   <div className="flex items-center gap-4 px-4 h-full">
