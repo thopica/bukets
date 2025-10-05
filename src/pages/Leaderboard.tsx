@@ -221,9 +221,8 @@ const LeaderboardTable = ({
 
               {/* Score + Accuracy + Streak */}
               <div className="flex items-center gap-4">
-                <div className="text-right">
+                <div className="text-center min-w-[50px]">
                   <p className="font-bold text-xl text-foreground">{player.total_score}</p>
-                  <p className="text-xs text-muted-foreground">pts</p>
                 </div>
                 <div className="text-center min-w-[50px]">
                   <p className="font-semibold text-base text-foreground">{player.accuracy}%</p>
@@ -272,9 +271,8 @@ const LeaderboardTable = ({
 
               {/* Score + Accuracy + Streak */}
               <div className="flex items-center gap-4">
-                <div className="text-right">
+                <div className="text-center min-w-[50px]">
                   <p className="font-bold text-lg text-foreground">{player.total_score}</p>
-                  <p className="text-xs text-muted-foreground">pts</p>
                 </div>
                 <div className="text-center min-w-[50px]">
                   <p className="font-medium text-sm text-foreground">{player.accuracy}%</p>
