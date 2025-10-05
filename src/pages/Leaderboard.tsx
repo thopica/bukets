@@ -132,169 +132,181 @@ const LeaderboardTable = ({
 
   return (
     <div className="space-y-0 relative">
-      {/* Header Row */}
-      <div className="flex sticky top-0 z-20 bg-muted/30 border-b-2 border-border">
-        {/* Fixed Rank Column Header */}
-        <div className="flex-shrink-0 w-16 md:w-20 px-4 py-3"></div>
-        
-        {/* Scrollable Header Content */}
-        <div className="flex-1 overflow-x-auto scrollbar-hide relative">
-          <div className="flex items-center gap-4 px-4 py-3 min-w-max">
-            {/* Username spacer */}
-            <div className="flex-1 min-w-[120px]"></div>
-
-            {/* Stats Headers */}
-            <div className="flex items-center gap-4">
-              {/* Score Header */}
-              <button
-                onClick={() => handleSort('score')}
-                className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
+      {/* Wrapper for synchronized horizontal scrolling */}
+      <div className="flex">
+        {/* Fixed Rank Column */}
+        <div className="flex-shrink-0 w-16 md:w-20 bg-muted/30 z-10">
+          {/* Header */}
+          <div className="px-4 py-3 border-b-2 border-border"></div>
+          {/* Top 3 Ranks */}
+          {sortedData.slice(0, 3).map((player) => {
+            const medal = getMedalIcon(player.rank);
+            return (
+              <div
+                key={`rank-${player.user_id}`}
+                className={`px-4 py-5 flex items-center justify-center ${
+                  player.rank === 1
+                    ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
+                    : "bg-muted/30 border-b-2 border-border/50"
+                }`}
               >
-                <Award className="h-3 w-3 text-gold" />
-                <SortIcon column="score" />
-              </button>
-
-              {/* Accuracy Header */}
-              <button
-                onClick={() => handleSort('accuracy')}
-                className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
-              >
-                <Target className="h-3 w-3 text-primary" />
-                <SortIcon column="accuracy" />
-              </button>
-
-              {/* Streak Header */}
-              <button
-                onClick={() => handleSort('streak')}
-                className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
-              >
-                <Flame className="h-3 w-3 text-orange" />
-                <SortIcon column="streak" />
-              </button>
-            </div>
-          </div>
-          {/* Fade gradient on mobile */}
-          <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-muted/30 to-transparent pointer-events-none md:hidden"></div>
-        </div>
-      </div>
-
-      {/* Top 3 - Larger Cards */}
-      {sortedData.slice(0, 3).map((player) => {
-        const isCurrentUser = player.user_id === currentUserId;
-        const medal = getMedalIcon(player.rank);
-        const flag = COUNTRY_FLAGS[player.country_code] || "🌐";
-        
-        return (
-          <div
-            key={player.user_id}
-            className={`flex transition-all ${
-              player.rank === 1
-                ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
-                : "bg-muted/30 border-b-2 border-border/50"
-            } ${isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""}`}
-          >
-            {/* Fixed Rank/Medal Column */}
-            <div className="flex-shrink-0 w-16 md:w-20 px-4 py-5 flex items-center justify-center">
-              {player.rank === 1 ? (
-                <div className="flex flex-col items-center">
+                {player.rank === 1 ? (
+                  <div className="flex flex-col items-center">
+                    <span className="text-3xl">{medal}</span>
+                    <Trophy className="h-4 w-4 text-gold -mt-1" />
+                  </div>
+                ) : (
                   <span className="text-3xl">{medal}</span>
-                  <Trophy className="h-4 w-4 text-gold -mt-1" />
-                </div>
-              ) : (
-                <span className="text-3xl">{medal}</span>
-              )}
-            </div>
-
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-x-auto scrollbar-hide relative">
-              <div className="flex items-center gap-4 px-4 py-5 min-w-max">
-                {/* Flag + Username */}
-                <div className="flex items-center gap-3 flex-1 min-w-[120px]">
-                  <span className="text-2xl">{flag}</span>
-                  <div>
-                    <span className="font-bold text-lg text-foreground block">
-                      {player.username}
-                    </span>
-                    {isCurrentUser && (
-                      <span className="text-xs text-orange font-semibold">You</span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Score + Accuracy + Streak */}
-                <div className="flex items-center gap-4">
-                  <div className="text-center min-w-[50px]">
-                    <p className="font-bold text-xl text-foreground">{player.total_score}</p>
-                  </div>
-                  <div className="text-center min-w-[50px]">
-                    <p className="font-semibold text-base text-foreground">{player.accuracy}%</p>
-                  </div>
-                  <div className="text-center min-w-[50px]">
-                    <p className="font-bold text-lg text-foreground">{player.current_streak}</p>
-                  </div>
-                </div>
+                )}
               </div>
-              {/* Fade gradient on mobile */}
-              <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-gold/20 to-transparent pointer-events-none md:hidden"></div>
-            </div>
-          </div>
-        );
-      })}
-
-      {/* Rest of the list */}
-      {sortedData.slice(3).map((player) => {
-        const isCurrentUser = player.user_id === currentUserId;
-        const flag = COUNTRY_FLAGS[player.country_code] || "🌐";
-        
-        return (
-          <div
-            key={player.user_id}
-            className={`flex border-b border-border/30 transition-all hover:bg-muted/20 ${
-              isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""
-            }`}
-          >
-            {/* Fixed Rank Column */}
-            <div className="flex-shrink-0 w-16 md:w-20 px-4 py-4 flex items-center justify-center">
+            );
+          })}
+          {/* Rest Ranks */}
+          {sortedData.slice(3).map((player) => (
+            <div
+              key={`rank-${player.user_id}`}
+              className="px-4 py-4 flex items-center justify-center border-b border-border/30"
+            >
               <span className="text-muted-foreground font-semibold text-base">
                 #{player.rank}
               </span>
             </div>
+          ))}
+        </div>
 
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-x-auto scrollbar-hide relative">
-              <div className="flex items-center gap-4 px-4 py-4 min-w-max">
-                {/* Flag + Username */}
-                <div className="flex items-center gap-3 flex-1 min-w-[120px]">
-                  <span className="text-xl">{flag}</span>
-                  <div>
-                    <span className="font-semibold text-base text-foreground block">
-                      {player.username}
-                    </span>
-                    {isCurrentUser && (
-                      <span className="text-xs text-orange font-semibold">You</span>
-                    )}
-                  </div>
-                </div>
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-x-auto scrollbar-hide relative">
+          <div className="min-w-max">
+            {/* Header Row */}
+            <div className="sticky top-0 z-20 bg-muted/30 border-b-2 border-border">
+              <div className="flex items-center gap-4 px-4 py-3">
+                {/* Username spacer */}
+                <div className="flex-1 min-w-[120px]"></div>
 
-                {/* Score + Accuracy + Streak */}
+                {/* Stats Headers */}
                 <div className="flex items-center gap-4">
-                  <div className="text-center min-w-[50px]">
-                    <p className="font-bold text-lg text-foreground">{player.total_score}</p>
-                  </div>
-                  <div className="text-center min-w-[50px]">
-                    <p className="font-medium text-sm text-foreground">{player.accuracy}%</p>
-                  </div>
-                  <div className="text-center min-w-[50px]">
-                    <p className="font-semibold text-base text-foreground">{player.current_streak}</p>
-                  </div>
+                  {/* Score Header */}
+                  <button
+                    onClick={() => handleSort('score')}
+                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
+                  >
+                    <Award className="h-3 w-3 text-gold" />
+                    <SortIcon column="score" />
+                  </button>
+
+                  {/* Accuracy Header */}
+                  <button
+                    onClick={() => handleSort('accuracy')}
+                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
+                  >
+                    <Target className="h-3 w-3 text-primary" />
+                    <SortIcon column="accuracy" />
+                  </button>
+
+                  {/* Streak Header */}
+                  <button
+                    onClick={() => handleSort('streak')}
+                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
+                  >
+                    <Flame className="h-3 w-3 text-orange" />
+                    <SortIcon column="streak" />
+                  </button>
                 </div>
               </div>
-              {/* Fade gradient on mobile */}
-              <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-background to-transparent pointer-events-none md:hidden"></div>
             </div>
+
+            {/* Top 3 - Larger Cards */}
+            {sortedData.slice(0, 3).map((player) => {
+              const isCurrentUser = player.user_id === currentUserId;
+              const flag = COUNTRY_FLAGS[player.country_code] || "🌐";
+              
+              return (
+                <div
+                  key={player.user_id}
+                  className={`transition-all ${
+                    player.rank === 1
+                      ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
+                      : "bg-muted/30 border-b-2 border-border/50"
+                  } ${isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""}`}
+                >
+                  <div className="flex items-center gap-4 px-4 py-5">
+                    {/* Flag + Username */}
+                    <div className="flex items-center gap-3 flex-1 min-w-[120px]">
+                      <span className="text-2xl">{flag}</span>
+                      <div>
+                        <span className="font-bold text-lg text-foreground block">
+                          {player.username}
+                        </span>
+                        {isCurrentUser && (
+                          <span className="text-xs text-orange font-semibold">You</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Score + Accuracy + Streak */}
+                    <div className="flex items-center gap-4">
+                      <div className="text-center min-w-[50px]">
+                        <p className="font-bold text-xl text-foreground">{player.total_score}</p>
+                      </div>
+                      <div className="text-center min-w-[50px]">
+                        <p className="font-semibold text-base text-foreground">{player.accuracy}%</p>
+                      </div>
+                      <div className="text-center min-w-[50px]">
+                        <p className="font-bold text-lg text-foreground">{player.current_streak}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Rest of the list */}
+            {sortedData.slice(3).map((player) => {
+              const isCurrentUser = player.user_id === currentUserId;
+              const flag = COUNTRY_FLAGS[player.country_code] || "🌐";
+              
+              return (
+                <div
+                  key={player.user_id}
+                  className={`border-b border-border/30 transition-all hover:bg-muted/20 ${
+                    isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""
+                  }`}
+                >
+                  <div className="flex items-center gap-4 px-4 py-4">
+                    {/* Flag + Username */}
+                    <div className="flex items-center gap-3 flex-1 min-w-[120px]">
+                      <span className="text-xl">{flag}</span>
+                      <div>
+                        <span className="font-semibold text-base text-foreground block">
+                          {player.username}
+                        </span>
+                        {isCurrentUser && (
+                          <span className="text-xs text-orange font-semibold">You</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Score + Accuracy + Streak */}
+                    <div className="flex items-center gap-4">
+                      <div className="text-center min-w-[50px]">
+                        <p className="font-bold text-lg text-foreground">{player.total_score}</p>
+                      </div>
+                      <div className="text-center min-w-[50px]">
+                        <p className="font-medium text-sm text-foreground">{player.accuracy}%</p>
+                      </div>
+                      <div className="text-center min-w-[50px]">
+                        <p className="font-semibold text-base text-foreground">{player.current_streak}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        );
-      })}
+          {/* Fade gradient on mobile */}
+          <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-background to-transparent pointer-events-none md:hidden"></div>
+        </div>
+      </div>
     </div>
   );
 };
