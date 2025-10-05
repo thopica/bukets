@@ -137,7 +137,7 @@ const LeaderboardTable = ({
         {/* Fixed Rank Column */}
         <div className="flex-shrink-0 w-16 md:w-20 bg-muted/30 z-10">
           {/* Header */}
-          <div className="px-4 py-3 border-b-2 border-border"></div>
+          <div className="h-12 border-b-2 border-border"></div>
           {/* Top 3 Ranks */}
           {sortedData.slice(0, 3).map((player) => {
             const medal = getMedalIcon(player.rank);
@@ -171,8 +171,8 @@ const LeaderboardTable = ({
         <div className="flex-1 overflow-x-auto scrollbar-hide relative">
           <div className="min-w-max">
             {/* Header Row */}
-            <div className="sticky top-0 z-20 bg-muted/30 border-b-2 border-border">
-              <div className="flex items-center gap-4 px-4 py-3">
+            <div className="sticky top-0 z-20 bg-muted/30 border-b-2 border-border h-12">
+              <div className="flex items-center gap-4 px-4 h-full">
                 {/* Username spacer */}
                 <div className="flex-1 min-w-[120px]"></div>
 
