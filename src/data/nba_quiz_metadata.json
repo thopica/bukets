@@ -1,44 +1,7 @@
 {
   "quizzes": [
     {
-      "title": "All-Time Scoring Leaders",
-      "description": "Name the top 6 scorers in NBA history (regular season)",
-      "hints": [
-        { "rank": 1, "text": "Active player at age 40, all-time leading scorer" },
-        { "rank": 2, "text": "Legendary Lakers center, famous for skyhook" },
-        { "rank": 3, "text": "Power forward nicknamed 'The Mailman'" },
-        { "rank": 4, "text": "Lakers icon, wore #24 and #8" },
-        { "rank": 5, "text": "6× Finals MVP with Chicago Bulls" },
-        { "rank": 6, "text": "German forward, Dallas Mavericks legend" }
-      ]
-    },
-    {
-      "title": "Most Career Assists",
-      "description": "Name the top 6 assist leaders in NBA history",
-      "hints": [
-        { "rank": 1, "text": "Jazz legend with huge lead over second place" },
-        { "rank": 2, "text": "Active point guard, passed Kidd in 2024-25" },
-        { "rank": 3, "text": "Triple-double machine, coached multiple teams" },
-        { "rank": 4, "text": "Active player, all-around great passer" },
-        { "rank": 5, "text": "Two-time MVP, Canadian point guard" },
-        { "rank": 6, "text": "Former Knicks guard, now commentator" }
-      ]
-    },
-    {
-      "title": "Most Career Rebounds",
-      "description": "Name the top 6 rebounders in NBA history",
-      "hints": [
-        { "rank": 1, "text": "Scored 100 points in a game, dominant rebounder" },
-        { "rank": 2, "text": "11-time champion, defensive master" },
-        { "rank": 3, "text": "All-time scoring leader with skyhook" },
-        { "rank": 4, "text": "Bullets/Rockets star, over 27,000 points" },
-        { "rank": 5, "text": "3× MVP, fierce offensive rebounder" },
-        { "rank": 6, "text": "5 championships with Spurs, Mr. Fundamental" }
-      ]
-    },
-    {
-      "title": "Most Career Steals",
-      "description": "Name the top 6 steal leaders in NBA history",
+      "title": "All-Time NBA Steals Leaders By Total Steals",
       "hints": [
         { "rank": 1, "text": "Jazz point guard, also assist leader" },
         { "rank": 2, "text": "Active defensive maestro, 'Point God'" },
@@ -49,303 +12,289 @@
       ]
     },
     {
-      "title": "Most Career Blocks",
-      "description": "Name the top 6 shot blockers in NBA history",
+      "title": "All-Time NBA Blocked Shots Leaders By Total Blocks",
       "hints": [
-        { "rank": 1, "text": "Dream Shake master, Rockets legend" },
-        { "rank": 2, "text": "Famous finger wag, 4× DPOY" },
-        { "rank": 3, "text": "All-time scoring leader, defensive anchor" },
-        { "rank": 4, "text": "7'4\" Jazz center, 2× DPOY" },
-        { "rank": 5, "text": "Spurs icon, 5 championships" },
-        { "rank": 6, "text": "The Admiral, Spurs center, 1995 MVP" }
+        { "rank": 1, "text": "Rockets center, 'The Dream', 2× champion" },
+        { "rank": 2, "text": "Finger wag celebration, 4× DPOY" },
+        { "rank": 3, "text": "Lakers legend with the skyhook" },
+        { "rank": 4, "text": "7'4\" Jazz center, 4× Blocks champion" },
+        { "rank": 5, "text": "Spurs power forward, 5× champion" },
+        { "rank": 6, "text": "Spurs center, 'The Admiral', MVP 1995" }
       ]
     },
     {
-      "title": "Most MVP Awards",
-      "description": "Name the 6 players with the most NBA MVP awards",
+      "title": "All-Time NBA 3-Point Leaders By Total Made",
       "hints": [
-        { "rank": 1, "text": "6 MVP awards, Lakers and Bucks legend" },
-        { "rank": 2, "text": "5 MVPs, 6 championships with Bulls" },
-        { "rank": 3, "text": "5 MVPs, 11 championships with Celtics" },
-        { "rank": 4, "text": "4 MVPs, dominant center from 1960s" },
-        { "rank": 5, "text": "4 MVPs, active all-time scorer" },
-        { "rank": 6, "text": "3 MVPs, fierce rebounder and scorer" }
+        { "rank": 1, "text": "Warriors legend, changed the game forever" },
+        { "rank": 2, "text": "Clutch shooter, made famous Finals shot 2013" },
+        { "rank": 3, "text": "Step-back master, former Rockets MVP" },
+        { "rank": 4, "text": "Blazers and Bucks guard, 'Dame Time'" },
+        { "rank": 5, "text": "Pacers sharpshooter, rivalry with Knicks" },
+        { "rank": 6, "text": "47% career 3P%, elite spot-up shooter" }
       ]
     },
     {
-      "title": "Most Three-Pointers Made",
-      "description": "Name the top 6 three-point shooters in NBA history",
+      "title": "Players With The Most NBA Championships (All-Time)",
       "hints": [
-        { "rank": 1, "text": "Warriors star, first to reach 4,000 threes" },
-        { "rank": 2, "text": "Active player, former Rockets MVP" },
-        { "rank": 3, "text": "Hit clutch shot for Miami in Finals" },
-        { "rank": 4, "text": "Active Trail Blazers icon, deep range" },
-        { "rank": 5, "text": "Warriors sharpshooter, Splash Brother" },
-        { "rank": 6, "text": "Pacers legend, trash talker" }
+        { "rank": 1, "text": "Celtics legend, unprecedented 11 rings" },
+        { "rank": 2, "text": "Celtics guard, clutch shooter in 1960s" },
+        { "rank": 3, "text": "Celtics legend, 'Hondo', 8 championships" },
+        { "rank": 4, "text": "Player and coach for Celtics dynasty" },
+        { "rank": 5, "text": "Point guard for Celtics, also a coach" },
+        { "rank": 6, "text": "Defensive specialist for Celtics dynasty" }
       ]
     },
     {
-      "title": "Most Finals MVP Awards",
-      "description": "Name players with multiple Finals MVP awards",
+      "title": "NBA All-Time Record For Most MVP Awards",
       "hints": [
-        { "rank": 1, "text": "6 Finals MVPs, never lost in Finals, 6-0" },
-        { "rank": 2, "text": "4 Finals MVPs with three different teams" },
-        { "rank": 3, "text": "3 Finals MVPs in Showtime era" },
-        { "rank": 4, "text": "3 Finals MVPs, dominant center" },
-        { "rank": 5, "text": "3 Finals MVPs with Spurs dynasty" },
-        { "rank": 6, "text": "2 Finals MVPs, won with Spurs and Raptors" }
+        { "rank": 1, "text": "Record 6 MVPs, Lakers and Bucks legend" },
+        { "rank": 2, "text": "5 MVPs with the Bulls, 1988-1998" },
+        { "rank": 3, "text": "Celtics center, 5 MVPs in the 1960s" },
+        { "rank": 4, "text": "Dominant center, 4 MVPs including 3 straight" },
+        { "rank": 5, "text": "4 MVPs (2 with Heat, 2 with Cavs)" },
+        { "rank": 6, "text": "Showtime Lakers, 3 MVPs in 1980s" }
       ]
     },
     {
-      "title": "Most All-Star Selections",
-      "description": "Name the top 6 players with most All-Star appearances",
+      "title": "NBA All-Time Record For Finals MVP Awards",
       "hints": [
-        { "rank": 1, "text": "Active player, most selections ever" },
-        { "rank": 2, "text": "Second-most, Lakers/Bucks legend" },
-        { "rank": 3, "text": "Third-most, Lakers icon" },
-        { "rank": 4, "text": "Spurs legend, Mr. Fundamental" },
-        { "rank": 5, "text": "Intense competitor, Celtics/Wolves" },
-        { "rank": 6, "text": "Active player, elite scorer" }
+        { "rank": 1, "text": "Perfect 6-0 in Finals, 6× Finals MVP" },
+        { "rank": 2, "text": "4× Finals MVP with 3 different teams" },
+        { "rank": 3, "text": "Showtime Lakers, won as rookie in 1980" },
+        { "rank": 4, "text": "Dominant center, 3-peat with Lakers" },
+        { "rank": 5, "text": "Spurs legend, steady excellence" },
+        { "rank": 6, "text": "Back-to-back Finals MVP 2009-2010" }
       ]
     },
     {
-      "title": "Most Games Played",
-      "description": "Name the top 6 players with most games played",
+      "title": "NBA All-Time Leaders In Total All-Star Games",
       "hints": [
-        { "rank": 1, "text": "Nicknamed 'The Chief', Celtics center" },
-        { "rank": 2, "text": "Active player at age 40, still adding games" },
-        { "rank": 3, "text": "20-year career, skyhook master" },
-        { "rank": 4, "text": "Played 22 seasons, dunk contest legend" },
-        { "rank": 5, "text": "21 seasons with Dallas, loyal star" },
-        { "rank": 6, "text": "Never missed Jazz playoffs, iron man" }
+        { "rank": 1, "text": "Active player, 20 All-Star selections" },
+        { "rank": 2, "text": "19 selections from 1970-1989" },
+        { "rank": 3, "text": "18 All-Star games as a Laker" },
+        { "rank": 4, "text": "Spurs legend, 15 selections" },
+        { "rank": 5, "text": "Intense power forward, 'The Big Ticket'" },
+        { "rank": 6, "text": "Dominant center, 15 selections" }
       ]
     },
     {
-      "title": "Highest Career Free Throw Percentage",
-      "description": "Name the top 6 free throw shooters in NBA history",
+      "title": "All-Time NBA Scoring Leaders By Career Points Per Game",
       "hints": [
-        { "rank": 1, "text": "Warriors star, best FT% ever, over 91%" },
-        { "rank": 2, "text": "Two-time MVP, Canadian point guard" },
-        { "rank": 3, "text": "Cavs point guard from the 90s" },
-        { "rank": 4, "text": "Warriors/Rockets scorer, underhand style" },
-        { "rank": 5, "text": "Active Trail Blazers guard" },
-        { "rank": 6, "text": "Kings sharpshooter from 2000s" }
+        { "rank": 1, "text": "Bulls legend, 10× scoring champion" },
+        { "rank": 2, "text": "Averaged 50 PPG in a season" },
+        { "rank": 3, "text": "Lakers forward from 1958-1971" },
+        { "rank": 4, "text": "Active scorer, 4× scoring champion" },
+        { "rank": 5, "text": "All-time leading scorer, still active" },
+        { "rank": 6, "text": "Lakers guard, 'The Logo', clutch scorer" }
       ]
     },
     {
-      "title": "Most Points in a Single Game",
-      "description": "Name players with the highest single-game scores",
+      "title": "All-Time NBA Leaders In Career Triple-Doubles",
       "hints": [
-        { "rank": 1, "text": "March 2, 1962 vs Knicks, unbreakable record" },
-        { "rank": 2, "text": "January 22, 2006 vs Raptors" },
-        { "rank": 3, "text": "December 8, 1961 in triple overtime" },
-        { "rank": 4, "text": "January 26, 2024 vs Hawks, active player" },
-        { "rank": 5, "text": "April 9, 1978 for Nuggets" },
-        { "rank": 6, "text": "November 16, 1962 vs Bulls" }
-      ]
-    },
-    {
-      "title": "Most Defensive Player of the Year Awards",
-      "description": "Name players with multiple DPOY awards",
-      "hints": [
-        { "rank": 1, "text": "Famous finger wag celebration" },
-        { "rank": 2, "text": "Pistons defensive anchor, undersized center" },
-        { "rank": 3, "text": "Active center, tied record in 2023-24" },
-        { "rank": 4, "text": "Dominant center with Orlando Magic" },
-        { "rank": 5, "text": "First DPOY winner, Bucks guard" },
-        { "rank": 6, "text": "7'4\" Jazz rim protector" }
-      ]
-    },
-    {
-      "title": "Most 50-Point Games",
-      "description": "Name the top 6 players with most 50-point games",
-      "hints": [
-        { "rank": 1, "text": "Dominates this record by far with 118" },
-        { "rank": 2, "text": "Bulls legend, distant second with 31" },
-        { "rank": 3, "text": "Lakers icon, explosive scorer" },
-        { "rank": 4, "text": "Active player, recent era scoring machine" },
-        { "rank": 5, "text": "Active Warriors star, elite shooter" },
-        { "rank": 6, "text": "Active all-time leading scorer" }
-      ]
-    },
-    {
-      "title": "Most Triple-Doubles",
-      "description": "Name the top 6 players with most career triple-doubles",
-      "hints": [
-        { "rank": 1, "text": "Active player, first to reach 200" },
+        { "rank": 1, "text": "Former MVP, broke Oscar's record in 2021" },
         { "rank": 2, "text": "Averaged triple-double in 1961-62 season" },
-        { "rank": 3, "text": "Active Nuggets center, averaged TD in 2024-25" },
-        { "rank": 4, "text": "Showtime Lakers legend" },
-        { "rank": 5, "text": "Active player, all-around greatness" },
-        { "rank": 6, "text": "Point guard across multiple teams" }
+        { "rank": 3, "text": "Showtime Lakers point guard" },
+        { "rank": 4, "text": "All-around superstar, active player" },
+        { "rank": 5, "text": "Active center, 3× MVP, elite passer" },
+        { "rank": 6, "text": "Point guard, great all-around player" }
       ]
     },
     {
-      "title": "Most Consecutive Games Played",
-      "description": "Name players with longest consecutive games streaks",
+      "title": "NBA All-Time Record For Most Career Games Played",
       "hints": [
-        { "rank": 1, "text": "Iron man of the NBA, unbreakable record" },
-        { "rank": 2, "text": "Guard in the 70s and 80s" },
-        { "rank": 3, "text": "Early NBA player and coach" },
-        { "rank": 4, "text": "Power forward, very consistent" },
-        { "rank": 5, "text": "Nationals/76ers forward from 1950s-60s" },
-        { "rank": 6, "text": "ABA and NBA center, very durable" }
+        { "rank": 1, "text": "Celtics center, 'The Chief', 21 seasons" },
+        { "rank": 2, "text": "Played 20 seasons, mostly with Lakers" },
+        { "rank": 3, "text": "Played record 22 seasons, dunking legend" },
+        { "rank": 4, "text": "One-team player, 21 seasons with Mavs" },
+        { "rank": 5, "text": "Jazz legend, never missed playoffs" },
+        { "rank": 6, "text": "Active at 40, still adding to total" }
       ]
     },
     {
-      "title": "Youngest Players to Score 10,000 Points",
-      "description": "Name the 6 youngest to reach 10,000 career points",
+      "title": "NBA All-Time Career Minutes Leaders",
       "hints": [
-        { "rank": 1, "text": "Youngest ever on February 27, 2008" },
-        { "rank": 2, "text": "Active player, prolific scorer" },
-        { "rank": 3, "text": "Lakers star from age 18" },
-        { "rank": 4, "text": "Scoring forward, entered at 19" },
-        { "rank": 5, "text": "Explosive scorer with Magic/Rockets" },
-        { "rank": 6, "text": "Active Mavericks star, reached December 2023" }
+        { "rank": 1, "text": "20 seasons, mostly with Lakers" },
+        { "rank": 2, "text": "Active player, passed Kareem in 2024" },
+        { "rank": 3, "text": "Iron man, rarely missed games" },
+        { "rank": 4, "text": "21 seasons all with Dallas" },
+        { "rank": 5, "text": "20 seasons, all with Lakers" },
+        { "rank": 6, "text": "19 seasons, all with Spurs" }
       ]
     },
     {
-      "title": "Most Career Turnovers",
-      "description": "Name the top 6 players with most career turnovers",
+      "title": "NBA All-Time Career Free Throw Leaders (Total Made)",
       "hints": [
-        { "rank": 1, "text": "Active player, high usage ball-handler" },
-        { "rank": 2, "text": "Active player, aggressive style" },
-        { "rank": 3, "text": "Power forward in long career" },
-        { "rank": 4, "text": "Active player, high volume scorer" },
-        { "rank": 5, "text": "All-time assist leader, handled ball often" },
-        { "rank": 6, "text": "Lakers icon, high usage player" }
+        { "rank": 1, "text": "Power forward, drew tons of fouls" },
+        { "rank": 2, "text": "Aggressive offensive rebounder, 3× MVP" },
+        { "rank": 3, "text": "Active player, attacks the basket" },
+        { "rank": 4, "text": "Lakers guard, clutch free throw shooter" },
+        { "rank": 5, "text": "Royals/Bucks legend, all-around great" },
+        { "rank": 6, "text": "Bulls legend, clutch at the line" }
       ]
     },
     {
-      "title": "Most Career Double-Doubles",
-      "description": "Name the top 6 players with most double-doubles",
-      "hints": [
-        { "rank": 1, "text": "Spurs legend, most double-doubles ever" },
-        { "rank": 2, "text": "The Mailman, consistent power forward" },
-        { "rank": 3, "text": "Rockets center, Dream Shake master" },
-        { "rank": 4, "text": "Intense competitor, Celtics/Wolves star" },
-        { "rank": 5, "text": "Jazz point guard with assists/points DDs" },
-        { "rank": 6, "text": "Active player, all-around production" }
-      ]
-    },
-    {
-      "title": "Highest Career Points Per Game Average",
-      "description": "Name the top 6 career scoring averages (min. 400 games)",
-      "hints": [
-        { "rank": 1, "text": "Bulls legend, tied for highest ever" },
-        { "rank": 2, "text": "Dominant center, tied for highest ever" },
-        { "rank": 3, "text": "Lakers forward from the 1960s" },
-        { "rank": 4, "text": "Active player, elite scorer" },
-        { "rank": 5, "text": "Lakers legend, 'The Logo'" },
-        { "rank": 6, "text": "Active player at age 40, still scoring" }
-      ]
-    },
-    {
-      "title": "Most Seasons Played",
-      "description": "Name the top 6 players with most seasons in NBA",
-      "hints": [
-        { "rank": 1, "text": "Dunk contest legend, played until age 43" },
-        { "rank": 2, "text": "Active player, entered league in 2003" },
-        { "rank": 3, "text": "Celtics center, 'The Chief'" },
-        { "rank": 4, "text": "Power forward, played from 1984-2007" },
-        { "rank": 5, "text": "Intense competitor, retired 2016" },
-        { "rank": 6, "text": "Mavericks legend, one-team loyalty" }
-      ]
-    },
-    {
-      "title": "Most Points in Playoffs Career",
-      "description": "Name the top 6 playoff scorers in NBA history",
-      "hints": [
-        { "rank": 1, "text": "Active player, most playoff points ever" },
-        { "rank": 2, "text": "Bulls legend, 6-0 in Finals" },
-        { "rank": 3, "text": "Lakers/Bucks center, 6 championships" },
-        { "rank": 4, "text": "Lakers icon, 5 championships" },
-        { "rank": 5, "text": "Dominant center, 4 championships" },
-        { "rank": 6, "text": "Spurs legend, 5 championships" }
-      ]
-    },
-    {
-      "title": "Most Career Field Goals Made",
-      "description": "Name the top 6 players with most field goals made",
+      "title": "NBA All-Time Career Field Goal Leaders (Total Made)",
       "hints": [
         { "rank": 1, "text": "Active player, all-time scoring leader" },
-        { "rank": 2, "text": "Skyhook master, second all-time scorer" },
-        { "rank": 3, "text": "The Mailman, consistent scorer" },
-        { "rank": 4, "text": "Dominant center from 1960s" },
+        { "rank": 2, "text": "Skyhook was unstoppable" },
+        { "rank": 3, "text": "The Mailman always delivered" },
+        { "rank": 4, "text": "Dominant scorer, 100-point game" },
         { "rank": 5, "text": "Bulls legend, efficient scorer" },
-        { "rank": 6, "text": "Lakers icon, volume shooter" }
+        { "rank": 6, "text": "Lakers icon, tough shot-maker" }
       ]
     },
     {
-      "title": "Most 30-Point Games",
-      "description": "Name the top 6 players with most 30-point games",
+      "title": "NBA All-Time Career Turnover Leaders",
       "hints": [
-        { "rank": 1, "text": "Dominant scorer from 1960s era" },
-        { "rank": 2, "text": "Bulls legend, most in modern era" },
-        { "rank": 3, "text": "Active player, consistent high scorer" },
-        { "rank": 4, "text": "Lakers icon, prolific scorer" },
-        { "rank": 5, "text": "Active player, scoring champion" },
-        { "rank": 6, "text": "Active player, elite scorer" }
+        { "rank": 1, "text": "Active player, high usage rate" },
+        { "rank": 2, "text": "Aggressive point guard, high pace" },
+        { "rank": 3, "text": "18-year career, touched ball often" },
+        { "rank": 4, "text": "Offensive rebounder, tough style" },
+        { "rank": 5, "text": "Jazz legend, high assist rate" },
+        { "rank": 6, "text": "High volume scorer, tough shots" }
       ]
     },
     {
-      "title": "Most 20-Rebound Games",
-      "description": "Name the top 6 players with most 20-rebound games",
+      "title": "NBA All-Time Record For Most Career Personal Fouls",
       "hints": [
-        { "rank": 1, "text": "Dominant rebounder, huge lead" },
-        { "rank": 2, "text": "Defensive master, 11 championships" },
-        { "rank": 3, "text": "Rebounding specialist, 5 championships" },
-        { "rank": 4, "text": "All-time great center" },
-        { "rank": 5, "text": "3× MVP, offensive rebounder" },
-        { "rank": 6, "text": "Bullets/Rockets power forward" }
+        { "rank": 1, "text": "20-year career, lots of games played" },
+        { "rank": 2, "text": "Physical power forward, 19 seasons" },
+        { "rank": 3, "text": "Enforcer center, 21 seasons" },
+        { "rank": 4, "text": "Tough defender, Knicks enforcer" },
+        { "rank": 5, "text": "Defensive anchor, shot blocker" },
+        { "rank": 6, "text": "Physical rebounder, Nets/Blazers" }
       ]
     },
     {
-      "title": "Most 10-Assist Games",
-      "description": "Name the top 6 players with most 10-assist games",
+      "title": "Tallest Players In NBA History (All-Time Record)",
       "hints": [
-        { "rank": 1, "text": "Jazz legend, huge lead in this category" },
-        { "rank": 2, "text": "Showtime Lakers, elite passer" },
-        { "rank": 3, "text": "Active point guard, second all-time assists" },
-        { "rank": 4, "text": "Triple-double machine" },
-        { "rank": 5, "text": "Active player, all-around playmaker" },
-        { "rank": 6, "text": "Two-time MVP, Canadian" }
+        { "rank": 1, "text": "Romanian center, won MIP 1996" },
+        { "rank": 2, "text": "Sudanese shot blocker, very thin" },
+        { "rank": 3, "text": "Chinese legend, Hall of Famer" },
+        { "rank": 4, "text": "Mavericks center, blocked many shots" },
+        { "rank": 5, "text": "Russian center, played for Mavericks" },
+        { "rank": 6, "text": "Journeyman center, 1980s" }
       ]
     },
     {
-      "title": "Most 5-Block Games",
-      "description": "Name the top 6 players with most 5-block games",
+      "title": "Shortest Players In NBA History (All-Time Record)",
       "hints": [
-        { "rank": 1, "text": "Rockets legend, all-time blocks leader" },
-        { "rank": 2, "text": "Lakers center, defensive anchor" },
-        { "rank": 3, "text": "7'4\" Jazz center, 2× DPOY" },
-        { "rank": 4, "text": "Famous finger wag, 4× DPOY" },
-        { "rank": 5, "text": "Spurs center, 'The Admiral'" },
-        { "rank": 6, "text": "Knicks legend, Hall of Fame center" }
+        { "rank": 1, "text": "Hornets guard, 14-year career" },
+        { "rank": 2, "text": "Journeyman guard, 10 teams" },
+        { "rank": 3, "text": "Played in 1940s for Boston" },
+        { "rank": 4, "text": "Won 1986 Slam Dunk Contest" },
+        { "rank": 5, "text": "Played for 76ers in early 90s" },
+        { "rank": 6, "text": "Warriors guard in early 90s" }
       ]
     },
     {
-      "title": "Most 5-Steal Games",
-      "description": "Name the top 6 players with most 5-steal games",
+      "title": "All-Time NBA Leaders In Career Double-Doubles",
       "hints": [
-        { "rank": 1, "text": "Jazz legend, all-time steals leader" },
-        { "rank": 2, "text": "Bulls legend, elite defender" },
-        { "rank": 3, "text": "Active point guard, second all-time steals" },
-        { "rank": 4, "text": "Defensive specialist from 1980s-90s" },
-        { "rank": 5, "text": "76ers icon, quick hands" },
-        { "rank": 6, "text": "Trail Blazers/Rockets guard" }
+        { "rank": 1, "text": "Spurs legend, consistent excellence" },
+        { "rank": 2, "text": "The Mailman, rarely had off nights" },
+        { "rank": 3, "text": "Intense competitor, all-around great" },
+        { "rank": 4, "text": "Dominant center in 2000s-2010s" },
+        { "rank": 5, "text": "Lakers/Heat center, unstoppable" },
+        { "rank": 6, "text": "Statistical monster from 1960s" }
       ]
     },
     {
-      "title": "Most 40-Point Games",
-      "description": "Name the top 6 players with most 40-point games",
+      "title": "NBA All-Time Career Playoff Points Leaders",
       "hints": [
-        { "rank": 1, "text": "Dominant scorer, massive lead" },
-        { "rank": 2, "text": "Bulls legend, prolific scorer" },
-        { "rank": 3, "text": "Lakers icon, scoring machine" },
-        { "rank": 4, "text": "Active player, recent era scorer" },
-        { "rank": 5, "text": "Active player, consistent high scorer" },
-        { "rank": 6, "text": "Lakers forward from 1960s" }
+        { "rank": 1, "text": "Active player, deep playoff runs" },
+        { "rank": 2, "text": "6 championships, playoff legend" },
+        { "rank": 3, "text": "18 playoff appearances" },
+        { "rank": 4, "text": "5 championships with Lakers" },
+        { "rank": 5, "text": "Dominant in 3-peat years" },
+        { "rank": 6, "text": "5 championships, Mr. Consistent" }
+      ]
+    },
+    {
+      "title": "NBA All-Time Career Playoff Assist Leaders",
+      "hints": [
+        { "rank": 1, "text": "Active player, elite playoff passer" },
+        { "rank": 2, "text": "Showtime Lakers, 5 championships" },
+        { "rank": 3, "text": "Jazz legend, great playoff runs" },
+        { "rank": 4, "text": "Nets/Mavericks, NBA champion 2011" },
+        { "rank": 5, "text": "Active player, elite floor general" },
+        { "rank": 6, "text": "Spurs point guard, 4 championships" }
+      ]
+    },
+    {
+      "title": "NBA All-Time Career Playoff Rebound Leaders",
+      "hints": [
+        { "rank": 1, "text": "11 championships, defensive master" },
+        { "rank": 2, "text": "Dominant rebounder in playoffs" },
+        { "rank": 3, "text": "Spurs legend, consistent glass work" },
+        { "rank": 4, "text": "18 playoff appearances" },
+        { "rank": 5, "text": "Dominant center, 4 championships" },
+        { "rank": 6, "text": "Active player, all-around great" }
+      ]
+    },
+    {
+      "title": "NBA All-Time Record For Youngest MVP Winners",
+      "hints": [
+        { "rank": 1, "text": "Bulls guard, 2011 MVP" },
+        { "rank": 2, "text": "Bullets center, 1969 MVP as rookie" },
+        { "rank": 3, "text": "Dominant center, 1960 MVP" },
+        { "rank": 4, "text": "Cavs forward, 2009 MVP" },
+        { "rank": 5, "text": "Thunder forward, 2014 MVP" },
+        { "rank": 6, "text": "Lakers guard, 1987 MVP" }
+      ]
+    },
+    {
+      "title": "NBA All-Time Record For Oldest Champions",
+      "hints": [
+        { "rank": 1, "text": "Player-coach in 1940s" },
+        { "rank": 2, "text": "Won with Bulls in 1997" },
+        { "rank": 3, "text": "Won with Lakers in 1988" },
+        { "rank": 4, "text": "Won with Spurs in 2014" },
+        { "rank": 5, "text": "Won with Spurs in 2014" },
+        { "rank": 6, "text": "Never won but played until 40" }
+      ]
+    },
+    {
+      "title": "NBA All-Time Record For Career 50-Point Games",
+      "hints": [
+        { "rank": 1, "text": "Once scored 100 in a game" },
+        { "rank": 2, "text": "Bulls legend, many scoring titles" },
+        { "rank": 3, "text": "Had 81-point game in 2006" },
+        { "rank": 4, "text": "Rockets/76ers scorer, step-back master" },
+        { "rank": 5, "text": "Lakers forward, prolific scorer" },
+        { "rank": 6, "text": "Active player, all-time leading scorer" }
+      ]
+    },
+    {
+      "title": "NBA All-Time Record For Consecutive Games Played",
+      "hints": [
+        { "rank": 1, "text": "Lakers/Suns forward, ironman" },
+        { "rank": 2, "text": "Braves/Clippers guard, 1970s-80s" },
+        { "rank": 3, "text": "Syracuse center, 1950s-60s" },
+        { "rank": 4, "text": "Nets/Blazers forward, tough" },
+        { "rank": 5, "text": "Nationals forward, Hall of Famer" },
+        { "rank": 6, "text": "Syracuse forward, 1950s-60s" }
+      ]
+    },
+    {
+      "title": "NBA All-Time Record For Highest Single-Season PPG",
+      "hints": [
+        { "rank": 1, "text": "1961-62 season, legendary" },
+        { "rank": 2, "text": "1962-63 season, still dominant" },
+        { "rank": 3, "text": "1960-61 season, rookie year" },
+        { "rank": 4, "text": "1961-62 season, Lakers forward" },
+        { "rank": 5, "text": "1959-60 season, first year" },
+        { "rank": 6, "text": "1986-87 season, Bulls legend" }
+      ]
+    },
+    {
+      "title": "NBA All-Time Record For Career 30-Point Games",
+      "hints": [
+        { "rank": 1, "text": "Dominant scorer from 1960s" },
+        { "rank": 2, "text": "Bulls legend, 10 scoring titles" },
+        { "rank": 3, "text": "Active player, consistent scorer" },
+        { "rank": 4, "text": "Lakers icon, volume scorer" },
+        { "rank": 5, "text": "The Mailman delivered nightly" },
+        { "rank": 6, "text": "Lakers forward, prolific scorer" }
       ]
     }
   ]
