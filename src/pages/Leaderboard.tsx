@@ -135,19 +135,8 @@ const LeaderboardTable = ({
       {/* Header Row */}
       <div className="px-4 py-3 border-b-2 border-border bg-muted/30 sticky top-0 z-20">
         <div className="flex items-center gap-4">
-          {/* Rank Header */}
-          <button
-            onClick={() => handleSort('rank')}
-            className="flex items-center justify-center w-12 gap-1 hover:text-primary transition-colors"
-          >
-            <span className="text-xs font-semibold text-muted-foreground">#</span>
-            <SortIcon column="rank" />
-          </button>
-
-          {/* Player Header */}
-          <div className="flex-1">
-            <span className="text-xs font-semibold text-muted-foreground">Player</span>
-          </div>
+          {/* Empty space for alignment */}
+          <div className="flex-1"></div>
 
           {/* Stats Headers */}
           <div className="flex items-center gap-4">
