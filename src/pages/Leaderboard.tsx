@@ -150,14 +150,7 @@ const LeaderboardTable = ({
                     : "bg-muted/30 border-b-2 border-border/50"
                 }`}
               >
-                {player.rank === 1 ? (
-                  <div className="flex flex-col items-center">
-                    <span className="text-3xl">{medal}</span>
-                    <Trophy className="h-4 w-4 text-gold -mt-1" />
-                  </div>
-                ) : (
-                  <span className="text-3xl">{medal}</span>
-                )}
+                <span className="text-3xl">{medal}</span>
               </div>
             );
           })}
