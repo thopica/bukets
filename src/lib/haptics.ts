@@ -1,5 +1,12 @@
 // Haptic feedback utilities for mobile devices
 export const haptics = {
+  // Key press - light, crisp tap (WhatsApp-style)
+  keyPress: () => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(10); // Very light, 10ms tap
+    }
+  },
+  
   // Correct answer - medium impact
   correct: () => {
     if ('vibrate' in navigator) {

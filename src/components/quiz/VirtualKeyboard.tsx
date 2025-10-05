@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Delete, Lightbulb } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { haptics } from "@/lib/haptics";
+import { keyboardSound } from "@/lib/keyboardSound";
 
 interface VirtualKeyboardProps {
   onKeyPress: (key: string) => void;
@@ -46,21 +48,29 @@ const VirtualKeyboard = ({
 
   const handleKeyPress = (key: string) => {
     setPressedKey(key);
+    haptics.keyPress(); // Native-like haptic feedback
+    keyboardSound.playKeyTap(); // Key click sound
     onKeyPress(key);
   };
 
   const handleBackspace = () => {
     setPressedKey('BACKSPACE');
+    haptics.keyPress();
+    keyboardSound.playKeyTap();
     onBackspace();
   };
 
   const handleSubmit = () => {
     setPressedKey('SUBMIT');
+    haptics.keyPress();
+    keyboardSound.playSubmit(); // Different sound for submit
     onSubmit();
   };
 
   const handleSpace = () => {
     setPressedKey('SPACE');
+    haptics.keyPress();
+    keyboardSound.playKeyTap();
     onKeyPress(' ');
   };
 
@@ -110,7 +120,7 @@ const VirtualKeyboard = ({
               onClick={() => handleKeyPress(key)}
               disabled={disabled}
               variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
                 pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
@@ -128,7 +138,7 @@ const VirtualKeyboard = ({
               onClick={() => handleKeyPress(key)}
               disabled={disabled}
               variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
                 pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
@@ -164,7 +174,7 @@ const VirtualKeyboard = ({
               onClick={() => handleKeyPress(key)}
               disabled={disabled}
               variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
                 pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
@@ -176,7 +186,7 @@ const VirtualKeyboard = ({
             onClick={handleBackspace}
             disabled={disabled}
             variant="outline"
-            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all ${
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
               pressedKey === 'BACKSPACE' ? 'scale-95 bg-orange border-orange text-white' : ''
             }`}
           >
@@ -190,7 +200,7 @@ const VirtualKeyboard = ({
             onClick={handleSpace}
             disabled={disabled}
             variant="outline"
-            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all ${
+            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
               pressedKey === 'SPACE' ? 'scale-95 bg-orange border-orange text-white' : ''
             }`}
           >
@@ -199,7 +209,7 @@ const VirtualKeyboard = ({
           <Button
             onClick={handleSubmit}
             disabled={disabled || !currentValue.trim()}
-            className={`h-10 w-24 font-bold rounded-md transition-all ${
+            className={`h-10 w-24 font-bold rounded-md transition-all duration-100 ${
               pressedKey === 'SUBMIT' ? 'scale-95' : ''
             }`}
           >
