@@ -225,13 +225,11 @@ const LeaderboardTable = ({
                   <p className="font-bold text-xl text-foreground">{player.total_score}</p>
                   <p className="text-xs text-muted-foreground">pts</p>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Target className="h-4 w-4 text-primary" />
-                  <span className="font-semibold text-base text-foreground">{player.accuracy}%</span>
+                <div className="text-center min-w-[50px]">
+                  <p className="font-semibold text-base text-foreground">{player.accuracy}%</p>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Flame className="h-5 w-5 text-orange" />
-                  <span className="font-bold text-lg text-foreground">{player.current_streak}</span>
+                <div className="text-center min-w-[50px]">
+                  <p className="font-bold text-lg text-foreground">{player.current_streak}</p>
                 </div>
               </div>
             </div>
@@ -278,13 +276,11 @@ const LeaderboardTable = ({
                   <p className="font-bold text-lg text-foreground">{player.total_score}</p>
                   <p className="text-xs text-muted-foreground">pts</p>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Target className="h-3 w-3 text-primary" />
-                  <span className="font-medium text-sm text-foreground">{player.accuracy}%</span>
+                <div className="text-center min-w-[50px]">
+                  <p className="font-medium text-sm text-foreground">{player.accuracy}%</p>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Flame className="h-4 w-4 text-orange" />
-                  <span className="font-semibold text-base text-foreground">{player.current_streak}</span>
+                <div className="text-center min-w-[50px]">
+                  <p className="font-semibold text-base text-foreground">{player.current_streak}</p>
                 </div>
               </div>
             </div>
