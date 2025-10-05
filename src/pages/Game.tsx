@@ -199,8 +199,6 @@ const Index = () => {
             setHintsUsed(sessionData.saved_hints);
           }
           
-          setInitializedTurnTimer(true);
-          
           // Restore answered players (both correct and revealed)
           const correctRanks = sessionData.answered_ranks || [];
           const revealedRanks = sessionData.revealed_ranks || [];
@@ -235,6 +233,9 @@ const Index = () => {
             setUserAnswers(restoredAnswers);
           }
         }
+        
+        // Initialize timer for both new and restored sessions
+        setInitializedTurnTimer(true);
 
       } catch (error) {
         console.error('Failed to initialize quiz session:', error);
