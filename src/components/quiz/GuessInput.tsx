@@ -3,6 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Send, Lightbulb, Shuffle } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import VirtualKeyboard from "./VirtualKeyboard";
 interface GuessInputProps {
   onGuess: (guess: string) => void;
   onRequestHint?: () => void;
@@ -30,6 +32,7 @@ const GuessInput = ({
   const [input, setInput] = useState("");
   const [isShaking, setIsShaking] = useState(false);
   const [showSuccessBorder, setShowSuccessBorder] = useState(false);
+  const isMobile = useIsMobile();
   useEffect(() => {
     if (showError) {
       setIsShaking(true);
@@ -65,6 +68,31 @@ const GuessInput = ({
   const handleBlur = () => {
     onFocusChange?.(false);
   };
+
+  const handleKeyPress = (key: string) => {
+    setInput(prev => prev + key.toLowerCase());
+  };
+
+  const handleBackspace = () => {
+    setInput(prev => prev.slice(0, -1));
+  };
+
+  // Mobile: Virtual Keyboard
+  if (isMobile && !onShuffle) {
+    return (
+      <VirtualKeyboard
+        onKeyPress={handleKeyPress}
+        onBackspace={handleBackspace}
+        onSubmit={handleSubmit}
+        onHint={onRequestHint}
+        disabled={disabled}
+        hintsRemaining={hintsRemaining}
+        currentValue={input}
+      />
+    );
+  }
+
+  // Desktop: Traditional Input
   return <div className="bg-background p-1 md:p-3 z-[1000]" style={{
     paddingBottom: `max(0.25rem, env(safe-area-inset-bottom))`
   }}>
