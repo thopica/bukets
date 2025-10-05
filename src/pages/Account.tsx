@@ -232,46 +232,6 @@ const Account = () => {
             </div>
           </Card>
 
-          <Card className="p-6">
-            <h3 className="text-xl font-bold mb-4">Preferences</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label htmlFor="privacy" className="text-base font-medium">
-                    Anonymous Mode
-                  </Label>
-                  <p className="text-sm text-muted-foreground">
-                    Hide your username on public leaderboards
-                  </p>
-                </div>
-                <Switch id="privacy" />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label htmlFor="sound" className="text-base font-medium">
-                    Sound Effects
-                  </Label>
-                  <p className="text-sm text-muted-foreground">
-                    Enable buzzer beater and celebration sounds
-                  </p>
-                </div>
-                <Switch id="sound" defaultChecked />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label htmlFor="notifications" className="text-base font-medium">
-                    Daily Reminders
-                  </Label>
-                  <p className="text-sm text-muted-foreground">
-                    Get notified when a new quiz is available
-                  </p>
-                </div>
-                <Switch id="notifications" />
-              </div>
-            </div>
-          </Card>
 
           <Card className="p-6">
             <h3 className="text-xl font-bold mb-4 text-destructive">Danger Zone</h3>
