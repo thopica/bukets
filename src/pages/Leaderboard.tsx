@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trophy, Flame } from "lucide-react";
+import { Trophy, Flame, Target } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -63,6 +63,7 @@ interface LeaderboardEntry {
   country_code: string;
   total_score: number;
   current_streak: number;
+  accuracy: number;
   is_bot: boolean;
 }
 
@@ -125,11 +126,15 @@ const LeaderboardTable = ({
                 </div>
               </div>
 
-              {/* Score + Streak */}
-              <div className="flex items-center gap-6">
+              {/* Score + Accuracy + Streak */}
+              <div className="flex items-center gap-4">
                 <div className="text-right">
                   <p className="font-bold text-xl text-foreground">{player.total_score}</p>
                   <p className="text-xs text-muted-foreground">pts</p>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Target className="h-4 w-4 text-primary" />
+                  <span className="font-semibold text-base text-foreground">{player.accuracy}%</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <Flame className="h-5 w-5 text-orange" />
@@ -174,11 +179,15 @@ const LeaderboardTable = ({
                 </div>
               </div>
 
-              {/* Score + Streak */}
-              <div className="flex items-center gap-6">
+              {/* Score + Accuracy + Streak */}
+              <div className="flex items-center gap-4">
                 <div className="text-right">
                   <p className="font-bold text-lg text-foreground">{player.total_score}</p>
                   <p className="text-xs text-muted-foreground">pts</p>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Target className="h-3 w-3 text-primary" />
+                  <span className="font-medium text-sm text-foreground">{player.accuracy}%</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <Flame className="h-4 w-4 text-orange" />
@@ -230,7 +239,8 @@ const LeaderboardSkeleton = () => {
               <Skeleton className="w-8 h-8 rounded" />
               <Skeleton className="h-6 w-32" />
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
+              <Skeleton className="h-8 w-12" />
               <Skeleton className="h-8 w-12" />
               <Skeleton className="h-8 w-12" />
             </div>
@@ -246,7 +256,8 @@ const LeaderboardSkeleton = () => {
               <Skeleton className="w-7 h-7 rounded" />
               <Skeleton className="h-5 w-28" />
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
+              <Skeleton className="h-6 w-10" />
               <Skeleton className="h-6 w-10" />
               <Skeleton className="h-6 w-10" />
             </div>

@@ -75,7 +75,8 @@ serve(async (req) => {
       .from('daily_scores')
       .select(`
         user_id,
-        total_score
+        total_score,
+        quiz_date
       `);
 
     if (dateFilter) {
@@ -91,11 +92,14 @@ serve(async (req) => {
     
     if (scoresError) throw scoresError;
 
-    // Aggregate scores by user
+    // Aggregate scores and count games by user
     const userScores = new Map();
+    const userGames = new Map();
     scores?.forEach(score => {
-      const current = userScores.get(score.user_id) || 0;
-      userScores.set(score.user_id, current + score.total_score);
+      const currentScore = userScores.get(score.user_id) || 0;
+      const currentGames = userGames.get(score.user_id) || 0;
+      userScores.set(score.user_id, currentScore + score.total_score);
+      userGames.set(score.user_id, currentGames + 1);
     });
 
     // Get user profiles and streaks
@@ -121,13 +125,17 @@ serve(async (req) => {
     // Build real players list (only includes users matching country filter)
     const realPlayers = (profiles || []).map(profile => {
       const streak = streaks?.find(s => s.user_id === profile.user_id);
+      const totalScore = userScores.get(profile.user_id) || 0;
+      const gamesPlayed = userGames.get(profile.user_id) || 0;
+      const accuracy = gamesPlayed > 0 ? Math.round((totalScore / (gamesPlayed * 30)) * 100) : 0;
       
       return {
         user_id: profile.user_id,
         username: profile.display_name || 'Anonymous',
         country_code: profile.country_code || 'US',
-        total_score: userScores.get(profile.user_id) || 0,
+        total_score: totalScore,
         current_streak: streak?.current_streak || 0,
+        accuracy: accuracy,
         is_bot: false
       };
     });
@@ -151,14 +159,19 @@ serve(async (req) => {
       const { data: bots } = await botQuery;
       console.log('Bots fetched for today:', bots?.length || 0);
 
-      botPlayers = (bots || []).map(bot => ({
-        user_id: bot.id,
-        username: bot.username,
-        country_code: bot.country_code,
-        total_score: generateBotScore(bot.skill_level),
-        current_streak: generateBotStreak(bot.skill_level),
-        is_bot: true
-      }));
+      botPlayers = (bots || []).map(bot => {
+        const botScore = generateBotScore(bot.skill_level);
+        const botAccuracy = Math.round((botScore / 30) * 100); // Bots play 1 game per day
+        return {
+          user_id: bot.id,
+          username: bot.username,
+          country_code: bot.country_code,
+          total_score: botScore,
+          current_streak: generateBotStreak(bot.skill_level),
+          accuracy: botAccuracy,
+          is_bot: true
+        };
+      });
     } else {
       // For historical periods: Query bot_daily_scores
       let botScoresQuery = supabaseClient
@@ -199,14 +212,20 @@ serve(async (req) => {
 
         const { data: botProfiles } = await botProfilesQuery;
 
-        botPlayers = (botProfiles || []).map(bot => ({
-          user_id: bot.id,
-          username: bot.username,
-          country_code: bot.country_code,
-          total_score: botScoresMap.get(bot.id) || 0,
-          current_streak: generateBotStreak(bot.skill_level),
-          is_bot: true
-        }));
+        botPlayers = (botProfiles || []).map(bot => {
+          const botTotalScore = botScoresMap.get(bot.id) || 0;
+          const botGamesCount = botScores?.filter(s => s.bot_id === bot.id).length || 0;
+          const botAccuracy = botGamesCount > 0 ? Math.round((botTotalScore / (botGamesCount * 30)) * 100) : 0;
+          return {
+            user_id: bot.id,
+            username: bot.username,
+            country_code: bot.country_code,
+            total_score: botTotalScore,
+            current_streak: generateBotStreak(bot.skill_level),
+            accuracy: botAccuracy,
+            is_bot: true
+          };
+        });
 
         console.log('Historical bots included:', botPlayers.length);
       }
