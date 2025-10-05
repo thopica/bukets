@@ -80,10 +80,22 @@ const VirtualKeyboard = ({
     >
       {/* Input Display */}
       <div className="px-2 pb-1">
-        <div className={`bg-background border-2 rounded-lg px-3 py-2 min-h-[40px] text-base text-foreground transition-all ${
-          isShaking ? 'animate-shake-horizontal border-destructive' : 'border-border'
+        <div className={`bg-background border-2 rounded-lg px-3 py-2 min-h-[40px] text-base text-foreground transition-all cursor-text ${
+          isShaking ? 'animate-shake-horizontal border-destructive' : 'border-primary ring-2 ring-primary/20'
         }`}>
-          {currentValue || <span className="text-muted-foreground">Type player name...</span>}
+          <div className="flex items-center">
+            {currentValue ? (
+              <>
+                <span>{currentValue}</span>
+                <span className="inline-block w-0.5 h-5 bg-foreground ml-0.5 animate-pulse" />
+              </>
+            ) : (
+              <>
+                <span className="text-muted-foreground">Type player name...</span>
+                <span className="inline-block w-0.5 h-5 bg-muted-foreground/50 ml-1 animate-pulse" />
+              </>
+            )}
+          </div>
         </div>
       </div>
 
