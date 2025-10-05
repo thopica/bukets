@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Delete, Lightbulb } from "lucide-react";
 
@@ -20,6 +21,35 @@ const VirtualKeyboard = ({
   hintsRemaining = 0,
   currentValue
 }: VirtualKeyboardProps) => {
+  const [pressedKey, setPressedKey] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (pressedKey) {
+      const timer = setTimeout(() => setPressedKey(null), 150);
+      return () => clearTimeout(timer);
+    }
+  }, [pressedKey]);
+
+  const handleKeyPress = (key: string) => {
+    setPressedKey(key);
+    onKeyPress(key);
+  };
+
+  const handleBackspace = () => {
+    setPressedKey('BACKSPACE');
+    onBackspace();
+  };
+
+  const handleSubmit = () => {
+    setPressedKey('SUBMIT');
+    onSubmit();
+  };
+
+  const handleSpace = () => {
+    setPressedKey('SPACE');
+    onKeyPress(' ');
+  };
+
   const rows = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
@@ -42,10 +72,12 @@ const VirtualKeyboard = ({
           {rows[0].map((key) => (
             <Button
               key={key}
-              onClick={() => onKeyPress(key)}
+              onClick={() => handleKeyPress(key)}
               disabled={disabled}
               variant="outline"
-              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2"
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
+                pressedKey === key ? 'scale-95 bg-primary text-primary-foreground' : ''
+              }`}
             >
               {key}
             </Button>
@@ -58,10 +90,12 @@ const VirtualKeyboard = ({
           {rows[1].map((key) => (
             <Button
               key={key}
-              onClick={() => onKeyPress(key)}
+              onClick={() => handleKeyPress(key)}
               disabled={disabled}
               variant="outline"
-              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2"
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
+                pressedKey === key ? 'scale-95 bg-primary text-primary-foreground' : ''
+              }`}
             >
               {key}
             </Button>
@@ -92,20 +126,24 @@ const VirtualKeyboard = ({
           {rows[2].map((key) => (
             <Button
               key={key}
-              onClick={() => onKeyPress(key)}
+              onClick={() => handleKeyPress(key)}
               disabled={disabled}
               variant="outline"
-              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2"
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
+                pressedKey === key ? 'scale-95 bg-primary text-primary-foreground' : ''
+              }`}
             >
               {key}
             </Button>
           ))}
           
           <Button
-            onClick={onBackspace}
+            onClick={handleBackspace}
             disabled={disabled}
             variant="outline"
-            className="h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2"
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all ${
+              pressedKey === 'BACKSPACE' ? 'scale-95 bg-primary text-primary-foreground' : ''
+            }`}
           >
             <Delete className="h-4 w-4" />
           </Button>
@@ -114,17 +152,21 @@ const VirtualKeyboard = ({
         {/* Row 4 - Space and Submit */}
         <div className="flex justify-center gap-1">
           <Button
-            onClick={() => onKeyPress(' ')}
+            onClick={handleSpace}
             disabled={disabled}
             variant="outline"
-            className="h-10 flex-1 text-sm font-semibold rounded-md border-2"
+            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all ${
+              pressedKey === 'SPACE' ? 'scale-95 bg-primary text-primary-foreground' : ''
+            }`}
           >
             SPACE
           </Button>
           <Button
-            onClick={onSubmit}
+            onClick={handleSubmit}
             disabled={disabled || !currentValue.trim()}
-            className="h-10 w-24 font-bold rounded-md"
+            className={`h-10 w-24 font-bold rounded-md transition-all ${
+              pressedKey === 'SUBMIT' ? 'scale-95' : ''
+            }`}
           >
             SUBMIT
           </Button>
