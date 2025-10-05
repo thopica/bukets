@@ -91,12 +91,9 @@ const QuizHeader = ({
         )}
 
         {/* Title */}
-        <div className="space-y-0.5 text-center">
-          <p className="text-sm font-bold text-foreground leading-tight capitalize">
+        <div className="text-center px-2">
+          <h1 className="text-base font-bold text-foreground leading-tight">
             {title}
-          </p>
-          <h1 className="text-xl font-bold text-foreground leading-tight">
-            Name the top {totalCount} scorers in NBA history
           </h1>
         </div>
       </div>
@@ -127,13 +124,10 @@ const QuizHeader = ({
           )}
         </div>
 
-        {/* Category + Question */}
-        <div className="space-y-1 text-center">
-          <p className="text-[1.9rem] font-bold text-foreground leading-tight capitalize">
+        {/* Title */}
+        <div className="text-center px-4">
+          <h1 className="text-2xl font-bold text-foreground leading-tight">
             {title}
-          </p>
-          <h1 className="text-[1.9rem] font-bold text-foreground leading-tight">
-            Name the top {totalCount} scorers in NBA history
           </h1>
         </div>
       </div>
