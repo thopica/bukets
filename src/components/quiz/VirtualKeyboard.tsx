@@ -11,6 +11,7 @@ interface VirtualKeyboardProps {
   disabled?: boolean;
   hintsRemaining?: number;
   currentValue: string;
+  showError?: boolean;
 }
 
 const VirtualKeyboard = ({
@@ -20,10 +21,20 @@ const VirtualKeyboard = ({
   onHint,
   disabled = false,
   hintsRemaining = 0,
-  currentValue
+  currentValue,
+  showError = false
 }: VirtualKeyboardProps) => {
   const isMobile = useIsMobile();
   const [pressedKey, setPressedKey] = useState<string | null>(null);
+  const [isShaking, setIsShaking] = useState(false);
+
+  useEffect(() => {
+    if (showError) {
+      setIsShaking(true);
+      const timer = setTimeout(() => setIsShaking(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [showError]);
 
   useEffect(() => {
     if (pressedKey) {
@@ -69,7 +80,9 @@ const VirtualKeyboard = ({
     >
       {/* Input Display */}
       <div className="px-2 pb-1">
-        <div className="bg-background border-2 border-border rounded-lg px-3 py-2 min-h-[40px] text-base text-foreground">
+        <div className={`bg-background border-2 rounded-lg px-3 py-2 min-h-[40px] text-base text-foreground transition-all ${
+          isShaking ? 'animate-shake-horizontal border-destructive' : 'border-border'
+        }`}>
           {currentValue || <span className="text-muted-foreground">Type player name...</span>}
         </div>
       </div>

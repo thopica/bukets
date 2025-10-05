@@ -88,6 +88,7 @@ const GuessInput = ({
         disabled={disabled}
         hintsRemaining={hintsRemaining}
         currentValue={input}
+        showError={showError}
       />
     );
   }
