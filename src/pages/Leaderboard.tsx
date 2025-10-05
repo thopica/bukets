@@ -131,47 +131,57 @@ const LeaderboardTable = ({
   };
 
   return (
-    <div className="space-y-0">
+    <div className="space-y-0 relative">
       {/* Header Row */}
-      <div className="px-4 py-3 border-b-2 border-border bg-muted/30 sticky top-0 z-20">
-        <div className="flex items-center gap-4">
-          {/* Empty space for alignment */}
-          <div className="flex-1"></div>
+      <div className="sticky top-0 z-20 bg-muted/30 border-b-2 border-border">
+        <div className="flex">
+          {/* Fixed Rank Column */}
+          <div className="flex-shrink-0 w-16 md:w-20 px-4 py-3 bg-muted/30"></div>
+          
+          {/* Scrollable Content */}
+          <div className="flex-1 overflow-x-auto scrollbar-hide relative">
+            <div className="flex items-center gap-4 px-4 py-3 min-w-max">
+              {/* Username spacer */}
+              <div className="flex-1 min-w-[120px]"></div>
 
-          {/* Stats Headers */}
-          <div className="flex items-center gap-4">
-            {/* Score Header */}
-            <button
-              onClick={() => handleSort('score')}
-              className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
-            >
-              <div className="flex items-center gap-1">
-                <Award className="h-3 w-3 text-gold" />
-                <SortIcon column="score" />
-              </div>
-            </button>
+              {/* Stats Headers */}
+              <div className="flex items-center gap-4">
+                {/* Score Header */}
+                <button
+                  onClick={() => handleSort('score')}
+                  className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+                >
+                  <div className="flex items-center gap-1">
+                    <Award className="h-3 w-3 text-gold" />
+                    <SortIcon column="score" />
+                  </div>
+                </button>
 
-            {/* Accuracy Header */}
-            <button
-              onClick={() => handleSort('accuracy')}
-              className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
-            >
-              <div className="flex items-center gap-1">
-                <Target className="h-3 w-3 text-primary" />
-                <SortIcon column="accuracy" />
-              </div>
-            </button>
+                {/* Accuracy Header */}
+                <button
+                  onClick={() => handleSort('accuracy')}
+                  className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+                >
+                  <div className="flex items-center gap-1">
+                    <Target className="h-3 w-3 text-primary" />
+                    <SortIcon column="accuracy" />
+                  </div>
+                </button>
 
-            {/* Streak Header */}
-            <button
-              onClick={() => handleSort('streak')}
-              className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
-            >
-              <div className="flex items-center gap-1">
-                <Flame className="h-3 w-3 text-orange" />
-                <SortIcon column="streak" />
+                {/* Streak Header */}
+                <button
+                  onClick={() => handleSort('streak')}
+                  className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+                >
+                  <div className="flex items-center gap-1">
+                    <Flame className="h-3 w-3 text-orange" />
+                    <SortIcon column="streak" />
+                  </div>
+                </button>
               </div>
-            </button>
+            </div>
+            {/* Fade gradient on mobile */}
+            <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-muted/30 to-transparent pointer-events-none md:hidden"></div>
           </div>
         </div>
       </div>
@@ -185,7 +195,7 @@ const LeaderboardTable = ({
         return (
           <div
             key={player.user_id}
-            className={`px-4 py-5 transition-all ${
+            className={`transition-all relative ${
               player.rank === 1
                 ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
                 : player.rank <= 3
@@ -193,9 +203,9 @@ const LeaderboardTable = ({
                 : ""
             } ${isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""}`}
           >
-            <div className="flex items-center gap-4">
-              {/* Rank/Medal */}
-              <div className="flex items-center justify-center w-12 h-12">
+            <div className="flex">
+              {/* Fixed Rank/Medal Column */}
+              <div className="flex-shrink-0 w-16 md:w-20 px-4 py-5 flex items-center justify-center">
                 {player.rank === 1 ? (
                   <div className="flex flex-col items-center">
                     <span className="text-3xl">{medal}</span>
@@ -206,31 +216,38 @@ const LeaderboardTable = ({
                 )}
               </div>
 
-              {/* Flag + Username */}
-              <div className="flex items-center gap-3 flex-1">
-                <span className="text-2xl">{flag}</span>
-                <div>
-                  <span className="font-bold text-lg text-foreground block">
-                    {player.username}
-                  </span>
-                  {isCurrentUser && (
-                    <span className="text-xs text-orange font-semibold">You</span>
-                  )}
-                </div>
-              </div>
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-x-auto scrollbar-hide">
+                <div className="flex items-center gap-4 px-4 py-5 min-w-max">
+                  {/* Flag + Username */}
+                  <div className="flex items-center gap-3 flex-1 min-w-[120px]">
+                    <span className="text-2xl">{flag}</span>
+                    <div>
+                      <span className="font-bold text-lg text-foreground block">
+                        {player.username}
+                      </span>
+                      {isCurrentUser && (
+                        <span className="text-xs text-orange font-semibold">You</span>
+                      )}
+                    </div>
+                  </div>
 
-              {/* Score + Accuracy + Streak */}
-              <div className="flex items-center gap-4">
-                <div className="text-center min-w-[50px]">
-                  <p className="font-bold text-xl text-foreground">{player.total_score}</p>
-                </div>
-                <div className="text-center min-w-[50px]">
-                  <p className="font-semibold text-base text-foreground">{player.accuracy}%</p>
-                </div>
-                <div className="text-center min-w-[50px]">
-                  <p className="font-bold text-lg text-foreground">{player.current_streak}</p>
+                  {/* Score + Accuracy + Streak */}
+                  <div className="flex items-center gap-4">
+                    <div className="text-center min-w-[50px]">
+                      <p className="font-bold text-xl text-foreground">{player.total_score}</p>
+                    </div>
+                    <div className="text-center min-w-[50px]">
+                      <p className="font-semibold text-base text-foreground">{player.accuracy}%</p>
+                    </div>
+                    <div className="text-center min-w-[50px]">
+                      <p className="font-bold text-lg text-foreground">{player.current_streak}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+              {/* Fade gradient on mobile */}
+              <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-gold/20 via-gold/10 to-transparent pointer-events-none md:hidden"></div>
             </div>
           </div>
         );
@@ -244,43 +261,50 @@ const LeaderboardTable = ({
         return (
           <div
             key={player.user_id}
-            className={`px-4 py-4 border-b border-border/30 transition-all hover:bg-muted/20 ${
+            className={`border-b border-border/30 transition-all hover:bg-muted/20 relative ${
               isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange sticky top-0 z-10" : ""
             }`}
           >
-            <div className="flex items-center gap-4">
-              {/* Rank */}
-              <div className="flex items-center justify-center w-12">
+            <div className="flex">
+              {/* Fixed Rank Column */}
+              <div className="flex-shrink-0 w-16 md:w-20 px-4 py-4 flex items-center justify-center">
                 <span className="text-muted-foreground font-semibold text-base">
                   #{player.rank}
                 </span>
               </div>
 
-              {/* Flag + Username */}
-              <div className="flex items-center gap-3 flex-1">
-                <span className="text-xl">{flag}</span>
-                <div>
-                  <span className="font-semibold text-base text-foreground block">
-                    {player.username}
-                  </span>
-                  {isCurrentUser && (
-                    <span className="text-xs text-orange font-semibold">You</span>
-                  )}
-                </div>
-              </div>
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-x-auto scrollbar-hide">
+                <div className="flex items-center gap-4 px-4 py-4 min-w-max">
+                  {/* Flag + Username */}
+                  <div className="flex items-center gap-3 flex-1 min-w-[120px]">
+                    <span className="text-xl">{flag}</span>
+                    <div>
+                      <span className="font-semibold text-base text-foreground block">
+                        {player.username}
+                      </span>
+                      {isCurrentUser && (
+                        <span className="text-xs text-orange font-semibold">You</span>
+                      )}
+                    </div>
+                  </div>
 
-              {/* Score + Accuracy + Streak */}
-              <div className="flex items-center gap-4">
-                <div className="text-center min-w-[50px]">
-                  <p className="font-bold text-lg text-foreground">{player.total_score}</p>
-                </div>
-                <div className="text-center min-w-[50px]">
-                  <p className="font-medium text-sm text-foreground">{player.accuracy}%</p>
-                </div>
-                <div className="text-center min-w-[50px]">
-                  <p className="font-semibold text-base text-foreground">{player.current_streak}</p>
+                  {/* Score + Accuracy + Streak */}
+                  <div className="flex items-center gap-4">
+                    <div className="text-center min-w-[50px]">
+                      <p className="font-bold text-lg text-foreground">{player.total_score}</p>
+                    </div>
+                    <div className="text-center min-w-[50px]">
+                      <p className="font-medium text-sm text-foreground">{player.accuracy}%</p>
+                    </div>
+                    <div className="text-center min-w-[50px]">
+                      <p className="font-semibold text-base text-foreground">{player.current_streak}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+              {/* Fade gradient on mobile */}
+              <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-background to-transparent pointer-events-none md:hidden"></div>
             </div>
           </div>
         );
