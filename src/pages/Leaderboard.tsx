@@ -9,13 +9,12 @@ import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
-type TabValue = "today" | "7d" | "30d" | "82d" | "alltime";
+type TabValue = "today" | "7d" | "30d" | "alltime";
 
 const tabs: { value: TabValue; label: string }[] = [
   { value: "today", label: "Today" },
   { value: "7d", label: "7D" },
   { value: "30d", label: "30D" },
-  { value: "82d", label: "82D" },
   { value: "alltime", label: "All-Time" },
 ];
 
