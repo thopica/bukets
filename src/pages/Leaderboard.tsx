@@ -312,13 +312,6 @@ const Leaderboard = () => {
       
       <main className="container max-w-3xl mx-auto px-4 py-6 flex-1">
         <div className="space-y-6">
-          {/* Beta Banner */}
-          <div className="bg-muted/50 border border-border rounded-lg px-4 py-2 text-center">
-            <p className="text-sm text-muted-foreground">
-              <strong>Beta Leaderboard</strong> - Sample scores shown for demonstration
-            </p>
-          </div>
-
           {/* Header */}
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-2 text-foreground">Leaderboard</h1>
