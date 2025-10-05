@@ -144,13 +144,13 @@ const LeaderboardTable = ({
             return (
               <div
                 key={`rank-${player.user_id}`}
-                className={`px-4 py-5 flex items-center justify-center ${
+                className={`px-4 flex items-center justify-center h-[84px] ${
                   player.rank === 1
                     ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
                     : "bg-muted/30 border-b-2 border-border/50"
                 }`}
               >
-                <span className="text-3xl">{medal}</span>
+                <span className="text-3xl leading-none">{medal}</span>
               </div>
             );
           })}
@@ -158,9 +158,9 @@ const LeaderboardTable = ({
           {sortedData.slice(3).map((player) => (
             <div
               key={`rank-${player.user_id}`}
-              className="px-4 py-4 flex items-center justify-center border-b border-border/30"
+              className="px-4 flex items-center justify-center h-[68px] border-b border-border/30"
             >
-              <span className="text-muted-foreground font-semibold text-base">
+              <span className="text-muted-foreground font-semibold text-base leading-none">
                 #{player.rank}
               </span>
             </div>
@@ -216,13 +216,13 @@ const LeaderboardTable = ({
               return (
                 <div
                   key={player.user_id}
-                  className={`transition-all ${
+                  className={`transition-all h-[84px] ${
                     player.rank === 1
                       ? "bg-gradient-to-r from-gold/20 via-gold/10 to-transparent border-b-2 border-gold/30"
                       : "bg-muted/30 border-b-2 border-border/50"
                   } ${isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""}`}
                 >
-                  <div className="flex items-center gap-4 px-4 py-5">
+                  <div className="flex items-center gap-4 px-4 h-full">
                     {/* Flag + Username */}
                     <div className="flex items-center gap-3 flex-1 min-w-[120px]">
                       <span className="text-2xl">{flag}</span>
@@ -261,11 +261,11 @@ const LeaderboardTable = ({
               return (
                 <div
                   key={player.user_id}
-                  className={`border-b border-border/30 transition-all hover:bg-muted/20 ${
+                  className={`border-b border-border/30 transition-all hover:bg-muted/20 h-[68px] ${
                     isCurrentUser ? "bg-orange/10 border-l-4 border-l-orange" : ""
                   }`}
                 >
-                  <div className="flex items-center gap-4 px-4 py-4">
+                  <div className="flex items-center gap-4 px-4 h-full">
                     {/* Flag + Username */}
                     <div className="flex items-center gap-3 flex-1 min-w-[120px]">
                       <span className="text-xl">{flag}</span>
