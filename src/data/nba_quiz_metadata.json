@@ -34,14 +34,14 @@
       ]
     },
     {
-      "title": "Players With The Most NBA Championships (All-Time)",
+      "title": "NBA All-Time Leaders In Playoff Steals",
       "hints": [
-        { "rank": 1, "text": "Celtics legend, unprecedented 11 rings" },
-        { "rank": 2, "text": "Celtics guard, clutch shooter in 1960s" },
-        { "rank": 3, "text": "Celtics legend, 'Hondo', 8 championships" },
-        { "rank": 4, "text": "Player and coach for Celtics dynasty" },
-        { "rank": 5, "text": "Point guard for Celtics, also a coach" },
-        { "rank": 6, "text": "Defensive specialist for Celtics dynasty" }
+        { "rank": 1, "text": "Active player, all-time leading scorer" },
+        { "rank": 2, "text": "Bulls legend, sidekick to MJ" },
+        { "rank": 3, "text": "Heat legend, 'Flash', 3× champion" },
+        { "rank": 4, "text": "Lakers icon, 'Black Mamba'" },
+        { "rank": 5, "text": "Bulls legend, 6× Finals MVP" },
+        { "rank": 6, "text": "The Mailman, never won a ring" }
       ]
     },
     {

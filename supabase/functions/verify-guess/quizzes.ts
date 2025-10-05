@@ -63,22 +63,22 @@ export const quizzes = [
   },
   // Quiz #3 - Presented on: October 8, 2025
   {
-    "title": "Players With The Most NBA Championships (All-Time)",
+    "title": "NBA All-Time Leaders In Playoff Steals",
     "answers": [
-      { "rank": 1, "name": "Bill Russell", "stat": "11 championships", "aliases": ["russell", "bill", "bill russell"] },
-      { "rank": 2, "name": "Sam Jones", "stat": "10 championships", "aliases": ["jones", "sam", "samuel", "sam jones", "samuel jones"] },
-      { "rank": 3, "name": "John Havlicek", "stat": "8 championships", "aliases": ["havlicek", "john", "hondo", "john havlicek"] },
-      { "rank": 4, "name": "Tom Heinsohn", "stat": "8 championships", "aliases": ["heinsohn", "tom", "tommy", "tom heinsohn", "tommy heinsohn"] },
-      { "rank": 5, "name": "K.C. Jones", "stat": "8 championships", "aliases": ["jones", "kc", "k.c.", "kc jones", "k.c. jones"] },
-      { "rank": 6, "name": "Satch Sanders", "stat": "8 championships", "aliases": ["sanders", "satch", "tom sanders", "satch sanders"] }
+      { "rank": 1, "name": "LeBron James", "stat": "454 steals", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james", "king"] },
+      { "rank": 2, "name": "Scottie Pippen", "stat": "395 steals", "aliases": ["pippen", "scottie", "pip", "scottie pippen", "scotty"] },
+      { "rank": 3, "name": "Dwyane Wade", "stat": "324 steals", "aliases": ["wade", "dwyane", "dwade", "d wade", "dwyane wade", "flash", "d-wade"] },
+      { "rank": 4, "name": "Kobe Bryant", "stat": "310 steals", "aliases": ["kobe", "bryant", "black mamba", "kobe bryant", "mamba", "bean"] },
+      { "rank": 5, "name": "Michael Jordan", "stat": "306 steals", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan", "air jordan"] },
+      { "rank": 6, "name": "Karl Malone", "stat": "292 steals", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Celtics legend, unprecedented 11 rings" },
-      { "rank": 2, "text": "Celtics guard, clutch shooter in 1960s" },
-      { "rank": 3, "text": "Celtics legend, 'Hondo', 8 championships" },
-      { "rank": 4, "text": "Player and coach for Celtics dynasty" },
-      { "rank": 5, "text": "Point guard for Celtics, also a coach" },
-      { "rank": 6, "text": "Defensive specialist for Celtics dynasty" }
+      { "rank": 1, "text": "Active player, all-time leading scorer" },
+      { "rank": 2, "text": "Bulls legend, sidekick to MJ" },
+      { "rank": 3, "text": "Heat legend, 'Flash', 3× champion" },
+      { "rank": 4, "text": "Lakers icon, 'Black Mamba'" },
+      { "rank": 5, "text": "Bulls legend, 6× Finals MVP" },
+      { "rank": 6, "text": "The Mailman, never won a ring" }
     ]
   },
   // Quiz #4 - Presented on: October 9, 2025
