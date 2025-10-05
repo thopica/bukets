@@ -1,14 +1,14 @@
 {
   "quizzes": [
     {
-      "title": "All-Time NBA Steals Leaders By Total Steals",
+      "title": "NBA All-Time Leaders In Playoff Steals",
       "hints": [
-        { "rank": 1, "text": "Jazz point guard, also assist leader" },
-        { "rank": 2, "text": "Active defensive maestro, 'Point God'" },
-        { "rank": 3, "text": "Nets and Mavericks legend, great defender" },
-        { "rank": 4, "text": "Bulls legend, 3× Steals champion" },
-        { "rank": 5, "text": "Defensive specialist nicknamed 'The Glove'" },
-        { "rank": 6, "text": "76ers guard, 4× All-Defensive Team" }
+        { "rank": 1, "text": "Active player, all-time leading scorer" },
+        { "rank": 2, "text": "Bulls legend, sidekick to MJ" },
+        { "rank": 3, "text": "Heat legend, 'Flash', 3× champion" },
+        { "rank": 4, "text": "Lakers icon, 'Black Mamba'" },
+        { "rank": 5, "text": "Bulls legend, 6× Finals MVP" },
+        { "rank": 6, "text": "The Mailman, never won a ring" }
       ]
     },
     {

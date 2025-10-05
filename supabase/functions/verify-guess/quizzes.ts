@@ -3,22 +3,22 @@
 export const quizzes = [
   // Quiz #0 - Presented on: October 5, 2025
   {
-    "title": "All-Time NBA Steals Leaders By Total Steals",
+    "title": "NBA All-Time Leaders In Playoff Steals",
     "answers": [
-      { "rank": 1, "name": "John Stockton", "stat": "3,265 steals", "aliases": ["stockton", "john", "john stockton"] },
-      { "rank": 2, "name": "Chris Paul", "stat": "2,755 steals", "aliases": ["cp3", "paul", "chris", "chris paul", "point god"] },
-      { "rank": 3, "name": "Jason Kidd", "stat": "2,684 steals", "aliases": ["kidd", "jason", "jason kidd"] },
-      { "rank": 4, "name": "Michael Jordan", "stat": "2,514 steals", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan", "air jordan"] },
-      { "rank": 5, "name": "Gary Payton", "stat": "2,445 steals", "aliases": ["payton", "gary", "glove", "the glove", "gary payton", "gp"] },
-      { "rank": 6, "name": "Maurice Cheeks", "stat": "2,310 steals", "aliases": ["cheeks", "maurice", "mo", "maurice cheeks", "mo cheeks"] }
+      { "rank": 1, "name": "LeBron James", "stat": "454 steals", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james", "king"] },
+      { "rank": 2, "name": "Scottie Pippen", "stat": "395 steals", "aliases": ["pippen", "scottie", "pip", "scottie pippen", "scotty"] },
+      { "rank": 3, "name": "Dwyane Wade", "stat": "324 steals", "aliases": ["wade", "dwyane", "dwade", "d wade", "dwyane wade", "flash", "d-wade"] },
+      { "rank": 4, "name": "Kobe Bryant", "stat": "310 steals", "aliases": ["kobe", "bryant", "black mamba", "kobe bryant", "mamba", "bean"] },
+      { "rank": 5, "name": "Michael Jordan", "stat": "306 steals", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan", "air jordan"] },
+      { "rank": 6, "name": "Karl Malone", "stat": "292 steals", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Jazz point guard, also assist leader" },
-      { "rank": 2, "text": "Active defensive maestro, 'Point God'" },
-      { "rank": 3, "text": "Nets and Mavericks legend, great defender" },
-      { "rank": 4, "text": "Bulls legend, 3× Steals champion" },
-      { "rank": 5, "text": "Defensive specialist nicknamed 'The Glove'" },
-      { "rank": 6, "text": "76ers guard, 4× All-Defensive Team" }
+      { "rank": 1, "text": "Active player, all-time leading scorer" },
+      { "rank": 2, "text": "Bulls legend, sidekick to MJ" },
+      { "rank": 3, "text": "Heat legend, 'Flash', 3× champion" },
+      { "rank": 4, "text": "Lakers icon, 'Black Mamba'" },
+      { "rank": 5, "text": "Bulls legend, 6× Finals MVP" },
+      { "rank": 6, "text": "The Mailman, never won a ring" }
     ]
   },
   // Quiz #1 - Presented on: October 6, 2025
