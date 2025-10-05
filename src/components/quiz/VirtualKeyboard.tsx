@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Delete, Lightbulb } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { haptics } from "@/lib/haptics";
-import { keyboardSound } from "@/lib/keyboardSound";
 
 interface VirtualKeyboardProps {
   onKeyPress: (key: string) => void;
@@ -48,29 +47,25 @@ const VirtualKeyboard = ({
 
   const handleKeyPress = (key: string) => {
     setPressedKey(key);
-    haptics.keyPress(); // Native-like haptic feedback
-    keyboardSound.playKeyTap(); // Key click sound
+    haptics.keyPress();
     onKeyPress(key);
   };
 
   const handleBackspace = () => {
     setPressedKey('BACKSPACE');
     haptics.keyPress();
-    keyboardSound.playKeyTap();
     onBackspace();
   };
 
   const handleSubmit = () => {
     setPressedKey('SUBMIT');
     haptics.keyPress();
-    keyboardSound.playSubmit(); // Different sound for submit
     onSubmit();
   };
 
   const handleSpace = () => {
     setPressedKey('SPACE');
     haptics.keyPress();
-    keyboardSound.playKeyTap();
     onKeyPress(' ');
   };
 
