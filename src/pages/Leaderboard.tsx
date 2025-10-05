@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trophy, Flame, Target, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
+import { Trophy, Flame, Target, ArrowUpDown, ArrowUp, ArrowDown, Award } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -146,7 +146,7 @@ const LeaderboardTable = ({
               className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
             >
               <div className="flex items-center gap-1">
-                <span className="text-xs font-semibold text-muted-foreground">Score</span>
+                <Award className="h-3 w-3 text-gold" />
                 <SortIcon column="score" />
               </div>
             </button>
