@@ -149,34 +149,28 @@ const LeaderboardTable = ({
                 {/* Score Header */}
                 <button
                   onClick={() => handleSort('score')}
-                  className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+                  className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
                 >
-                  <div className="flex items-center gap-1">
-                    <Award className="h-3 w-3 text-gold" />
-                    <SortIcon column="score" />
-                  </div>
+                  <Award className="h-3 w-3 text-gold" />
+                  <SortIcon column="score" />
                 </button>
 
                 {/* Accuracy Header */}
                 <button
                   onClick={() => handleSort('accuracy')}
-                  className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+                  className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
                 >
-                  <div className="flex items-center gap-1">
-                    <Target className="h-3 w-3 text-primary" />
-                    <SortIcon column="accuracy" />
-                  </div>
+                  <Target className="h-3 w-3 text-primary" />
+                  <SortIcon column="accuracy" />
                 </button>
 
                 {/* Streak Header */}
                 <button
                   onClick={() => handleSort('streak')}
-                  className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+                  className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
                 >
-                  <div className="flex items-center gap-1">
-                    <Flame className="h-3 w-3 text-orange" />
-                    <SortIcon column="streak" />
-                  </div>
+                  <Flame className="h-3 w-3 text-orange" />
+                  <SortIcon column="streak" />
                 </button>
               </div>
             </div>
