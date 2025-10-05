@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Loader2, Trophy, Clock, Flame, TrendingUp } from 'lucide-react';
+import { Loader2, Trophy, Clock, Flame, TrendingUp, Target } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -32,6 +32,7 @@ export default function AlreadyCompleted() {
   const [scoreData, setScoreData] = useState<any>(null);
   const [countdown, setCountdown] = useState('');
   const [loading, setLoading] = useState(true);
+  const [accuracy, setAccuracy] = useState<number>(0);
 
   useEffect(() => {
     checkCompletion();
@@ -56,10 +57,36 @@ export default function AlreadyCompleted() {
       }
 
       setScoreData(data);
+      
+      // Calculate accuracy from all daily scores
+      await calculateAccuracy();
     } catch (error) {
       console.error('Failed to check completion:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const calculateAccuracy = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data: scores, error } = await supabase
+        .from('daily_scores')
+        .select('total_score')
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      if (scores && scores.length > 0) {
+        const totalScore = scores.reduce((sum, s) => sum + s.total_score, 0);
+        const gamesPlayed = scores.length;
+        const calculatedAccuracy = Math.round((totalScore / (gamesPlayed * 30)) * 100);
+        setAccuracy(calculatedAccuracy);
+      }
+    } catch (error) {
+      console.error('Failed to calculate accuracy:', error);
     }
   };
 
@@ -150,7 +177,7 @@ export default function AlreadyCompleted() {
               <Trophy className="w-6 h-6 text-yellow-400" />
               <span>You're ranked <span className="font-bold text-primary">#{scoreData?.rank || 0}</span> today!</span>
             </div>
-            <div className="flex items-center justify-center gap-6 text-lg">
+            <div className="flex items-center justify-center gap-6 text-lg flex-wrap">
               <div className="flex items-center gap-2">
                 <Flame className="w-5 h-5 text-orange-400" />
                 <span>Current streak: <span className="font-semibold">{scoreData?.current_streak || 0}</span></span>
@@ -158,6 +185,10 @@ export default function AlreadyCompleted() {
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-green-400" />
                 <span>Best: <span className="font-semibold">{scoreData?.longest_streak || 0}</span></span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Target className="w-5 h-5 text-blue-400" />
+                <span>Accuracy: <span className="font-semibold">{accuracy}%</span></span>
               </div>
             </div>
           </Card>
