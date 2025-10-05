@@ -111,7 +111,7 @@ const VirtualKeyboard = ({
               disabled={disabled}
               variant="outline"
               className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
-                pressedKey === key ? 'scale-95 bg-primary text-primary-foreground' : ''
+                pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
               {key}
@@ -129,7 +129,7 @@ const VirtualKeyboard = ({
               disabled={disabled}
               variant="outline"
               className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
-                pressedKey === key ? 'scale-95 bg-primary text-primary-foreground' : ''
+                pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
               {key}
@@ -165,7 +165,7 @@ const VirtualKeyboard = ({
               disabled={disabled}
               variant="outline"
               className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all ${
-                pressedKey === key ? 'scale-95 bg-primary text-primary-foreground' : ''
+                pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
               {key}
@@ -177,7 +177,7 @@ const VirtualKeyboard = ({
             disabled={disabled}
             variant="outline"
             className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all ${
-              pressedKey === 'BACKSPACE' ? 'scale-95 bg-primary text-primary-foreground' : ''
+              pressedKey === 'BACKSPACE' ? 'scale-95 bg-orange border-orange text-white' : ''
             }`}
           >
             <Delete className="h-4 w-4" />
@@ -191,7 +191,7 @@ const VirtualKeyboard = ({
             disabled={disabled}
             variant="outline"
             className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all ${
-              pressedKey === 'SPACE' ? 'scale-95 bg-primary text-primary-foreground' : ''
+              pressedKey === 'SPACE' ? 'scale-95 bg-orange border-orange text-white' : ''
             }`}
           >
             SPACE
