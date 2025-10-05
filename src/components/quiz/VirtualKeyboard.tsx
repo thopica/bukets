@@ -83,7 +83,7 @@ const VirtualKeyboard = ({
       <div className="px-2 pb-1">
         <div 
           onClick={() => setIsFocused(true)}
-          className={`bg-background border-2 rounded-lg px-3 py-2 min-h-[40px] text-base text-foreground transition-all cursor-text ${
+          className={`bg-background border-2 rounded-lg px-3 h-[56px] text-base text-foreground transition-all cursor-text flex items-center ${
             isShaking ? 'animate-shake-horizontal border-destructive' : 'border-primary ring-2 ring-primary/20'
           }`}
         >
