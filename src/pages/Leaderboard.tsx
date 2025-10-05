@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trophy, Flame, Target } from "lucide-react";
+import { Trophy, Flame, Target, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -67,6 +67,9 @@ interface LeaderboardEntry {
   is_bot: boolean;
 }
 
+type SortColumn = 'rank' | 'score' | 'accuracy' | 'streak';
+type SortDirection = 'asc' | 'desc';
+
 const LeaderboardTable = ({ 
   data, 
   currentUserId 
@@ -74,6 +77,52 @@ const LeaderboardTable = ({
   data: LeaderboardEntry[];
   currentUserId?: string;
 }) => {
+  const [sortColumn, setSortColumn] = useState<SortColumn>('rank');
+  const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
+
+  const handleSort = (column: SortColumn) => {
+    if (sortColumn === column) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortColumn(column);
+      setSortDirection('desc'); // Default to descending for new column
+    }
+  };
+
+  const sortedData = [...data].sort((a, b) => {
+    let aValue: number, bValue: number;
+    
+    switch (sortColumn) {
+      case 'rank':
+        aValue = a.rank;
+        bValue = b.rank;
+        break;
+      case 'score':
+        aValue = a.total_score;
+        bValue = b.total_score;
+        break;
+      case 'accuracy':
+        aValue = a.accuracy;
+        bValue = b.accuracy;
+        break;
+      case 'streak':
+        aValue = a.current_streak;
+        bValue = b.current_streak;
+        break;
+    }
+    
+    return sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
+  });
+
+  const SortIcon = ({ column }: { column: SortColumn }) => {
+    if (sortColumn !== column) {
+      return <ArrowUpDown className="h-3 w-3 text-muted-foreground" />;
+    }
+    return sortDirection === 'asc' 
+      ? <ArrowUp className="h-3 w-3 text-primary" />
+      : <ArrowDown className="h-3 w-3 text-primary" />;
+  };
+
   const getMedalIcon = (rank: number) => {
     if (rank === 1) return "🥇";
     if (rank === 2) return "🥈";
@@ -83,8 +132,63 @@ const LeaderboardTable = ({
 
   return (
     <div className="space-y-0">
+      {/* Header Row */}
+      <div className="px-4 py-3 border-b-2 border-border bg-muted/30 sticky top-0 z-20">
+        <div className="flex items-center gap-4">
+          {/* Rank Header */}
+          <button
+            onClick={() => handleSort('rank')}
+            className="flex items-center justify-center w-12 gap-1 hover:text-primary transition-colors"
+          >
+            <span className="text-xs font-semibold text-muted-foreground">#</span>
+            <SortIcon column="rank" />
+          </button>
+
+          {/* Player Header */}
+          <div className="flex-1">
+            <span className="text-xs font-semibold text-muted-foreground">Player</span>
+          </div>
+
+          {/* Stats Headers */}
+          <div className="flex items-center gap-4">
+            {/* Score Header */}
+            <button
+              onClick={() => handleSort('score')}
+              className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+            >
+              <div className="flex items-center gap-1">
+                <span className="text-xs font-semibold text-muted-foreground">Score</span>
+                <SortIcon column="score" />
+              </div>
+            </button>
+
+            {/* Accuracy Header */}
+            <button
+              onClick={() => handleSort('accuracy')}
+              className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+            >
+              <div className="flex items-center gap-1">
+                <Target className="h-3 w-3 text-primary" />
+                <SortIcon column="accuracy" />
+              </div>
+            </button>
+
+            {/* Streak Header */}
+            <button
+              onClick={() => handleSort('streak')}
+              className="flex flex-col items-center gap-0.5 hover:text-primary transition-colors min-w-[50px]"
+            >
+              <div className="flex items-center gap-1">
+                <Flame className="h-3 w-3 text-orange" />
+                <SortIcon column="streak" />
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Top 3 - Larger Cards */}
-      {data.slice(0, 3).map((player) => {
+      {sortedData.slice(0, 3).map((player) => {
         const isCurrentUser = player.user_id === currentUserId;
         const medal = getMedalIcon(player.rank);
         const flag = COUNTRY_FLAGS[player.country_code] || "🌐";
@@ -147,7 +251,7 @@ const LeaderboardTable = ({
       })}
 
       {/* Rest of the list */}
-      {data.slice(3).map((player) => {
+      {sortedData.slice(3).map((player) => {
         const isCurrentUser = player.user_id === currentUserId;
         const flag = COUNTRY_FLAGS[player.country_code] || "🌐";
         
