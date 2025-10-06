@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Delete, Lightbulb } from "lucide-react";
+import { Delete, Lightbulb, ArrowUp } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { haptics } from "@/lib/haptics";
 
@@ -412,18 +412,21 @@ const VirtualKeyboard = ({
           >
             SPACE
           </Button>
-          <Button
-            onMouseDown={handleSubmitDown}
-            onMouseUp={handleSubmitUp}
-            onTouchStart={handleSubmitDown}
-            onTouchEnd={handleSubmitUp}
-            disabled={disabled || !currentValue.trim()}
-            className={`h-10 w-24 font-bold rounded-md transition-all duration-100 ${
-              pressedKey === 'SUBMIT' ? 'scale-95' : ''
-            }`}
-          >
-            SUBMIT
-          </Button>
+          
+          {currentValue.trim() && (
+            <Button
+              onMouseDown={handleSubmitDown}
+              onMouseUp={handleSubmitUp}
+              onTouchStart={handleSubmitDown}
+              onTouchEnd={handleSubmitUp}
+              disabled={disabled}
+              className={`h-10 w-10 rounded-full bg-primary hover:bg-primary/90 border-2 border-primary transition-all duration-200 ${
+                pressedKey === 'SUBMIT' ? 'scale-95' : ''
+              }`}
+            >
+              <ArrowUp className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </div>
     </div>
