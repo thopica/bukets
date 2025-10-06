@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Trophy, Clock, Brain, TrendingUp, Users, Target } from "lucide-react";
+import { Trophy, Clock, Brain, TrendingUp, Users, Target, Flame } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import basketballPlayer from "@/assets/basketball-player.png";
 import { supabase } from "@/integrations/supabase/client";
@@ -76,39 +76,34 @@ const Index = () => {
       // Logged-in view - Mobile Optimized
       <>
             <div className="text-center space-y-4">
-              {/* Welcome Message - Larger */}
+              {/* Welcome Message */}
               <p className="text-base font-medium text-slate-50">
                 Welcome back{user.email ? `, ${user.email.split('@')[0]}` : ''}
               </p>
 
-              {/* Mini Streak Indicator */}
-              <div className="space-y-2">
-                <p className="text-xs font-medium text-slate-50">Your current streak</p>
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-3xl">🔥</span>
-                  <span className="text-4xl font-bold text-foreground">{stats?.current_streak || 0}</span>
-                </div>
-                <p className="text-xs font-medium text-slate-50">Don't break your streak</p>
-              </div>
-
               {/* Statistics Grid */}
               {stats && (
-                <Card className="p-4">
-                  <div className="grid grid-cols-3 gap-4">
+                <Card className="p-4 md:p-6">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                     <div className="flex flex-col items-center text-center">
-                      <Trophy className="h-6 w-6 text-secondary mb-1" />
-                      <p className="text-2xl font-bold">{stats.total_score}</p>
-                      <p className="text-xs text-muted-foreground">Score</p>
+                      <Trophy className="h-6 w-6 md:h-8 md:w-8 text-secondary mb-2" />
+                      <p className="text-2xl md:text-3xl font-bold">{stats.total_score}</p>
+                      <p className="text-xs md:text-sm text-muted-foreground">Total Score</p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                      <Target className="h-6 w-6 text-primary mb-1" />
-                      <p className="text-2xl font-bold">{stats.total_games_played}</p>
-                      <p className="text-xs text-muted-foreground">Played</p>
+                      <span className="text-2xl md:text-3xl mb-2">🔥</span>
+                      <p className="text-2xl md:text-3xl font-bold">{stats.current_streak}</p>
+                      <p className="text-xs md:text-sm text-muted-foreground">Day Streak</p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                      <TrendingUp className="h-6 w-6 text-success mb-1" />
-                      <p className="text-2xl font-bold">{stats.accuracy}%</p>
-                      <p className="text-xs text-muted-foreground">Accuracy</p>
+                      <Target className="h-6 w-6 md:h-8 md:w-8 text-primary mb-2" />
+                      <p className="text-2xl md:text-3xl font-bold">{stats.total_games_played}</p>
+                      <p className="text-xs md:text-sm text-muted-foreground">Quizzes Played</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center">
+                      <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-success mb-2" />
+                      <p className="text-2xl md:text-3xl font-bold">{stats.accuracy}%</p>
+                      <p className="text-xs md:text-sm text-muted-foreground">Accuracy</p>
                     </div>
                   </div>
                 </Card>
