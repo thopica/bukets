@@ -556,8 +556,10 @@ const Index = () => {
       }
     } else {
       setLastGuessRank(undefined);
-      setShowInputError(true);
+      // Reset error state briefly to ensure animation triggers on every wrong guess
+      setShowInputError(false);
       setShowInputSuccess(false);
+      setTimeout(() => setShowInputError(true), 10);
     }
   };
 

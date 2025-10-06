@@ -34,6 +34,7 @@ const VirtualKeyboard = ({
   const longPressTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const longPressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const hasTypedFirstChar = useRef(false); // Track if we've typed the first character
+  const previousShowError = useRef(false); // Track previous error state
   
   // Key preview popup state
   const [popupKey, setPopupKey] = useState<string | null>(null);
@@ -44,10 +45,14 @@ const VirtualKeyboard = ({
   const currentKeyRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    if (showError) {
+    // Trigger animation when showError changes to true OR when it's already true but was false before
+    if (showError && !previousShowError.current) {
       setIsShaking(true);
       const timer = setTimeout(() => setIsShaking(false), 500);
+      previousShowError.current = true;
       return () => clearTimeout(timer);
+    } else if (!showError) {
+      previousShowError.current = false;
     }
   }, [showError]);
 
