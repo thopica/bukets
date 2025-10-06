@@ -31,7 +31,8 @@ const VirtualKeyboard = ({
   const [isFocused, setIsFocused] = useState(true);
   const [isShiftActive, setIsShiftActive] = useState(true); // Auto-capitalize first letter
   const [isLongPressing, setIsLongPressing] = useState(false);
-  const longPressTimerRef = useState<NodeJS.Timeout | null>(null)[0];
+  const longPressTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const longPressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
   // Key preview popup state
   const [popupKey, setPopupKey] = useState<string | null>(null);
@@ -169,6 +170,17 @@ const VirtualKeyboard = ({
 
   const handleBackspaceStart = (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    
+    // Clear any existing timers first
+    if (longPressTimeoutRef.current) {
+      clearTimeout(longPressTimeoutRef.current);
+      longPressTimeoutRef.current = null;
+    }
+    if (longPressIntervalRef.current) {
+      clearInterval(longPressIntervalRef.current);
+      longPressIntervalRef.current = null;
+    }
+    
     // Trigger haptic once on initial press
     setPressedKey('BACKSPACE');
     haptics.keyPress();
@@ -176,26 +188,32 @@ const VirtualKeyboard = ({
     setIsLongPressing(true);
     
     // Start continuous deletion after 500ms hold (no haptic on repeat)
-    const timer = setTimeout(() => {
-      if (longPressTimerRef) {
-        clearInterval(longPressTimerRef);
-      }
-      const interval = setInterval(() => {
+    longPressTimeoutRef.current = setTimeout(() => {
+      longPressIntervalRef.current = setInterval(() => {
         onBackspace(); // Delete without haptic feedback during repeat
       }, 50); // Delete every 50ms while holding
-      Object.assign(longPressTimerRef, interval);
     }, 500);
-    
-    Object.assign(longPressTimerRef, timer);
   };
 
-  const handleBackspaceEnd = (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleBackspaceEnd = (event?: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    if (event) {
+      event.preventDefault();
+    }
+    
+    // Immediately stop all deletion
     setIsLongPressing(false);
     setPressedKey(null);
-    if (longPressTimerRef) {
-      clearTimeout(longPressTimerRef);
-      clearInterval(longPressTimerRef);
+    
+    // Clear timeout (for long press trigger)
+    if (longPressTimeoutRef.current) {
+      clearTimeout(longPressTimeoutRef.current);
+      longPressTimeoutRef.current = null;
+    }
+    
+    // Clear interval (for continuous deletion)
+    if (longPressIntervalRef.current) {
+      clearInterval(longPressIntervalRef.current);
+      longPressIntervalRef.current = null;
     }
   };
 
@@ -398,6 +416,7 @@ const VirtualKeyboard = ({
             onMouseLeave={(e) => handleBackspaceEnd(e)}
             onTouchStart={(e) => handleBackspaceStart(e)}
             onTouchEnd={(e) => handleBackspaceEnd(e)}
+            onTouchCancel={(e) => handleBackspaceEnd(e)}
             disabled={disabled}
             variant="outline"
             className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
