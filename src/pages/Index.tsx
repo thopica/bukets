@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Trophy, Clock, Brain, TrendingUp, Users, Play, Flame } from "lucide-react";
+import { Trophy, Clock, Brain, TrendingUp, Users, Play, Flame, Target } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import basketballPlayer from "@/assets/basketball-player.png";
 import { supabase } from "@/integrations/supabase/client";
@@ -101,7 +101,7 @@ const Index = () => {
                       <p className="text-xs md:text-sm text-muted-foreground">Quizzes Played</p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                      <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-success mb-2" />
+                      <Target className="h-6 w-6 md:h-8 md:w-8 text-success mb-2" />
                       <p className="text-2xl md:text-3xl font-bold">{stats.accuracy}%</p>
                       <p className="text-xs md:text-sm text-muted-foreground">Accuracy</p>
                     </div>
