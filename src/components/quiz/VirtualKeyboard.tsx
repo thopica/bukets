@@ -137,6 +137,9 @@ const VirtualKeyboard = ({
     const element = event.currentTarget;
     setPressedKey(key);
     
+    // Trigger haptic instantly on touch down
+    haptics.keyPress();
+    
     // Show popup after 80ms hold
     popupTimerRef.current = setTimeout(() => {
       showKeyPopup(key, element);
@@ -146,7 +149,6 @@ const VirtualKeyboard = ({
   const handleKeyUp = (key: string) => {
     hideKeyPopup();
     setPressedKey(null);
-    haptics.keyPress();
     const finalKey = isShiftActive ? key.toUpperCase() : key.toLowerCase();
     onKeyPress(finalKey);
     
@@ -156,24 +158,21 @@ const VirtualKeyboard = ({
     }
   };
 
-  const handleBackspace = () => {
+
+  const handleBackspaceStart = () => {
+    // Trigger haptic once on initial press
     setPressedKey('BACKSPACE');
     haptics.keyPress();
     onBackspace();
-  };
-
-  const handleBackspaceStart = () => {
-    handleBackspace();
     setIsLongPressing(true);
     
-    // Start continuous deletion after 500ms hold
+    // Start continuous deletion after 500ms hold (no haptic on repeat)
     const timer = setTimeout(() => {
       if (longPressTimerRef) {
         clearInterval(longPressTimerRef);
       }
       const interval = setInterval(() => {
-        onBackspace();
-        haptics.keyPress();
+        onBackspace(); // Delete without haptic feedback during repeat
       }, 50); // Delete every 50ms while holding
       Object.assign(longPressTimerRef, interval);
     }, 500);
@@ -190,15 +189,23 @@ const VirtualKeyboard = ({
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmitDown = () => {
     setPressedKey('SUBMIT');
     haptics.keyPress();
+  };
+
+  const handleSubmitUp = () => {
+    setPressedKey(null);
     onSubmit();
   };
 
-  const handleSpace = () => {
+  const handleSpaceDown = () => {
     setPressedKey('SPACE');
     haptics.keyPress();
+  };
+
+  const handleSpaceUp = () => {
+    setPressedKey(null);
     onKeyPress(' ');
     // Activate shift after space (new word)
     setIsShiftActive(true);
@@ -393,7 +400,10 @@ const VirtualKeyboard = ({
         {/* Row 4 - Space and Submit */}
         <div className="flex justify-center gap-1">
           <Button
-            onClick={handleSpace}
+            onMouseDown={handleSpaceDown}
+            onMouseUp={handleSpaceUp}
+            onTouchStart={handleSpaceDown}
+            onTouchEnd={handleSpaceUp}
             disabled={disabled}
             variant="outline"
             className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
@@ -403,7 +413,10 @@ const VirtualKeyboard = ({
             SPACE
           </Button>
           <Button
-            onClick={handleSubmit}
+            onMouseDown={handleSubmitDown}
+            onMouseUp={handleSubmitUp}
+            onTouchStart={handleSubmitDown}
+            onTouchEnd={handleSubmitUp}
             disabled={disabled || !currentValue.trim()}
             className={`h-10 w-24 font-bold rounded-md transition-all duration-100 ${
               pressedKey === 'SUBMIT' ? 'scale-95' : ''

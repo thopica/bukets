@@ -1,9 +1,19 @@
 // Haptic feedback utilities for mobile devices
+// Optimized for instant response with no latency
+
+let lastVibration = 0;
+const VIBRATION_COOLDOWN = 10; // Prevent vibration queuing
+
 export const haptics = {
   // Key press - light, crisp tap (WhatsApp-style)
   keyPress: () => {
+    const now = Date.now();
+    // Prevent queuing vibrations during rapid key presses
+    if (now - lastVibration < VIBRATION_COOLDOWN) return;
+    
     if ('vibrate' in navigator) {
       navigator.vibrate(10); // Very light, 10ms tap
+      lastVibration = now;
     }
   },
   
