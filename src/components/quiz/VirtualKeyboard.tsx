@@ -149,16 +149,16 @@ const VirtualKeyboard = ({
     hideKeyPopup();
     setPressedKey(null);
     
-    // Capture shift state at the moment of key press
+    // Capture shift state and input state BEFORE any changes
     const shouldCapitalize = isShiftActive;
+    const isFirstCharOfInput = currentValue.length === 0;
     const finalKey = shouldCapitalize ? key.toUpperCase() : key.toLowerCase();
     
     // Send the key press
     onKeyPress(finalKey);
     
-    // If this was the first character and shift was active, deactivate it
-    if (shouldCapitalize && !hasTypedFirstChar.current && currentValue.length === 0) {
-      hasTypedFirstChar.current = true;
+    // If this was the first character and shift was active, deactivate it for next key
+    if (shouldCapitalize && isFirstCharOfInput) {
       setIsShiftActive(false);
     }
   };
