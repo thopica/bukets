@@ -29,6 +29,9 @@ const VirtualKeyboard = ({
   const [pressedKey, setPressedKey] = useState<string | null>(null);
   const [isShaking, setIsShaking] = useState(false);
   const [isFocused, setIsFocused] = useState(true);
+  const [isShiftActive, setIsShiftActive] = useState(true); // Auto-capitalize first letter
+  const [isLongPressing, setIsLongPressing] = useState(false);
+  const longPressTimerRef = useState<NodeJS.Timeout | null>(null)[0];
 
   useEffect(() => {
     if (showError) {
@@ -45,16 +48,57 @@ const VirtualKeyboard = ({
     }
   }, [pressedKey]);
 
+  // Auto shift management - activate shift when input is empty
+  useEffect(() => {
+    if (currentValue.length === 0) {
+      setIsShiftActive(true);
+    }
+  }, [currentValue]);
+
   const handleKeyPress = (key: string) => {
     setPressedKey(key);
     haptics.keyPress();
-    onKeyPress(key);
+    const finalKey = isShiftActive ? key.toUpperCase() : key.toLowerCase();
+    onKeyPress(finalKey);
+    
+    // After first letter, switch to lowercase
+    if (isShiftActive && currentValue.length === 0) {
+      setIsShiftActive(false);
+    }
   };
 
   const handleBackspace = () => {
     setPressedKey('BACKSPACE');
     haptics.keyPress();
     onBackspace();
+  };
+
+  const handleBackspaceStart = () => {
+    handleBackspace();
+    setIsLongPressing(true);
+    
+    // Start continuous deletion after 500ms hold
+    const timer = setTimeout(() => {
+      if (longPressTimerRef) {
+        clearInterval(longPressTimerRef);
+      }
+      const interval = setInterval(() => {
+        onBackspace();
+        haptics.keyPress();
+      }, 50); // Delete every 50ms while holding
+      Object.assign(longPressTimerRef, interval);
+    }, 500);
+    
+    Object.assign(longPressTimerRef, timer);
+  };
+
+  const handleBackspaceEnd = () => {
+    setIsLongPressing(false);
+    setPressedKey(null);
+    if (longPressTimerRef) {
+      clearTimeout(longPressTimerRef);
+      clearInterval(longPressTimerRef);
+    }
   };
 
   const handleSubmit = () => {
@@ -67,6 +111,14 @@ const VirtualKeyboard = ({
     setPressedKey('SPACE');
     haptics.keyPress();
     onKeyPress(' ');
+    // Activate shift after space (new word)
+    setIsShiftActive(true);
+  };
+
+  const handleShiftToggle = () => {
+    setPressedKey('SHIFT');
+    haptics.keyPress();
+    setIsShiftActive(!isShiftActive);
   };
 
   const rows = [
@@ -119,7 +171,7 @@ const VirtualKeyboard = ({
                 pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
-              {key}
+              {isShiftActive ? key : key.toLowerCase()}
             </Button>
           ))}
         </div>
@@ -137,7 +189,7 @@ const VirtualKeyboard = ({
                 pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
-              {key}
+              {isShiftActive ? key : key.toLowerCase()}
             </Button>
           ))}
           <div className="w-[calc((100%-9*4px)/20)]" />
@@ -145,6 +197,17 @@ const VirtualKeyboard = ({
 
         {/* Row 3 */}
         <div className="flex justify-center gap-1">
+          <Button
+            onClick={handleShiftToggle}
+            disabled={disabled}
+            variant="outline"
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
+              isShiftActive ? 'bg-primary/20 border-primary' : ''
+            } ${pressedKey === 'SHIFT' ? 'scale-95 bg-orange border-orange text-white' : ''}`}
+          >
+            <span className="text-lg">⇧</span>
+          </Button>
+
           {onHint && (
             <Button
               onClick={onHint}
@@ -173,16 +236,20 @@ const VirtualKeyboard = ({
                 pressedKey === key ? 'scale-95 bg-orange border-orange text-white' : ''
               }`}
             >
-              {key}
+              {isShiftActive ? key : key.toLowerCase()}
             </Button>
           ))}
           
           <Button
-            onClick={handleBackspace}
+            onMouseDown={handleBackspaceStart}
+            onMouseUp={handleBackspaceEnd}
+            onMouseLeave={handleBackspaceEnd}
+            onTouchStart={handleBackspaceStart}
+            onTouchEnd={handleBackspaceEnd}
             disabled={disabled}
             variant="outline"
             className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
-              pressedKey === 'BACKSPACE' ? 'scale-95 bg-orange border-orange text-white' : ''
+              pressedKey === 'BACKSPACE' || isLongPressing ? 'scale-95 bg-orange border-orange text-white' : ''
             }`}
           >
             <Delete className="h-4 w-4" />
