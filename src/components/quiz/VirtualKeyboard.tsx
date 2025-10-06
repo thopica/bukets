@@ -33,6 +33,7 @@ const VirtualKeyboard = ({
   const [isLongPressing, setIsLongPressing] = useState(false);
   const longPressTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const longPressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const hasTypedFirstChar = useRef(false); // Track if we've typed the first character
   
   // Key preview popup state
   const [popupKey, setPopupKey] = useState<string | null>(null);
@@ -61,6 +62,7 @@ const VirtualKeyboard = ({
   useEffect(() => {
     if (currentValue.length === 0) {
       setIsShiftActive(true);
+      hasTypedFirstChar.current = false; // Reset first char tracking
     }
   }, [currentValue]);
 
@@ -122,17 +124,8 @@ const VirtualKeyboard = ({
     currentKeyRef.current = null;
   };
 
-  const handleKeyPress = (key: string) => {
-    setPressedKey(key);
-    haptics.keyPress();
-    const finalKey = isShiftActive ? key.toUpperCase() : key.toLowerCase();
-    onKeyPress(finalKey);
-    
-    // After first letter, switch to lowercase
-    if (isShiftActive && currentValue.length === 0) {
-      setIsShiftActive(false);
-    }
-  };
+  // This function is no longer used - kept for reference
+  // All key handling now goes through handleKeyUp
 
   const handleKeyDown = (key: string, event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -156,13 +149,16 @@ const VirtualKeyboard = ({
     hideKeyPopup();
     setPressedKey(null);
     
-    // Check if this is the first character before adding it
-    const isFirstChar = currentValue.length === 0;
-    const finalKey = isShiftActive ? key.toUpperCase() : key.toLowerCase();
+    // Capture shift state at the moment of key press
+    const shouldCapitalize = isShiftActive;
+    const finalKey = shouldCapitalize ? key.toUpperCase() : key.toLowerCase();
+    
+    // Send the key press
     onKeyPress(finalKey);
     
-    // After first letter, switch to lowercase
-    if (isShiftActive && isFirstChar) {
+    // If this was the first character and shift was active, deactivate it
+    if (shouldCapitalize && !hasTypedFirstChar.current && currentValue.length === 0) {
+      hasTypedFirstChar.current = true;
       setIsShiftActive(false);
     }
   };
@@ -239,14 +235,16 @@ const VirtualKeyboard = ({
     event.preventDefault();
     setPressedKey(null);
     onKeyPress(' ');
-    // Activate shift after space (new word)
+    // Activate shift after space (new word) but don't reset first char tracking
     setIsShiftActive(true);
   };
 
   const handleShiftToggle = () => {
     setPressedKey('SHIFT');
     haptics.keyPress();
-    setIsShiftActive(!isShiftActive);
+    // Toggle shift immediately - affects both visual and next key press
+    setIsShiftActive(prev => !prev);
+    setTimeout(() => setPressedKey(null), 150);
   };
 
   const rows = [
