@@ -152,13 +152,14 @@ const VirtualKeyboard = ({
     // Capture shift state and input state BEFORE any changes
     const shouldCapitalize = isShiftActive;
     const isFirstCharOfInput = currentValue.length === 0;
+    const isStartOfWord = currentValue.endsWith(' ');
     const finalKey = shouldCapitalize ? key.toUpperCase() : key.toLowerCase();
     
     // Send the key press
     onKeyPress(finalKey);
     
-    // If this was the first character and shift was active, deactivate it for next key
-    if (shouldCapitalize && isFirstCharOfInput) {
+    // If this was the first character OR start of a new word and shift was active, deactivate it for next key
+    if (shouldCapitalize && (isFirstCharOfInput || isStartOfWord)) {
       setIsShiftActive(false);
     }
   };

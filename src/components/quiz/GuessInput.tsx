@@ -70,7 +70,7 @@ const GuessInput = ({
   };
 
   const handleKeyPress = (key: string) => {
-    setInput(prev => prev + key.toLowerCase());
+    setInput(prev => prev + key);
   };
 
   const handleBackspace = () => {
