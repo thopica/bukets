@@ -98,6 +98,7 @@ export default function Results() {
   const scoreMessage = getScoreMessage(resultsData.total_score);
   const speedBonus = resultsData.total_score - (resultsData.correct_guesses * 3);
   const timedOut = 6 - resultsData.correct_guesses;
+  const accuracy = ((resultsData.correct_guesses / 6) * 100).toFixed(0);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-primary/5">
@@ -123,6 +124,10 @@ export default function Results() {
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">✓ Correct Guesses: {resultsData.correct_guesses}/6</span>
                 <span className="font-semibold text-green-400">+{resultsData.correct_guesses * 3} pts</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">🎯 Accuracy</span>
+                <span className="font-semibold text-foreground">{accuracy}%</span>
               </div>
               {speedBonus > 0 && (
                 <div className="flex justify-between items-center">
