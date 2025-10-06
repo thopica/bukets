@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Trophy, Clock, Brain, TrendingUp, Users } from "lucide-react";
+import { Trophy, Clock, Brain, TrendingUp, Users, Target } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import basketballPlayer from "@/assets/basketball-player.png";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,6 +11,8 @@ import type { User } from "@supabase/supabase-js";
 const Index = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
+  const [stats, setStats] = useState<any>(null);
+  
   useEffect(() => {
     const {
       data: {
@@ -18,6 +20,9 @@ const Index = () => {
       }
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
+      if (session?.user) {
+        loadUserStats(session.user.id);
+      }
     });
     supabase.auth.getSession().then(({
       data: {
@@ -25,9 +30,44 @@ const Index = () => {
       }
     }) => {
       setUser(session?.user ?? null);
+      if (session?.user) {
+        loadUserStats(session.user.id);
+      }
     });
     return () => subscription.unsubscribe();
   }, []);
+
+  const loadUserStats = async (userId: string) => {
+    try {
+      // Load stats from daily_scores and user_streaks
+      const { data: scoresData } = await supabase
+        .from('daily_scores')
+        .select('total_score, correct_guesses')
+        .eq('user_id', userId);
+
+      const { data: streakData } = await supabase
+        .from('user_streaks')
+        .select('current_streak')
+        .eq('user_id', userId)
+        .maybeSingle();
+
+      // Calculate aggregate stats
+      const totalScore = scoresData?.reduce((sum, s) => sum + s.total_score, 0) || 0;
+      const totalGames = scoresData?.length || 0;
+      const accuracy = totalGames > 0 
+        ? Math.round((totalScore / (totalGames * 30)) * 100) 
+        : 0;
+
+      setStats({
+        total_score: totalScore,
+        total_games_played: totalGames,
+        current_streak: streakData?.current_streak || 0,
+        accuracy: accuracy,
+      });
+    } catch (error) {
+      console.error('Error loading user stats:', error);
+    }
+  };
   return <div className="min-h-screen bg-background flex flex-col animate-fade-in">
       <Header />
       
@@ -46,10 +86,33 @@ const Index = () => {
                 <p className="text-xs font-medium text-slate-50">Your current streak</p>
                 <div className="flex items-center justify-center gap-2">
                   <span className="text-3xl">🔥</span>
-                  <span className="text-4xl font-bold text-foreground">3</span>
+                  <span className="text-4xl font-bold text-foreground">{stats?.current_streak || 0}</span>
                 </div>
                 <p className="text-xs font-medium text-slate-50">Don't break your streak</p>
               </div>
+
+              {/* Statistics Grid */}
+              {stats && (
+                <Card className="p-4">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="flex flex-col items-center text-center">
+                      <Trophy className="h-6 w-6 text-secondary mb-1" />
+                      <p className="text-2xl font-bold">{stats.total_score}</p>
+                      <p className="text-xs text-muted-foreground">Score</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center">
+                      <Target className="h-6 w-6 text-primary mb-1" />
+                      <p className="text-2xl font-bold">{stats.total_games_played}</p>
+                      <p className="text-xs text-muted-foreground">Played</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center">
+                      <TrendingUp className="h-6 w-6 text-success mb-1" />
+                      <p className="text-2xl font-bold">{stats.accuracy}%</p>
+                      <p className="text-xs text-muted-foreground">Accuracy</p>
+                    </div>
+                  </div>
+                </Card>
+              )}
 
               {/* CTA Button - 50% Smaller */}
               <Button size="lg" onClick={() => navigate("/game")} className="w-full h-12 rounded-2xl text-lg font-bold shadow-floating relative overflow-hidden group bg-gradient-to-r from-orange to-orange-hover hover:shadow-floating transition-all duration-300">
