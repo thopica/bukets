@@ -134,6 +134,7 @@ const VirtualKeyboard = ({
   };
 
   const handleKeyDown = (key: string, event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     const element = event.currentTarget;
     setPressedKey(key);
     
@@ -141,12 +142,16 @@ const VirtualKeyboard = ({
     haptics.keyPress();
     
     // Show popup after 80ms hold
+    if (popupTimerRef.current) {
+      clearTimeout(popupTimerRef.current);
+    }
     popupTimerRef.current = setTimeout(() => {
       showKeyPopup(key, element);
     }, 80);
   };
 
-  const handleKeyUp = (key: string) => {
+  const handleKeyUp = (key: string, event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     hideKeyPopup();
     setPressedKey(null);
     const finalKey = isShiftActive ? key.toUpperCase() : key.toLowerCase();
@@ -159,7 +164,8 @@ const VirtualKeyboard = ({
   };
 
 
-  const handleBackspaceStart = () => {
+  const handleBackspaceStart = (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     // Trigger haptic once on initial press
     setPressedKey('BACKSPACE');
     haptics.keyPress();
@@ -180,7 +186,8 @@ const VirtualKeyboard = ({
     Object.assign(longPressTimerRef, timer);
   };
 
-  const handleBackspaceEnd = () => {
+  const handleBackspaceEnd = (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setIsLongPressing(false);
     setPressedKey(null);
     if (longPressTimerRef) {
@@ -189,22 +196,26 @@ const VirtualKeyboard = ({
     }
   };
 
-  const handleSubmitDown = () => {
+  const handleSubmitDown = (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setPressedKey('SUBMIT');
     haptics.keyPress();
   };
 
-  const handleSubmitUp = () => {
+  const handleSubmitUp = (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setPressedKey(null);
     onSubmit();
   };
 
-  const handleSpaceDown = () => {
+  const handleSpaceDown = (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setPressedKey('SPACE');
     haptics.keyPress();
   };
 
-  const handleSpaceUp = () => {
+  const handleSpaceUp = (event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setPressedKey(null);
     onKeyPress(' ');
     // Activate shift after space (new word)
@@ -283,10 +294,10 @@ const VirtualKeyboard = ({
           
           {currentValue.trim() && (
             <Button
-              onMouseDown={handleSubmitDown}
-              onMouseUp={handleSubmitUp}
-              onTouchStart={handleSubmitDown}
-              onTouchEnd={handleSubmitUp}
+              onMouseDown={(e) => handleSubmitDown(e)}
+              onMouseUp={(e) => handleSubmitUp(e)}
+              onTouchStart={(e) => handleSubmitDown(e)}
+              onTouchEnd={(e) => handleSubmitUp(e)}
               disabled={disabled}
               className={`h-full w-12 rounded-none rounded-r-[6px] bg-primary hover:bg-primary/90 border-0 transition-all duration-200 ${
                 pressedKey === 'SUBMIT' ? 'scale-95' : ''
@@ -306,10 +317,10 @@ const VirtualKeyboard = ({
             <Button
               key={key}
               onMouseDown={(e) => handleKeyDown(key, e)}
-              onMouseUp={() => handleKeyUp(key)}
+              onMouseUp={(e) => handleKeyUp(key, e)}
               onMouseLeave={hideKeyPopup}
               onTouchStart={(e) => handleKeyDown(key, e)}
-              onTouchEnd={() => handleKeyUp(key)}
+              onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
@@ -329,10 +340,10 @@ const VirtualKeyboard = ({
             <Button
               key={key}
               onMouseDown={(e) => handleKeyDown(key, e)}
-              onMouseUp={() => handleKeyUp(key)}
+              onMouseUp={(e) => handleKeyUp(key, e)}
               onMouseLeave={hideKeyPopup}
               onTouchStart={(e) => handleKeyDown(key, e)}
-              onTouchEnd={() => handleKeyUp(key)}
+              onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
@@ -363,10 +374,10 @@ const VirtualKeyboard = ({
             <Button
               key={key}
               onMouseDown={(e) => handleKeyDown(key, e)}
-              onMouseUp={() => handleKeyUp(key)}
+              onMouseUp={(e) => handleKeyUp(key, e)}
               onMouseLeave={hideKeyPopup}
               onTouchStart={(e) => handleKeyDown(key, e)}
-              onTouchEnd={() => handleKeyUp(key)}
+              onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
@@ -379,11 +390,11 @@ const VirtualKeyboard = ({
           ))}
           
           <Button
-            onMouseDown={handleBackspaceStart}
-            onMouseUp={handleBackspaceEnd}
-            onMouseLeave={handleBackspaceEnd}
-            onTouchStart={handleBackspaceStart}
-            onTouchEnd={handleBackspaceEnd}
+            onMouseDown={(e) => handleBackspaceStart(e)}
+            onMouseUp={(e) => handleBackspaceEnd(e)}
+            onMouseLeave={(e) => handleBackspaceEnd(e)}
+            onTouchStart={(e) => handleBackspaceStart(e)}
+            onTouchEnd={(e) => handleBackspaceEnd(e)}
             disabled={disabled}
             variant="outline"
             className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
@@ -415,10 +426,10 @@ const VirtualKeyboard = ({
           )}
           
           <Button
-            onMouseDown={handleSpaceDown}
-            onMouseUp={handleSpaceUp}
-            onTouchStart={handleSpaceDown}
-            onTouchEnd={handleSpaceUp}
+            onMouseDown={(e) => handleSpaceDown(e)}
+            onMouseUp={(e) => handleSpaceUp(e)}
+            onTouchStart={(e) => handleSpaceDown(e)}
+            onTouchEnd={(e) => handleSpaceUp(e)}
             disabled={disabled}
             variant="outline"
             className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
