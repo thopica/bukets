@@ -154,11 +154,14 @@ const VirtualKeyboard = ({
     event.preventDefault();
     hideKeyPopup();
     setPressedKey(null);
+    
+    // Check if this is the first character before adding it
+    const isFirstChar = currentValue.length === 0;
     const finalKey = isShiftActive ? key.toUpperCase() : key.toLowerCase();
     onKeyPress(finalKey);
     
     // After first letter, switch to lowercase
-    if (isShiftActive && currentValue.length === 0) {
+    if (isShiftActive && isFirstChar) {
       setIsShiftActive(false);
     }
   };
