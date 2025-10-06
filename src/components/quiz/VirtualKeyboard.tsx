@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Delete, Lightbulb } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -32,6 +32,14 @@ const VirtualKeyboard = ({
   const [isShiftActive, setIsShiftActive] = useState(true); // Auto-capitalize first letter
   const [isLongPressing, setIsLongPressing] = useState(false);
   const longPressTimerRef = useState<NodeJS.Timeout | null>(null)[0];
+  
+  // Key preview popup state
+  const [popupKey, setPopupKey] = useState<string | null>(null);
+  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+  const [popupVisible, setPopupVisible] = useState(false);
+  const popupTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const currentKeyRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     if (showError) {
@@ -55,8 +63,89 @@ const VirtualKeyboard = ({
     }
   }, [currentValue]);
 
+  const showKeyPopup = (key: string, element: HTMLButtonElement) => {
+    const rect = element.getBoundingClientRect();
+    const popupWidth = 60;
+    const popupHeight = 70;
+    
+    // Calculate position (centered above key)
+    let x = rect.left + rect.width / 2 - popupWidth / 2;
+    let y = rect.top - popupHeight - 8;
+    
+    // Clamp to screen bounds
+    const padding = 8;
+    x = Math.max(padding, Math.min(x, window.innerWidth - popupWidth - padding));
+    y = Math.max(padding, y);
+    
+    setPopupPosition({ x, y });
+    setPopupKey(isShiftActive ? key.toUpperCase() : key.toLowerCase());
+    setPopupVisible(true);
+    currentKeyRef.current = element;
+    
+    // Auto-hide after 350ms
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+    }
+    hideTimerRef.current = setTimeout(() => {
+      hideKeyPopup();
+    }, 350);
+  };
+
+  const moveKeyPopup = (key: string, element: HTMLButtonElement) => {
+    if (!popupVisible) return;
+    
+    const rect = element.getBoundingClientRect();
+    const popupWidth = 60;
+    const popupHeight = 70;
+    
+    let x = rect.left + rect.width / 2 - popupWidth / 2;
+    let y = rect.top - popupHeight - 8;
+    
+    const padding = 8;
+    x = Math.max(padding, Math.min(x, window.innerWidth - popupWidth - padding));
+    y = Math.max(padding, y);
+    
+    setPopupPosition({ x, y });
+    setPopupKey(isShiftActive ? key.toUpperCase() : key.toLowerCase());
+    currentKeyRef.current = element;
+  };
+
+  const hideKeyPopup = () => {
+    setPopupVisible(false);
+    if (popupTimerRef.current) {
+      clearTimeout(popupTimerRef.current);
+    }
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+    }
+    currentKeyRef.current = null;
+  };
+
   const handleKeyPress = (key: string) => {
     setPressedKey(key);
+    haptics.keyPress();
+    const finalKey = isShiftActive ? key.toUpperCase() : key.toLowerCase();
+    onKeyPress(finalKey);
+    
+    // After first letter, switch to lowercase
+    if (isShiftActive && currentValue.length === 0) {
+      setIsShiftActive(false);
+    }
+  };
+
+  const handleKeyDown = (key: string, event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>) => {
+    const element = event.currentTarget;
+    setPressedKey(key);
+    
+    // Show popup after 80ms hold
+    popupTimerRef.current = setTimeout(() => {
+      showKeyPopup(key, element);
+    }, 80);
+  };
+
+  const handleKeyUp = (key: string) => {
+    hideKeyPopup();
+    setPressedKey(null);
     haptics.keyPress();
     const finalKey = isShiftActive ? key.toUpperCase() : key.toLowerCase();
     onKeyPress(finalKey);
@@ -128,14 +217,44 @@ const VirtualKeyboard = ({
   ];
 
   return (
-    <div 
-      className={`w-full bg-card/50 backdrop-blur-sm pt-4 ${
-        isMobile ? 'fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]' : ''
-      }`}
-      style={isMobile ? {
-        paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))'
-      } : undefined}
-    >
+    <>
+      {/* Key Preview Popup */}
+      {popupVisible && (
+        <div
+          className={`fixed z-[9999] pointer-events-none transition-all ${
+            popupVisible ? 'animate-scale-in opacity-100' : 'animate-fade-out opacity-0'
+          }`}
+          style={{
+            left: `${popupPosition.x}px`,
+            top: `${popupPosition.y}px`,
+            width: '60px',
+            height: '70px',
+            transitionDuration: '50ms',
+            transitionTimingFunction: 'ease-out'
+          }}
+        >
+          <div className="relative w-full h-full">
+            {/* Bubble tail */}
+            <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-card" />
+            
+            {/* Bubble */}
+            <div className="w-full h-full bg-card border-2 border-primary rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center">
+              <span className="text-2xl font-bold text-foreground" style={{ transform: 'scale(1.3)' }}>
+                {popupKey}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div 
+        className={`w-full bg-card/50 backdrop-blur-sm pt-4 ${
+          isMobile ? 'fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]' : ''
+        }`}
+        style={isMobile ? {
+          paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))'
+        } : undefined}
+      >
       {/* Input Display */}
       <div className="px-2 pb-1">
         <div 
@@ -164,7 +283,12 @@ const VirtualKeyboard = ({
           {rows[0].map((key) => (
             <Button
               key={key}
-              onClick={() => handleKeyPress(key)}
+              onMouseDown={(e) => handleKeyDown(key, e)}
+              onMouseUp={() => handleKeyUp(key)}
+              onMouseLeave={hideKeyPopup}
+              onTouchStart={(e) => handleKeyDown(key, e)}
+              onTouchEnd={() => handleKeyUp(key)}
+              onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
               className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
@@ -182,7 +306,12 @@ const VirtualKeyboard = ({
           {rows[1].map((key) => (
             <Button
               key={key}
-              onClick={() => handleKeyPress(key)}
+              onMouseDown={(e) => handleKeyDown(key, e)}
+              onMouseUp={() => handleKeyUp(key)}
+              onMouseLeave={hideKeyPopup}
+              onTouchStart={(e) => handleKeyDown(key, e)}
+              onTouchEnd={() => handleKeyUp(key)}
+              onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
               className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
@@ -229,7 +358,12 @@ const VirtualKeyboard = ({
           {rows[2].map((key) => (
             <Button
               key={key}
-              onClick={() => handleKeyPress(key)}
+              onMouseDown={(e) => handleKeyDown(key, e)}
+              onMouseUp={() => handleKeyUp(key)}
+              onMouseLeave={hideKeyPopup}
+              onTouchStart={(e) => handleKeyDown(key, e)}
+              onTouchEnd={() => handleKeyUp(key)}
+              onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
               className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
@@ -280,6 +414,7 @@ const VirtualKeyboard = ({
         </div>
       </div>
     </div>
+    </>
   );
 };
 
