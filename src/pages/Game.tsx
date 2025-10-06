@@ -128,6 +128,8 @@ const Index = () => {
       setUser(session?.user ?? null);
 
       if (!session?.user) {
+        // For non-logged-in users, just start the timer without session management
+        setInitializedTurnTimer(true);
         setIsCheckingCompletion(false);
         return;
       }
