@@ -266,11 +266,11 @@ const VirtualKeyboard = ({
       <div className="px-2 pb-1">
         <div 
           onClick={() => setIsFocused(true)}
-          className={`bg-background border-2 rounded-lg px-3 h-[45px] text-base text-foreground transition-all cursor-text flex items-center ${
+          className={`bg-background border-2 rounded-lg h-[45px] text-base text-foreground transition-all cursor-text flex items-center justify-between overflow-hidden ${
             isShaking ? 'animate-shake-horizontal border-destructive' : 'border-primary ring-2 ring-primary/20'
           }`}
         >
-          <div className="flex items-center">
+          <div className="flex items-center px-3 flex-1">
             {currentValue ? (
               <>
                 <span>{currentValue}</span>
@@ -280,6 +280,21 @@ const VirtualKeyboard = ({
               <span className="inline-block w-0.5 h-5 bg-foreground animate-pulse" />
             )}
           </div>
+          
+          {currentValue.trim() && (
+            <Button
+              onMouseDown={handleSubmitDown}
+              onMouseUp={handleSubmitUp}
+              onTouchStart={handleSubmitDown}
+              onTouchEnd={handleSubmitUp}
+              disabled={disabled}
+              className={`h-full w-12 rounded-none rounded-r-[6px] bg-primary hover:bg-primary/90 border-0 transition-all duration-200 ${
+                pressedKey === 'SUBMIT' ? 'scale-95' : ''
+              }`}
+            >
+              <ArrowUp className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </div>
 
@@ -412,21 +427,6 @@ const VirtualKeyboard = ({
           >
             SPACE
           </Button>
-          
-          {currentValue.trim() && (
-            <Button
-              onMouseDown={handleSubmitDown}
-              onMouseUp={handleSubmitUp}
-              onTouchStart={handleSubmitDown}
-              onTouchEnd={handleSubmitUp}
-              disabled={disabled}
-              className={`h-10 w-10 rounded-full bg-primary hover:bg-primary/90 border-2 border-primary transition-all duration-200 ${
-                pressedKey === 'SUBMIT' ? 'scale-95' : ''
-              }`}
-            >
-              <ArrowUp className="h-5 w-5" />
-            </Button>
-          )}
         </div>
       </div>
     </div>
