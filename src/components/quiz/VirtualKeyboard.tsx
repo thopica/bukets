@@ -338,29 +338,11 @@ const VirtualKeyboard = ({
             disabled={disabled}
             variant="outline"
             className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
-              isShiftActive ? 'bg-primary/20 border-primary' : ''
-            } ${pressedKey === 'SHIFT' ? 'scale-95 bg-orange border-orange text-white' : ''}`}
+              pressedKey === 'SHIFT' ? 'scale-95 bg-orange border-orange text-white' : ''
+            }`}
           >
             <span className="text-lg">⇧</span>
           </Button>
-
-          {onHint && (
-            <Button
-              onClick={onHint}
-              disabled={disabled || hintsRemaining === 0}
-              variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all ${
-                hintsRemaining === 0
-                  ? 'border-muted-foreground/30 text-muted-foreground/30 bg-muted/20'
-                  : 'border-timerWarning text-timerWarning hover:bg-timerWarning/10'
-              }`}
-            >
-              <div className="flex items-center justify-center gap-1">
-                <Lightbulb className="h-4 w-4" />
-                <span className="text-xs font-bold">{hintsRemaining}</span>
-              </div>
-            </Button>
-          )}
           
           {rows[2].map((key) => (
             <Button
@@ -399,6 +381,24 @@ const VirtualKeyboard = ({
 
         {/* Row 4 - Space and Submit */}
         <div className="flex justify-center gap-1">
+          {onHint && (
+            <Button
+              onClick={onHint}
+              disabled={disabled || hintsRemaining === 0}
+              variant="outline"
+              className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all ${
+                hintsRemaining === 0
+                  ? 'border-muted-foreground/30 text-muted-foreground/30 bg-muted/20'
+                  : 'border-timerWarning text-timerWarning hover:bg-timerWarning/10'
+              }`}
+            >
+              <div className="flex items-center justify-center gap-1">
+                <Lightbulb className="h-4 w-4" />
+                <span className="text-xs font-bold">{hintsRemaining}</span>
+              </div>
+            </Button>
+          )}
+          
           <Button
             onMouseDown={handleSpaceDown}
             onMouseUp={handleSpaceUp}
