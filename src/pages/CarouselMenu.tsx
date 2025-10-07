@@ -8,7 +8,7 @@ const CarouselMenu = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
       
       <main className="container max-w-2xl mx-auto px-4 py-12 flex-1 flex flex-col items-center justify-center gap-8">

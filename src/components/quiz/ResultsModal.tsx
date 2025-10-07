@@ -129,10 +129,10 @@ Can you beat my score?`;
             <Card className="p-6 bg-orange/10 border-2 border-orange/30 rounded-xl space-y-4">
               <div className="text-center space-y-3">
                 <h3 className="font-bold text-lg text-foreground">Your score is not saved!</h3>
-                <p className="text-sm text-white">Create an account to save your score, build your streak, and compete on the global leaderboard.</p>
+                <p className="text-sm text-foreground">Create an account to save your score, build your streak, and compete on the global leaderboard.</p>
               </div>
 
-              <Button onClick={() => navigate('/auth')} className="w-full h-12 rounded-xl font-bold text-base bg-orange hover:bg-orange-hover">
+              <Button variant="orange" onClick={() => navigate('/auth')} className="w-full h-12 rounded-xl font-bold text-base">
                 Create Account
               </Button>
             </Card>

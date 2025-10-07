@@ -11,22 +11,22 @@ const HowToPlay = () => {
       description: "One quiz per day unlocks at midnight in your local timezone. Each quiz asks you to identify the top 6 players for a specific NBA statistic.",
     },
     {
-      icon: <Trophy className="h-8 w-8 text-secondary" />,
+      icon: <Trophy className="h-8 w-8 text-gold" />,
       title: "Scoring System",
       description: "Earn points for each correct answer. Speed matters: answer within 10 seconds for +5 points (golden), 10-15 seconds for +4 points (orange), or 15+ seconds for +3 points (green). Each hint used reduces your score by 1 point.",
     },
     {
-      icon: <Timer className="h-8 w-8 text-warning" />,
+      icon: <Timer className="h-8 w-8 text-orange" />,
       title: "Time Pressure",
       description: "You have 24 seconds per player. After 3 incorrect guesses, the answer is revealed automatically (you get no points).",
     },
     {
-      icon: <Lightbulb className="h-8 w-8 text-primary-light" />,
+      icon: <Lightbulb className="h-8 w-8 text-gold" />,
       title: "Hints Available",
       description: "Stuck? Use up to 2 hints per quiz. Each hint costs -1 point but gives you valuable clues about the player's career, team, or achievements.",
     },
     {
-      icon: <Flame className="h-8 w-8 text-orange-500" />,
+      icon: <Flame className="h-8 w-8 text-orange" />,
       title: "Build Your Streak",
       description: "Complete quizzes on consecutive days to build your streak. Get all 6 correct (hints allowed) to maintain your streak. Missing a day breaks it!",
     },
@@ -38,13 +38,13 @@ const HowToPlay = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
       
       <main className="container max-w-4xl mx-auto px-4 py-8">
         <div className="space-y-8">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold">How to Play</h1>
+            <h1 className="text-5xl font-bold">How to Play</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Test your NBA knowledge with daily stat-based quizzes. Can you name the greatest players in basketball history?
             </p>
@@ -71,11 +71,11 @@ const HowToPlay = () => {
             <div className="space-y-3 text-sm">
               <div className="flex justify-between items-center">
                 <span>Fast answer (0-10 seconds)</span>
-                <span className="font-bold text-[#F7B32B]">+5 points (golden)</span>
+                <span className="font-bold text-gold-bright">+5 points (golden)</span>
               </div>
               <div className="flex justify-between items-center">
                 <span>Quick answer (10-15 seconds)</span>
-                <span className="font-bold text-[#FF6B35]">+4 points (orange)</span>
+                <span className="font-bold text-orange">+4 points (orange)</span>
               </div>
               <div className="flex justify-between items-center">
                 <span>Standard answer (15+ seconds)</span>

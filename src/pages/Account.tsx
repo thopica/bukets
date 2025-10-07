@@ -117,19 +117,19 @@ const Account = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin" />
       </div>
     );
   }
 
   const country = countryCode ? getCountryByCode(countryCode) : null;
-  const accuracy = stats && stats.total_games_played > 0 
-    ? Math.round((stats.total_score / (stats.total_games_played * 30)) * 100) 
+  const accuracy = stats && stats.total_games_played > 0
+    ? Math.round((stats.total_score / (stats.total_games_played * 30)) * 100)
     : 0;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
       
       <main className="container max-w-4xl mx-auto px-4 py-8">

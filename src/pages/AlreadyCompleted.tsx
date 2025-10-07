@@ -127,12 +127,12 @@ export default function AlreadyCompleted() {
         <div className="w-full space-y-6">
           {/* Score Display */}
           <div className="text-center space-y-4">
-            <h1 className="text-5xl md:text-6xl font-bold text-primary">
+            <h1 className="text-6xl font-bold text-primary">
               {scoreData?.total_score || 0} POINTS
             </h1>
             <div className={`${scoreMessage.color}`}>
-              <h2 className="text-2xl md:text-3xl font-bold">{scoreMessage.title}</h2>
-              <p className="text-lg md:text-xl opacity-90">{scoreMessage.message}</p>
+              <h2 className="text-3xl font-bold">{scoreMessage.title}</h2>
+              <p className="text-xl opacity-90">{scoreMessage.message}</p>
             </div>
           </div>
 

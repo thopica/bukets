@@ -589,7 +589,7 @@ const Index = () => {
   // Show loading spinner while checking completion
   if (isCheckingCompletion) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
+      <div className="min-h-screen flex flex-col">
         <Header />
         <div className="flex-1 flex items-center justify-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange"></div>
@@ -599,7 +599,7 @@ const Index = () => {
   }
 
   return (
-    <div className="bg-background animate-slide-up md:grid" style={{ minHeight: 'calc(100 * var(--initial-vh, 1vh))', gridTemplateRows: '1fr auto' }}>
+    <div className="animate-slide-up md:grid" style={{ minHeight: 'calc(100 * var(--initial-vh, 1vh))', gridTemplateRows: '1fr auto' }}>
       {/* Mobile Layout: Fixed shell that doesn't move with keyboard */}
       <div className="md:hidden fixed inset-0 flex flex-col" style={{ height: `${initialHeight}px` }}>
         <div className="shrink-0">

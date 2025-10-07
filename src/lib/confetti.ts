@@ -1,6 +1,6 @@
 // Confetti particle system for correct answers
 export const createConfetti = (element: HTMLElement) => {
-  const colors = ['#00D9A5', '#F7B32B', '#FF6B35', '#FFFFFF'];
+  const colors = ['#22C55E', '#FACC15', '#FF6B35', '#FFFFFF']; // success-light, gold-bright, orange, white
   const particleCount = 12;
   
   for (let i = 0; i < particleCount; i++) {
@@ -33,7 +33,7 @@ export const createConfetti = (element: HTMLElement) => {
 };
 
 // Score fly-up animation
-export const animateScoreFlyUp = (element: HTMLElement, points: number, color: string = '#00D9A5') => {
+export const animateScoreFlyUp = (element: HTMLElement, points: number, color: string = '#22C55E') => {
   const scoreElement = document.createElement('div');
   scoreElement.textContent = `+${points}`;
   scoreElement.style.position = 'absolute';

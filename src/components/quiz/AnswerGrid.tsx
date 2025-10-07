@@ -57,18 +57,18 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
         // Apply hint penalty (1 point per hint used)
         points = Math.max(1, points - hintsUsed);
         
-        // Assign color based on final points
-        let color = '#00D9A5'; // default green
+        // Assign color based on final points (using design system colors)
+        let color = '#22C55E'; // success-light
         if (points === 5) {
-          color = '#F7B32B'; // gold
+          color = '#FACC15'; // gold-bright
         } else if (points === 4) {
-          color = '#00D9A5'; // green
+          color = '#22C55E'; // success-light
         } else if (points === 3) {
           color = '#FF6B35'; // orange
         } else if (points === 2) {
-          color = '#D97706'; // dark orange
+          color = '#D97706'; // warning-dark
         } else if (points === 1) {
-          color = '#EF4444'; // red
+          color = '#EF4444'; // danger
         }
         
         // Correct answer animations
@@ -86,10 +86,8 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
   const firstUnansweredIndex = answers.findIndex(a => !a.playerName);
 
   return (
-    <div className={`rounded-lg md:rounded-xl p-0.5 md:p-2 md:border md:border-white ${
-      hasRevealedCards ? 'border border-white' : ''
-    }`}>
-      <div className="grid grid-cols-1 gap-0.5 md:gap-1.5">
+    <div className="rounded-2xl bg-primary/5 border border-primary/10 p-3 md:p-4">
+      <div className="grid grid-cols-1 gap-1.5 md:gap-2">
       {answers.map((answer, index) => {
         const isRevealed = !!answer.playerName;
         const isCorrect = answer.isCorrect;
@@ -101,24 +99,24 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
           <div
             key={answer.rank}
             ref={(el) => cardRefs.current[answer.rank] = el}
-            className={`grid grid-cols-[auto_1fr_auto] items-center gap-2 md:gap-3 px-2 md:px-3 py-1.5 md:py-2 rounded-md md:rounded-lg transition-all duration-150 border md:border-2 ${
+            className={`grid grid-cols-[auto_1fr_auto] items-center gap-2 md:gap-3 px-3 md:px-4 py-2.5 md:py-3 rounded-xl transition-all duration-200 border ${
               isCorrect
-                ? "bg-success/10 border-success animate-scale-pulse shadow-glow-green"
+                ? "bg-success border-success text-white shadow-[0_4px_16px_rgba(16,185,129,0.3)] animate-spring-bounce"
                 : isTimedOut
-                ? "bg-timerWarning/5 border-timerWarning/50 opacity-60"
+                ? "bg-card border-border/50 opacity-75 animate-spring-bounce"
                 : isLastGuess && !isCorrect && isRevealed
                 ? "bg-danger/10 border-danger animate-shake-horizontal"
                 : isRevealed
-                ? "bg-timerWarning/10 border-timerWarning"
+                ? "bg-card border-border/50 animate-spring-bounce"
                 : showHintOnThisCard
-                ? "bg-gold/10 border-gold/50"
-                : "bg-muted/30 border-border/50"
+                ? "bg-card border-gold/50 animate-shimmer"
+                : "bg-card border-border/50 opacity-75 animate-shimmer"
             }`}
           >
             {/* Rank badge */}
             <div className={`flex items-center justify-center w-6 h-6 md:w-9 md:h-9 rounded-full font-bold text-[14px] md:text-sm flex-shrink-0 ${
               isCorrect
-                ? 'bg-success text-white' 
+                ? 'bg-white/20 text-white'
                 : 'bg-muted text-foreground'
             }`}>
               #{answer.rank}
@@ -129,10 +127,10 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
               {isRevealed ? (
                 <>
                   {isCorrect && (
-                    <CheckCircle2 className="h-4 w-4 md:h-5 md:w-5 text-success flex-shrink-0 animate-bounce-in" />
+                    <CheckCircle2 className="h-4 w-4 md:h-5 md:w-5 text-white flex-shrink-0 animate-bounce-in" />
                   )}
                   <span className={`font-semibold text-[15px] md:text-base ${
-                    isCorrect ? "text-success" : "text-foreground"
+                    isCorrect ? "text-white" : "text-foreground"
                   }`}>
                     {answer.playerName}
                   </span>
@@ -143,7 +141,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
                 </span>
               ) : (
                 <div className="flex items-center gap-1.5 md:gap-2">
-                  <Lock className="h-3 w-3 md:h-[18px] md:w-[18px] text-muted-foreground opacity-50" />
+                  <Lock className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground/70" />
                   <span className="text-[15px] md:text-base text-muted-foreground">Locked</span>
                 </div>
               )}
@@ -151,7 +149,9 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
 
             {/* Stats */}
             {isRevealed && answer.stat && (
-              <span className="text-[15px] md:text-sm text-muted-foreground font-medium whitespace-nowrap">
+              <span className={`text-[15px] md:text-sm font-medium whitespace-nowrap ${
+                isCorrect ? "text-white/90" : "text-muted-foreground"
+              }`}>
                 {answer.stat}
               </span>
             )}

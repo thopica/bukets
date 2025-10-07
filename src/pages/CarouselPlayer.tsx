@@ -68,7 +68,7 @@ const CarouselPlayer = () => {
   const correctCount = playerAnswers.filter(a => a.isRevealed).length;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col animate-slide-up">
+    <div className="min-h-screen flex flex-col animate-slide-up">
       <Header />
       
       <main className="container max-w-2xl mx-auto px-2 md:px-4 py-1 md:py-2 flex-1 flex flex-col gap-1 md:gap-2 overflow-y-auto webkit-overflow-scrolling-touch">

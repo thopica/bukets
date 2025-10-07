@@ -2,107 +2,191 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
     --vh: 1dvh;
-    
-    /* Basketball-inspired color system */
-    --orange: 17 100% 60%; /* #FF6B35 Basketball orange */
-    --orange-hover: 17 100% 63%; /* #FF8C42 lighter orange */
-    --gold: 43 93% 57%; /* #F7B32B Gold */
-    
-    --background: 232 58% 10%; /* #0A0E27 Dark court */
-    --foreground: 0 0% 100%; /* #FFFFFF */
 
-    --card: 231 37% 17%; /* #1A1F3A Surface */
-    --card-foreground: 0 0% 100%; /* #FFFFFF */
-    --card-muted: 231 37% 20%; /* Slightly lighter surface */
+    /* Accent Colors */
+  --orange: 24 95% 57%; /* #F67E28 Basketball orange */
+  --orange-hover: 24 95% 52%;
+  --gold: 45 95% 50%; /* #F2A900 Championship gold */
+  --accent-teal: 184 80% 44%; /* #16B2B2 90s throwback */
+  --accent-teal-foreground: 0 0% 100%;
 
-    --popover: 231 37% 17%;
-    --popover-foreground: 0 0% 100%;
+  /* Backgrounds */
+  --background: 0 0% 100%; /* #FFFFFF Pure white */
+  --foreground: 222 47% 11%; /* #111827 Dark text */
+  --off-white: 40 15% 97%; /* #F9F8F6 Warm off-white */
 
-    /* Primary - Basketball Orange */
-    --primary: 17 100% 60%;
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 17 100% 63%;
-    
-    /* Accent - Gold */
-    --accent-gold: 43 93% 57%;
-    --accent-gold-foreground: 232 58% 10%;
-    
-    /* Text colors */
-    --text-primary: 0 0% 100%; /* #FFFFFF */
-    --text-secondary: 212 33% 78%; /* #B8C5D6 */
-    --text-on-dark: 0 0% 100%; /* #FFFFFF */
-    
-    /* Icons and borders */
-    --icon-muted: 212 33% 78%; /* #B8C5D6 */
-    --border: 231 37% 25%; /* Slightly lighter than surface */
-    --border-muted: 231 37% 22%;
-    
-    /* Badge */
-    --badge-lavender: 43 93% 57%; /* Gold */
-    --badge-text: 232 58% 10%; /* Dark text on gold */
-    
-    /* Progress */
-    --progress-track: 231 37% 25%;
-    
-    /* State colors */
-    --success: 165 100% 43%; /* #00D9A5 */
-    --success-foreground: 0 0% 100%;
-    --danger: 354 100% 64%; /* #FF4757 */
-    --danger-foreground: 0 0% 100%;
-    --timer-warning: 38 100% 51%; /* #FFA502 */
-    
-    /* Navigation */
-    --nav-default: 212 33% 78%; /* #B8C5D6 */
-    --nav-hover: 0 0% 100%;
+  /* Cards */
+  --card: 0 0% 100%; /* #FFFFFF White cards */
+  --card-foreground: 218 23% 17%; /* #1F2937 Body text */
+  --card-muted: 40 15% 97%; /* Warm off-white for muted cards */
 
-    --secondary: 204 100% 27%; /* #004E89 Deep navy */
-    --secondary-foreground: 0 0% 100%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
 
-    --muted: 231 37% 20%;
-    --muted-foreground: 212 33% 78%;
+  /* Primary - Bold Blue (UNCHANGED) */
+  --primary: 236 100% 57%; /* #2431FF Bold blue */
+  --primary-foreground: 0 0% 100%; /* White text */
+  --primary-hover: 236 100% 52%; /* Darker blue on hover */
 
-    --accent: 43 93% 57%;
-    --accent-foreground: 232 58% 10%;
+  /* Text colors */
+  --text-primary: 222 47% 11%; /* #111827 Primary text */
+  --text-secondary: 218 23% 17%; /* #1F2937 Body text */
+  --text-muted: 30 5% 48%; /* #7A7770 Warmer muted gray */
+  --text-on-dark: 0 0% 100%; /* #FFFFFF */
 
-    --destructive: 354 100% 64%;
-    --destructive-foreground: 0 0% 100%;
+  /* Icons and borders */
+  --icon-muted: 30 5% 48%; /* #7A7770 */
+  --border: 30 8% 90%; /* #E8E6E3 Warm light border */
+  --border-lighter: 30 8% 94%; /* Even lighter border */
 
-    --input: 231 37% 25%;
-    --ring: 17 100% 60%; /* Basketball orange for focus */
+  /* Badge */
+  --badge-lavender: 40 15% 97%; /* Warm off-white badge background */
+  --badge-text: 236 100% 57%; /* Primary blue text */
 
-    /* Border Radius */
-    --radius-button: 12px;
-    --radius-card: 16px;
-    --radius-input: 8px;
-    --radius-small: 6px;
+  /* Progress */
+  --progress-track: 30 8% 90%;
 
-    /* Shadows */
-    --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-floating: 0 8px 24px rgba(0, 0, 0, 0.2);
-    --shadow-pressed: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* State colors - Retro sports palette */
+  --success: 158 64% 42%; /* #26A96C Court green */
+  --success-light: 158 64% 50%; /* Lighter green for animations */
+  --success-foreground: 0 0% 100%;
+  --danger: 4 90% 58%; /* #E63946 Classic sports red */
+  --danger-foreground: 0 0% 100%;
+  --timer-warning: 24 95% 57%; /* #F67E28 Orange for timer warning */
+  --warning-dark: 32 95% 44%; /* #D97706 Amber for scoring emphasis */
 
-    --transition-smooth: all 0.15s ease-out;
-    --transition-hover: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* Gradients */
-    --gradient-cta: linear-gradient(135deg, hsl(17, 100%, 60%) 0%, hsl(17, 100%, 63%) 100%);
-    --gradient-success: linear-gradient(135deg, hsl(165, 100%, 43%) 0%, hsl(165, 100%, 38%) 100%);
-  }
+  /* Navigation */
+  --nav-default: 30 5% 48%; /* Warm muted gray */
+  --nav-hover: 222 47% 11%; /* Dark on hover */
 
-  .dark {
-    --background: 232 58% 10%;
-    --foreground: 0 0% 100%;
-  }
+  --secondary: 0 0% 100%; /* White secondary buttons */
+  --secondary-foreground: 222 47% 11%;
+
+  --muted: 40 15% 97%; /* Warm off-white */
+  --muted-foreground: 30 5% 48%;
+
+  --accent: 24 95% 57%; /* Orange accent */
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 4 90% 58%;
+  --destructive-foreground: 0 0% 100%;
+
+  --input: 30 8% 90%;
+  --ring: 236 100% 57%; /* Primary blue for focus */
+
+  /* Border Radius */
+  --radius-button: 12px;
+  --radius-card: 16px;
+  --radius-input: 8px;
+  --radius-small: 8px;
+
+  /* Shadows - 3-Level Hierarchy */
+  --shadow-resting: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-floating: 0 8px 24px rgba(0, 0, 0, 0.16);
+  --shadow-pressed: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  --transition-smooth: all 0.15s ease-out;
+  --transition-hover: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Gradients */
+  --gradient-cta: linear-gradient(135deg, hsl(236, 100%, 57%) 0%, hsl(236, 100%, 52%) 100%);
+  --gradient-success: linear-gradient(135deg, hsl(158, 64%, 42%) 0%, hsl(158, 64%, 37%) 100%);
+  --gradient-orange: linear-gradient(135deg, hsl(24, 95%, 57%) 0%, hsl(24, 95%, 52%) 100%);
 }
 
-@layer base {
+.dark {
+  /* Dark Mode - Retro NBA Court Vibes */
+  
+  /* Backgrounds - Deep court blue/gray */
+  --background: 220 26% 14%; /* #1A2332 Deep slate */
+  --foreground: 0 0% 98%; /* #FAFAFA Light text */
+  --off-white: 220 20% 18%; /* #252D3D Elevated surface */
+
+  /* Cards */
+  --card: 220 22% 17%; /* #212938 Card background */
+  --card-foreground: 0 0% 95%; /* #F2F2F2 Card text */
+  --card-muted: 220 20% 18%; /* Slightly lighter for muted cards */
+
+  --popover: 220 24% 16%; /* #1E2530 */
+  --popover-foreground: 0 0% 98%;
+
+  /* Primary - Slightly brighter for dark mode */
+  --primary: 236 100% 62%; /* #4D58FF Brighter blue */
+  --primary-foreground: 0 0% 100%;
+  --primary-hover: 236 100% 57%;
+
+  /* Text colors */
+  --text-primary: 0 0% 98%; /* #FAFAFA */
+  --text-secondary: 0 0% 90%; /* #E5E5E5 */
+  --text-muted: 220 9% 60%; /* #8E95A3 Cool muted */
+  --text-on-dark: 0 0% 100%;
+
+  /* Icons and borders */
+  --icon-muted: 220 9% 60%;
+  --border: 220 20% 25%; /* #343D4F Subtle border */
+  --border-lighter: 220 18% 22%; /* #2D3543 */
+
+  /* Badge */
+  --badge-lavender: 220 22% 20%; /* #2A3241 */
+  --badge-text: 236 100% 65%; /* Bright blue for dark */
+
+  /* Progress */
+  --progress-track: 220 20% 25%;
+
+  /* State colors - Adjusted for dark backgrounds */
+  --success: 158 64% 48%; /* #2FC57E Brighter green */
+  --success-light: 158 64% 55%;
+  --success-foreground: 222 47% 11%; /* Dark text on bright green */
+  --danger: 4 90% 62%; /* #ED5762 Brighter red */
+  --danger-foreground: 0 0% 100%;
+  --timer-warning: 24 95% 60%; /* Brighter orange */
+  --warning-dark: 32 95% 50%;
+
+  /* Navigation */
+  --nav-default: 220 9% 60%;
+  --nav-hover: 0 0% 98%;
+
+  --secondary: 220 22% 20%; /* Dark secondary buttons */
+  --secondary-foreground: 0 0% 95%;
+
+  --muted: 220 20% 18%;
+  --muted-foreground: 220 9% 60%;
+
+  --accent: 24 95% 60%; /* Brighter orange */
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 4 90% 62%;
+  --destructive-foreground: 0 0% 100%;
+
+  --input: 220 20% 25%;
+  --ring: 236 100% 62%;
+
+  /* Shadows - Deeper for dark mode */
+  --shadow-resting: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 6px 16px rgba(0, 0, 0, 0.5);
+  --shadow-floating: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --shadow-pressed: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+  /* Gradients - Updated for dark mode */
+  --gradient-cta: linear-gradient(135deg, hsl(236, 100%, 62%) 0%, hsl(236, 100%, 57%) 100%);
+  --gradient-success: linear-gradient(135deg, hsl(158, 64%, 48%) 0%, hsl(158, 64%, 43%) 100%);
+  --gradient-orange: linear-gradient(135deg, hsl(24, 95%, 60%) 0%, hsl(24, 95%, 55%) 100%);
+
+  /* Gold stays vibrant in dark mode */
+  --gold: 45 95% 55%; /* Slightly brighter gold */
+  
+  /* Teal adjusted for dark */
+  --accent-teal: 184 80% 50%; /* #1BC5C5 Brighter teal */
+}
+
   * {
     @apply border-border;
   }
@@ -119,6 +203,8 @@ All colors MUST be HSL.
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
   }
 
   /* Hide scrollbar while keeping functionality */

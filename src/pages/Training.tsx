@@ -47,7 +47,7 @@ export default function Training() {
         <div className="space-y-6">
           {/* Header */}
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary">Training Mode</h1>
+            <h1 className="text-5xl font-bold text-primary">Training Mode</h1>
             <p className="text-lg text-muted-foreground">
               Practice with all 30 quizzes. No leaderboard, unlimited replays!
             </p>

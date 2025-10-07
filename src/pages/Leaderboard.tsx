@@ -223,7 +223,7 @@ const LeaderboardTable = ({
                           {player.username}
                         </span>
                         {isCurrentUser && (
-                          <span className="text-xs text-orange font-semibold">You</span>
+                          <span className="text-xs text-primary font-semibold">You</span>
                         )}
                       </div>
                     </div>
@@ -264,7 +264,7 @@ const LeaderboardTable = ({
                           {player.username}
                         </span>
                         {isCurrentUser && (
-                          <span className="text-xs text-orange font-semibold">You</span>
+                          <span className="text-xs text-primary font-semibold">You</span>
                         )}
                       </div>
                     </div>
@@ -409,14 +409,14 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
       
       <main className="container max-w-3xl mx-auto px-4 py-6 flex-1">
         <div className="space-y-6">
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-foreground">Leaderboard</h1>
+            <h1 className="text-3xl font-bold text-primary">Leaderboard</h1>
           </div>
 
           {/* Country Filter */}
@@ -448,7 +448,7 @@ const Leaderboard = () => {
                 onClick={() => handleTabChange(tab.value)}
                 className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   activeTab === tab.value
-                    ? "bg-background text-foreground shadow-sm border-2 border-border"
+                    ? "bg-primary text-white shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >

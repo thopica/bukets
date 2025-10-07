@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Trophy, Menu, LogOut, User, RotateCcw } from "lucide-react";
+import { Menu, LogOut, User, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -135,30 +136,38 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
     { path: "/how-to-play", label: "How to Play" },
   ];
 
-  const NavLinks = ({ mobile = false }: { mobile?: boolean }) => (
-    <>
-      {navLinks.map((link) => (
-        <Link
-          key={link.path}
-          to={link.path}
-          className={`${
-            isActive(link.path)
-              ? "text-foreground font-semibold"
-              : "text-muted-foreground hover:text-foreground"
-          } transition-colors text-xs ${mobile ? "block py-2 text-sm" : ""}`}
-        >
-          {link.label}
-        </Link>
-      ))}
-    </>
-  );
+  const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
+    const isHomepage = location.pathname === '/';
+    const showWhiteText = isHomepage && !mobile; // Show white text for all users on homepage desktop
+
+    return (
+      <>
+        {navLinks.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            className={`${
+              showWhiteText
+                ? (isActive(link.path) ? "text-white font-semibold" : "text-white/80 hover:text-white")
+                : (isActive(link.path) ? "text-foreground font-semibold" : "text-muted-foreground hover:text-foreground")
+            } transition-colors text-base ${mobile ? "block py-2 text-lg" : ""}`}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </>
+    );
+  };
+
+  const isHomepage = location.pathname === '/';
+  const showWhiteText = isHomepage; // Show white text for all users on homepage
 
   return (
-    <header className={`sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-md transition-transform duration-300 ${hideOnMobile ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'}`}>
+    <header className={`sticky top-0 z-50 w-full transition-transform duration-300 ${hideOnMobile ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'} ${showWhiteText ? '' : 'border-b border-border/50'}`}>
       <div className="container flex h-14 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <Trophy className="h-5 w-5 text-orange" />
-          <span className="text-sm font-bold text-foreground">NBA Quiz</span>
+          <img src={logo} alt="NBA Quiz Logo" className="h-10 w-10" />
+          <span className="text-2xl font-bold text-foreground">Bukets</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -190,7 +199,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
                 <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                   <Avatar className="h-9 w-9">
                     <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email} />
-                    <AvatarFallback className="bg-orange/10 text-orange">
+                    <AvatarFallback className={showWhiteText ? "bg-white text-primary" : "bg-orange/10 text-orange"}>
                       {user.email?.charAt(0).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
@@ -227,11 +236,11 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button 
-              variant="default" 
-              size="sm" 
-              onClick={() => navigate("/auth")} 
-              className="rounded-full h-9 px-5 font-semibold"
+            <Button
+              variant="default"
+              size="sm"
+              onClick={() => navigate("/auth")}
+              className={`rounded-full h-9 px-5 font-semibold ${showWhiteText ? 'bg-white text-primary hover:bg-white/90' : ''}`}
             >
               Sign in
             </Button>

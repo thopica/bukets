@@ -36,7 +36,7 @@ const CarouselSingle = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col animate-slide-up">
+    <div className="min-h-screen flex flex-col animate-slide-up">
       <Header />
       
       <main className="container max-w-2xl mx-auto px-4 py-6 flex-1 flex flex-col gap-6">
