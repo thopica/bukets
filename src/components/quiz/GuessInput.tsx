@@ -97,9 +97,9 @@ const GuessInput = ({
   return <div className="bg-background p-1 md:p-3 z-[1000]" style={{
     paddingBottom: `max(0.25rem, env(safe-area-inset-bottom))`
   }}>
-      <div className="space-y-1 md:space-y-2 md:container md:max-w-5xl md:mx-auto">
+      <div className="space-y-1 md:space-y-2 md:max-w-5xl md:mx-auto">
         {/* Input Row */}
-        <div className="flex gap-1 md:gap-2 items-center w-full">
+        <div className="flex gap-1 md:gap-2 items-center w-full md:px-4 md:py-3 md:rounded-2xl md:bg-primary/5 md:border md:border-primary/10">
           <Input value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} onFocus={handleFocus} onBlur={handleBlur} disabled={disabled} autoFocus className={`flex-1 min-w-0 h-8 md:h-12 text-base md:text-sm text-foreground bg-card border md:border-2 rounded-md md:rounded-xl px-2 md:px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 transition-all duration-150 placeholder:text-muted-foreground shadow-elevated ${isShaking ? 'animate-shake-horizontal border-destructive focus-visible:border-destructive focus-visible:ring-destructive' : showSuccessBorder ? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500' : 'border-border focus-visible:border-white focus-visible:ring-white'}`} />
           {onRequestHint && <Button onClick={onRequestHint} disabled={disabled || hintsRemaining === 0} variant="outline" size="icon" className={`h-7 w-7 md:h-12 md:w-12 rounded-md md:rounded-xl shrink-0 border md:border-2 transition-all relative ${hintsRemaining === 0 ? 'border-muted-foreground/30 text-muted-foreground/30 bg-muted/20 cursor-not-allowed' : 'border-timerWarning text-timerWarning hover:bg-timerWarning/10'}`} title={hintsRemaining > 0 ? `${hintsRemaining} hints remaining` : 'No hints remaining'}>
               <div className="flex flex-col items-center justify-center gap-0">

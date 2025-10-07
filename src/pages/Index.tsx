@@ -8,10 +8,18 @@ import basketballPlayer from "@/assets/basketball-player.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useState, useEffect } from "react";
 import type { User } from "@supabase/supabase-js";
+
+// Stats shape for user dashboard
+type Stats = {
+  total_score: number;
+  total_games_played: number;
+  current_streak: number;
+  accuracy: number;
+};
 const Index = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
-  const [stats, setStats] = useState<any>(null);
+  const [stats, setStats] = useState<Stats | null>(null);
   
   useEffect(() => {
     const {
@@ -186,9 +194,14 @@ const Index = () => {
                 </Button>
               </div>
 
-              {/* Basketball Image */}
-              <div className="inline-flex items-center justify-center w-24 h-24 md:w-60 md:h-60 my-2 md:my-4">
-                <img src={basketballPlayer} alt="Basketball player" className="w-full h-full object-contain drop-shadow-lg" />
+              {/* Basketball Image (50% bigger visually) */}
+              <div className="inline-flex items-center justify-center w-48 h-48 md:w-120 md:h-120 my-2 md:my-4">
+                <img
+                  src={basketballPlayer}
+                  alt="Basketball player"
+                  className="w-full h-full object-contain drop-shadow-lg"
+                  style={{ transform: 'scale(1.5)', transformOrigin: 'center' }}
+                />
               </div>
             </div>
           </>}

@@ -11,9 +11,9 @@ const CarouselMenu = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="container max-w-2xl mx-auto px-4 py-12 flex-1 flex flex-col items-center justify-center gap-8">
-        <div className="text-center space-y-2 mb-8">
-          <h1 className="text-3xl font-bold text-foreground">Choose Your Mode</h1>
+      <main className="container max-w-2xl mx-auto px-4 py-6 flex-1 flex flex-col items-center gap-8">
+        <div className="text-center space-y-2 mb-6">
+          <h1 className="text-5xl font-bold text-foreground">Choose Your Mode</h1>
           <p className="text-muted-foreground">Select how you want to practice</p>
         </div>
 

@@ -69,13 +69,13 @@ const QuizHeader = ({
         {/* Shot Clock - Centered */}
         {showTimers && (
           <div className="flex justify-center">
-            <div className="relative w-7 h-7 bg-black rounded-sm border border-gray-400 shadow-lg flex items-center justify-center"
+            <div className="relative w-7 h-7 bg-black rounded-sm border border-white shadow-lg flex items-center justify-center"
               style={{
                 backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
                 backgroundSize: '3px 3px'
               }}
             >
-              <div className="absolute inset-0.5 border border-gray-700 rounded-sm pointer-events-none"></div>
+              <div className="absolute inset-0.5 border border-white-700 rounded-sm pointer-events-none"></div>
               <div 
                 className={`font-shot-clock text-lg font-normal tracking-[0.05em] leading-none ${
                   isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
@@ -103,13 +103,13 @@ const QuizHeader = ({
         {/* Shot Clock - Center */}
         <div className="flex items-center justify-center">
           {showTimers && (
-            <div className="relative w-16 h-16 bg-black rounded-sm border-4 border-gray-400 shadow-2xl flex items-center justify-center"
+            <div className="relative w-16 h-16 bg-black rounded-sm border-4 border-white shadow-2xl flex items-center justify-center"
               style={{
                 backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
                 backgroundSize: '4px 4px'
               }}
             >
-              <div className="absolute inset-1 border border-gray-700 rounded-sm pointer-events-none"></div>
+              <div className="absolute inset-1 border border-white-700 rounded-sm pointer-events-none"></div>
               <div 
                 className={`font-shot-clock text-4xl font-normal tracking-[0.1em] leading-none ml-0.5 ${
                   isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"

@@ -416,7 +416,7 @@ const Leaderboard = () => {
         <div className="space-y-6">
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-primary">Leaderboard</h1>
+            <h1 className="text-5xl font-bold text-foreground">Leaderboard</h1>
           </div>
 
           {/* Country Filter */}
