@@ -13,12 +13,18 @@ export const quizzes = [
       { "rank": 6, "name": "Karl Malone", "stat": "292 steals", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Active player, all-time leading scorer" },
-      { "rank": 2, "text": "Bulls legend, sidekick to MJ" },
-      { "rank": 3, "text": "Heat legend, 'Flash', 3× champion" },
-      { "rank": 4, "text": "Lakers icon, 'Black Mamba'" },
-      { "rank": 5, "text": "Bulls legend, 6× Finals MVP" },
-      { "rank": 6, "text": "The Mailman, never won a ring" }
+      { "rank": 1, "text": "Forward who debuted in 2003, known for all-around excellence and longevity" },
+      { "rank": 1, "text": "4× champion with three different franchises, currently the all-time playoff leader in this category" },
+      { "rank": 2, "text": "Small forward from the 1990s, elite two-way player and championship winner" },
+      { "rank": 2, "text": "Won 6 championships, known for exceptional defense alongside a legendary teammate" },
+      { "rank": 3, "text": "Shooting guard who played 2003-2019, known for athleticism and scoring ability" },
+      { "rank": 3, "text": "3× champion, Finals MVP in 2006, spent most of career in South Florida" },
+      { "rank": 4, "text": "Shooting guard from 1996-2016, known for scoring prowess and competitiveness" },
+      { "rank": 4, "text": "5× champion with 18 All-Star selections, scored 81 points in a single game" },
+      { "rank": 5, "text": "Shooting guard who dominated the 1990s with elite scoring and defense" },
+      { "rank": 5, "text": "6× champion with perfect Finals record, won 10 scoring titles" },
+      { "rank": 6, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 6, "text": "2× MVP who spent 18 seasons with Utah, never won a championship despite deep playoff runs" }
     ]
   },
   // Quiz #1 - Presented on: October 6, 2025
@@ -33,12 +39,18 @@ export const quizzes = [
       { "rank": 6, "name": "David Robinson", "stat": "2,954 blocks", "aliases": ["robinson", "david", "admiral", "the admiral", "david robinson"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Rockets center, 'The Dream', 2× champion" },
-      { "rank": 2, "text": "Finger wag celebration, 4× DPOY" },
-      { "rank": 3, "text": "Lakers legend with the skyhook" },
-      { "rank": 4, "text": "7'4\" Jazz center, 4× Blocks champion" },
-      { "rank": 5, "text": "Spurs power forward, 5× champion" },
-      { "rank": 6, "text": "Spurs center, 'The Admiral', MVP 1995" }
+      { "rank": 1, "text": "Center from 1984-2002, known for footwork and defensive dominance" },
+      { "rank": 1, "text": "2× champion and Finals MVP with a Texas franchise, 2× Defensive Player of Year" },
+      { "rank": 2, "text": "7'2\" shot-blocking specialist from 1991-2009, known for defensive presence" },
+      { "rank": 2, "text": "4× Defensive Player of Year, famous for finger-wagging gesture after blocks" },
+      { "rank": 3, "text": "Center who played 1969-1989, known for signature unstoppable hook shot" },
+      { "rank": 3, "text": "6× MVP with 6 championships, spent most of career in purple and gold" },
+      { "rank": 4, "text": "7'4\" center from 1982-1993, known for elite rim protection" },
+      { "rank": 4, "text": "Led league in blocks 4 times, spent entire career with Utah" },
+      { "rank": 5, "text": "Power forward/center from 1997-2016, known for consistency and fundamentals" },
+      { "rank": 5, "text": "5× champion with San Antonio, 3× Finals MVP, 15× All-Star" },
+      { "rank": 6, "text": "Athletic center from 1989-2003, Naval Academy graduate" },
+      { "rank": 6, "text": "1995 MVP, 2× Olympic gold medalist, won championship in 1999 and 2003" }
     ]
   },
   // Quiz #2 - Presented on: October 7, 2025
@@ -53,12 +65,18 @@ export const quizzes = [
       { "rank": 6, "name": "Kyle Korver", "stat": "2,450 threes", "aliases": ["korver", "kyle", "kyle korver"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Warriors legend, changed the game forever" },
-      { "rank": 2, "text": "Clutch shooter, made famous Finals shot 2013" },
-      { "rank": 3, "text": "Step-back master, former Rockets MVP" },
-      { "rank": 4, "text": "Blazers and Bucks guard, 'Dame Time'" },
-      { "rank": 5, "text": "Pacers sharpshooter, rivalry with Knicks" },
-      { "rank": 6, "text": "47% career 3P%, elite spot-up shooter" }
+      { "rank": 1, "text": "Point guard who debuted in 2009, revolutionized long-range shooting" },
+      { "rank": 1, "text": "4× champion with Golden State, 2× MVP, holds record with over 3,800 career threes" },
+      { "rank": 2, "text": "Shooting guard from 1996-2014, known for pure shooting stroke" },
+      { "rank": 2, "text": "2× champion, hit crucial Finals three-pointer in 2013, 10× All-Star" },
+      { "rank": 3, "text": "Guard who debuted in 2009, known for signature step-back three-pointer" },
+      { "rank": 3, "text": "2018 MVP with Houston, led league in scoring 3 times, prolific from distance" },
+      { "rank": 4, "text": "Point guard active since 2012, known for deep range and clutch shooting" },
+      { "rank": 4, "text": "6× All-Star known for game-winners, spent first 11 seasons in Pacific Northwest" },
+      { "rank": 5, "text": "Shooting guard from 1987-2005, legendary three-point shooter" },
+      { "rank": 5, "text": "Hall of Famer who spent 18 seasons with Indiana, known for playoff heroics" },
+      { "rank": 6, "text": "Sharpshooter from 2003-2020, known for exceptional accuracy from deep" },
+      { "rank": 6, "text": "Career 42.9% three-point shooter, led league in 3P% 4 times" }
     ]
   },
   // Quiz #3 - Presented on: October 8, 2025
@@ -73,12 +91,18 @@ export const quizzes = [
       { "rank": 6, "name": "Karl Malone", "stat": "292 steals", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Active player, all-time leading scorer" },
-      { "rank": 2, "text": "Bulls legend, sidekick to MJ" },
-      { "rank": 3, "text": "Heat legend, 'Flash', 3× champion" },
-      { "rank": 4, "text": "Lakers icon, 'Black Mamba'" },
-      { "rank": 5, "text": "Bulls legend, 6× Finals MVP" },
-      { "rank": 6, "text": "The Mailman, never won a ring" }
+      { "rank": 1, "text": "Forward who debuted in 2003, known for all-around excellence and longevity" },
+      { "rank": 1, "text": "4× champion with three different franchises, currently the all-time playoff leader in this category" },
+      { "rank": 2, "text": "Small forward from the 1990s, elite two-way player and championship winner" },
+      { "rank": 2, "text": "Won 6 championships, known for exceptional defense alongside a legendary teammate" },
+      { "rank": 3, "text": "Shooting guard who played 2003-2019, known for athleticism and scoring ability" },
+      { "rank": 3, "text": "3× champion, Finals MVP in 2006, spent most of career in South Florida" },
+      { "rank": 4, "text": "Shooting guard from 1996-2016, known for scoring prowess and competitiveness" },
+      { "rank": 4, "text": "5× champion with 18 All-Star selections, scored 81 points in a single game" },
+      { "rank": 5, "text": "Shooting guard who dominated the 1990s with elite scoring and defense" },
+      { "rank": 5, "text": "6× champion with perfect Finals record, won 10 scoring titles" },
+      { "rank": 6, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 6, "text": "2× MVP who spent 18 seasons with Utah, never won a championship despite deep playoff runs" }
     ]
   },
   // Quiz #4 - Presented on: October 9, 2025
@@ -93,12 +117,18 @@ export const quizzes = [
       { "rank": 6, "name": "Magic Johnson", "stat": "3 MVPs", "aliases": ["magic", "johnson", "earvin", "magic johnson", "earvin johnson"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Record 6 MVPs, Lakers and Bucks legend" },
-      { "rank": 2, "text": "5 MVPs with the Bulls, 1988-1998" },
-      { "rank": 3, "text": "Celtics center, 5 MVPs in the 1960s" },
-      { "rank": 4, "text": "Dominant center, 4 MVPs including 3 straight" },
-      { "rank": 5, "text": "4 MVPs (2 with Heat, 2 with Cavs)" },
-      { "rank": 6, "text": "Showtime Lakers, 3 MVPs in 1980s" }
+      { "rank": 1, "text": "Center who played 1969-1989, known for unstoppable skyhook" },
+      { "rank": 1, "text": "Record 6 MVP awards, won championships with two different franchises" },
+      { "rank": 2, "text": "Shooting guard from the 1980s-90s, known for scoring and competitiveness" },
+      { "rank": 2, "text": "5 MVP awards, won championships in two three-peats" },
+      { "rank": 3, "text": "Defensive center from the 1950s-60s, known for championships and leadership" },
+      { "rank": 3, "text": "5 MVP awards, won 11 championships with Boston" },
+      { "rank": 4, "text": "Dominant center from 1959-1973, known for overwhelming physical presence" },
+      { "rank": 4, "text": "4 MVP awards, once averaged 50 PPG for an entire season" },
+      { "rank": 5, "text": "Forward active since 2003, known for versatility and basketball IQ" },
+      { "rank": 5, "text": "4 MVP awards with two different franchises, all-time leading scorer" },
+      { "rank": 6, "text": "Point guard from 1979-1996, known for passing and showmanship" },
+      { "rank": 6, "text": "3 MVP awards, won 5 championships in purple and gold" }
     ]
   },
   // Quiz #5 - Presented on: October 10, 2025
@@ -113,12 +143,18 @@ export const quizzes = [
       { "rank": 6, "name": "Kobe Bryant", "stat": "2 Finals MVPs", "aliases": ["kobe", "black mamba", "kobe bryant", "mamba"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Perfect 6-0 in Finals, 6× Finals MVP" },
-      { "rank": 2, "text": "4× Finals MVP with 3 different teams" },
-      { "rank": 3, "text": "Showtime Lakers, won as rookie in 1980" },
-      { "rank": 4, "text": "Dominant center, 3-peat with Lakers" },
-      { "rank": 5, "text": "Spurs legend, steady excellence" },
-      { "rank": 6, "text": "Back-to-back Finals MVP 2009-2010" }
+      { "rank": 1, "text": "Shooting guard from the 1980s-90s, known for scoring and competitiveness" },
+      { "rank": 1, "text": "Perfect 6-0 Finals record with 6 Finals MVPs, won championships in two three-peats" },
+      { "rank": 2, "text": "Forward who debuted in 2003, known for all-around excellence and longevity" },
+      { "rank": 2, "text": "4× Finals MVP with three different franchises, all-time leading scorer" },
+      { "rank": 3, "text": "Point guard from 1979-1996, known for passing and showmanship" },
+      { "rank": 3, "text": "3× Finals MVP, won as rookie in 1980, 5 championships in purple and gold" },
+      { "rank": 4, "text": "Center from 1992-2011, known for dominant low-post play and physical presence" },
+      { "rank": 4, "text": "3× Finals MVP during Lakers three-peat, 4× champion, unstoppable force in the paint" },
+      { "rank": 5, "text": "Power forward/center from 1997-2016, known for consistency and fundamentals" },
+      { "rank": 5, "text": "3× Finals MVP with San Antonio, 5× champion, anchor of dynasty" },
+      { "rank": 6, "text": "Shooting guard from 1996-2016, known for scoring prowess and competitiveness" },
+      { "rank": 6, "text": "Back-to-back Finals MVP in 2009-2010, 5× champion, spent entire career with Lakers" }
     ]
   },
   // Quiz #6 - Presented on: October 11, 2025
@@ -133,12 +169,18 @@ export const quizzes = [
       { "rank": 6, "name": "Shaquille O'Neal", "stat": "15 All-Stars", "aliases": ["shaq", "shaquille", "oneal", "o'neal", "shaquille oneal", "shaquille o'neal"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Active player, 20 All-Star selections" },
-      { "rank": 2, "text": "19 selections from 1970-1989" },
-      { "rank": 3, "text": "18 All-Star games as a Laker" },
-      { "rank": 4, "text": "Spurs legend, 15 selections" },
-      { "rank": 5, "text": "Intense power forward, 'The Big Ticket'" },
-      { "rank": 6, "text": "Dominant center, 15 selections" }
+      { "rank": 1, "text": "Forward active since 2003, known for all-around excellence and longevity" },
+      { "rank": 1, "text": "Record 20 All-Star selections, 4× champion with three franchises, all-time leading scorer" },
+      { "rank": 2, "text": "Center who played 1969-1989, known for signature unstoppable hook shot" },
+      { "rank": 2, "text": "19 All-Star selections, 6× MVP, won championships with two franchises" },
+      { "rank": 3, "text": "Shooting guard from 1996-2016, known for scoring prowess and competitiveness" },
+      { "rank": 3, "text": "18 All-Star selections, 5× champion, scored 81 points in a single game" },
+      { "rank": 4, "text": "Power forward/center from 1997-2016, known for consistency and fundamentals" },
+      { "rank": 4, "text": "15 All-Star selections with San Antonio, 5× champion, 3× Finals MVP" },
+      { "rank": 5, "text": "Power forward from 1995-2016, known for intensity and versatility" },
+      { "rank": 5, "text": "15 All-Star selections, 2008 champion with Boston, 2004 MVP with Minnesota" },
+      { "rank": 6, "text": "Center from 1992-2011, known for dominant low-post play and physical presence" },
+      { "rank": 6, "text": "15 All-Star selections, 4× champion, 3× Finals MVP during Lakers dynasty" }
     ]
   },
   // Quiz #7 - Presented on: October 12, 2025
@@ -153,12 +195,18 @@ export const quizzes = [
       { "rank": 6, "name": "Jerry West", "stat": "27.0 PPG", "aliases": ["west", "jerry", "logo", "the logo", "jerry west", "mr clutch"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Bulls legend, 10× scoring champion" },
-      { "rank": 2, "text": "Averaged 50 PPG in a season" },
-      { "rank": 3, "text": "Lakers forward from 1958-1971" },
-      { "rank": 4, "text": "Active scorer, 4× scoring champion" },
-      { "rank": 5, "text": "All-time leading scorer, still active" },
-      { "rank": 6, "text": "Lakers guard, 'The Logo', clutch scorer" }
+      { "rank": 1, "text": "Shooting guard from the 1980s-90s, known for elite scoring and competitiveness" },
+      { "rank": 1, "text": "10× scoring champion, 6× champion, career 30.1 PPG average" },
+      { "rank": 2, "text": "Dominant center from 1959-1973, known for overwhelming physical presence and scoring" },
+      { "rank": 2, "text": "Career 30.1 PPG, once averaged 50 PPG for entire season, scored 100 in single game" },
+      { "rank": 3, "text": "Small forward from 1958-1971, known for athleticism and scoring prowess" },
+      { "rank": 3, "text": "11× All-Star with Lakers, career 27.4 PPG, never won championship despite deep runs" },
+      { "rank": 4, "text": "Forward active since 2007, known for elite scoring and shooting versatility" },
+      { "rank": 4, "text": "4× scoring champion, 2× champion, career 27.3 PPG across multiple franchises" },
+      { "rank": 5, "text": "Forward active since 2003, known for all-around excellence and longevity" },
+      { "rank": 5, "text": "All-time leading scorer with career 27.2 PPG, 4× champion with three franchises" },
+      { "rank": 6, "text": "Guard from 1960-1974, known for clutch shooting and all-around excellence" },
+      { "rank": 6, "text": "Career 27.0 PPG with Lakers, 1972 champion, became the NBA logo silhouette" }
     ]
   },
   // Quiz #8 - Presented on: October 13, 2025
@@ -173,12 +221,18 @@ export const quizzes = [
       { "rank": 6, "name": "Jason Kidd", "stat": "107 triple-doubles", "aliases": ["kidd", "jason", "jason kidd", "j kidd"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Former MVP, broke Oscar's record in 2021" },
-      { "rank": 2, "text": "Averaged triple-double in 1961-62 season" },
-      { "rank": 3, "text": "Showtime Lakers point guard" },
-      { "rank": 4, "text": "All-around superstar, active player" },
-      { "rank": 5, "text": "Active center, 3× MVP, elite passer" },
-      { "rank": 6, "text": "Point guard, great all-around player" }
+      { "rank": 1, "text": "Point guard active since 2008, known for explosiveness and all-around production" },
+      { "rank": 1, "text": "Record 200+ triple-doubles, 2017 MVP, broke Oscar Robertson's long-standing record" },
+      { "rank": 2, "text": "Guard from 1960-1974, known for complete all-around excellence" },
+      { "rank": 2, "text": "181 triple-doubles, averaged triple-double for entire 1961-62 season, 1964 MVP" },
+      { "rank": 3, "text": "Point guard from 1979-1996, known for passing and showmanship" },
+      { "rank": 3, "text": "138 triple-doubles, 5× champion with Lakers, 3× MVP and Finals MVP" },
+      { "rank": 4, "text": "Forward active since 2003, known for all-around excellence and longevity" },
+      { "rank": 4, "text": "117 triple-doubles, 4× champion with three franchises, all-time leading scorer" },
+      { "rank": 5, "text": "Center active since 2015, known for exceptional passing and basketball IQ" },
+      { "rank": 5, "text": "145 triple-doubles, 3× MVP with Denver, revolutionized center position with playmaking" },
+      { "rank": 6, "text": "Point guard from 1994-2013, known for court vision and leadership" },
+      { "rank": 6, "text": "107 triple-doubles, 2011 champion with Dallas, led league in assists 5 times" }
     ]
   },
   // Quiz #9 - Presented on: October 14, 2025
@@ -193,12 +247,18 @@ export const quizzes = [
       { "rank": 6, "name": "LeBron James", "stat": "1,492 games", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Celtics center, 'The Chief', 21 seasons" },
-      { "rank": 2, "text": "Played 20 seasons, mostly with Lakers" },
-      { "rank": 3, "text": "Played record 22 seasons, dunking legend" },
-      { "rank": 4, "text": "One-team player, 21 seasons with Mavs" },
-      { "rank": 5, "text": "Jazz legend, never missed playoffs" },
-      { "rank": 6, "text": "Active at 40, still adding to total" }
+      { "rank": 1, "text": "Center from 1976-1997, known for durability and defensive presence" },
+      { "rank": 1, "text": "Record 1,611 games across 21 seasons, 4× champion with Boston, rarely missed games" },
+      { "rank": 2, "text": "Center who played 1969-1989, known for signature unstoppable hook shot" },
+      { "rank": 2, "text": "1,560 games across 20 seasons, 6× MVP, won championships with two franchises" },
+      { "rank": 3, "text": "Guard/forward from 1998-2020, known for athleticism and dunking ability" },
+      { "rank": 3, "text": "Record 22 seasons with 1,541 games, 8× All-Star, played for eight different franchises" },
+      { "rank": 4, "text": "Power forward from 1998-2019, known for shooting touch and one-legged fadeaway" },
+      { "rank": 4, "text": "1,522 games all with Dallas, 2011 champion, 2007 MVP, franchise icon" },
+      { "rank": 5, "text": "Point guard from 1984-2003, known for durability and exceptional assist skills" },
+      { "rank": 5, "text": "1,504 games all with Utah, all-time assists leader, never missed playoffs in 19 seasons" },
+      { "rank": 6, "text": "Forward active since 2003, known for all-around excellence and longevity" },
+      { "rank": 6, "text": "1,492 games and counting at age 40, 4× champion, all-time leading scorer" }
     ]
   },
   // Quiz #10 - Presented on: October 15, 2025
@@ -213,12 +273,18 @@ export const quizzes = [
       { "rank": 6, "name": "Tim Duncan", "stat": "47,368 minutes", "aliases": ["duncan", "tim", "tim duncan", "big fundamental"] }
     ],
     "hints": [
-      { "rank": 1, "text": "20 seasons, mostly with Lakers" },
-      { "rank": 2, "text": "Active player, passed Kareem in 2024" },
-      { "rank": 3, "text": "Iron man, rarely missed games" },
-      { "rank": 4, "text": "21 seasons all with Dallas" },
-      { "rank": 5, "text": "20 seasons, all with Lakers" },
-      { "rank": 6, "text": "19 seasons, all with Spurs" }
+      { "rank": 1, "text": "Center who played 1969-1989, known for signature unstoppable hook shot" },
+      { "rank": 1, "text": "57,446 minutes across 20 seasons, 6× MVP, won championships with two franchises" },
+      { "rank": 2, "text": "Forward active since 2003, known for all-around excellence and longevity" },
+      { "rank": 2, "text": "57,979 minutes and counting, passed Kareem in 2024, 4× champion with three franchises" },
+      { "rank": 3, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 3, "text": "54,852 minutes across 19 seasons with Utah, 2× MVP, rarely missed games" },
+      { "rank": 4, "text": "Power forward from 1998-2019, known for shooting touch and one-legged fadeaway" },
+      { "rank": 4, "text": "51,368 minutes all with Dallas, 2011 champion, 2007 MVP, franchise icon" },
+      { "rank": 5, "text": "Shooting guard from 1996-2016, known for scoring prowess and competitiveness" },
+      { "rank": 5, "text": "48,637 minutes all with Lakers, 5× champion, spent entire 20-season career in purple and gold" },
+      { "rank": 6, "text": "Power forward/center from 1997-2016, known for consistency and fundamentals" },
+      { "rank": 6, "text": "47,368 minutes all with San Antonio, 5× champion, 3× Finals MVP across 19 seasons" }
     ]
   },
   // Quiz #11 - Presented on: October 16, 2025
@@ -233,12 +299,18 @@ export const quizzes = [
       { "rank": 6, "name": "Michael Jordan", "stat": "7,327 FT", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Power forward, drew tons of fouls" },
-      { "rank": 2, "text": "Aggressive offensive rebounder, 3× MVP" },
-      { "rank": 3, "text": "Active player, attacks the basket" },
-      { "rank": 4, "text": "Lakers guard, clutch free throw shooter" },
-      { "rank": 5, "text": "Royals/Bucks legend, all-around great" },
-      { "rank": 6, "text": "Bulls legend, clutch at the line" }
+      { "rank": 1, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 1, "text": "Record 9,787 free throws made, 2× MVP with Utah, drew fouls with physical style" },
+      { "rank": 2, "text": "Center from 1974-1995, known for aggressive rebounding and physicality" },
+      { "rank": 2, "text": "8,531 free throws made, 3× MVP, won championships with two different franchises" },
+      { "rank": 3, "text": "Forward active since 2003, known for all-around excellence and attacking the basket" },
+      { "rank": 3, "text": "8,471 free throws made and counting, 4× champion, draws contact at elite rate" },
+      { "rank": 4, "text": "Shooting guard from 1996-2016, known for scoring prowess and competitiveness" },
+      { "rank": 4, "text": "8,378 free throws made, 5× champion with Lakers, clutch at the line in big moments" },
+      { "rank": 5, "text": "Guard from 1960-1974, known for complete all-around excellence" },
+      { "rank": 5, "text": "7,694 free throws made, 1964 MVP, averaged triple-double for entire season" },
+      { "rank": 6, "text": "Shooting guard from the 1980s-90s, known for elite scoring and competitiveness" },
+      { "rank": 6, "text": "7,327 free throws made, 6× champion, career 83.5% from the line" }
     ]
   },
   // Quiz #12 - Presented on: October 17, 2025
@@ -253,12 +325,18 @@ export const quizzes = [
       { "rank": 6, "name": "Kobe Bryant", "stat": "11,719 FG", "aliases": ["kobe", "black mamba", "kobe bryant", "mamba"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Active player, all-time scoring leader" },
-      { "rank": 2, "text": "Skyhook was unstoppable" },
-      { "rank": 3, "text": "The Mailman always delivered" },
-      { "rank": 4, "text": "Dominant scorer, 100-point game" },
-      { "rank": 5, "text": "Bulls legend, efficient scorer" },
-      { "rank": 6, "text": "Lakers icon, tough shot-maker" }
+      { "rank": 1, "text": "Forward active since 2003, known for all-around excellence and longevity" },
+      { "rank": 1, "text": "Record 15,726 field goals made, all-time leading scorer, 4× champion with three franchises" },
+      { "rank": 2, "text": "Center who played 1969-1989, known for signature unstoppable hook shot" },
+      { "rank": 2, "text": "15,837 field goals made, 6× MVP, signature skyhook was nearly impossible to block" },
+      { "rank": 3, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 3, "text": "13,528 field goals made with Utah, 2× MVP, delivered nightly with pick-and-roll excellence" },
+      { "rank": 4, "text": "Dominant center from 1959-1973, known for overwhelming physical presence and scoring" },
+      { "rank": 4, "text": "12,681 field goals made, scored 100 points in single game, once averaged 50 PPG" },
+      { "rank": 5, "text": "Shooting guard from the 1980s-90s, known for elite scoring and competitiveness" },
+      { "rank": 5, "text": "12,192 field goals made, 6× champion, efficient scorer with 49.7% career shooting" },
+      { "rank": 6, "text": "Shooting guard from 1996-2016, known for scoring prowess and difficult shot-making" },
+      { "rank": 6, "text": "11,719 field goals made with Lakers, 5× champion, master of tough contested shots" }
     ]
   },
   // Quiz #13 - Presented on: October 18, 2025
@@ -273,12 +351,18 @@ export const quizzes = [
       { "rank": 6, "name": "Kobe Bryant", "stat": "4,010 TO", "aliases": ["kobe", "black mamba", "kobe bryant", "mamba"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Active player, high usage rate" },
-      { "rank": 2, "text": "Aggressive point guard, high pace" },
-      { "rank": 3, "text": "18-year career, touched ball often" },
-      { "rank": 4, "text": "Offensive rebounder, tough style" },
-      { "rank": 5, "text": "Jazz legend, high assist rate" },
-      { "rank": 6, "text": "High volume scorer, tough shots" }
+      { "rank": 1, "text": "Forward active since 2003, known for high usage and ball-handling responsibilities" },
+      { "rank": 1, "text": "Record 5,366 turnovers, all-time leading scorer, handles ball more than most forwards" },
+      { "rank": 2, "text": "Point guard active since 2008, known for explosiveness and aggressive style" },
+      { "rank": 2, "text": "4,650 turnovers, 2017 MVP, plays at high pace with high usage rate" },
+      { "rank": 3, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 3, "text": "4,524 turnovers across 19 seasons, 2× MVP, touched ball constantly in pick-and-roll" },
+      { "rank": 4, "text": "Center from 1974-1995, known for aggressive rebounding and physicality" },
+      { "rank": 4, "text": "4,264 turnovers, 3× MVP, offensive rebounding style led to difficult situations" },
+      { "rank": 5, "text": "Point guard from 1984-2003, known for exceptional assist skills and durability" },
+      { "rank": 5, "text": "4,244 turnovers with Utah, all-time assists leader, high assist rate led to turnovers" },
+      { "rank": 6, "text": "Shooting guard from 1996-2016, known for scoring prowess and high volume" },
+      { "rank": 6, "text": "4,010 turnovers with Lakers, 5× champion, created own shots in difficult situations" }
     ]
   },
   // Quiz #14 - Presented on: October 19, 2025
@@ -293,12 +377,18 @@ export const quizzes = [
       { "rank": 6, "name": "Buck Williams", "stat": "4,267 PF", "aliases": ["williams", "buck", "buck williams"] }
     ],
     "hints": [
-      { "rank": 1, "text": "20-year career, lots of games played" },
-      { "rank": 2, "text": "Physical power forward, 19 seasons" },
-      { "rank": 3, "text": "Enforcer center, 21 seasons" },
-      { "rank": 4, "text": "Tough defender, Knicks enforcer" },
-      { "rank": 5, "text": "Defensive anchor, shot blocker" },
-      { "rank": 6, "text": "Physical rebounder, Nets/Blazers" }
+      { "rank": 1, "text": "Center who played 1969-1989, known for longevity and high minutes" },
+      { "rank": 1, "text": "Record 4,657 personal fouls, 6× MVP, played 20 seasons with heavy defensive responsibilities" },
+      { "rank": 2, "text": "Power forward from 1985-2004, known for physical play and durability" },
+      { "rank": 2, "text": "4,578 personal fouls with Utah, 2× MVP, physical style led to high foul totals" },
+      { "rank": 3, "text": "Center from 1976-1997, known for defensive presence and enforcer role" },
+      { "rank": 3, "text": "4,443 personal fouls across 21 seasons, 4× champion with Boston, team's enforcer" },
+      { "rank": 4, "text": "Power forward from 1985-2004, known for toughness and defensive intensity" },
+      { "rank": 4, "text": "4,421 personal fouls, spent prime years with Knicks, physical defensive specialist" },
+      { "rank": 5, "text": "Center from 1984-2002, known for footwork and defensive dominance" },
+      { "rank": 5, "text": "4,383 personal fouls, 2× champion with Houston, 2× Defensive Player of Year" },
+      { "rank": 6, "text": "Power forward from 1981-1998, known for rebounding and physical play" },
+      { "rank": 6, "text": "4,267 personal fouls, played for Nets and Trail Blazers, 3× All-Star" }
     ]
   },
   // Quiz #15 - Presented on: October 20, 2025
@@ -313,12 +403,18 @@ export const quizzes = [
       { "rank": 6, "name": "Chuck Nevitt", "stat": "7'5\"", "aliases": ["nevitt", "chuck", "charles", "chuck nevitt", "charles nevitt"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Romanian center, won MIP 1996" },
-      { "rank": 2, "text": "Sudanese shot blocker, very thin" },
-      { "rank": 3, "text": "Chinese legend, Hall of Famer" },
-      { "rank": 4, "text": "Mavericks center, blocked many shots" },
-      { "rank": 5, "text": "Russian center, played for Mavericks" },
-      { "rank": 6, "text": "Journeyman center, 1980s" }
+      { "rank": 1, "text": "Center from Romania who played 1993-2006, known for exceptional height" },
+      { "rank": 1, "text": "Tied tallest at 7'7\", won Most Improved Player in 1996 with Washington" },
+      { "rank": 2, "text": "Center from Sudan who played 1985-1995, known for shot-blocking and slim build" },
+      { "rank": 2, "text": "Tied tallest at 7'7\", defensive specialist known for finger-wagging after blocks" },
+      { "rank": 3, "text": "Center from China who played 2002-2011, known for skill and basketball IQ" },
+      { "rank": 3, "text": "7'6\" Hall of Famer, 8× All-Star with Houston, global basketball icon" },
+      { "rank": 4, "text": "Center from 1993-2005, known for shot-blocking and rim protection" },
+      { "rank": 4, "text": "7'6\" shot-blocker, spent most of career with Dallas and Philadelphia" },
+      { "rank": 5, "text": "Center from Russia who played 2004-2006, known for limited NBA career" },
+      { "rank": 5, "text": "7'5\" player who appeared in only 6 games with Dallas Mavericks" },
+      { "rank": 6, "text": "Center from 1982-1994, known as journeyman backup" },
+      { "rank": 6, "text": "7'5\" backup center who won three championships with Lakers in 1980s" }
     ]
   },
   // Quiz #16 - Presented on: October 21, 2025
@@ -333,12 +429,18 @@ export const quizzes = [
       { "rank": 6, "name": "Keith Jennings", "stat": "5'7\"", "aliases": ["jennings", "keith", "keith jennings"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Hornets guard, 14-year career" },
-      { "rank": 2, "text": "Journeyman guard, 10 teams" },
-      { "rank": 3, "text": "Played in 1940s for Boston" },
-      { "rank": 4, "text": "Won 1986 Slam Dunk Contest" },
-      { "rank": 5, "text": "Played for 76ers in early 90s" },
-      { "rank": 6, "text": "Warriors guard in early 90s" }
+      { "rank": 1, "text": "Point guard from 1987-2001, known for quickness despite diminutive size" },
+      { "rank": 1, "text": "Shortest ever at 5'3\", spent 10 seasons with Charlotte, 14-year career" },
+      { "rank": 2, "text": "Point guard from 1998-2012, known for scoring ability despite height disadvantage" },
+      { "rank": 2, "text": "5'5\" guard who played for 10 teams, averaged 8.9 PPG despite size" },
+      { "rank": 3, "text": "Guard who played 1946-1948 in early BAA/NBA era" },
+      { "rank": 3, "text": "5'6\" player from basketball's early days, brief career with Boston" },
+      { "rank": 4, "text": "Point guard from 1985-1998, known for athleticism despite small stature" },
+      { "rank": 4, "text": "5'6\" guard who won 1986 Slam Dunk Contest, played mostly with Atlanta" },
+      { "rank": 5, "text": "Point guard from 1989-1996, known for speed and quickness" },
+      { "rank": 5, "text": "5'7\" guard who played for multiple teams including Philadelphia in early 90s" },
+      { "rank": 6, "text": "Point guard from 1992-1995, known for brief NBA career" },
+      { "rank": 6, "text": "5'7\" guard who played limited minutes with Golden State in early 90s" }
     ]
   },
   // Quiz #17 - Presented on: October 22, 2025
@@ -353,12 +455,18 @@ export const quizzes = [
       { "rank": 6, "name": "Wilt Chamberlain", "stat": "860 double-doubles", "aliases": ["wilt", "chamberlain", "wilt chamberlain", "the stilt"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Spurs legend, consistent excellence" },
-      { "rank": 2, "text": "The Mailman, rarely had off nights" },
-      { "rank": 3, "text": "Intense competitor, all-around great" },
-      { "rank": 4, "text": "Dominant center in 2000s-2010s" },
-      { "rank": 5, "text": "Lakers/Heat center, unstoppable" },
-      { "rank": 6, "text": "Statistical monster from 1960s" }
+      { "rank": 1, "text": "Power forward/center from 1997-2016, known for consistency and fundamentals" },
+      { "rank": 1, "text": "Record 841 double-doubles with San Antonio, 5× champion, rarely had off nights" },
+      { "rank": 2, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 2, "text": "814 double-doubles with Utah, 2× MVP, delivered nightly in points and rebounds" },
+      { "rank": 3, "text": "Power forward from 1995-2016, known for intensity and versatility" },
+      { "rank": 3, "text": "742 double-doubles, 2004 MVP with Minnesota, 2008 champion with Boston" },
+      { "rank": 4, "text": "Center from 2004-2022, known for dominant rebounding and athleticism" },
+      { "rank": 4, "text": "703 double-doubles, 3× Defensive Player of Year, led league in rebounds 5 times" },
+      { "rank": 5, "text": "Center from 1992-2011, known for dominant low-post play and physical presence" },
+      { "rank": 5, "text": "727 double-doubles, 4× champion, unstoppable force in points and rebounds" },
+      { "rank": 6, "text": "Dominant center from 1959-1973, known for overwhelming physical presence" },
+      { "rank": 6, "text": "860 double-doubles, averaged 50 PPG and 25 RPG in single season" }
     ]
   },
   // Quiz #18 - Presented on: October 23, 2025
@@ -373,12 +481,18 @@ export const quizzes = [
       { "rank": 6, "name": "Tim Duncan", "stat": "5,172 points", "aliases": ["duncan", "tim", "tim duncan", "big fundamental"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Active player, deep playoff runs" },
-      { "rank": 2, "text": "6 championships, playoff legend" },
-      { "rank": 3, "text": "18 playoff appearances" },
-      { "rank": 4, "text": "5 championships with Lakers" },
-      { "rank": 5, "text": "Dominant in 3-peat years" },
-      { "rank": 6, "text": "5 championships, Mr. Consistent" }
+      { "rank": 1, "text": "Forward active since 2003, known for deep playoff runs and postseason excellence" },
+      { "rank": 1, "text": "Record 8,162 playoff points, 10 Finals appearances, 4× champion with three franchises" },
+      { "rank": 2, "text": "Shooting guard from the 1980s-90s, known for playoff dominance" },
+      { "rank": 2, "text": "5,987 playoff points, perfect 6-0 in Finals, 6× Finals MVP" },
+      { "rank": 3, "text": "Center who played 1969-1989, known for sustained playoff success" },
+      { "rank": 3, "text": "5,762 playoff points across 18 postseasons, 6× champion with two franchises" },
+      { "rank": 4, "text": "Shooting guard from 1996-2016, known for playoff scoring and clutch performances" },
+      { "rank": 4, "text": "5,640 playoff points with Lakers, 5× champion, 2× Finals MVP" },
+      { "rank": 5, "text": "Center from 1992-2011, known for dominant playoff performances" },
+      { "rank": 5, "text": "5,250 playoff points, 4× champion, unstoppable during Lakers three-peat" },
+      { "rank": 6, "text": "Power forward/center from 1997-2016, known for consistent playoff excellence" },
+      { "rank": 6, "text": "5,172 playoff points with San Antonio, 5× champion, steady production every postseason" }
     ]
   },
   // Quiz #19 - Presented on: October 24, 2025
@@ -393,12 +507,18 @@ export const quizzes = [
       { "rank": 6, "name": "Tony Parker", "stat": "1,143 assists", "aliases": ["parker", "tony", "tony parker"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Active player, elite playoff passer" },
-      { "rank": 2, "text": "Showtime Lakers, 5 championships" },
-      { "rank": 3, "text": "Jazz legend, great playoff runs" },
-      { "rank": 4, "text": "Nets/Mavericks, NBA champion 2011" },
-      { "rank": 5, "text": "Active player, elite floor general" },
-      { "rank": 6, "text": "Spurs point guard, 4 championships" }
+      { "rank": 1, "text": "Forward active since 2003, known for playmaking and court vision" },
+      { "rank": 1, "text": "2,253 playoff assists, 10 Finals appearances, elite facilitator for championship teams" },
+      { "rank": 2, "text": "Point guard from 1979-1996, known for passing and showmanship" },
+      { "rank": 2, "text": "2,346 playoff assists, 5× champion with Lakers, ran Showtime offense to perfection" },
+      { "rank": 3, "text": "Point guard from 1984-2003, known for exceptional assist skills and durability" },
+      { "rank": 3, "text": "1,839 playoff assists with Utah, made deep playoff runs with Jazz in late 90s" },
+      { "rank": 4, "text": "Point guard from 1994-2013, known for court vision and leadership" },
+      { "rank": 4, "text": "1,263 playoff assists, 2011 champion with Dallas, led Mavericks to title" },
+      { "rank": 5, "text": "Point guard active since 2005, known for elite playmaking and floor control" },
+      { "rank": 5, "text": "1,207 playoff assists, made deep runs with multiple franchises, elite facilitator" },
+      { "rank": 6, "text": "Point guard from 2001-2018, known for speed and pick-and-roll mastery" },
+      { "rank": 6, "text": "1,143 playoff assists with San Antonio, 4× champion, ran Spurs offense" }
     ]
   },
   // Quiz #20 - Presented on: October 25, 2025
@@ -413,12 +533,18 @@ export const quizzes = [
       { "rank": 6, "name": "LeBron James", "stat": "2,542 rebounds", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] }
     ],
     "hints": [
-      { "rank": 1, "text": "11 championships, defensive master" },
-      { "rank": 2, "text": "Dominant rebounder in playoffs" },
-      { "rank": 3, "text": "Spurs legend, consistent glass work" },
-      { "rank": 4, "text": "18 playoff appearances" },
-      { "rank": 5, "text": "Dominant center, 4 championships" },
-      { "rank": 6, "text": "Active player, all-around great" }
+      { "rank": 1, "text": "Defensive center from the 1950s-60s, known for championships and leadership" },
+      { "rank": 1, "text": "Record 4,104 playoff rebounds, 11× champion with Boston, defensive anchor" },
+      { "rank": 2, "text": "Dominant center from 1959-1973, known for overwhelming physical presence" },
+      { "rank": 2, "text": "3,913 playoff rebounds, averaged over 24 RPG in playoffs, dominant on glass" },
+      { "rank": 3, "text": "Power forward/center from 1997-2016, known for consistency and fundamentals" },
+      { "rank": 3, "text": "2,859 playoff rebounds with San Antonio, 5× champion, steady production every postseason" },
+      { "rank": 4, "text": "Center who played 1969-1989, known for sustained playoff success" },
+      { "rank": 4, "text": "2,481 playoff rebounds across 18 postseasons, 6× champion with two franchises" },
+      { "rank": 5, "text": "Center from 1992-2011, known for dominant low-post play and physical presence" },
+      { "rank": 5, "text": "2,508 playoff rebounds, 4× champion, controlled paint during championship runs" },
+      { "rank": 6, "text": "Forward active since 2003, known for all-around excellence and versatility" },
+      { "rank": 6, "text": "2,542 playoff rebounds, 10 Finals appearances, elite rebounder for his position" }
     ]
   },
   // Quiz #21 - Presented on: October 26, 2025
@@ -433,12 +559,18 @@ export const quizzes = [
       { "rank": 6, "name": "Magic Johnson", "stat": "25 years old", "aliases": ["magic", "johnson", "earvin", "magic johnson"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Bulls guard, 2011 MVP" },
-      { "rank": 2, "text": "Bullets center, 1969 MVP as rookie" },
-      { "rank": 3, "text": "Dominant center, 1960 MVP" },
-      { "rank": 4, "text": "Cavs forward, 2009 MVP" },
-      { "rank": 5, "text": "Thunder forward, 2014 MVP" },
-      { "rank": 6, "text": "Lakers guard, 1987 MVP" }
+      { "rank": 1, "text": "Point guard from 2008-present, known for explosiveness and athleticism" },
+      { "rank": 1, "text": "Youngest MVP ever at 22 years old in 2011, led Bulls to best record in NBA" },
+      { "rank": 2, "text": "Center from 1968-1981, known for physical rebounding and toughness" },
+      { "rank": 2, "text": "Won MVP at 23 years old in rookie season 1969, unique achievement with Baltimore" },
+      { "rank": 3, "text": "Dominant center from 1959-1973, known for overwhelming physical presence" },
+      { "rank": 3, "text": "Won MVP at 23 years old in 1960, averaged 37.6 PPG in sophomore season" },
+      { "rank": 4, "text": "Forward active since 2003, known for all-around excellence and basketball IQ" },
+      { "rank": 4, "text": "Won first MVP at 24 years old in 2009, led Cavaliers to best record in NBA" },
+      { "rank": 5, "text": "Forward active since 2007, known for elite scoring and shooting versatility" },
+      { "rank": 5, "text": "Won MVP at 25 years old in 2014, averaged 32 PPG with Oklahoma City" },
+      { "rank": 6, "text": "Point guard from 1979-1996, known for passing and showmanship" },
+      { "rank": 6, "text": "Won first MVP at 25 years old in 1987, led Lakers to championship" }
     ]
   },
   // Quiz #22 - Presented on: October 27, 2025
@@ -453,12 +585,18 @@ export const quizzes = [
       { "rank": 6, "name": "Karl Malone", "stat": "40 years old", "aliases": ["malone", "mailman", "karl", "the mailman", "karl malone"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Player-coach in 1940s" },
-      { "rank": 2, "text": "Won with Bulls in 1997" },
-      { "rank": 3, "text": "Won with Lakers in 1988" },
-      { "rank": 4, "text": "Won with Spurs in 2014" },
-      { "rank": 5, "text": "Won with Spurs in 2014" },
-      { "rank": 6, "text": "Never won but played until 40" }
+      { "rank": 1, "text": "Player-coach from 1920s-40s, known for early basketball career" },
+      { "rank": 1, "text": "Won championship at 45 years old as player-coach in BAA in 1948" },
+      { "rank": 2, "text": "Center from 1976-1997, known for durability and defensive presence" },
+      { "rank": 2, "text": "Won championship at 43 years old with Chicago Bulls in 1997" },
+      { "rank": 3, "text": "Center who played 1969-1989, known for signature unstoppable hook shot" },
+      { "rank": 3, "text": "Won final championship at 42 years old with Lakers in 1988" },
+      { "rank": 4, "text": "Guard from 2002-2018, known for craftiness and European style" },
+      { "rank": 4, "text": "Won final championship at 40 years old with San Antonio in 2014" },
+      { "rank": 5, "text": "Power forward/center from 1997-2016, known for consistency and fundamentals" },
+      { "rank": 5, "text": "Won final championship at 40 years old with San Antonio in 2014" },
+      { "rank": 6, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 6, "text": "Never won championship despite playing until 40, came closest with Lakers in 2004" }
     ]
   },
   // Quiz #23 - Presented on: October 28, 2025
@@ -473,12 +611,18 @@ export const quizzes = [
       { "rank": 6, "name": "LeBron James", "stat": "14 games", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Once scored 100 in a game" },
-      { "rank": 2, "text": "Bulls legend, many scoring titles" },
-      { "rank": 3, "text": "Had 81-point game in 2006" },
-      { "rank": 4, "text": "Rockets/76ers scorer, step-back master" },
-      { "rank": 5, "text": "Lakers forward, prolific scorer" },
-      { "rank": 6, "text": "Active player, all-time leading scorer" }
+      { "rank": 1, "text": "Dominant center from 1959-1973, known for overwhelming scoring dominance" },
+      { "rank": 1, "text": "Record 118 games with 50+ points, once scored 100 in single game" },
+      { "rank": 2, "text": "Shooting guard from the 1980s-90s, known for elite scoring and competitiveness" },
+      { "rank": 2, "text": "31 games with 50+ points, 10× scoring champion, playoff scoring legend" },
+      { "rank": 3, "text": "Shooting guard from 1996-2016, known for scoring prowess and shot-making" },
+      { "rank": 3, "text": "25 games with 50+ points, scored 81 points in 2006, fearless scorer" },
+      { "rank": 4, "text": "Guard active since 2009, known for signature step-back three-pointer" },
+      { "rank": 4, "text": "23 games with 50+ points, 2018 MVP with Houston, led league in scoring 3 times" },
+      { "rank": 5, "text": "Small forward from 1958-1971, known for athleticism and scoring ability" },
+      { "rank": 5, "text": "17 games with 50+ points, 11× All-Star with Lakers, career 27.4 PPG" },
+      { "rank": 6, "text": "Forward active since 2003, known for all-around excellence and longevity" },
+      { "rank": 6, "text": "14 games with 50+ points, all-time leading scorer, more known for consistency" }
     ]
   },
   // Quiz #24 - Presented on: October 29, 2025
@@ -493,12 +637,18 @@ export const quizzes = [
       { "rank": 6, "name": "John Kerr", "stat": "844 games", "aliases": ["kerr", "john", "john kerr"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Lakers/Suns forward, ironman" },
-      { "rank": 2, "text": "Braves/Clippers guard, 1970s-80s" },
-      { "rank": 3, "text": "Syracuse center, 1950s-60s" },
-      { "rank": 4, "text": "Nets/Blazers forward, tough" },
-      { "rank": 5, "text": "Nationals forward, Hall of Famer" },
-      { "rank": 6, "text": "Syracuse forward, 1950s-60s" }
+      { "rank": 1, "text": "Power forward from 1985-2001, known for exceptional durability" },
+      { "rank": 1, "text": "Record 1,192 consecutive games, won 3 championships with Lakers, true ironman" },
+      { "rank": 2, "text": "Guard from 1971-1983, known for reliability and consistent availability" },
+      { "rank": 2, "text": "906 consecutive games, played for Buffalo Braves and Clippers, never missed games" },
+      { "rank": 3, "text": "Center from 1954-1966, known for durability in early NBA era" },
+      { "rank": 3, "text": "844 consecutive games with Syracuse Nationals, later became NBA broadcaster" },
+      { "rank": 4, "text": "Power forward from 1981-1998, known for rebounding and physical play" },
+      { "rank": 4, "text": "842 consecutive games, 3× All-Star, played for Nets and Trail Blazers" },
+      { "rank": 5, "text": "Forward from 1948-1964, known as one of early NBA's great players" },
+      { "rank": 5, "text": "706 consecutive games, Hall of Famer with Syracuse Nationals, 12× All-Star" },
+      { "rank": 6, "text": "Forward from 1954-1966, known for durability in early NBA era" },
+      { "rank": 6, "text": "844 consecutive games, same as Johnny Kerr, played in 1950s-60s" }
     ]
   },
   // Quiz #25 - Presented on: October 30, 2025
@@ -513,12 +663,18 @@ export const quizzes = [
       { "rank": 6, "name": "Michael Jordan", "stat": "37.1 PPG", "aliases": ["mj", "jordan", "goat", "mike", "michael", "michael jordan"] }
     ],
     "hints": [
-      { "rank": 1, "text": "1961-62 season, legendary" },
-      { "rank": 2, "text": "1962-63 season, still dominant" },
-      { "rank": 3, "text": "1960-61 season, rookie year" },
-      { "rank": 4, "text": "1961-62 season, Lakers forward" },
-      { "rank": 5, "text": "1959-60 season, first year" },
-      { "rank": 6, "text": "1986-87 season, Bulls legend" }
+      { "rank": 1, "text": "Dominant center from 1959-1973, known for overwhelming scoring dominance" },
+      { "rank": 1, "text": "Record 50.4 PPG in 1961-62 season, also averaged 25.7 RPG that year" },
+      { "rank": 2, "text": "Dominant center from 1959-1973, known for overwhelming scoring dominance" },
+      { "rank": 2, "text": "44.8 PPG in 1962-63 season, second-highest single season average ever" },
+      { "rank": 3, "text": "Dominant center from 1959-1973, known for overwhelming scoring dominance" },
+      { "rank": 3, "text": "38.4 PPG in 1960-61 season, his rookie year with Philadelphia" },
+      { "rank": 4, "text": "Small forward from 1958-1971, known for athleticism and scoring ability" },
+      { "rank": 4, "text": "38.3 PPG in 1961-62 season with Lakers, nearly matched contemporary's scoring" },
+      { "rank": 5, "text": "Dominant center from 1959-1973, known for overwhelming scoring dominance" },
+      { "rank": 5, "text": "37.6 PPG in 1959-60 season, his first year in the NBA" },
+      { "rank": 6, "text": "Shooting guard from the 1980s-90s, known for elite scoring and competitiveness" },
+      { "rank": 6, "text": "37.1 PPG in 1986-87 season with Chicago, highest average in modern era" }
     ]
   },
   // Quiz #26 - Presented on: October 31, 2025
@@ -533,12 +689,18 @@ export const quizzes = [
       { "rank": 6, "name": "Elgin Baylor", "stat": "378 games", "aliases": ["baylor", "elgin", "elgin baylor"] }
     ],
     "hints": [
-      { "rank": 1, "text": "Dominant scorer from 1960s" },
-      { "rank": 2, "text": "Bulls legend, 10 scoring titles" },
-      { "rank": 3, "text": "Active player, consistent scorer" },
-      { "rank": 4, "text": "Lakers icon, volume scorer" },
-      { "rank": 5, "text": "The Mailman delivered nightly" },
-      { "rank": 6, "text": "Lakers forward, prolific scorer" }
+      { "rank": 1, "text": "Dominant center from 1959-1973, known for overwhelming scoring dominance" },
+      { "rank": 1, "text": "562 games with 30+ points, once averaged 50 PPG for entire season" },
+      { "rank": 2, "text": "Shooting guard from the 1980s-90s, known for elite scoring and competitiveness" },
+      { "rank": 2, "text": "562 games with 30+ points, 10× scoring champion, tied for most 30-point games" },
+      { "rank": 3, "text": "Forward active since 2003, known for consistent scoring and longevity" },
+      { "rank": 3, "text": "578 games with 30+ points, all-time leading scorer, remarkably consistent" },
+      { "rank": 4, "text": "Shooting guard from 1996-2016, known for scoring prowess and volume shooting" },
+      { "rank": 4, "text": "431 games with 30+ points with Lakers, 5× champion, scored 81 points in game" },
+      { "rank": 5, "text": "Power forward from 1985-2004, known for durability and consistent production" },
+      { "rank": 5, "text": "395 games with 30+ points with Utah, 2× MVP, delivered nightly" },
+      { "rank": 6, "text": "Small forward from 1958-1971, known for athleticism and scoring ability" },
+      { "rank": 6, "text": "378 games with 30+ points, 11× All-Star with Lakers, career 27.4 PPG" }
     ]
   }
 ];
