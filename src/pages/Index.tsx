@@ -92,7 +92,7 @@ const Index = () => {
           {/* Half Circle - Full width with deeper curve for mobile */}
           <path
             d="M 0 0 L 400 0 L 400 250 A 200 200 0 0 1 0 250 Z"
-            fill="hsl(236, 100%, 57%)"
+            fill="hsl(215, 100%, 50%)"
           />
         </svg>
 
@@ -108,7 +108,7 @@ const Index = () => {
           {/* Half Circle - Rectangle on top with semicircle on bottom */}
           <path
             d="M 350 0 L 1050 0 L 1050 350 A 350 350 0 0 1 350 350 Z"
-            fill="hsl(236, 100%, 57%)"
+            fill="hsl(215, 100%, 50%)"
           />
         </svg>
       </div>

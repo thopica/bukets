@@ -31,9 +31,9 @@ All colors MUST be HSL.
   --popover-foreground: 222 47% 11%;
 
   /* Primary - Bold Blue (UNCHANGED) */
-  --primary: 236 100% 57%; /* #2431FF Bold blue */
+  --primary: 215 100% 50%; /* #0164FF Bold blue */
   --primary-foreground: 0 0% 100%; /* White text */
-  --primary-hover: 236 100% 52%; /* Darker blue on hover */
+  --primary-hover: 215 100% 45%; /* Darker blue on hover */
 
   /* Text colors */
   --text-primary: 222 47% 11%; /* #111827 Primary text */
@@ -48,7 +48,7 @@ All colors MUST be HSL.
 
   /* Badge */
   --badge-lavender: 40 15% 97%; /* Warm off-white badge background */
-  --badge-text: 236 100% 57%; /* Primary blue text */
+  --badge-text: 215 100% 50%; /* Primary blue text */
 
   /* Progress */
   --progress-track: 30 8% 90%;
@@ -79,7 +79,7 @@ All colors MUST be HSL.
   --destructive-foreground: 0 0% 100%;
 
   --input: 30 8% 90%;
-  --ring: 236 100% 57%; /* Primary blue for focus */
+  --ring: 215 100% 50%; /* Primary blue for focus */
 
   /* Border Radius */
   --radius-button: 12px;
@@ -97,7 +97,7 @@ All colors MUST be HSL.
   --transition-hover: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Gradients */
-  --gradient-cta: linear-gradient(135deg, hsl(236, 100%, 57%) 0%, hsl(236, 100%, 52%) 100%);
+  --gradient-cta: linear-gradient(135deg, hsl(215, 100%, 50%) 0%, hsl(215, 100%, 45%) 100%);
   --gradient-success: linear-gradient(135deg, hsl(158, 64%, 42%) 0%, hsl(158, 64%, 37%) 100%);
   --gradient-orange: linear-gradient(135deg, hsl(24, 95%, 57%) 0%, hsl(24, 95%, 52%) 100%);
 }
@@ -119,9 +119,9 @@ All colors MUST be HSL.
   --popover-foreground: 0 0% 98%;
 
   /* Primary - Slightly brighter for dark mode */
-  --primary: 236 100% 62%; /* #4D58FF Brighter blue */
+  --primary: 215 100% 55%; /* #0164FF Brighter blue */
   --primary-foreground: 0 0% 100%;
-  --primary-hover: 236 100% 57%;
+  --primary-hover: 215 100% 50%;
 
   /* Text colors */
   --text-primary: 0 0% 98%; /* #FAFAFA */
@@ -136,7 +136,7 @@ All colors MUST be HSL.
 
   /* Badge */
   --badge-lavender: 220 22% 20%; /* #2A3241 */
-  --badge-text: 236 100% 65%; /* Bright blue for dark */
+  --badge-text: 215 100% 60%; /* Bright blue for dark */
 
   /* Progress */
   --progress-track: 220 20% 25%;
@@ -167,7 +167,7 @@ All colors MUST be HSL.
   --destructive-foreground: 0 0% 100%;
 
   --input: 220 20% 25%;
-  --ring: 236 100% 62%;
+  --ring: 215 100% 55%;
 
   /* Shadows - Deeper for dark mode */
   --shadow-resting: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -176,7 +176,7 @@ All colors MUST be HSL.
   --shadow-pressed: 0 1px 2px rgba(0, 0, 0, 0.3);
 
   /* Gradients - Updated for dark mode */
-  --gradient-cta: linear-gradient(135deg, hsl(236, 100%, 62%) 0%, hsl(236, 100%, 57%) 100%);
+  --gradient-cta: linear-gradient(135deg, hsl(215, 100%, 55%) 0%, hsl(215, 100%, 50%) 100%);
   --gradient-success: linear-gradient(135deg, hsl(158, 64%, 48%) 0%, hsl(158, 64%, 43%) 100%);
   --gradient-orange: linear-gradient(135deg, hsl(24, 95%, 60%) 0%, hsl(24, 95%, 55%) 100%);
 
