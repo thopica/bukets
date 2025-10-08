@@ -1,7 +1,4 @@
-import { differenceInDays } from 'date-fns';
-import quizMetadata from '@/data/nba_quiz_metadata.json';
-
-const START_DATE = new Date('2025-10-02'); // October 2, 2025
+import { supabase } from '@/integrations/supabase/client';
 
 export interface QuizHint {
   rank: number;
@@ -10,43 +7,83 @@ export interface QuizHint {
 
 export interface Quiz {
   title: string;
-  description: string;
   hints: QuizHint[];
 }
 
-export const getTodaysQuizIndex = (): number => {
-  const today = new Date();
-  const daysPassed = differenceInDays(today, START_DATE);
-  
-  // Cycle through the quizzes
-  const quizIndex = daysPassed % quizMetadata.quizzes.length;
-  
-  // Ensure we always return a valid index
-  return quizIndex >= 0 ? quizIndex : 0;
+export interface QuizMetadataResponse {
+  index: number;
+  totalQuizzes: number;
+  quiz: Quiz;
+  date: string;
+}
+
+/**
+ * Fetches today's quiz metadata from the backend API
+ * Implements caching to avoid unnecessary API calls
+ */
+export const fetchTodaysQuiz = async (): Promise<QuizMetadataResponse> => {
+  const today = new Date().toISOString().split('T')[0];
+  const cacheKey = `quiz-metadata-${today}`;
+
+  // Check cache first
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    try {
+      return JSON.parse(cached);
+    } catch (e) {
+      // Invalid cache, proceed to fetch
+      localStorage.removeItem(cacheKey);
+    }
+  }
+
+  // Fetch from API
+  const { data, error } = await supabase.functions.invoke('get-quiz-metadata');
+
+  if (error) {
+    throw new Error(`Failed to fetch quiz metadata: ${error.message}`);
+  }
+
+  if (!data) {
+    throw new Error('No quiz data returned from API');
+  }
+
+  // Cache the result
+  localStorage.setItem(cacheKey, JSON.stringify(data));
+
+  return data as QuizMetadataResponse;
 };
 
-export const getTodaysQuiz = (): Quiz => {
-  const index = getTodaysQuizIndex();
-  return quizMetadata.quizzes[index] as Quiz;
-};
-
-export const getQuizByIndex = (index: number): Quiz => {
-  const safeIndex = Math.max(0, Math.min(index, quizMetadata.quizzes.length - 1));
-  return quizMetadata.quizzes[safeIndex] as Quiz;
-};
-
-export const getTotalQuizzes = (): number => {
-  return quizMetadata.quizzes.length;
-};
-
-export const getQuizDate = (): string => {
-  return new Date().toLocaleDateString('en-US', { 
-    month: 'long', 
-    day: 'numeric', 
-    year: 'numeric' 
+/**
+ * Fetches a specific quiz by index
+ */
+export const fetchQuizByIndex = async (index: number): Promise<QuizMetadataResponse> => {
+  const { data, error } = await supabase.functions.invoke('get-quiz-metadata', {
+    body: { index }
   });
+
+  if (error) {
+    throw new Error(`Failed to fetch quiz metadata: ${error.message}`);
+  }
+
+  if (!data) {
+    throw new Error('No quiz data returned from API');
+  }
+
+  return data as QuizMetadataResponse;
 };
 
+/**
+ * Returns current date in ISO format (YYYY-MM-DD)
+ */
 export const getQuizDateISO = (): string => {
   return new Date().toISOString().split('T')[0];
+};
+
+/**
+ * Returns today's quiz index (for backward compatibility)
+ * Note: This is now mainly used for database operations
+ */
+export const getTodaysQuizIndex = async (): Promise<number> => {
+  const metadata = await fetchTodaysQuiz();
+  return metadata.index;
 };

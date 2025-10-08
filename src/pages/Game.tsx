@@ -8,7 +8,7 @@ import HintBar from "@/components/quiz/HintBar";
 
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { getTodaysQuiz, getQuizDate, getQuizDateISO, getTodaysQuizIndex, type Quiz } from "@/utils/quizDate";
+import { fetchTodaysQuiz, getQuizDateISO, type Quiz, type QuizMetadataResponse } from "@/utils/quizDate";
 import type { User } from "@supabase/supabase-js";
 import { useGameScore } from "@/hooks/useGameScore";
 import { toast } from "sonner";
@@ -76,11 +76,9 @@ const Index = () => {
     };
   }, []);
 
-  // Get today's quiz metadata (no answers)
-  const QUIZ_DATA: Quiz & { date: string } = {
-    ...getTodaysQuiz(),
-    date: getQuizDate()
-  };
+  // Quiz metadata state
+  const [quizData, setQuizData] = useState<QuizMetadataResponse | null>(null);
+  const [quizIndex, setQuizIndex] = useState<number>(0);
 
   // State management for quiz game
   const [userAnswers, setUserAnswers] = useState<Array<{ rank: number; playerName?: string; isCorrect?: boolean; isRevealed?: boolean; stat?: string }>>([
@@ -118,8 +116,26 @@ const Index = () => {
   const maxHints = 2;
   const totalQuizTime = 160; // 2:40 minutes in seconds
 
+  // Fetch quiz metadata on mount
+  useEffect(() => {
+    const loadQuiz = async () => {
+      try {
+        const metadata = await fetchTodaysQuiz();
+        setQuizData(metadata);
+        setQuizIndex(metadata.index);
+      } catch (error) {
+        console.error('Failed to load quiz:', error);
+        toast.error('Failed to load quiz. Please refresh the page.');
+      }
+    };
+
+    loadQuiz();
+  }, []);
+
   // Check authentication state and quiz completion
   useEffect(() => {
+    if (!quizData) return; // Wait for quiz data to load
+
     const checkAccess = async () => {
       setIsCheckingCompletion(true);
       
@@ -138,9 +154,9 @@ const Index = () => {
       try {
         const today = getQuizDateISO();
         const { data: sessionData, error: sessionError } = await supabase.functions.invoke('start-quiz-session', {
-          body: { 
+          body: {
             quiz_date: today,
-            quiz_index: getTodaysQuizIndex()
+            quiz_index: quizIndex
           }
         });
 
@@ -174,7 +190,7 @@ const Index = () => {
               hints_used: hintsUsed,
               time_used: 160,
               quiz_date: today,
-              quiz_index: getTodaysQuizIndex()
+              quiz_index: quizIndex
             }
           });
           return;
@@ -253,7 +269,7 @@ const Index = () => {
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, quizData, quizIndex]);
 
   // Initialize answer timings for all ranks
   useEffect(() => {
@@ -305,7 +321,7 @@ const Index = () => {
               hints_used: totalHintsUsed,
               time_used: 160,
               quiz_date: getQuizDateISO(),
-              quiz_index: getTodaysQuizIndex()
+              quiz_index: quizIndex
             }
           });
           return 0;
@@ -398,7 +414,7 @@ const Index = () => {
                 hints_used: totalHintsUsed,
                 time_used: 160 - overallTimeRemaining,
                 quiz_date: getQuizDateISO(),
-                quiz_index: getTodaysQuizIndex()
+                quiz_index: quizIndex
               }
             });
             return;
@@ -550,7 +566,7 @@ const Index = () => {
             hints_used: finalTotalHints,
             time_used: 160 - overallTimeRemaining,
             quiz_date: getQuizDateISO(),
-            quiz_index: getTodaysQuizIndex()
+            quiz_index: quizIndex
           }
         });
       }
@@ -564,11 +580,11 @@ const Index = () => {
   };
 
   const handleRequestHint = () => {
-    if (hintsUsed >= maxHints) return;
-    
+    if (hintsUsed >= maxHints || !quizData) return;
+
     const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect && !a.isRevealed);
     if (unansweredIndex !== -1) {
-      const hint = QUIZ_DATA.hints[unansweredIndex];
+      const hint = quizData.quiz.hints[unansweredIndex];
       const parts = (hint?.text || '').split(',').map((p) => p.trim()).filter(Boolean);
       const nextIndex = hintsUsed === 0 ? 0 : 1; // 0 for first hint, 1 for second
       const partToShow = parts[nextIndex] || parts[0] || hint?.text || '';
@@ -586,8 +602,8 @@ const Index = () => {
 
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
 
-  // Show loading spinner while checking completion
-  if (isCheckingCompletion) {
+  // Show loading spinner while checking completion or loading quiz
+  if (isCheckingCompletion || !quizData) {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -613,9 +629,9 @@ const Index = () => {
             {/* Question Header */}
             <div className="shrink-0">
               <QuizHeader
-                title={QUIZ_DATA.title}
-                description={QUIZ_DATA.description}
-                date={QUIZ_DATA.date}
+                title={quizData.quiz.title}
+                description=""
+                date={quizData.date}
                 timeRemaining={overallTimeRemaining}
                 totalTime={totalQuizTime}
                 playerTimeRemaining={timeRemaining}
@@ -671,9 +687,9 @@ const Index = () => {
           {/* Question Header */}
           <div className="shrink-0">
             <QuizHeader
-              title={QUIZ_DATA.title}
-              description={QUIZ_DATA.description}
-              date={QUIZ_DATA.date}
+              title={quizData.quiz.title}
+              description=""
+              date={quizData.date}
               timeRemaining={overallTimeRemaining}
               totalTime={totalQuizTime}
               playerTimeRemaining={timeRemaining}
