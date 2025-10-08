@@ -54,9 +54,9 @@ const QuizHeader = ({
   const showTimers = totalTime > 0;
 
   return (
-    <div className="rounded-xl md:rounded-2xl p-4 md:p-6 space-y-3 md:space-y-4 relative bg-primary shadow-[0_4px_12px_rgba(0,0,0,0.12)] overflow-hidden">
+    <div className="rounded-xl md:rounded-2xl p-2.5 md:p-6 space-y-2 md:space-y-4 relative bg-primary shadow-[0_4px_12px_rgba(0,0,0,0.12)] overflow-hidden">
       {/* Progress Pill - Top Right Corner */}
-      <div className="absolute top-3 right-3 md:top-4 md:right-4">
+      <div className="absolute top-2 right-2 md:top-4 md:right-4">
         <div className="inline-flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
           <span className="text-sm font-semibold text-white">
             {correctCount}/{totalCount}
@@ -65,7 +65,7 @@ const QuizHeader = ({
       </div>
 
       {/* Mobile Layout */}
-      <div className="md:hidden space-y-3">
+      <div className="md:hidden space-y-1.5">
         {/* Shot Clock - Centered */}
         {showTimers && (
           <div className="flex justify-center">
@@ -91,8 +91,8 @@ const QuizHeader = ({
         )}
 
         {/* Title */}
-        <div className="text-center px-2">
-          <h1 className="text-[23px] font-bold text-white leading-tight">
+        <div className="text-center px-1">
+          <h1 className="text-[20px] font-bold text-white leading-tight">
             {title}
           </h1>
         </div>
