@@ -54,30 +54,30 @@ const QuizHeader = ({
   const showTimers = totalTime > 0;
 
   return (
-    <div className="rounded-xl md:rounded-2xl p-2.5 md:p-6 space-y-2 md:space-y-4 relative bg-primary shadow-[0_4px_12px_rgba(0,0,0,0.12)] overflow-hidden">
+    <div className="rounded-xl md:rounded-2xl p-2 md:p-6 space-y-1.5 md:space-y-4 relative bg-primary shadow-[0_4px_12px_rgba(0,0,0,0.12)] overflow-hidden">
       {/* Progress Pill - Top Right Corner */}
-      <div className="absolute top-2 right-2 md:top-4 md:right-4">
-        <div className="inline-flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
-          <span className="text-sm font-semibold text-white">
+      <div className="absolute top-1.5 right-1.5 md:top-4 md:right-4">
+        <div className="inline-flex items-center gap-1 md:gap-2 px-1.5 md:px-3 py-0.5 md:py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
+          <span className="text-xs md:text-sm font-semibold text-white">
             {correctCount}/{totalCount}
           </span>
         </div>
       </div>
 
       {/* Mobile Layout */}
-      <div className="md:hidden space-y-1.5">
+      <div className="md:hidden space-y-1">
         {/* Shot Clock - Centered */}
         {showTimers && (
           <div className="flex justify-center">
-            <div className="relative w-7 h-7 bg-black rounded-sm border border-white shadow-lg flex items-center justify-center"
+            <div className="relative w-6 h-6 bg-black rounded-sm border border-white shadow-lg flex items-center justify-center"
               style={{
                 backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)',
                 backgroundSize: '3px 3px'
               }}
             >
               <div className="absolute inset-0.5 border border-white-700 rounded-sm pointer-events-none"></div>
-              <div 
-                className={`font-shot-clock text-lg font-normal tracking-[0.05em] leading-none ${
+              <div
+                className={`font-shot-clock text-base font-normal tracking-[0.05em] leading-none ${
                   isPlayerUrgent ? "text-red-500 animate-pulse" : "text-red-500"
                 }`}
                 style={{
@@ -91,8 +91,8 @@ const QuizHeader = ({
         )}
 
         {/* Title */}
-        <div className="text-center px-1">
-          <h1 className="text-[20px] font-bold text-white leading-tight">
+        <div className="text-center px-0">
+          <h1 className="text-[17px] font-bold text-white leading-tight">
             {title}
           </h1>
         </div>

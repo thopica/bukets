@@ -607,8 +607,8 @@ const Index = () => {
         </div>
         
         {/* Scrollable Content Area - Mobile */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch overscroll-none pb-[180px]">
-          <div className="container max-w-2xl mx-auto px-2 py-0.5 flex flex-col gap-1">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto webkit-overflow-scrolling-touch overscroll-none pb-[140px]">
+          <div className="container max-w-2xl mx-auto px-2 py-0 flex flex-col gap-0.5">
 
             {/* Question Header */}
             <div className="shrink-0">
