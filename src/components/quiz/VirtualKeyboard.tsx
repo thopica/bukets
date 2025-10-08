@@ -290,16 +290,16 @@ const VirtualKeyboard = ({
         </div>
       )}
 
-      <div 
-        className={`w-full bg-card/50 backdrop-blur-sm pt-4 ${
+      <div
+        className={`w-full bg-card/50 backdrop-blur-sm pt-1 ${
           isMobile ? 'fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]' : ''
         }`}
         style={isMobile ? {
-          paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))'
+          paddingBottom: 'max(0.25rem, env(safe-area-inset-bottom))'
         } : undefined}
       >
       {/* Input Display */}
-      <div className="px-2 pb-1">
+      <div className="px-2 pb-0.5">
         <div 
           onClick={() => setIsFocused(true)}
           className={`bg-background border-2 rounded-lg h-[45px] text-base text-foreground transition-all cursor-text flex items-center justify-between overflow-hidden ${
@@ -335,7 +335,7 @@ const VirtualKeyboard = ({
       </div>
 
       {/* Keyboard */}
-      <div className="px-1 pb-2 space-y-1">
+      <div className="px-1 pb-0.5 space-y-1">
         {/* Row 1 */}
         <div className="flex justify-center gap-1">
           {rows[0].map((key) => (

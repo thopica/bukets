@@ -92,7 +92,7 @@ const QuizHeader = ({
 
         {/* Title */}
         <div className="text-center px-0">
-          <h1 className="text-[17px] font-bold text-white leading-tight">
+          <h1 className="text-[19px] font-bold text-white leading-tight">
             {title}
           </h1>
         </div>
