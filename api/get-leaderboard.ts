@@ -34,8 +34,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const supabaseClient = createClient(
-      process.env.SUPABASE_URL ?? '',
-      process.env.SUPABASE_ANON_KEY ?? ''
+      process.env.VITE_SUPABASE_URL ?? '',
+      process.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? ''
     );
 
     // Read from request body

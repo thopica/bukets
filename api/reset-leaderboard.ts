@@ -15,8 +15,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const supabaseClient = createClient(
-      process.env.SUPABASE_URL ?? '',
-      process.env.SUPABASE_ANON_KEY ?? '',
+      process.env.VITE_SUPABASE_URL ?? '',
+      process.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? '',
       {
         global: {
           headers: { Authorization: req.headers.authorization! },
@@ -39,8 +39,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Check if user is admin using service role client
     const supabaseAdmin = createClient(
-      process.env.SUPABASE_URL ?? '',
-      process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''
+      process.env.VITE_SUPABASE_URL ?? '',
+      process.env.VITE_SUPABASE_SERVICE_ROLE_KEY ?? ''
     );
 
     const { data: roleData, error: roleError } = await supabaseAdmin

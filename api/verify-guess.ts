@@ -1,5 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import quizzes from './quizzes.json' assert { type: 'json' };
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const quizzesData = readFileSync(join(process.cwd(), 'api', 'quizzes.json'), 'utf-8');
+const quizzes = JSON.parse(quizzesData);
 
 const START_DATE = new Date('2025-10-02');
 
