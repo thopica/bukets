@@ -1,5 +1,4 @@
 [
-  // Quiz #0 - Presented on: October 5, 2025
   {
     "title": "NBA All-Time Leaders In Playoff Steals",
     "answers": [
@@ -25,7 +24,6 @@
       { "rank": 6, "text": "2× MVP who spent 18 seasons with Utah, never won a championship despite deep playoff runs" }
     ]
   },
-  // Quiz #1 - Presented on: October 6, 2025
   {
     "title": "All-Time NBA Blocked Shots Leaders By Total Blocks",
     "answers": [
@@ -51,7 +49,6 @@
       { "rank": 6, "text": "1995 MVP, 2× Olympic gold medalist, won championship in 1999 and 2003" }
     ]
   },
-  // Quiz #2 - Presented on: October 7, 2025
   {
     "title": "All-Time NBA 3-Point Leaders By Total Made",
     "answers": [
@@ -77,7 +74,6 @@
       { "rank": 6, "text": "Career 42.9% three-point shooter, led league in 3P% 4 times" }
     ]
   },
-  // Quiz #3 - Presented on: October 8, 2025
   {
     "title": "NBA All-Time Leaders In Playoff Steals",
     "answers": [
@@ -103,7 +99,6 @@
       { "rank": 6, "text": "2× MVP who spent 18 seasons with Utah, never won a championship despite deep playoff runs" }
     ]
   },
-  // Quiz #4 - Presented on: October 9, 2025
   {
     "title": "NBA All-Time Record For Most MVP Awards",
     "answers": [
@@ -129,7 +124,6 @@
       { "rank": 6, "text": "3 MVP awards, won 5 championships in purple and gold" }
     ]
   },
-  // Quiz #5 - Presented on: October 10, 2025
   {
     "title": "NBA All-Time Record For Finals MVP Awards",
     "answers": [
@@ -155,7 +149,6 @@
       { "rank": 6, "text": "Back-to-back Finals MVP in 2009-2010, 5× champion, spent entire career with Lakers" }
     ]
   },
-  // Quiz #6 - Presented on: October 11, 2025
   {
     "title": "NBA All-Time Leaders In Total All-Star Games",
     "answers": [
@@ -181,7 +174,6 @@
       { "rank": 6, "text": "15 All-Star selections, 4× champion, 3× Finals MVP during Lakers dynasty" }
     ]
   },
-  // Quiz #7 - Presented on: October 12, 2025
   {
     "title": "All-Time NBA Scoring Leaders By Career Points Per Game",
     "answers": [
@@ -207,7 +199,6 @@
       { "rank": 6, "text": "Career 27.0 PPG with Lakers, 1972 champion, became the NBA logo silhouette" }
     ]
   },
-  // Quiz #8 - Presented on: October 13, 2025
   {
     "title": "All-Time NBA Leaders In Career Triple-Doubles",
     "answers": [
@@ -233,7 +224,6 @@
       { "rank": 6, "text": "107 triple-doubles, 2011 champion with Dallas, led league in assists 5 times" }
     ]
   },
-  // Quiz #9 - Presented on: October 14, 2025
   {
     "title": "NBA All-Time Record For Most Career Games Played",
     "answers": [
@@ -259,7 +249,6 @@
       { "rank": 6, "text": "1,492 games and counting at age 40, 4× champion, all-time leading scorer" }
     ]
   },
-  // Quiz #10 - Presented on: October 15, 2025
   {
     "title": "NBA All-Time Career Minutes Leaders",
     "answers": [
@@ -285,7 +274,6 @@
       { "rank": 6, "text": "47,368 minutes all with San Antonio, 5× champion, 3× Finals MVP across 19 seasons" }
     ]
   },
-  // Quiz #11 - Presented on: October 16, 2025
   {
     "title": "NBA All-Time Career Free Throw Leaders (Total Made)",
     "answers": [
@@ -311,7 +299,6 @@
       { "rank": 6, "text": "7,327 free throws made, 6× champion, career 83.5% from the line" }
     ]
   },
-  // Quiz #12 - Presented on: October 17, 2025
   {
     "title": "NBA All-Time Career Field Goal Leaders (Total Made)",
     "answers": [
@@ -337,7 +324,6 @@
       { "rank": 6, "text": "11,719 field goals made with Lakers, 5× champion, master of tough contested shots" }
     ]
   },
-  // Quiz #13 - Presented on: October 18, 2025
   {
     "title": "NBA All-Time Career Turnover Leaders",
     "answers": [
@@ -363,7 +349,6 @@
       { "rank": 6, "text": "4,010 turnovers with Lakers, 5× champion, created own shots in difficult situations" }
     ]
   },
-  // Quiz #14 - Presented on: October 19, 2025
   {
     "title": "NBA All-Time Record For Most Career Personal Fouls",
     "answers": [
@@ -389,7 +374,6 @@
       { "rank": 6, "text": "4,267 personal fouls, played for Nets and Trail Blazers, 3× All-Star" }
     ]
   },
-  // Quiz #15 - Presented on: October 20, 2025
   {
     "title": "Tallest Players In NBA History (All-Time Record)",
     "answers": [
@@ -415,7 +399,6 @@
       { "rank": 6, "text": "7'5\" backup center who won three championships with Lakers in 1980s" }
     ]
   },
-  // Quiz #16 - Presented on: October 21, 2025
   {
     "title": "Shortest Players In NBA History (All-Time Record)",
     "answers": [
@@ -441,7 +424,6 @@
       { "rank": 6, "text": "5'7\" guard who played limited minutes with Golden State in early 90s" }
     ]
   },
-  // Quiz #17 - Presented on: October 22, 2025
   {
     "title": "All-Time NBA Leaders In Career Double-Doubles",
     "answers": [
@@ -467,7 +449,6 @@
       { "rank": 6, "text": "860 double-doubles, averaged 50 PPG and 25 RPG in single season" }
     ]
   },
-  // Quiz #18 - Presented on: October 23, 2025
   {
     "title": "NBA All-Time Career Playoff Points Leaders",
     "answers": [
@@ -493,7 +474,6 @@
       { "rank": 6, "text": "5,172 playoff points with San Antonio, 5× champion, steady production every postseason" }
     ]
   },
-  // Quiz #19 - Presented on: October 24, 2025
   {
     "title": "NBA All-Time Career Playoff Assist Leaders",
     "answers": [
@@ -519,7 +499,6 @@
       { "rank": 6, "text": "1,143 playoff assists with San Antonio, 4× champion, ran Spurs offense" }
     ]
   },
-  // Quiz #20 - Presented on: October 25, 2025
   {
     "title": "NBA All-Time Career Playoff Rebound Leaders",
     "answers": [
@@ -545,7 +524,6 @@
       { "rank": 6, "text": "2,542 playoff rebounds, 10 Finals appearances, elite rebounder for his position" }
     ]
   },
-  // Quiz #21 - Presented on: October 26, 2025
   {
     "title": "NBA All-Time Record For Youngest MVP Winners",
     "answers": [
@@ -571,7 +549,6 @@
       { "rank": 6, "text": "Won first MVP at 25 years old in 1987, led Lakers to championship" }
     ]
   },
-  // Quiz #22 - Presented on: October 27, 2025
   {
     "title": "NBA All-Time Record For Oldest Champions",
     "answers": [
@@ -597,7 +574,6 @@
       { "rank": 6, "text": "Never won championship despite playing until 40, came closest with Lakers in 2004" }
     ]
   },
-  // Quiz #23 - Presented on: October 28, 2025
   {
     "title": "NBA All-Time Record For Career 50-Point Games",
     "answers": [
@@ -623,7 +599,6 @@
       { "rank": 6, "text": "14 games with 50+ points, all-time leading scorer, more known for consistency" }
     ]
   },
-  // Quiz #24 - Presented on: October 29, 2025
   {
     "title": "NBA All-Time Record For Consecutive Games Played",
     "answers": [
@@ -649,7 +624,6 @@
       { "rank": 6, "text": "844 consecutive games, same as Johnny Kerr, played in 1950s-60s" }
     ]
   },
-  // Quiz #25 - Presented on: October 30, 2025
   {
     "title": "NBA All-Time Record For Highest Single-Season PPG",
     "answers": [
@@ -675,7 +649,6 @@
       { "rank": 6, "text": "37.1 PPG in 1986-87 season with Chicago, highest average in modern era" }
     ]
   },
-  // Quiz #26 - Presented on: October 31, 2025
   {
     "title": "NBA All-Time Record For Career 30-Point Games",
     "answers": [
