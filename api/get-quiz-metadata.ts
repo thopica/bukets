@@ -1,7 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-// Import quiz data - Vercel bundles this at build time
-const quizzes = require('./quizzes.json');
+import quizzes from './quizzes.json' assert { type: 'json' };
 
 const START_DATE = new Date('2025-10-02');
 

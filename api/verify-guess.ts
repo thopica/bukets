@@ -1,10 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-
-
-// Load quiz data at runtime
-
-const quizzes = require("./data/quizzes.json");
+import quizzes from './quizzes.json' assert { type: 'json' };
 
 const START_DATE = new Date('2025-10-02');
 
