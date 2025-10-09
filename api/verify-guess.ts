@@ -1,13 +1,13 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import quizzesData from './quizzes.json';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
-const quizzes = quizzesData;
 const START_DATE = new Date('2025-10-02');
 
-function getTodaysQuizIndex(): number {
+function getTodaysQuizIndex(quizzesLength: number): number {
   const today = new Date();
   const daysPassed = Math.floor((today.getTime() - START_DATE.getTime()) / (1000 * 60 * 60 * 24));
-  const quizIndex = daysPassed % quizzes.length;
+  const quizIndex = daysPassed % quizzesLength;
   return quizIndex >= 0 ? quizIndex : 0;
 }
 
@@ -162,6 +162,10 @@ function isFuzzyMatch(guess: string, target: string): boolean {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Load quiz data at runtime using Vercel's recommended approach
+  const quizzesPath = join(process.cwd(), 'quizzes.json');
+  const quizzes = JSON.parse(readFileSync(quizzesPath, 'utf-8'));
+
   // Handle CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'authorization, x-client-info, apikey, content-type');
@@ -177,7 +181,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Handle reveal request (when timer runs out)
     if (revealRank !== undefined) {
-      const targetQuizIndex = quizIndex !== undefined ? quizIndex : getTodaysQuizIndex();
+      const targetQuizIndex = quizIndex !== undefined ? quizIndex : getTodaysQuizIndex(quizzes.length);
       const quiz = quizzes[targetQuizIndex];
 
       if (!quiz) {
@@ -202,7 +206,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Determine which quiz to use
-    const targetQuizIndex = quizIndex !== undefined ? quizIndex : getTodaysQuizIndex();
+    const targetQuizIndex = quizIndex !== undefined ? quizIndex : getTodaysQuizIndex(quizzes.length);
     const quiz = quizzes[targetQuizIndex];
 
     if (!quiz) {
