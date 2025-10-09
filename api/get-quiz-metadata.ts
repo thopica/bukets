@@ -1,8 +1,12 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { readFileSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const quizzesData = readFileSync(join(process.cwd(), 'api', 'quizzes.json'), 'utf-8');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const quizzesData = readFileSync(join(__dirname, 'quizzes.json'), 'utf-8');
 const quizzes = JSON.parse(quizzesData);
 
 const START_DATE = new Date('2025-10-02');
