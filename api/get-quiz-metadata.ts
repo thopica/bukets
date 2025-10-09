@@ -12,10 +12,7 @@ function getTodaysQuizIndex(quizzesLength: number): number {
 }
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
-  // Load quiz data at runtime using Vercel's recommended approach
-  const quizzesPath = join(process.cwd(), 'quizzes.json');
-  const quizzes = JSON.parse(readFileSync(quizzesPath, 'utf-8'));
-  // Handle CORS
+  // Handle CORS first
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'authorization, x-client-info, apikey, content-type');
 
@@ -24,6 +21,10 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Load quiz data at runtime using fs.readFileSync
+    const quizzesPath = join(process.cwd(), 'quizzes.json');
+    const quizzes = JSON.parse(readFileSync(quizzesPath, 'utf-8'));
+
     const quizIndexParam = req.query.index as string | undefined;
     const quizIndex = quizIndexParam !== undefined ? parseInt(quizIndexParam) : getTodaysQuizIndex(quizzes.length);
 

@@ -162,10 +162,6 @@ function isFuzzyMatch(guess: string, target: string): boolean {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Load quiz data at runtime using Vercel's recommended approach
-  const quizzesPath = join(process.cwd(), 'quizzes.json');
-  const quizzes = JSON.parse(readFileSync(quizzesPath, 'utf-8'));
-
   // Handle CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'authorization, x-client-info, apikey, content-type');
@@ -175,6 +171,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Load quiz data at runtime using fs.readFileSync
+    const quizzesPath = join(process.cwd(), 'quizzes.json');
+    const quizzes = JSON.parse(readFileSync(quizzesPath, 'utf-8'));
+
     const { guess, quizIndex, alreadyAnswered, revealRank } = req.body;
 
     console.log('Verifying guess:', { guess, quizIndex, alreadyAnsweredCount: alreadyAnswered?.length, revealRank });
