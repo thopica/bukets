@@ -1,10 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import * as path from 'path';
-import * as fs from 'fs';
 
-// Load quiz data at runtime
-const quizzesPath = path.join(__dirname, 'data', 'quizzes.json');
-const quizzes = JSON.parse(fs.readFileSync(quizzesPath, 'utf8'));
+// Import quiz data - Vercel bundles this at build time
+const quizzes = require('./quizzes.json');
 
 const START_DATE = new Date('2025-10-02');
 
