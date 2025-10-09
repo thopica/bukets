@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Loader2, Trophy, Clock, Flame, TrendingUp, Target } from 'lucide-react';
@@ -44,7 +45,7 @@ export default function AlreadyCompleted() {
   const checkCompletion = async () => {
     try {
       const today = new Date().toISOString().split('T')[0];
-      const { data, error } = await supabase.functions.invoke('check-daily-completion', {
+      const { data, error } = await api.invoke('check-daily-completion', {
         body: { quiz_date: today }
       });
 

@@ -8,6 +8,7 @@ import HintBar from "@/components/quiz/HintBar";
 
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 import { fetchTodaysQuiz, getQuizDateISO, type Quiz, type QuizMetadataResponse } from "@/utils/quizDate";
 import type { User } from "@supabase/supabase-js";
 import { useGameScore } from "@/hooks/useGameScore";
@@ -153,7 +154,7 @@ const Index = () => {
       // Start or restore quiz session
       try {
         const today = getQuizDateISO();
-        const { data: sessionData, error: sessionError } = await supabase.functions.invoke('start-quiz-session', {
+        const { data: sessionData, error: sessionError } = await api.invoke('start-quiz-session', {
           body: {
             quiz_date: today,
             quiz_index: quizIndex
@@ -228,7 +229,7 @@ const Index = () => {
             const allRanks = [...correctRanks, ...revealedRanks];
             const answersToRestore = await Promise.all(
               allRanks.map(async (rank: number) => {
-                const { data } = await supabase.functions.invoke('verify-guess', {
+                const { data } = await api.invoke('verify-guess', {
                   body: { revealRank: rank }
                 });
                 return { ...data?.answer, isCorrect: correctRanks.includes(rank) };
@@ -340,7 +341,7 @@ const Index = () => {
       const answeredRanks = userAnswers.filter(a => a.isCorrect).map(a => a.rank);
       const revealedRanks = userAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
       if (answeredRanks.length > 0 || revealedRanks.length > 0 || hintsUsed > 0 || score > 0) {
-        supabase.functions.invoke('save-quiz-progress', {
+        api.invoke('save-quiz-progress', {
           body: {
             quiz_date: getQuizDateISO(),
             current_score: score,
@@ -363,7 +364,7 @@ const Index = () => {
       
       try {
         // Call server to get the correct answer for this rank
-        const { data, error } = await supabase.functions.invoke('verify-guess', {
+        const { data, error } = await api.invoke('verify-guess', {
           body: {
             revealRank: rank,
             quizIndex: undefined
@@ -386,7 +387,7 @@ const Index = () => {
           try {
             const answeredRanksNow = newAnswers.filter(a => a.isCorrect).map(a => a.rank);
             const revealedRanksNow = newAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
-            await supabase.functions.invoke('save-quiz-progress', {
+            await api.invoke('save-quiz-progress', {
               body: {
                 quiz_date: getQuizDateISO(),
                 current_score: score, // no points for auto-reveal
@@ -442,7 +443,7 @@ const Index = () => {
         .map(a => a.rank);
 
       // Call server-side verification
-      const { data, error } = await supabase.functions.invoke('verify-guess', {
+      const { data, error } = await api.invoke('verify-guess', {
         body: {
           guess,
           quizIndex: undefined, // undefined = today's quiz
@@ -525,7 +526,7 @@ const Index = () => {
         .map((a) => a.rank);
       
       try {
-        await supabase.functions.invoke('save-quiz-progress', {
+        await api.invoke('save-quiz-progress', {
           body: {
             quiz_date: getQuizDateISO(),
             current_score: newScore,

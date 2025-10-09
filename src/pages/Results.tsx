@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Loader2, Trophy, Flame, TrendingUp } from 'lucide-react';
@@ -67,7 +68,7 @@ export default function Results() {
 
   const submitScore = async () => {
     try {
-      const { data, error } = await supabase.functions.invoke('submit-score', {
+      const { data, error } = await api.invoke('submit-score', {
         body: {
           quiz_date: resultsData.quiz_date,
           quiz_index: resultsData.quiz_index,

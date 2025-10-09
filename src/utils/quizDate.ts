@@ -1,4 +1,4 @@
-import { supabase } from '@/integrations/supabase/client';
+import { api } from '@/lib/api';
 
 export interface QuizHint {
   rank: number;
@@ -37,7 +37,7 @@ export const fetchTodaysQuiz = async (): Promise<QuizMetadataResponse> => {
   }
 
   // Fetch from API
-  const { data, error } = await supabase.functions.invoke('get-quiz-metadata');
+  const { data, error } = await api.invoke('get-quiz-metadata');
 
   if (error) {
     throw new Error(`Failed to fetch quiz metadata: ${error.message}`);
@@ -57,7 +57,7 @@ export const fetchTodaysQuiz = async (): Promise<QuizMetadataResponse> => {
  * Fetches a specific quiz by index
  */
 export const fetchQuizByIndex = async (index: number): Promise<QuizMetadataResponse> => {
-  const { data, error } = await supabase.functions.invoke('get-quiz-metadata', {
+  const { data, error } = await api.invoke('get-quiz-metadata', {
     body: { index }
   });
 

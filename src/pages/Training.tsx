@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Shuffle } from 'lucide-react';
@@ -17,7 +18,7 @@ export default function Training() {
 
   const loadQuizzes = async () => {
     try {
-      const { data, error } = await supabase.functions.invoke('get-quiz-metadata');
+      const { data, error } = await api.invoke('get-quiz-metadata');
       if (error) throw error;
       
       const quizList = data.quizzes.map((quiz: any, index: number) => ({

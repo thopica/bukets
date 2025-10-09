@@ -8,6 +8,7 @@ import { Trophy, Flame, Target, ArrowUpDown, ArrowUp, ArrowDown, Award } from "l
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 
 type TabValue = "today" | "7d" | "30d" | "alltime";
 
@@ -388,7 +389,7 @@ const Leaderboard = () => {
         ...(countryFilter !== "all" && { country_code: countryFilter })
       });
 
-      const { data, error } = await supabase.functions.invoke('get-leaderboard', {
+      const { data, error } = await api.invoke('get-leaderboard', {
         body: { period: activeTab, country_code: countryFilter === "all" ? null : countryFilter, limit: 100 }
       });
 

@@ -17,6 +17,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { User as SupabaseUser } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
@@ -88,7 +89,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
         return;
       }
 
-      const response = await supabase.functions.invoke('reset-leaderboard', {
+      const response = await api.invoke('reset-leaderboard', {
         headers: {
           Authorization: `Bearer ${session.access_token}`,
         },
