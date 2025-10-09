@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { quizzes } from './data/quizzes';
+import quizzes from './data/quizzes.json';
 
 const START_DATE = new Date('2025-10-02');
 

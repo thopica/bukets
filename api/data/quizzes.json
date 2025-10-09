@@ -1,6 +1,4 @@
-// All quiz data with answers (server-side only)
-// START_DATE: October 5, 2025 - Quizzes cycle every 27 days
-export const quizzes = [
+[
   // Quiz #0 - Presented on: October 5, 2025
   {
     "title": "NBA All-Time Leaders In Playoff Steals",
@@ -703,6 +701,4 @@ export const quizzes = [
       { "rank": 6, "text": "378 games with 30+ points, 11× All-Star with Lakers, career 27.4 PPG" }
     ]
   }
-];
-
-
+]
