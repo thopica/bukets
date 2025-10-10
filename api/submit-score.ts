@@ -138,6 +138,16 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       }
     }
 
+    // Mark quiz session as completed to prevent replays
+    await supabaseClient
+      .from('quiz_sessions')
+      .update({
+        completed_at: new Date().toISOString(),
+        status: 'completed'
+      })
+      .eq('user_id', user.id)
+      .eq('quiz_date', quiz_date);
+
     // Update streak
     const { data: streakData } = await supabaseClient
       .from('user_streaks')
