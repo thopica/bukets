@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { api } from '@/lib/api';
@@ -50,46 +50,58 @@ export default function Results() {
     }
 
     checkAuthAndSubmit();
-  }, []);
+  }, [checkAuthAndSubmit, navigate, resultsData]);
 
-  const checkAuthAndSubmit = async () => {
+  const checkAuthAndSubmit = useCallback(async () => {
     // Check if user is logged in
     const { data: { session } } = await supabase.auth.getSession();
     setIsLoggedIn(!!session);
 
     if (session) {
-      // Only submit score if logged in
-      await submitScore();
+      try {
+        // First check if already completed today
+        const { data: completionData } = await api.invoke('check-daily-completion', {
+          body: { quiz_date: resultsData.quiz_date }
+        });
+
+        if (completionData.completed) {
+          // Redirect to AlreadyCompleted page if already played
+          navigate('/already-completed');
+          return;
+        }
+
+        // Not completed - proceed with score submission
+        try {
+          // API now verifies score server-side from quiz_sessions table
+          const { data, error } = await api.invoke('submit-score', {
+            body: {
+              quiz_date: resultsData.quiz_date,
+              quiz_index: resultsData.quiz_index
+            }
+          });
+
+          if (error) throw error;
+
+          if (data.success) {
+            setRank(data.rank);
+            setCurrentStreak(data.current_streak);
+            setLongestStreak(data.longest_streak);
+          }
+        } catch (error) {
+          console.error('Failed to submit score:', error);
+          toast.error('Failed to save your score. Please try again.');
+        } finally {
+          setIsSubmitting(false);
+        }
+      } catch (error) {
+        console.error('Error checking completion:', error);
+        setIsSubmitting(false);
+      }
     } else {
       // Not logged in - skip submission
       setIsSubmitting(false);
     }
-  };
-
-  const submitScore = async () => {
-    try {
-      // API now verifies score server-side from quiz_sessions table
-      const { data, error } = await api.invoke('submit-score', {
-        body: {
-          quiz_date: resultsData.quiz_date,
-          quiz_index: resultsData.quiz_index
-        }
-      });
-
-      if (error) throw error;
-
-      if (data.success) {
-        setRank(data.rank);
-        setCurrentStreak(data.current_streak);
-        setLongestStreak(data.longest_streak);
-      }
-    } catch (error: any) {
-      console.error('Failed to submit score:', error);
-      toast.error('Failed to save your score. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  }, [navigate, resultsData.quiz_date, resultsData.quiz_index]);
 
   if (!resultsData) return null;
 
