@@ -10,13 +10,13 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { api } from "@/lib/api";
 
-type TabValue = "today" | "7d" | "30d" | "alltime";
+type TabValue = "today" | "7d" | "30d" | "all-time";
 
 const tabs: { value: TabValue; label: string }[] = [
   { value: "today", label: "Today" },
   { value: "7d", label: "7D" },
   { value: "30d", label: "30D" },
-  { value: "alltime", label: "All-Time" },
+  { value: "all-time", label: "All-Time" },
 ];
 
 const COUNTRY_FLAGS: Record<string, string> = {
@@ -384,10 +384,6 @@ const Leaderboard = () => {
   const fetchLeaderboard = async () => {
     try {
       setIsLoading(true);
-      const params = new URLSearchParams({
-        period: activeTab,
-        ...(countryFilter !== "all" && { country_code: countryFilter })
-      });
 
       const { data, error } = await api.invoke('get-leaderboard', {
         body: { period: activeTab, country_code: countryFilter === "all" ? null : countryFilter, limit: 100 }
