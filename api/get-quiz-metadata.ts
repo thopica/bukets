@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+const { readFileSync } = require('fs');
+const { join } = require('path');
 
 const START_DATE = new Date('2025-10-02');
 
@@ -11,7 +11,7 @@ function getTodaysQuizIndex(quizzesLength: number): number {
   return quizIndex >= 0 ? quizIndex : 0;
 }
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = function handler(req: VercelRequest, res: VercelResponse) {
   // Handle CORS first
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'authorization, x-client-info, apikey, content-type');
