@@ -1,10 +1,16 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 const { createClient } = require('@supabase/supabase-js');
+const { readFileSync } = require('fs');
+const { join } = require('path');
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+// Scoring constants
+const POINTS_PER_CORRECT = 5;
+const POINTS_PER_HINT = 1;
 
 module.exports = async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method === 'OPTIONS') {
@@ -29,9 +35,9 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       throw new Error('Unauthorized');
     }
 
-    const { quiz_date, quiz_index, total_score, correct_guesses, hints_used, time_used } = req.body;
+    const { quiz_date, quiz_index } = req.body;
 
-    // Check if user already has a session for today
+    // Check if user already has a completed score for today
     const { data: existing, error: checkError } = await supabaseClient
       .from('daily_scores')
       .select('id, completed_at')
@@ -52,9 +58,49 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       return res.status(400).json({ error: 'Already completed today' });
     }
 
-    // Update existing session or insert new score
+    // Get the user's quiz session to verify their answers
+    const { data: session, error: sessionError } = await supabaseClient
+      .from('quiz_sessions')
+      .select('correct_ranks, hints_used, started_at, completed_at')
+      .eq('user_id', user.id)
+      .eq('quiz_date', quiz_date)
+      .maybeSingle();
+
+    if (sessionError || !session) {
+      throw new Error('No quiz session found');
+    }
+
+    // Load quiz data to verify answers
+    const quizzesPath = join(process.cwd(), 'quizzes.json');
+    const quizzes = JSON.parse(readFileSync(quizzesPath, 'utf-8'));
+    const quiz = quizzes[quiz_index];
+
+    if (!quiz) {
+      throw new Error('Invalid quiz index');
+    }
+
+    // Verify the correct_ranks are actually correct
+    const correctRanks: number[] = session.correct_ranks || [];
+    const validCorrectRanks = correctRanks.filter(rank => {
+      const answer = quiz.answers.find((a: any) => a.rank === rank);
+      return answer !== undefined; // Verify rank exists in quiz
+    });
+
+    // Calculate server-side verified score
+    const correct_guesses = validCorrectRanks.length;
+    const hints_used = session.hints_used || 0;
+    const total_score = (correct_guesses * POINTS_PER_CORRECT) - (hints_used * POINTS_PER_HINT);
+
+    // Calculate time used
+    const startedAt = new Date(session.started_at);
+    const completedAt = session.completed_at ? new Date(session.completed_at) : new Date();
+    const time_used = Math.floor((completedAt.getTime() - startedAt.getTime()) / 1000);
+
+    console.log(`Server-verified score for ${user.id}: ${total_score} points (${correct_guesses} correct, ${hints_used} hints)`);
+
+    // Update existing score or insert new one
     if (existing) {
-      // Update the existing session with final score
+      // Update the existing session with verified score
       const { error: updateError } = await supabaseClient
         .from('daily_scores')
         .update({
@@ -71,7 +117,7 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
         throw updateError;
       }
     } else {
-      // Insert new score (fallback for old sessions)
+      // Insert new score with verified data
       const { error: insertError } = await supabaseClient
         .from('daily_scores')
         .insert({
@@ -82,7 +128,7 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
           correct_guesses,
           hints_used,
           time_used,
-          started_at: new Date().toISOString(),
+          started_at: session.started_at,
           completed_at: new Date().toISOString()
         });
 
@@ -154,7 +200,8 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       success: true,
       rank,
       current_streak: currentStreak,
-      longest_streak: longestStreak
+      longest_streak: longestStreak,
+      verified_score: total_score // Return the server-verified score
     });
 
   } catch (error) {

@@ -68,14 +68,11 @@ export default function Results() {
 
   const submitScore = async () => {
     try {
+      // API now verifies score server-side from quiz_sessions table
       const { data, error } = await api.invoke('submit-score', {
         body: {
           quiz_date: resultsData.quiz_date,
-          quiz_index: resultsData.quiz_index,
-          total_score: resultsData.total_score,
-          correct_guesses: resultsData.correct_guesses,
-          hints_used: resultsData.hints_used,
-          time_used: resultsData.time_used
+          quiz_index: resultsData.quiz_index
         }
       });
 
