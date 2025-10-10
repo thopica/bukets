@@ -208,7 +208,7 @@
       { "rank": 4, "name": "LeBron James", "stat": "117 triple-doubles", "aliases": ["lebron", "lbj", "king james", "bron", "the king", "lebron james"] },
       { "rank": 5, "name": "Nikola Jokic", "stat": "145 triple-doubles", "aliases": ["jokic", "nikola", "joker", "the joker", "nikola jokic", "jokić"] },
       { "rank": 6, "name": "Jason Kidd", "stat": "107 triple-doubles", "aliases": ["kidd", "jason", "jason kidd", "j kidd"] }
-    ],
+    ], 
     "hints": [
       { "rank": 1, "text": "Point guard active since 2008, known for explosiveness and all-around production" },
       { "rank": 1, "text": "Record 200+ triple-doubles, 2017 MVP, broke Oscar Robertson's long-standing record" },

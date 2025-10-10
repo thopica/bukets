@@ -338,6 +338,9 @@ const Index = () => {
   useEffect(() => {
     if (isCompleted) return;
     const interval = setInterval(() => {
+      // Only save progress if user is logged in
+      if (!user) return;
+
       const answeredRanks = userAnswers.filter(a => a.isCorrect).map(a => a.rank);
       const revealedRanks = userAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
       if (answeredRanks.length > 0 || revealedRanks.length > 0 || hintsUsed > 0 || score > 0) {
@@ -354,7 +357,7 @@ const Index = () => {
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [userAnswers, hintsUsed, score, isCompleted]);
+  }, [userAnswers, hintsUsed, score, isCompleted, user]);
 
   const handleTimeUp = async () => {
     const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
@@ -383,22 +386,24 @@ const Index = () => {
           setUserAnswers(newAnswers);
           setLastGuessRank(data.answer.rank);
           
-          // Reset server-side turn start so 24s clock is correct after refresh
-          try {
-            const answeredRanksNow = newAnswers.filter(a => a.isCorrect).map(a => a.rank);
-            const revealedRanksNow = newAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
-            await api.invoke('save-quiz-progress', {
-              body: {
-                quiz_date: getQuizDateISO(),
-                current_score: score, // no points for auto-reveal
-                correct_guesses: answeredRanksNow.length,
-                hints_used: hintsUsed,
-                answered_ranks: answeredRanksNow,
-                revealed_ranks: revealedRanksNow,
-                reset_turn: true
-              }
-            });
-          } catch {}
+          // Reset server-side turn start so 24s clock is correct after refresh (only for logged-in users)
+          if (user) {
+            try {
+              const answeredRanksNow = newAnswers.filter(a => a.isCorrect).map(a => a.rank);
+              const revealedRanksNow = newAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
+              await api.invoke('save-quiz-progress', {
+                body: {
+                  quiz_date: getQuizDateISO(),
+                  current_score: score, // no points for auto-reveal
+                  correct_guesses: answeredRanksNow.length,
+                  hints_used: hintsUsed,
+                  answered_ranks: answeredRanksNow,
+                  revealed_ranks: revealedRanksNow,
+                  reset_turn: true
+                }
+              });
+            } catch {}
+          }
           
           // Check if all 6 slots are now filled (mix of correct + auto-revealed)
           const allFilled = newAnswers.every((a) => a.playerName);
@@ -525,20 +530,23 @@ const Index = () => {
         .filter((a) => a.isRevealed && !a.isCorrect)
         .map((a) => a.rank);
       
-      try {
-        await api.invoke('save-quiz-progress', {
-          body: {
-            quiz_date: getQuizDateISO(),
-            current_score: newScore,
-            correct_guesses: newCorrectCount,
-            hints_used: hintsUsed,
-            answered_ranks: answeredRanks,
-            revealed_ranks: revealedRanks,
-            reset_turn: true
-          }
-        });
-      } catch (err) {
-        console.error('Failed to save progress:', err);
+      // Only save progress for logged-in users
+      if (user) {
+        try {
+          await api.invoke('save-quiz-progress', {
+            body: {
+              quiz_date: getQuizDateISO(),
+              current_score: newScore,
+              correct_guesses: newCorrectCount,
+              hints_used: hintsUsed,
+              answered_ranks: answeredRanks,
+              revealed_ranks: revealedRanks,
+              reset_turn: true
+            }
+          });
+        } catch (err) {
+          console.error('Failed to save progress:', err);
+        }
       }
       
       // Track timing for this answer

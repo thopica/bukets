@@ -1,6 +1,8 @@
 // API client for Vercel serverless functions
 // This replaces Supabase Edge Functions calls
 
+import { supabase } from '@/integrations/supabase/client';
+
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 export async function callAPI<T = any>(
@@ -22,11 +24,21 @@ export async function callAPI<T = any>(
       });
     }
 
+    // Get auth token from Supabase session
+    const { data: { session } } = await supabase.auth.getSession();
+
+    // Build headers with auth token if user is logged in
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+    };
+
+    if (session?.access_token) {
+      headers['Authorization'] = `Bearer ${session.access_token}`;
+    }
+
     const response = await fetch(url.toString(), {
       method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: body ? JSON.stringify(body) : undefined,
     });
 
