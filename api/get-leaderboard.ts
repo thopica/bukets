@@ -29,6 +29,8 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
     const today = new Date().toISOString().split('T')[0];
     let dateFilter = '';
 
+    console.log('Today date:', today, 'Period:', period);
+
     switch (period) {
       case 'today':
         dateFilter = `quiz_date.eq.${today}`;
@@ -74,6 +76,8 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
     const { data: scores, error: scoresError } = await query;
 
     if (scoresError) throw scoresError;
+
+    console.log('Scores fetched:', scores?.length, 'Date filter:', dateFilter);
 
     // Aggregate scores and count games by user
     const userScores = new Map();
