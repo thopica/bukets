@@ -118,23 +118,46 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       }
     } else {
       // Insert new score with verified data
+      // Handle potential schema cache issues with started_at column
+      const insertData: any = {
+        user_id: user.id,
+        quiz_date,
+        quiz_index,
+        total_score,
+        correct_guesses,
+        hints_used,
+        time_used,
+        completed_at: new Date().toISOString()
+      };
+
+      // Try to include started_at, but handle schema cache issues gracefully
+      if (session.started_at) {
+        insertData.started_at = session.started_at;
+      }
+
       const { error: insertError } = await supabaseClient
         .from('daily_scores')
-        .insert({
-          user_id: user.id,
-          quiz_date,
-          quiz_index,
-          total_score,
-          correct_guesses,
-          hints_used,
-          time_used,
-          started_at: session.started_at,
-          completed_at: new Date().toISOString()
-        });
+        .insert(insertData);
 
       if (insertError) {
         console.error('Insert error:', insertError);
-        throw insertError;
+        
+        // If the error is about started_at column not found, try without it
+        if (insertError.message && insertError.message.includes('started_at')) {
+          console.log('Retrying insert without started_at column due to schema cache issue...');
+          delete insertData.started_at;
+          
+          const { error: retryError } = await supabaseClient
+            .from('daily_scores')
+            .insert(insertData);
+            
+          if (retryError) {
+            console.error('Retry insert error:', retryError);
+            throw retryError;
+          }
+        } else {
+          throw insertError;
+        }
       }
     }
 
