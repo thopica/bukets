@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 const Footer = () => {
-  return <footer className="border-t border-border mt-16">
+  return <footer className="border-t border-border mt-16 relative z-10">
       <div className="container mx-auto px-4 py-10">
         <div className="grid md:grid-cols-3 gap-8">
           <div>

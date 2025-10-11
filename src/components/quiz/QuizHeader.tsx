@@ -1,6 +1,7 @@
 import { TrendingUp } from "lucide-react";
 import { useEffect } from "react";
 import { haptics } from "@/lib/haptics";
+import SegmentedProgressBar from "./SegmentedProgressBar";
 
 interface QuizHeaderProps {
   title: string;
@@ -18,6 +19,7 @@ interface QuizHeaderProps {
   isDisabled?: boolean;
   correctCount?: number;
   totalCount?: number;
+  isCompleted?: boolean;
 }
 
 const QuizHeader = ({
@@ -29,6 +31,7 @@ const QuizHeader = ({
   score,
   correctCount = 0,
   totalCount = 6,
+  isCompleted = false,
 }: QuizHeaderProps) => {
   const percentage = (timeRemaining / totalTime) * 100;
   const playerPercentage = (playerTimeRemaining / playerTotalTime) * 100;
@@ -78,28 +81,12 @@ const QuizHeader = ({
 
       {/* Progress Bar Area - Absolute positioned at bottom */}
       {showTimers && (
-        <div className="absolute bottom-1 left-2 right-2 flex items-center gap-2">
-          {/* Player count indicator on the left */}
-          <span className="text-xs font-semibold text-white">
-            {correctCount}/{totalCount}
-          </span>
-          
-          {/* Progress bar */}
-          <div className="flex-1 h-2.5 rounded-full bg-white/30 border-2 border-white/40 shadow-inner overflow-hidden">
-            <div 
-              className={`h-full rounded-full transition-all duration-1000 ${
-                timeRemaining > 60 
-                  ? 'bg-white' 
-                  : timeRemaining > 30 
-                  ? 'bg-orange' 
-                  : 'bg-danger animate-pulse'
-              }`}
-              style={{ 
-                width: `${percentage}%`,
-                transition: 'width 1s ease-out, background-color 0.3s ease-out'
-              }}
-            />
-          </div>
+        <div className="absolute bottom-1 left-2 right-2">
+          <SegmentedProgressBar 
+            timeRemaining={timeRemaining}
+            totalTime={totalTime}
+            isCompleted={isCompleted}
+          />
         </div>
       )}
     </div>

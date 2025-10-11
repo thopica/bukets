@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
-import { ChevronLeft, ChevronRight, Shuffle, Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { Shuffle, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import carouselData from "@/data/carousel_questions.json";
 
@@ -15,15 +15,6 @@ const CarouselSingle = () => {
   const totalQuestions = carouselData.singleQuestions.length;
   const currentQuestion = carouselData.singleQuestions[currentIndex];
 
-  const handleNext = () => {
-    setShowAnswer(false);
-    setCurrentIndex((prev) => (prev + 1) % totalQuestions);
-  };
-
-  const handlePrevious = () => {
-    setShowAnswer(false);
-    setCurrentIndex((prev) => (prev - 1 + totalQuestions) % totalQuestions);
-  };
 
   const handleRandom = () => {
     setShowAnswer(false);
@@ -50,27 +41,24 @@ const CarouselSingle = () => {
           Back to Menu
         </Button>
 
-        {/* Header with Counter */}
+        {/* Next Question Button */}
         <Card className="p-4 bg-card/50 backdrop-blur">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex-1 text-center">
-              <p className="text-sm text-muted-foreground">Single Q&A</p>
-              <p className="font-semibold">Question {currentIndex + 1} of {totalQuestions}</p>
-            </div>
-            
+          <div className="flex justify-center">
             <Button
-              variant="outline"
-              size="icon"
+              variant="default"
+              size="lg"
               onClick={handleRandom}
+              className="bg-primary text-white hover:bg-primary/90"
             >
-              <Shuffle className="h-4 w-4" />
+              <Shuffle className="h-4 w-4 mr-2" />
+              Next Question
             </Button>
           </div>
         </Card>
 
         {/* Question Card */}
-        <Card className="flex-1 p-6 space-y-6">
-          <div className="space-y-4">
+        <Card className="p-4 space-y-4">
+          <div className="space-y-3">
             <Badge variant="secondary" className="text-sm">
               {currentQuestion.category}
             </Badge>
@@ -81,10 +69,10 @@ const CarouselSingle = () => {
           </div>
 
           {/* Answer Section */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <Button
               onClick={toggleAnswer}
-              variant={showAnswer ? "secondary" : "default"}
+              variant={showAnswer ? "secondary" : "success"}
               className="w-full"
               size="lg"
             >
@@ -111,42 +99,7 @@ const CarouselSingle = () => {
           </div>
         </Card>
 
-        {/* Navigation Buttons */}
-        <div className="flex items-center justify-between gap-4">
-          <Button
-            onClick={handlePrevious}
-            variant="outline"
-            size="lg"
-            className="flex-1"
-          >
-            <ChevronLeft className="h-5 w-5 mr-2" />
-            Previous
-          </Button>
 
-          <Button
-            onClick={handleNext}
-            variant="outline"
-            size="lg"
-            className="flex-1"
-          >
-            Next
-            <ChevronRight className="h-5 w-5 ml-2" />
-          </Button>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="space-y-2">
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>Progress</span>
-            <span>{Math.round(((currentIndex + 1) / totalQuestions) * 100)}%</span>
-          </div>
-          <div className="h-2 bg-secondary rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-primary transition-all duration-300"
-              style={{ width: `${((currentIndex + 1) / totalQuestions) * 100}%` }}
-            />
-          </div>
-        </div>
       </main>
     </div>
   );

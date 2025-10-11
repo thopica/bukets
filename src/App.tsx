@@ -7,7 +7,6 @@ import Index from "./pages/Index";
 import Game from "./pages/Game";
 import CarouselMenu from "./pages/CarouselMenu";
 import CarouselSingle from "./pages/CarouselSingle";
-import CarouselPlayer from "./pages/CarouselPlayer";
 import Leaderboard from "./pages/Leaderboard";
 import HowToPlay from "./pages/HowToPlay";
 import Account from "./pages/Account";
@@ -30,7 +29,6 @@ const App = () => (
           <Route path="/game" element={<Game />} />
           <Route path="/carousel" element={<CarouselMenu />} />
           <Route path="/carousel/single" element={<CarouselSingle />} />
-          <Route path="/carousel/player" element={<CarouselPlayer />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/results" element={<Results />} />
           <Route path="/already-completed" element={<AlreadyCompleted />} />

@@ -45,9 +45,6 @@ const HowToPlay = () => {
         <div className="section-gap">
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold">How to Play</h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Test your NBA knowledge with daily stat-based quizzes. Can you name the greatest players in basketball history?
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-5 md:gap-6">
@@ -69,25 +66,25 @@ const HowToPlay = () => {
           <Card className="card-padding bg-gradient-to-r from-primary/10 to-secondary/10 border-2">
             <h2 className="text-2xl font-bold mb-4">Scoring Breakdown</h2>
             <div className="space-y-4 text-sm">
-              <div className="flex justify-between items-center py-1">
+              <div className="grid grid-cols-1 md:flex md:justify-between items-center py-1">
                 <span>Fast answer (0-10 seconds)</span>
-                <span className="font-bold text-gold-bright">+5 points (golden)</span>
+                <span className="font-bold text-gold-bright md:text-right">+5 points (golden)</span>
               </div>
-              <div className="flex justify-between items-center py-1">
+              <div className="grid grid-cols-1 md:flex md:justify-between items-center py-1">
                 <span>Quick answer (10-15 seconds)</span>
-                <span className="font-bold text-orange">+4 points (orange)</span>
+                <span className="font-bold text-orange md:text-right">+4 points (orange)</span>
               </div>
-              <div className="flex justify-between items-center py-1">
+              <div className="grid grid-cols-1 md:flex md:justify-between items-center py-1">
                 <span>Standard answer (15+ seconds)</span>
-                <span className="font-bold text-success">+3 points (green)</span>
+                <span className="font-bold text-success md:text-right">+3 points (green)</span>
               </div>
-              <div className="flex justify-between items-center py-1">
+              <div className="grid grid-cols-1 md:flex md:justify-between items-center py-1">
                 <span>Hint used</span>
-                <span className="font-bold text-destructive">-1 point</span>
+                <span className="font-bold text-destructive md:text-right">-1 point</span>
               </div>
-              <div className="flex justify-between items-center border-t pt-4 mt-4">
+              <div className="grid grid-cols-1 md:flex md:justify-between items-center border-t pt-4 mt-4">
                 <span className="font-bold">Maximum possible score</span>
-                <span className="font-bold text-primary">30 points</span>
+                <span className="font-bold text-primary md:text-right">30 points</span>
               </div>
             </div>
           </Card>

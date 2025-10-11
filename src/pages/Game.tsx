@@ -96,8 +96,8 @@ const Index = () => {
   const [hintsUsed, setHintsUsed] = useState(0);
   const [totalHintsUsed, setTotalHintsUsed] = useState(0);
   const [currentHint, setCurrentHint] = useState<string | undefined>();
-  const [timeRemaining, setTimeRemaining] = useState(24);
-  const [overallTimeRemaining, setOverallTimeRemaining] = useState(160);
+  // timeRemaining state removed - using only overall timer now
+  const [overallTimeRemaining, setOverallTimeRemaining] = useState(144);
   const [isCompleted, setIsCompleted] = useState(false);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [incorrectGuess, setIncorrectGuess] = useState<number | null>(null);
@@ -110,12 +110,12 @@ const Index = () => {
   const [quizStartTime] = useState(Date.now());
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [isCheckingCompletion, setIsCheckingCompletion] = useState(true);
-  const [initializedTurnTimer, setInitializedTurnTimer] = useState(false);
+  // initializedTurnTimer removed - no per-player timer anymore
   const scrollRef = useRef<HTMLDivElement>(null);
   const INPUT_BAR_HEIGHT = 72;
 
   const maxHints = 2;
-  const totalQuizTime = 160; // 2:40 minutes in seconds
+  const totalQuizTime = 144; // 2:24 minutes in seconds (6 × 24 seconds)
 
   // Fetch quiz metadata on mount
   useEffect(() => {
@@ -146,7 +146,6 @@ const Index = () => {
 
       if (!session?.user) {
         // For non-logged-in users, just start the timer without session management
-        setInitializedTurnTimer(true);
         setIsCheckingCompletion(false);
         return;
       }
@@ -190,7 +189,7 @@ const Index = () => {
               total_score: partialScore,
               correct_guesses: correctGuesses,
               hints_used: hintsUsed,
-              time_used: 160,
+              time_used: 144,
               quiz_date: today,
               quiz_index: quizIndex
             }
@@ -200,15 +199,11 @@ const Index = () => {
 
         // Restore existing session
         if (sessionData?.session_exists || sessionData?.session_started) {
-          const remaining = sessionData.remaining_seconds || 160;
+          const remaining = sessionData.remaining_seconds || 144;
           console.log(`Restoring quiz with ${remaining} seconds remaining`);
           setOverallTimeRemaining(remaining);
           
-          // Restore per-turn 24s shot clock based on server time
-          if (typeof sessionData.per_turn_remaining_seconds === 'number') {
-            const turnRemain = Math.max(1, Math.min(24, sessionData.per_turn_remaining_seconds));
-            setTimeRemaining(turnRemain);
-          }
+          // Per-turn timer removed - using only overall timer now
           
           // Restore saved progress
           if (typeof sessionData.saved_score === 'number') {
@@ -254,8 +249,7 @@ const Index = () => {
           }
         }
         
-        // Initialize timer for both new and restored sessions
-        setInitializedTurnTimer(true);
+        // Timer initialization removed - using only overall timer now
 
       } catch (error) {
         console.error('Failed to initialize quiz session:', error);
@@ -282,27 +276,8 @@ const Index = () => {
     setAnswerTimings(timings);
   }, []);
 
-  // Per-player timer countdown
-  useEffect(() => {
-    // Don't start timer until session is initialized
-    if (!initializedTurnTimer) return;
-    
-    // Once initialized, timer runs unless game is completed or time is 0
-    if (isCompleted || timeRemaining === 0) return;
-
-    const timer = setInterval(() => {
-      setTimeRemaining((prev) => {
-        if (prev <= 1) {
-          // Auto-reveal and move to next if time runs out
-          handleTimeUp();
-          return 24;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeRemaining, isCompleted, currentPlayerIndex, initializedTurnTimer]);
+  // Per-player timer countdown - REMOVED
+  // Now using only overall timer for better game experience
 
   // Overall quiz timer countdown
   useEffect(() => {
@@ -321,7 +296,7 @@ const Index = () => {
               total_score: score,
               correct_guesses: correctCount,
               hints_used: totalHintsUsed,
-              time_used: 160,
+              time_used: 144,
               quiz_date: getQuizDateISO(),
               quiz_index: quizIndex
             }
@@ -360,82 +335,8 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [userAnswers, hintsUsed, score, isCompleted, user]);
 
-  const handleTimeUp = async () => {
-    const unansweredIndex = userAnswers.findIndex((a) => !a.playerName);
-    if (unansweredIndex !== -1) {
-      // Reveal the answer for the first unanswered player
-      const rank = unansweredIndex + 1;
-      
-      try {
-        // Call server to get the correct answer for this rank
-        const { data, error } = await api.invoke('verify-guess', {
-          body: {
-            revealRank: rank,
-            quizIndex: undefined
-          }
-        });
-
-        if (!error && data?.answer) {
-          const newAnswers = [...userAnswers];
-          newAnswers[unansweredIndex] = {
-            rank: data.answer.rank,
-            playerName: data.answer.name,
-            isCorrect: false,
-            isRevealed: true,
-            stat: data.answer.stat,
-          };
-          setUserAnswers(newAnswers);
-          setLastGuessRank(data.answer.rank);
-          
-          // Reset server-side turn start so 24s clock is correct after refresh (only for logged-in users)
-          if (user) {
-            try {
-              const answeredRanksNow = newAnswers.filter(a => a.isCorrect).map(a => a.rank);
-              const revealedRanksNow = newAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
-              await api.invoke('save-quiz-progress', {
-                body: {
-                  quiz_date: getQuizDateISO(),
-                  current_score: score, // no points for auto-reveal
-                  correct_guesses: answeredRanksNow.length,
-                  hints_used: hintsUsed,
-                  answered_ranks: answeredRanksNow,
-                  revealed_ranks: revealedRanksNow,
-                  reset_turn: true
-                }
-              });
-            } catch {}
-          }
-          
-          // Check if all 6 slots are now filled (mix of correct + auto-revealed)
-          const allFilled = newAnswers.every((a) => a.playerName);
-          if (allFilled) {
-            setIsCompleted(true);
-            
-            // Navigate to results page
-            const correctCount = newAnswers.filter((a) => a.isCorrect).length;
-            
-            navigate('/results', {
-              state: {
-                total_score: score,
-                correct_guesses: correctCount,
-                hints_used: totalHintsUsed,
-                time_used: 160 - overallTimeRemaining,
-                quiz_date: getQuizDateISO(),
-                quiz_index: quizIndex
-              }
-            });
-            return;
-          }
-        }
-      } catch (error) {
-        console.error('Error revealing answer:', error);
-      }
-      
-      setTimeRemaining(24);
-      setCurrentHint(undefined);
-      setHintsUsed(0);
-    }
-  };
+  // handleTimeUp function removed - no more auto-reveals
+  // Users now have full control over their 2:24 time
 
   const normalizeGuess = (guess: string) => {
     return guess.toLowerCase().trim().replace(/[^a-z\s]/g, '');
@@ -480,10 +381,9 @@ const Index = () => {
   };
 
   const calculateTimeBonus = () => {
-    const timeUsed = 24 - timeRemaining;
-    if (timeUsed < 10) return 2;  // 0-9.99 seconds = +2 points
-    if (timeUsed < 15) return 1;  // 10-14.99 seconds = +1 point
-    return 0;  // 15+ seconds = no bonus
+    // Time bonus removed - using only overall timer now
+    // All correct guesses get base 3 points
+    return 0;
   };
 
   const handleGuess = async (guess: string) => {
@@ -497,8 +397,7 @@ const Index = () => {
     const matchedAnswer = result;
     
     if (matchedAnswer) {
-      const timeBonus = calculateTimeBonus();
-      const pointsEarned = 3 + timeBonus;
+      const pointsEarned = 3; // Base points for correct guess
       
       const newAnswers = [...userAnswers];
       const index = matchedAnswer.rank - 1;
@@ -511,7 +410,6 @@ const Index = () => {
       
       setUserAnswers(newAnswers);
       setScore((prev) => prev + pointsEarned);
-      setTimeRemaining(24);
       setCurrentHint(undefined);
       setIncorrectGuess(null);
       setLastGuessRank(matchedAnswer.rank);
@@ -574,7 +472,7 @@ const Index = () => {
             total_score: finalScore,
             correct_guesses: correctCount,
             hints_used: finalTotalHints,
-            time_used: 160 - overallTimeRemaining,
+            time_used: 144 - overallTimeRemaining,
             quiz_date: getQuizDateISO(),
             quiz_index: quizIndex
           }
@@ -644,8 +542,8 @@ const Index = () => {
                 date={quizData.date}
                 timeRemaining={overallTimeRemaining}
                 totalTime={totalQuizTime}
-                playerTimeRemaining={timeRemaining}
-                playerTotalTime={24}
+                playerTimeRemaining={0}
+                playerTotalTime={0}
                 score={score}
                 streak={streak}
                 hintsUsed={hintsUsed}
@@ -654,6 +552,7 @@ const Index = () => {
                 isDisabled={isCompleted}
                 correctCount={correctCount}
                 totalCount={6}
+                isCompleted={isCompleted}
               />
             </div>
 
@@ -702,8 +601,8 @@ const Index = () => {
               date={quizData.date}
               timeRemaining={overallTimeRemaining}
               totalTime={totalQuizTime}
-              playerTimeRemaining={timeRemaining}
-              playerTotalTime={24}
+              playerTimeRemaining={0}
+              playerTotalTime={0}
               score={score}
               streak={streak}
               hintsUsed={hintsUsed}
@@ -712,6 +611,7 @@ const Index = () => {
               isDisabled={isCompleted}
               correctCount={correctCount}
               totalCount={6}
+              isCompleted={isCompleted}
             />
           </div>
 
