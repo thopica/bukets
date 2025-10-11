@@ -87,7 +87,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
 
   return (
     <div className="rounded-2xl bg-primary/5 border border-primary/10 p-1.5 md:p-4">
-      <div className="grid grid-cols-1 gap-0.5 md:gap-2">
+      <div className="grid grid-cols-1 gap-1 md:gap-2">
       {answers.map((answer, index) => {
         const isRevealed = !!answer.playerName;
         const isCorrect = answer.isCorrect;
@@ -99,7 +99,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
           <div
             key={answer.rank}
             ref={(el) => cardRefs.current[answer.rank] = el}
-            className={`grid grid-cols-[auto_1fr_auto] items-center gap-1.5 md:gap-3 px-2 md:px-4 py-1.5 md:py-3 rounded-xl transition-all duration-200 border ${
+            className={`grid grid-cols-[auto_1fr_auto] items-center gap-1.5 md:gap-3 px-2 md:px-4 py-1.25 md:py-3 rounded-xl transition-all duration-200 border ${
               isCorrect
                 ? "bg-success border-success text-white shadow-[0_4px_16px_rgba(16,185,129,0.3)] animate-spring-bounce"
                 : isTimedOut
