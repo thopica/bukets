@@ -20,8 +20,12 @@ export default {
         'shot-clock': ['Seven Segment', 'monospace'],
       },
       fontSize: {
-        'h1': ['32px', { lineHeight: '38px', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'h2': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h1': ['36px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h1-lg': ['48px', { lineHeight: '52px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h2': ['30px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h2-lg': ['36px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h3': ['20px', { lineHeight: '28px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h3-lg': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }],
         'body': ['16px', { lineHeight: '24px' }],
         'small': ['14px', { lineHeight: '20px' }],
         'micro': ['12px', { lineHeight: '16px' }],
@@ -110,6 +114,10 @@ export default {
         '6': '24px',
         '8': '32px',
         '12': '48px',
+        // Touch target minimums
+        'touch': '44px',
+        'touch-sm': '40px',
+        'touch-lg': '48px',
       },
       borderRadius: {
         'button': 'var(--radius-button)',
@@ -125,6 +133,9 @@ export default {
         'floating': 'var(--shadow-floating)',
         'pressed': 'var(--shadow-pressed)',
         'glow-green': '0 0 20px rgba(34, 197, 94, 0.4)',
+        // Focus rings
+        'focus': '0 0 0 3px hsl(var(--ring))',
+        'focus-sm': '0 0 0 2px hsl(var(--ring))',
       },
       keyframes: {
         "accordion-down": {

@@ -145,9 +145,9 @@ const LeaderboardTable = ({
             return (
               <div
                 key={`rank-${player.user_id}`}
-                className="px-4 flex items-center justify-center h-[84px] border-b border-border/30"
+                className="px-3 md:px-4 flex items-center justify-center h-[72px] md:h-[84px] border-b border-border/30"
               >
-                <span className="text-3xl leading-none">{medal}</span>
+                <span className="text-2xl md:text-3xl leading-none">{medal}</span>
               </div>
             );
           })}
@@ -155,9 +155,9 @@ const LeaderboardTable = ({
           {sortedData.slice(3).map((player) => (
             <div
               key={`rank-${player.user_id}`}
-              className="px-4 flex items-center justify-center h-[68px] border-b border-border/30"
+              className="px-3 md:px-4 flex items-center justify-center h-[60px] md:h-[68px] border-b border-border/30"
             >
-              <span className="text-muted-foreground font-semibold text-base leading-none">
+              <span className="text-muted-foreground font-semibold text-sm md:text-base leading-none">
                 #{player.rank}
               </span>
             </div>
@@ -178,7 +178,7 @@ const LeaderboardTable = ({
                   {/* Score Header */}
                   <button
                     onClick={() => handleSort('score')}
-                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
+                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
                   >
                     <Award className="h-3 w-3 text-gold" />
                     <SortIcon column="score" />
@@ -187,7 +187,7 @@ const LeaderboardTable = ({
                   {/* Accuracy Header */}
                   <button
                     onClick={() => handleSort('accuracy')}
-                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
+                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
                   >
                     <Target className="h-3 w-3 text-primary" />
                     <SortIcon column="accuracy" />
@@ -196,7 +196,7 @@ const LeaderboardTable = ({
                   {/* Streak Header */}
                   <button
                     onClick={() => handleSort('streak')}
-                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px]"
+                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
                   >
                     <Flame className="h-3 w-3 text-orange" />
                     <SortIcon column="streak" />
@@ -213,14 +213,14 @@ const LeaderboardTable = ({
               return (
                 <div
                   key={player.user_id}
-                  className="transition-all h-[84px] border-b border-border/30"
+                  className="transition-all h-[72px] md:h-[84px] border-b border-border/30"
                 >
-                  <div className="flex items-center gap-4 px-4 h-full">
+                  <div className="flex items-center gap-3 md:gap-4 px-3 md:px-4 h-full">
                     {/* Flag + Username */}
-                    <div className="flex items-center gap-3 flex-1 min-w-[120px]">
-                      <span className="text-2xl">{flag}</span>
+                    <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-[120px]">
+                      <span className="text-xl md:text-2xl">{flag}</span>
                       <div>
-                        <span className="font-bold text-lg text-foreground block">
+                        <span className="font-bold text-base md:text-lg text-foreground block">
                           {player.username}
                         </span>
                         {isCurrentUser && (
@@ -230,15 +230,15 @@ const LeaderboardTable = ({
                     </div>
 
                     {/* Score + Accuracy + Streak */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3 md:gap-4">
                       <div className="text-center min-w-[50px]">
-                        <p className="font-bold text-xl text-foreground">{player.total_score}</p>
+                        <p className="font-bold text-lg md:text-xl text-foreground">{player.total_score}</p>
                       </div>
                       <div className="text-center min-w-[50px]">
-                        <p className="font-semibold text-base text-foreground">{player.accuracy}%</p>
+                        <p className="font-semibold text-sm md:text-base text-foreground">{player.accuracy}%</p>
                       </div>
                       <div className="text-center min-w-[50px]">
-                        <p className="font-bold text-lg text-foreground">{player.current_streak}</p>
+                        <p className="font-bold text-base md:text-lg text-foreground">{player.current_streak}</p>
                       </div>
                     </div>
                   </div>
@@ -254,14 +254,14 @@ const LeaderboardTable = ({
               return (
                 <div
                   key={player.user_id}
-                  className="border-b border-border/30 transition-all hover:bg-muted/20 h-[68px]"
+                  className="border-b border-border/30 transition-all hover:bg-muted/20 h-[60px] md:h-[68px]"
                 >
-                  <div className="flex items-center gap-4 px-4 h-full">
+                  <div className="flex items-center gap-3 md:gap-4 px-3 md:px-4 h-full">
                     {/* Flag + Username */}
-                    <div className="flex items-center gap-3 flex-1 min-w-[120px]">
-                      <span className="text-xl">{flag}</span>
+                    <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-[120px]">
+                      <span className="text-lg md:text-xl">{flag}</span>
                       <div>
-                        <span className="font-semibold text-base text-foreground block">
+                        <span className="font-semibold text-sm md:text-base text-foreground block">
                           {player.username}
                         </span>
                         {isCurrentUser && (
@@ -271,15 +271,15 @@ const LeaderboardTable = ({
                     </div>
 
                     {/* Score + Accuracy + Streak */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3 md:gap-4">
                       <div className="text-center min-w-[50px]">
-                        <p className="font-bold text-lg text-foreground">{player.total_score}</p>
+                        <p className="font-bold text-base md:text-lg text-foreground">{player.total_score}</p>
                       </div>
                       <div className="text-center min-w-[50px]">
                         <p className="font-medium text-sm text-foreground">{player.accuracy}%</p>
                       </div>
                       <div className="text-center min-w-[50px]">
-                        <p className="font-semibold text-base text-foreground">{player.current_streak}</p>
+                        <p className="font-semibold text-sm md:text-base text-foreground">{player.current_streak}</p>
                       </div>
                     </div>
                   </div>
@@ -413,13 +413,13 @@ const Leaderboard = () => {
         <div className="space-y-6">
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-foreground">Leaderboard</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground">Leaderboard</h1>
           </div>
 
           {/* Country Filter */}
           <div className="flex justify-center">
             <Select value={countryFilter} onValueChange={setCountryFilter}>
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="w-[200px] h-10 touch-target">
                 <SelectValue placeholder="All Countries" />
               </SelectTrigger>
               <SelectContent>
@@ -443,7 +443,7 @@ const Leaderboard = () => {
               <button
                 key={tab.value}
                 onClick={() => handleTabChange(tab.value)}
-                className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                className={`flex-1 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 touch-target ${
                   activeTab === tab.value
                     ? "bg-primary text-white shadow-sm"
                     : "text-muted-foreground hover:text-foreground"

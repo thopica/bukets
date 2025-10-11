@@ -185,11 +185,11 @@ const Auth = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 container max-w-md mx-auto px-4 py-8 flex items-center justify-center">
-        <div className="w-full space-y-6">
-          <div className="text-center space-y-2">
-            <div className="flex justify-center mb-4">
-              <Trophy className="h-12 w-12 text-secondary" />
+      <main className="flex-1 container max-w-md mx-auto px-4 py-6 flex items-center justify-center">
+        <div className="w-full space-y-5">
+          <div className="text-center space-y-3">
+            <div className="flex justify-center mb-3">
+              <Trophy className="h-10 w-10 text-secondary" />
             </div>
             <h1 className="text-3xl font-bold">NBA Daily Quiz</h1>
             <p className="text-muted-foreground">Sign in to track your scores and compete on the leaderboard</p>
@@ -200,7 +200,7 @@ const Auth = () => {
               <CardTitle>Authentication</CardTitle>
               <CardDescription>Sign in or create an account to get started</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-5">
               {showVerificationMessage ? (
                 <Alert className="border-primary/50 bg-primary/5">
                   <Mail className="h-4 w-4" />
@@ -245,9 +245,9 @@ const Auth = () => {
                         variant="outline"
                         onClick={handleGoogleAuth}
                         disabled={loading}
-                        className="w-full"
+                        className="w-full h-11 touch-target"
                       >
-                        <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+                        <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
                           <path
                             fill="currentColor"
                             d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -271,7 +271,7 @@ const Auth = () => {
                         variant="outline"
                         onClick={handleAppleAuth}
                         disabled={loading}
-                        className="w-full"
+                        className="w-full h-11 touch-target"
                       >
                         <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
@@ -299,7 +299,7 @@ const Auth = () => {
                     <TabsTrigger value="signup">Sign Up</TabsTrigger>
                   </TabsList>
 
-                <TabsContent value="signin" className="space-y-4">
+                <TabsContent value="signin" className="space-y-5">
                   <div className="space-y-2">
                     <Label htmlFor="signin-email">Email</Label>
                     <Input
@@ -309,6 +309,7 @@ const Auth = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={loading}
+                      className="h-12 py-3"
                     />
                   </div>
                   <div className="space-y-2">
@@ -321,10 +322,11 @@ const Auth = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleEmailAuth(false)}
                       disabled={loading}
+                      className="h-12 py-3"
                     />
                   </div>
                   <Button
-                    className="w-full"
+                    className="w-full h-11 touch-target"
                     onClick={() => handleEmailAuth(false)}
                     disabled={loading}
                   >
@@ -332,7 +334,7 @@ const Auth = () => {
                   </Button>
                 </TabsContent>
 
-                <TabsContent value="signup" className="space-y-4">
+                <TabsContent value="signup" className="space-y-5">
                   <div className="space-y-2">
                     <Label htmlFor="signup-email">Email</Label>
                     <Input
@@ -342,6 +344,7 @@ const Auth = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={loading}
+                      className="h-12 py-3"
                     />
                   </div>
                   <div className="space-y-2">
@@ -353,16 +356,17 @@ const Auth = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       disabled={loading}
+                      className="h-12 py-3"
                     />
                     {password && (
-                      <div className="text-xs space-y-1 pt-1">
+                      <div className="text-sm space-y-1 pt-2">
                         <p className="text-muted-foreground font-medium mb-2">Password must contain:</p>
-                        <div className="space-y-1">
+                        <div className="space-y-1.5">
                           <div className="flex items-center gap-2">
                             {passwordRequirements.minLength ? (
-                              <Check className="h-3 w-3 text-green-500" />
+                              <Check className="h-4 w-4 text-green-500" />
                             ) : (
-                              <X className="h-3 w-3 text-muted-foreground" />
+                              <X className="h-4 w-4 text-muted-foreground" />
                             )}
                             <span className={passwordRequirements.minLength ? "text-green-500" : "text-muted-foreground"}>
                               At least 8 characters
@@ -370,9 +374,9 @@ const Auth = () => {
                           </div>
                           <div className="flex items-center gap-2">
                             {passwordRequirements.hasUpperCase ? (
-                              <Check className="h-3 w-3 text-green-500" />
+                              <Check className="h-4 w-4 text-green-500" />
                             ) : (
-                              <X className="h-3 w-3 text-muted-foreground" />
+                              <X className="h-4 w-4 text-muted-foreground" />
                             )}
                             <span className={passwordRequirements.hasUpperCase ? "text-green-500" : "text-muted-foreground"}>
                               One uppercase letter
@@ -380,9 +384,9 @@ const Auth = () => {
                           </div>
                           <div className="flex items-center gap-2">
                             {passwordRequirements.hasLowerCase ? (
-                              <Check className="h-3 w-3 text-green-500" />
+                              <Check className="h-4 w-4 text-green-500" />
                             ) : (
-                              <X className="h-3 w-3 text-muted-foreground" />
+                              <X className="h-4 w-4 text-muted-foreground" />
                             )}
                             <span className={passwordRequirements.hasLowerCase ? "text-green-500" : "text-muted-foreground"}>
                               One lowercase letter
@@ -390,9 +394,9 @@ const Auth = () => {
                           </div>
                           <div className="flex items-center gap-2">
                             {passwordRequirements.hasNumber ? (
-                              <Check className="h-3 w-3 text-green-500" />
+                              <Check className="h-4 w-4 text-green-500" />
                             ) : (
-                              <X className="h-3 w-3 text-muted-foreground" />
+                              <X className="h-4 w-4 text-muted-foreground" />
                             )}
                             <span className={passwordRequirements.hasNumber ? "text-green-500" : "text-muted-foreground"}>
                               One number
@@ -400,9 +404,9 @@ const Auth = () => {
                           </div>
                           <div className="flex items-center gap-2">
                             {passwordRequirements.hasSpecialChar ? (
-                              <Check className="h-3 w-3 text-green-500" />
+                              <Check className="h-4 w-4 text-green-500" />
                             ) : (
-                              <X className="h-3 w-3 text-muted-foreground" />
+                              <X className="h-4 w-4 text-muted-foreground" />
                             )}
                             <span className={passwordRequirements.hasSpecialChar ? "text-green-500" : "text-muted-foreground"}>
                               One special character (!@#$%^&*...)
@@ -428,7 +432,7 @@ const Auth = () => {
                     </Select>
                   </div>
                   <Button
-                    className="w-full"
+                    className="w-full h-11 touch-target"
                     onClick={() => handleEmailAuth(true)}
                     onKeyDown={(e) => e.key === "Enter" && handleEmailAuth(true)}
                     disabled={loading || !isPasswordValid}

@@ -44,6 +44,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -63,6 +64,16 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
     });
 
     return () => subscription.unsubscribe();
+  }, []);
+
+  // Scroll detection for glassmorphic header effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const checkAdminStatus = async (userId: string) => {
@@ -138,9 +149,6 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
   ];
 
   const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
-    const isHomepage = location.pathname === '/';
-    const showWhiteText = isHomepage && !mobile; // Show white text for all users on homepage desktop
-
     return (
       <>
         {navLinks.map((link) => (
@@ -148,10 +156,10 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
             key={link.path}
             to={link.path}
             className={`${
-              showWhiteText
-                ? (isActive(link.path) ? "text-white font-semibold" : "text-white/80 hover:text-white")
-                : (isActive(link.path) ? "text-foreground font-semibold" : "text-muted-foreground hover:text-foreground")
-            } transition-colors text-base ${mobile ? "block py-2 text-lg" : ""}`}
+              isActive(link.path) 
+                ? "text-foreground font-semibold" 
+                : "text-muted-foreground hover:text-foreground"
+            } transition-colors text-base ${mobile ? "block py-3 text-xl touch-target" : ""}`}
           >
             {link.label}
           </Link>
@@ -160,15 +168,12 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
     );
   };
 
-  const isHomepage = location.pathname === '/';
-  const showWhiteText = isHomepage; // Show white text for all users on homepage
-
   return (
-    <header className={`sticky top-0 z-50 w-full transition-transform duration-300 ${hideOnMobile ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'} ${showWhiteText ? '' : 'border-b border-border/50'}`}>
-      <div className="container flex h-14 items-center justify-between px-4">
+    <header className={`sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md transition-all duration-300 ${hideOnMobile ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'} ${isScrolled ? 'shadow-md border-b border-border/50' : 'border-b border-transparent'}`}>
+      <div className="container flex h-16 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <img src={logo} alt="NBA Quiz Logo" className="h-10 w-10" />
-          <span className="text-2xl font-bold text-foreground">Bukets</span>
+          <img src={logo} alt="NBA Quiz Logo" className="h-8 w-8 md:h-10 md:w-10" />
+          <span className="text-xl md:text-2xl font-bold text-foreground">Bukets</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -200,7 +205,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
                 <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                   <Avatar className="h-9 w-9">
                     <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email} />
-                    <AvatarFallback className={showWhiteText ? "bg-white text-primary" : "bg-orange/10 text-orange"}>
+                    <AvatarFallback className="bg-orange/10 text-orange">
                       {user.email?.charAt(0).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
@@ -241,7 +246,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
               variant="default"
               size="sm"
               onClick={() => navigate("/auth")}
-              className={`rounded-full h-9 px-5 font-semibold ${showWhiteText ? 'bg-white text-primary hover:bg-white/90' : ''}`}
+              className="rounded-full h-11 px-5 font-semibold touch-target bg-primary text-white hover:bg-primary/90"
             >
               Sign in
             </Button>
@@ -251,12 +256,12 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="h-9 w-9 rounded-lg">
+            <Button variant="ghost" size="icon" className="h-10 w-10 rounded-lg touch-target-sm">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent className="bg-card">
-            <nav className="flex flex-col gap-4 mt-8">
+          <SheetContent className="bg-card px-6">
+            <nav className="flex flex-col gap-5 mt-8">
               {isAdmin && (
                 <div className="mb-2 flex items-center gap-2">
                   <span className="text-xs font-bold px-2 py-1 rounded-full bg-orange/20 text-orange border border-orange/30">
@@ -268,7 +273,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
               {isAdmin && (
                 <Button 
                   variant="ghost" 
-                  className="justify-start text-orange hover:text-orange hover:bg-orange/10"
+                  className="justify-start text-orange hover:text-orange hover:bg-orange/10 touch-target"
                   onClick={() => setShowResetDialog(true)}
                 >
                   <RotateCcw className="mr-2 h-4 w-4" />
@@ -277,13 +282,13 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
               )}
               {user ? (
                 <>
-                  <Button variant="ghost" className="justify-start" onClick={() => navigate("/account")}>
+                  <Button variant="ghost" className="justify-start touch-target" onClick={() => navigate("/account")}>
                     <User className="mr-2 h-4 w-4" />
                     Account
                   </Button>
                   <Button 
                     variant="secondary" 
-                    className="mt-4 rounded-full h-10 px-6 font-semibold" 
+                    className="mt-4 rounded-full h-11 px-6 font-semibold touch-target" 
                     onClick={handleSignOut}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -293,7 +298,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
               ) : (
                 <Button 
                   variant="default" 
-                  className="mt-4 rounded-full h-10 px-6 font-semibold" 
+                  className="mt-4 rounded-full h-11 px-6 font-semibold touch-target" 
                   onClick={() => navigate("/auth")}
                 >
                   Sign in

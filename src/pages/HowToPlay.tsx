@@ -42,22 +42,22 @@ const HowToPlay = () => {
       <Header />
       
       <main className="container max-w-4xl mx-auto px-4 py-8">
-        <div className="space-y-8">
+        <div className="section-gap">
           <div className="text-center space-y-4">
-            <h1 className="text-5xl font-bold">How to Play</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold">How to Play</h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               Test your NBA knowledge with daily stat-based quizzes. Can you name the greatest players in basketball history?
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5 md:gap-6">
             {features.map((feature, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-all">
+              <Card key={index} className="card-padding interactive-hover">
                 <div className="flex gap-4">
                   <div className="flex-shrink-0">{feature.icon}</div>
                   <div>
                     <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-muted-foreground text-base leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -66,26 +66,26 @@ const HowToPlay = () => {
             ))}
           </div>
 
-          <Card className="p-6 bg-gradient-to-r from-primary/10 to-secondary/10 border-2">
+          <Card className="card-padding bg-gradient-to-r from-primary/10 to-secondary/10 border-2">
             <h2 className="text-2xl font-bold mb-4">Scoring Breakdown</h2>
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between items-center">
+            <div className="space-y-4 text-sm">
+              <div className="flex justify-between items-center py-1">
                 <span>Fast answer (0-10 seconds)</span>
                 <span className="font-bold text-gold-bright">+5 points (golden)</span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center py-1">
                 <span>Quick answer (10-15 seconds)</span>
                 <span className="font-bold text-orange">+4 points (orange)</span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center py-1">
                 <span>Standard answer (15+ seconds)</span>
                 <span className="font-bold text-success">+3 points (green)</span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center py-1">
                 <span>Hint used</span>
                 <span className="font-bold text-destructive">-1 point</span>
               </div>
-              <div className="flex justify-between items-center border-t pt-3 mt-3">
+              <div className="flex justify-between items-center border-t pt-4 mt-4">
                 <span className="font-bold">Maximum possible score</span>
                 <span className="font-bold text-primary">30 points</span>
               </div>
@@ -96,7 +96,7 @@ const HowToPlay = () => {
             <p className="text-muted-foreground mb-4">Ready to test your knowledge?</p>
             <a
               href="/"
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-light shadow-md hover:shadow-lg h-12 px-8 transition-all"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-light shadow-md hover:shadow-lg h-11 px-8 transition-all touch-target"
             >
               Play Today's Quiz
             </a>
