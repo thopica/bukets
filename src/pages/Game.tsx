@@ -668,8 +668,8 @@ const Index = () => {
               />
             </div>
 
-            {/* Input bar directly under answer slots - Mobile */}
-            <div className="mt-0.5">
+            {/* Input bar with more spacing - Mobile */}
+            <div className="mt-4">
               <GuessInput
                 onGuess={handleGuess}
                 onRequestHint={handleRequestHint}
