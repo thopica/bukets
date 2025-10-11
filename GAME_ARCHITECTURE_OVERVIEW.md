@@ -18,8 +18,21 @@
   - 0-10 seconds: +2 bonus (5 total points) - Golden
   - 10-15 seconds: +1 bonus (4 total points) - Orange  
   - 15+ seconds: +0 bonus (3 total points) - Green
-- **Hint penalty**: -1 point per hint used
+- **Hint penalty**: -1 point per hint used (minimum 1 point per correct answer)
 - **Maximum possible score**: 30 points (6 correct × 5 points each)
+- **Minimum possible score**: 6 points (6 correct × 1 point each with max hints)
+
+#### Scoring Implementation Details
+- **Frontend calculation**: Handles time-based scoring and hint penalties correctly
+  - Time bonus calculated in `Game.tsx` `calculateTimeBonus()` function
+  - Hint penalty applied in `AnswerGrid.tsx` with `Math.max(1, points - hintsUsed)`
+  - Final score: `3 + timeBonus - hintPenalty` per correct answer
+- **Backend verification**: Trusts frontend score from `quiz_sessions.score`
+  - Server validates correct answers against quiz data
+  - Uses pre-calculated score from gameplay session
+  - Prevents negative scores and ensures consistency
+- **Score storage**: Final score stored in `daily_scores.total_score`
+- **Visual feedback**: Color-coded animations (gold/orange/green) based on points earned
 
 ### User Authentication Requirements
 - **CRITICAL**: Game scores are ONLY saved for logged-in users
@@ -133,6 +146,12 @@
 - Used for generating fake players on leaderboards
 - Bots have different skill levels and generate realistic scores
 
+### Database Optimization
+- **Unused tables removed**: hints_used, players_glossary, quiz_answers, quiz_hints, quizzes, user_guesses, user_quiz_attempts
+- **Reason**: These tables had zero references in application code
+- **Data storage**: All quiz data stored in `quizzes.json` file
+- **Player validation**: Handled server-side in API functions
+
 ## API Endpoints
 
 ### verify-guess.ts
@@ -237,6 +256,9 @@
 
 ### Recent Fixes
 - **started_at column** added to daily_scores table (migration applied)
+- **Scoring system fixed**: Backend now uses frontend-calculated scores
+- **Negative scores eliminated**: Backend no longer overrides correct frontend scoring
+- **Database cleanup**: Removed 7 unused tables to optimize performance
 - Session management improved for timer persistence
 - Mobile keyboard handling optimized
 - Auto-save functionality enhanced

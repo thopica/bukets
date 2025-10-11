@@ -8,9 +8,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Scoring constants
-const POINTS_PER_CORRECT = 5;
-const POINTS_PER_HINT = 1;
 
 module.exports = async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method === 'OPTIONS') {
@@ -61,7 +58,7 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
     // Get the user's quiz session to verify their answers
     const { data: session, error: sessionError } = await supabaseClient
       .from('quiz_sessions')
-      .select('correct_ranks, hints_used, started_at, completed_at')
+      .select('correct_ranks, hints_used, started_at, completed_at, score')
       .eq('user_id', user.id)
       .eq('quiz_date', quiz_date)
       .maybeSingle();
@@ -86,10 +83,10 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       return answer !== undefined; // Verify rank exists in quiz
     });
 
-    // Calculate server-side verified score
+    // Use frontend-calculated score from session
     const correct_guesses = validCorrectRanks.length;
     const hints_used = session.hints_used || 0;
-    const total_score = (correct_guesses * POINTS_PER_CORRECT) - (hints_used * POINTS_PER_HINT);
+    const total_score = session.score || 0; // Use frontend-calculated score
 
     // Calculate time used
     const startedAt = new Date(session.started_at);
