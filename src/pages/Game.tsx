@@ -171,7 +171,8 @@ const Index = () => {
 
         // Already completed
         if (sessionData?.already_completed) {
-          navigate('/already-completed');
+          console.log('Redirecting to already-completed page');
+          navigate('/already-completed', { replace: true });
           return;
         }
 

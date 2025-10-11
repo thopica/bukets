@@ -52,8 +52,9 @@ export default function AlreadyCompleted() {
       if (error) throw error;
 
       if (!data.completed) {
-        // Not completed yet, redirect to game
-        navigate('/game');
+        // Not completed yet - but don't redirect if we just came from game
+        // This prevents infinite redirect loops
+        console.warn('No completed score found - staying on already-completed page');
         return;
       }
 
