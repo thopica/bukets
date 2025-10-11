@@ -658,7 +658,7 @@ const Index = () => {
             </div>
 
             {/* Answer Grid */}
-            <div className="flex flex-col gap-0">
+            <div className="flex flex-col gap-0 mt-3 mb-3">
               <AnswerGrid 
                 answers={userAnswers} 
                 lastGuessRank={lastGuessRank}
