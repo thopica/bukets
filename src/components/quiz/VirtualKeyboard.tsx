@@ -434,7 +434,7 @@ const VirtualKeyboard = ({
             onTouchEnd={(e) => handleBackspaceEnd(e)}
             onTouchCancel={(e) => handleBackspaceEnd(e)}
             disabled={disabled}
-            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 text-foreground transition-all duration-100 ${
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 text-foreground flex items-center justify-center transition-all duration-100 ${
               pressedKey === 'BACKSPACE' || isLongPressing ? 'bg-gray-100 border-gray-400' : 'bg-transparent border-border'
             }`}
             style={{ 
