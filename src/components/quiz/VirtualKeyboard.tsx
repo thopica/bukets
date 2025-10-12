@@ -390,16 +390,19 @@ const VirtualKeyboard = ({
 
         {/* Row 3 */}
         <div className="flex justify-center gap-1">
-          <Button
+          <button
             onClick={handleShiftToggle}
             disabled={disabled}
-            variant="outline"
-            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
-              pressedKey === 'SHIFT' ? 'bg-gray-100 border-gray-400' : ''
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 text-foreground transition-all duration-100 ${
+              pressedKey === 'SHIFT' ? 'bg-gray-100 border-gray-400' : 'bg-transparent border-border'
             }`}
+            style={{ 
+              touchAction: 'manipulation',
+              WebkitTapHighlightColor: 'transparent'
+            }}
           >
             <span className="text-lg">⇧</span>
-          </Button>
+          </button>
           
           {rows[2].map((key) => (
             <button
@@ -423,7 +426,7 @@ const VirtualKeyboard = ({
             </button>
           ))}
           
-          <Button
+          <button
             onMouseDown={(e) => handleBackspaceStart(e)}
             onMouseUp={(e) => handleBackspaceEnd(e)}
             onMouseLeave={(e) => handleBackspaceEnd(e)}
@@ -431,13 +434,16 @@ const VirtualKeyboard = ({
             onTouchEnd={(e) => handleBackspaceEnd(e)}
             onTouchCancel={(e) => handleBackspaceEnd(e)}
             disabled={disabled}
-            variant="outline"
-            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 active:brightness-100 transition-all duration-100 ${
-              pressedKey === 'BACKSPACE' || isLongPressing ? 'scale-95 border-border' : ''
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 text-foreground transition-all duration-100 ${
+              pressedKey === 'BACKSPACE' || isLongPressing ? 'bg-gray-100 border-gray-400' : 'bg-transparent border-border'
             }`}
+            style={{ 
+              touchAction: 'manipulation',
+              WebkitTapHighlightColor: 'transparent'
+            }}
           >
             <Delete className="h-4 w-4" />
-          </Button>
+          </button>
         </div>
 
         {/* Row 4 - Space and Submit */}
@@ -460,19 +466,22 @@ const VirtualKeyboard = ({
             </Button>
           )}
           
-          <Button
+          <button
             onMouseDown={(e) => handleSpaceDown(e)}
             onMouseUp={(e) => handleSpaceUp(e)}
             onTouchStart={(e) => handleSpaceDown(e)}
             onTouchEnd={(e) => handleSpaceUp(e)}
             disabled={disabled}
-            variant="outline"
-            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
-              pressedKey === 'SPACE' ? 'bg-gray-100 border-gray-400' : ''
+            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 text-foreground transition-all duration-100 ${
+              pressedKey === 'SPACE' ? 'bg-gray-100 border-gray-400' : 'bg-transparent border-border'
             }`}
+            style={{ 
+              touchAction: 'manipulation',
+              WebkitTapHighlightColor: 'transparent'
+            }}
           >
             SPACE
-          </Button>
+          </button>
         </div>
       </div>
     </div>
