@@ -303,7 +303,7 @@ const VirtualKeyboard = ({
         <div 
           onClick={() => setIsFocused(true)}
           className={`bg-background border-2 rounded-lg h-[36px] text-base text-foreground transition-all cursor-text flex items-center justify-between overflow-hidden ${
-            isShaking ? 'animate-shake-horizontal border-destructive' : 'border-primary ring-2 ring-primary/20'
+            isShaking ? 'animate-shake-horizontal border-destructive' : 'border-border'
           }`}
         >
           <div className="flex items-center px-3 flex-1">
@@ -394,8 +394,8 @@ const VirtualKeyboard = ({
             onClick={handleShiftToggle}
             disabled={disabled}
             variant="outline"
-            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 active:brightness-100 transition-all duration-100 ${
-              pressedKey === 'SHIFT' ? 'scale-95 border-border' : ''
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
+              pressedKey === 'SHIFT' ? 'bg-gray-100 border-gray-400' : ''
             }`}
           >
             <span className="text-lg">⇧</span>
@@ -467,8 +467,8 @@ const VirtualKeyboard = ({
             onTouchEnd={(e) => handleSpaceUp(e)}
             disabled={disabled}
             variant="outline"
-            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 active:brightness-100 transition-all duration-100 ${
-              pressedKey === 'SPACE' ? 'scale-95 border-border' : ''
+            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
+              pressedKey === 'SPACE' ? 'bg-gray-100 border-gray-400' : ''
             }`}
           >
             SPACE
