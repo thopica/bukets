@@ -339,7 +339,7 @@ const VirtualKeyboard = ({
         {/* Row 1 */}
         <div className="flex justify-center gap-1">
           {rows[0].map((key) => (
-            <Button
+            <button
               key={key}
               onMouseDown={(e) => handleKeyDown(key, e)}
               onMouseUp={(e) => handleKeyUp(key, e)}
@@ -348,13 +348,14 @@ const VirtualKeyboard = ({
               onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
-              variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 active:brightness-100 transition-all duration-100 ${
-                pressedKey === key ? 'scale-95 border-border' : ''
-              }`}
+              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 border-border bg-transparent text-foreground"
+              style={{ 
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent'
+              }}
             >
               {isShiftActive ? key : key.toLowerCase()}
-            </Button>
+            </button>
           ))}
         </div>
 
@@ -362,7 +363,7 @@ const VirtualKeyboard = ({
         <div className="flex justify-center gap-1">
           <div className="w-[calc((100%-9*4px)/20)]" />
           {rows[1].map((key) => (
-            <Button
+            <button
               key={key}
               onMouseDown={(e) => handleKeyDown(key, e)}
               onMouseUp={(e) => handleKeyUp(key, e)}
@@ -371,13 +372,14 @@ const VirtualKeyboard = ({
               onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
-              variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 active:brightness-100 transition-all duration-100 ${
-                pressedKey === key ? 'scale-95 border-border' : ''
-              }`}
+              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 border-border bg-transparent text-foreground"
+              style={{ 
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent'
+              }}
             >
               {isShiftActive ? key : key.toLowerCase()}
-            </Button>
+            </button>
           ))}
           <div className="w-[calc((100%-9*4px)/20)]" />
         </div>
@@ -396,7 +398,7 @@ const VirtualKeyboard = ({
           </Button>
           
           {rows[2].map((key) => (
-            <Button
+            <button
               key={key}
               onMouseDown={(e) => handleKeyDown(key, e)}
               onMouseUp={(e) => handleKeyUp(key, e)}
@@ -405,13 +407,14 @@ const VirtualKeyboard = ({
               onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
-              variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 active:brightness-100 transition-all duration-100 ${
-                pressedKey === key ? 'scale-95 border-border' : ''
-              }`}
+              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 border-border bg-transparent text-foreground"
+              style={{ 
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent'
+              }}
             >
               {isShiftActive ? key : key.toLowerCase()}
-            </Button>
+            </button>
           ))}
           
           <Button
