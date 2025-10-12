@@ -165,31 +165,26 @@ const Index = () => {
       // Not logged-in view
       <>
             {/* Hero Section */}
-            <div className="text-center space-y-4 md:space-y-6">
+            <div className="text-center space-y-3 md:space-y-6">
               {/* Headline */}
-              <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight tracking-tight">
+              <h1 className="text-4xl md:text-7xl font-bold text-white leading-tight tracking-tight">
                 Bukets
               </h1>
 
-              {/* Subheadline */}
-              <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
-                Your daily dose of NBA trivia
-              </p>
-
               {/* Value Proposition */}
-              <p className="text-lg md:text-xl max-w-xl mx-auto leading-relaxed text-white/90 px-4 md:px-0">
-                One quiz. Six players. 2 minutes 40 seconds.<br/>
-                Can you name the NBA's greatest?
+              <p className="text-base md:text-xl max-w-xl mx-auto leading-relaxed text-white/90 px-4 md:px-0">
+              Guess the NBA's top 6. Beat the clock. <br/>
+              Climb the global leaderboard daily.
               </p>
 
               {/* Primary CTA */}
-              <div className="pt-3 md:pt-4">
+              <div className="pt-2 md:pt-4">
                 <Button
                   size="lg"
                   onClick={() => navigate("/game")}
-                  className="h-16 md:h-18 px-12 text-xl font-bold shadow-elevated hover:shadow-floating bg-white text-primary hover:bg-white/95 touch-target"
+                  className="h-12 md:h-18 px-8 md:px-12 text-base md:text-xl font-bold shadow-elevated hover:shadow-floating bg-white text-primary hover:bg-white/95 touch-target"
                 >
-                  <Play className="h-6 w-6 md:h-7 md:w-7" />
+                  <Play className="h-5 w-5 md:h-7 md:w-7" />
                   Start Playing
                 </Button>
               </div>
