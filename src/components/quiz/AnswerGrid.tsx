@@ -136,7 +136,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
                   </span>
                 </>
               ) : showHintOnThisCard ? (
-                <span className="text-[13px] md:text-sm text-gold font-medium italic animate-fade-in break-words leading-relaxed">
+                <span className="text-[13px] md:text-sm text-foreground font-medium italic animate-fade-in break-words leading-relaxed">
                   {currentHint}
                 </span>
               ) : (
