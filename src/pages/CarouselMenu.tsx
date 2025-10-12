@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { BookOpen } from "lucide-react";
 
 const CarouselMenu = () => {
@@ -38,6 +39,8 @@ const CarouselMenu = () => {
 
         </div>
       </main>
+      
+      <Footer />
     </div>
   );
 };

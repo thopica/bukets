@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Shuffle, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import carouselData from "@/data/carousel_questions.json";
@@ -101,6 +102,8 @@ const CarouselSingle = () => {
 
 
       </main>
+      
+      <Footer />
     </div>
   );
 };
