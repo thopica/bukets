@@ -195,7 +195,7 @@ All colors MUST be HSL.
   html, body, #root {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100dvh;
   }
 
   body {
