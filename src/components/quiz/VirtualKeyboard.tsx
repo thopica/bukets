@@ -348,7 +348,9 @@ const VirtualKeyboard = ({
               onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
-              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 border-border bg-transparent text-foreground"
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 text-foreground ${
+                pressedKey === key ? 'bg-gray-100 border-gray-400' : 'bg-transparent border-border'
+              }`}
               style={{ 
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent'
@@ -372,7 +374,9 @@ const VirtualKeyboard = ({
               onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
-              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 border-border bg-transparent text-foreground"
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 text-foreground ${
+                pressedKey === key ? 'bg-gray-100 border-gray-400' : 'bg-transparent border-border'
+              }`}
               style={{ 
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent'
@@ -407,7 +411,9 @@ const VirtualKeyboard = ({
               onTouchEnd={(e) => handleKeyUp(key, e)}
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
-              className="h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 border-border bg-transparent text-foreground"
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 text-foreground ${
+                pressedKey === key ? 'bg-gray-100 border-gray-400' : 'bg-transparent border-border'
+              }`}
               style={{ 
                 touchAction: 'manipulation',
                 WebkitTapHighlightColor: 'transparent'
