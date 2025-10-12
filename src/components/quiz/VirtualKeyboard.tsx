@@ -349,8 +349,8 @@ const VirtualKeyboard = ({
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
-                pressedKey === key ? 'scale-95 border-red-500' : ''
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 active:brightness-100 transition-all duration-100 ${
+                pressedKey === key ? 'scale-95 border-border' : ''
               }`}
             >
               {isShiftActive ? key : key.toLowerCase()}
@@ -372,8 +372,8 @@ const VirtualKeyboard = ({
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
-                pressedKey === key ? 'scale-95 border-red-500' : ''
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 active:brightness-100 transition-all duration-100 ${
+                pressedKey === key ? 'scale-95 border-border' : ''
               }`}
             >
               {isShiftActive ? key : key.toLowerCase()}
@@ -388,8 +388,8 @@ const VirtualKeyboard = ({
             onClick={handleShiftToggle}
             disabled={disabled}
             variant="outline"
-            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
-              pressedKey === 'SHIFT' ? 'scale-95 border-red-500' : ''
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 active:brightness-100 transition-all duration-100 ${
+              pressedKey === 'SHIFT' ? 'scale-95 border-border' : ''
             }`}
           >
             <span className="text-lg">⇧</span>
@@ -406,8 +406,8 @@ const VirtualKeyboard = ({
               onTouchCancel={hideKeyPopup}
               disabled={disabled}
               variant="outline"
-              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
-                pressedKey === key ? 'scale-95 border-red-500' : ''
+              className={`h-10 w-[calc((100%-9*4px)/10)] min-w-0 p-0 text-sm font-semibold rounded-md border-2 active:brightness-100 transition-all duration-100 ${
+                pressedKey === key ? 'scale-95 border-border' : ''
               }`}
             >
               {isShiftActive ? key : key.toLowerCase()}
@@ -423,8 +423,8 @@ const VirtualKeyboard = ({
             onTouchCancel={(e) => handleBackspaceEnd(e)}
             disabled={disabled}
             variant="outline"
-            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 transition-all duration-100 ${
-              pressedKey === 'BACKSPACE' || isLongPressing ? 'scale-95 border-red-500' : ''
+            className={`h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2 active:brightness-100 transition-all duration-100 ${
+              pressedKey === 'BACKSPACE' || isLongPressing ? 'scale-95 border-border' : ''
             }`}
           >
             <Delete className="h-4 w-4" />
@@ -458,8 +458,8 @@ const VirtualKeyboard = ({
             onTouchEnd={(e) => handleSpaceUp(e)}
             disabled={disabled}
             variant="outline"
-            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 transition-all duration-100 ${
-              pressedKey === 'SPACE' ? 'scale-95 border-red-500' : ''
+            className={`h-10 flex-1 text-sm font-semibold rounded-md border-2 active:brightness-100 transition-all duration-100 ${
+              pressedKey === 'SPACE' ? 'scale-95 border-border' : ''
             }`}
           >
             SPACE
