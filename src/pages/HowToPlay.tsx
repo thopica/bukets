@@ -23,7 +23,7 @@ const HowToPlay = () => {
     {
       icon: <Lightbulb className="h-8 w-8 text-gold" />,
       title: "Hints Available",
-      description: "Stuck? Use up to 2 hints per quiz. Each hint costs -1 point but gives you valuable clues about the player's career, team, or achievements.",
+      description: "Stuck? Use up to 2 hints per player (12 total). Each hint costs -1 point but gives you valuable clues about the player's career, team, or achievements.",
     },
     {
       icon: <Flame className="h-8 w-8 text-orange" />,

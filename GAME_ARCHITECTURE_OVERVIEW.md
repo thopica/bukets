@@ -10,7 +10,7 @@
 - Each quiz asks users to identify the **top 6 players** for a specific NBA statistic
 - **2 minutes 40 seconds total time** (160 seconds)
 - **24 seconds per player** with auto-reveal if time runs out
-- **2 hints maximum** per quiz (each hint costs -1 point)
+- **2 hints per player** (12 total per quiz, each hint costs -1 point)
 
 ### Scoring System
 - **Base points**: 3 points per correct answer
@@ -20,7 +20,7 @@
   - 15+ seconds: +0 bonus (3 total points) - Green
 - **Hint penalty**: -1 point per hint used (minimum 1 point per correct answer)
 - **Maximum possible score**: 30 points (6 correct × 5 points each)
-- **Minimum possible score**: 6 points (6 correct × 1 point each with max hints)
+- **Minimum possible score**: 6 points (6 correct × 1 point each with max hints per player)
 
 #### Scoring Implementation Details
 - **Frontend calculation**: Handles time-based scoring and hint penalties correctly

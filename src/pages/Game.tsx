@@ -115,7 +115,7 @@ const Index = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const INPUT_BAR_HEIGHT = 72;
 
-  const maxHints = 2;
+  const maxHintsPerPlayer = 2;
   const totalQuizTime = 144; // 2:24 minutes in seconds (6 × 24 seconds)
 
   // Fetch quiz metadata on mount
@@ -489,23 +489,25 @@ const Index = () => {
   };
 
   const handleRequestHint = () => {
-    if (hintsUsed >= maxHints || !quizData) return;
+    if (hintsUsed >= maxHintsPerPlayer || !quizData) return;
 
     const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect && !a.isRevealed);
     if (unansweredIndex !== -1) {
-      const hint = quizData.quiz.hints[unansweredIndex];
-      const parts = (hint?.text || '').split(',').map((p) => p.trim()).filter(Boolean);
-      const nextIndex = hintsUsed === 0 ? 0 : 1; // 0 for first hint, 1 for second
-      const partToShow = parts[nextIndex] || parts[0] || hint?.text || '';
-      setCurrentHint(partToShow);
-      setHintsUsed((prev) => prev + 1);
-      setScore((prev) => Math.max(0, prev - 1));
+      // Find the correct hint for this player based on hintsUsed (0 or 1)
+      const playerHints = quizData.quiz.hints.filter(h => h.rank === unansweredIndex + 1);
+      const hintToShow = playerHints[hintsUsed];
       
-      // Clear hint - first hint after 10 seconds, second hint after 5 seconds
-      const displayDuration = hintsUsed === 0 ? 10000 : 5000;
-      setTimeout(() => {
-        setCurrentHint(undefined);
-      }, displayDuration);
+      if (hintToShow) {
+        setCurrentHint(hintToShow.text);
+        setHintsUsed((prev) => prev + 1);
+        setScore((prev) => Math.max(0, prev - 1));
+        
+        // Clear hint - first hint after 10 seconds, second hint after 5 seconds
+        const displayDuration = hintsUsed === 0 ? 10000 : 5000;
+        setTimeout(() => {
+          setCurrentHint(undefined);
+        }, displayDuration);
+      }
     }
   };
 
@@ -548,7 +550,7 @@ const Index = () => {
                 score={score}
                 streak={streak}
                 hintsUsed={hintsUsed}
-                maxHints={maxHints}
+                maxHints={maxHintsPerPlayer}
                 onSubmit={() => {}}
                 isDisabled={isCompleted}
                 correctCount={correctCount}
@@ -574,7 +576,7 @@ const Index = () => {
                 onGuess={handleGuess}
                 onRequestHint={handleRequestHint}
                 disabled={isCompleted}
-                hintsRemaining={maxHints - hintsUsed}
+                hintsRemaining={maxHintsPerPlayer - hintsUsed}
                 currentHint={currentHint}
                 showError={showInputError}
                 showSuccess={showInputSuccess}
@@ -607,7 +609,7 @@ const Index = () => {
               score={score}
               streak={streak}
               hintsUsed={hintsUsed}
-              maxHints={maxHints}
+              maxHints={maxHintsPerPlayer}
               onSubmit={() => {}}
               isDisabled={isCompleted}
               correctCount={correctCount}
@@ -633,7 +635,7 @@ const Index = () => {
               onGuess={handleGuess}
               onRequestHint={handleRequestHint}
               disabled={isCompleted}
-              hintsRemaining={maxHints - hintsUsed}
+              hintsRemaining={maxHintsPerPlayer - hintsUsed}
               currentHint={currentHint}
               showError={showInputError}
               showSuccess={showInputSuccess}
