@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      minHeight: {
+        screen: '100dvh', // Override Tailwind's default 100vh to fix Chrome mobile footer whitespace
+      },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'system-ui', 'sans-serif'],
         display: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Segoe UI', 'system-ui', 'sans-serif'],
