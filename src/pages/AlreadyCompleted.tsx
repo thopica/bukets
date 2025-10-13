@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Loader2, Trophy, Clock, Flame, TrendingUp, Target } from 'lucide-react';
+import { Loader2, Trophy, Clock, Flame, TrendingUp, Target, CheckCircle, XCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -15,17 +15,16 @@ interface ScoreMessage {
 }
 
 function getScoreMessage(totalScore: number): ScoreMessage {
-  if (totalScore === 30) return { title: "Perfect Score!", message: "Flawless victory!", color: "text-yellow-400" };
-  if (totalScore >= 27) return { title: "Incredible!", message: "You're an NBA encyclopedia!", color: "text-yellow-400" };
-  if (totalScore >= 24) return { title: "Outstanding!", message: "The league scouts are watching!", color: "text-green-400" };
-  if (totalScore >= 21) return { title: "Great job!", message: "You know your hoops!", color: "text-green-400" };
-  if (totalScore >= 18) return { title: "Solid performance!", message: "Keep that streak going!", color: "text-blue-400" };
-  if (totalScore >= 15) return { title: "Not bad!", message: "Room for improvement tomorrow.", color: "text-blue-400" };
-  if (totalScore >= 12) return { title: "Decent effort!", message: "Study up for tomorrow's quiz.", color: "text-orange-400" };
-  if (totalScore >= 9) return { title: "Tough one today!", message: "Tomorrow's a new chance.", color: "text-orange-400" };
-  if (totalScore >= 6) return { title: "Rough day at the office!", message: "Time to hit the film room.", color: "text-red-400" };
-  if (totalScore >= 3) return { title: "Even legends have off days!", message: "Comeback tomorrow?", color: "text-red-400" };
-  return { title: "Time to call it a day...", message: "Maybe grab a coffee first?", color: "text-gray-400" };
+  // Keep typography consistent regardless of score
+  return {
+    title: totalScore >= 18 ? 'Starter Material' : totalScore >= 12 ? 'Bench Player' : 'Keep Going',
+    message: totalScore >= 18
+      ? "You're in the rotation, keep grinding to reach the top."
+      : totalScore >= 12
+        ? "Hit the film room and study up for tomorrow's quiz."
+        : "Tomorrow's a new chance.",
+    color: 'text-foreground/80'
+  };
 }
 
 export default function AlreadyCompleted() {
@@ -34,6 +33,8 @@ export default function AlreadyCompleted() {
   const [countdown, setCountdown] = useState('');
   const [loading, setLoading] = useState(true);
   const [accuracy, setAccuracy] = useState<number>(0);
+  const [answers, setAnswers] = useState<Array<{ rank: number; name: string; stat: string }>>([]);
+  const [correctRanks, setCorrectRanks] = useState<number[]>([]);
 
   useEffect(() => {
     checkCompletion();
@@ -59,6 +60,42 @@ export default function AlreadyCompleted() {
       }
 
       setScoreData(data);
+
+      // Load today's quiz answers and user's correct ranks
+      try {
+        // Get today's quiz index
+        const { default: quizzes } = await import('../../quizzes.json');
+        // Reuse server's index logic by asking metadata if available is complex; instead infer index by date like API
+        // Prefer fetching index from get-quiz-metadata to match server start date calculation
+        const { data: meta } = await api.invoke('get-quiz-metadata');
+        const quizIndex = meta?.index ?? 0;
+
+        const quiz = quizzes[quizIndex];
+        if (quiz && Array.isArray(quiz.answers)) {
+          setAnswers(quiz.answers.map((a: any) => ({ rank: a.rank, name: a.name, stat: a.stat })));
+        }
+      } catch (e) {
+        console.error('Failed to load answers on AlreadyCompleted:', e);
+      }
+      
+      // Fetch correct ranks from the user's quiz session for today
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          const { data: sessions } = await supabase
+            .from('quiz_sessions')
+            .select('correct_ranks, completed_at, updated_at, quiz_date')
+            .eq('quiz_date', today)
+            .not('completed_at', 'is', null)
+            .order('updated_at', { ascending: false })
+            .limit(1);
+          if (sessions && sessions.length > 0 && Array.isArray(sessions[0].correct_ranks)) {
+            setCorrectRanks(sessions[0].correct_ranks as number[]);
+          }
+        }
+      } catch (e) {
+        console.error('Failed to fetch correct ranks:', e);
+      }
       
       // Calculate accuracy from all daily scores
       await calculateAccuracy();
@@ -134,7 +171,7 @@ export default function AlreadyCompleted() {
             </h1>
             <div className={`${scoreMessage.color}`}>
               <h2 className="text-3xl font-bold">{scoreMessage.title}</h2>
-              <p className="text-xl opacity-90">{scoreMessage.message}</p>
+              <p className="text-xl opacity-80">{scoreMessage.message}</p>
             </div>
           </div>
 
@@ -172,6 +209,42 @@ export default function AlreadyCompleted() {
               </div>
             </div>
           </Card>
+
+          {/* Answer Summary */}
+          {answers.length > 0 && (
+            <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold">Your Picks vs Answers</h3>
+                <span className="text-sm text-muted-foreground">All players for today</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {answers.map((a) => {
+                  const isCorrect = correctRanks.includes(a.rank);
+                  return (
+                    <div key={a.rank} className={`flex items-center gap-3 rounded-lg border p-3 ${isCorrect ? 'bg-success/10 border-success/30' : 'bg-destructive/10 border-destructive/30'}`}>
+                      <div className={`w-8 h-8 shrink-0 rounded-full flex items-center justify-center font-bold ${isCorrect ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'}`}>
+                        {a.rank}
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold leading-tight">{a.name}</div>
+                        <div className="text-sm text-muted-foreground">{a.stat}</div>
+                      </div>
+                      {isCorrect ? (
+                        <span className="inline-flex items-center gap-1 text-success text-sm font-medium">
+                          <CheckCircle className="w-4 h-4" /> Correct
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 text-destructive text-sm font-medium">
+                          <XCircle className="w-4 h-4" /> Missed
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </Card>
+          )}
 
           {/* Rank and Streaks */}
           <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
