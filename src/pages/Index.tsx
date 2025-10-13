@@ -119,34 +119,34 @@ const Index = () => {
         {user ?
       // Logged-in view - Matching non-logged-in design
       <>
-            <div className="text-center space-y-2 md:space-y-4 px-4 md:px-8">
+            <div className="text-center space-y-3 md:space-y-4 px-4 md:px-8">
               {/* Welcome Message */}
-              <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight">
+              <h1 className="text-2xl md:text-4xl font-bold text-white leading-tight tracking-tight">
                 Welcome back{user.email ? `, ${user.email.split('@')[0]}` : ''}
               </h1>
 
               {/* Statistics Grid - Inside blue circle with white text */}
               {stats && (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-3xl mx-auto py-2 md:py-3">
+                <div className="grid grid-cols-4 gap-1.5 md:gap-4 max-w-4xl mx-auto py-2 md:py-3">
                   <div className="flex flex-col items-center text-center">
-                    <Trophy className="h-6 w-6 md:h-8 md:w-8 text-gold-bright mb-1 md:mb-1" />
-                    <p className="text-2xl md:text-3xl font-bold text-white">{stats.total_score}</p>
-                    <p className="text-sm text-white/80">Total Score</p>
+                    <Trophy className="h-4 w-4 md:h-6 md:w-6 text-gold-bright mb-1 md:mb-1" />
+                    <p className="text-lg md:text-2xl font-bold text-white">{stats.total_score}</p>
+                    <p className="text-[10px] md:text-sm text-white/80">Total Score</p>
                   </div>
                   <div className="flex flex-col items-center text-center">
-                    <Flame className="h-6 w-6 md:h-8 md:w-8 text-orange mb-1 md:mb-1" />
-                    <p className="text-2xl md:text-3xl font-bold text-white">{stats.current_streak}</p>
-                    <p className="text-sm text-white/80">Day Streak</p>
+                    <Flame className="h-4 w-4 md:h-6 md:w-6 text-orange mb-1 md:mb-1" />
+                    <p className="text-lg md:text-2xl font-bold text-white">{stats.current_streak}</p>
+                    <p className="text-[10px] md:text-sm text-white/80">Day Streak</p>
                   </div>
                   <div className="flex flex-col items-center text-center">
-                    <Play className="h-6 w-6 md:h-8 md:w-8 text-white mb-1 md:mb-1" />
-                    <p className="text-2xl md:text-3xl font-bold text-white">{stats.total_games_played}</p>
-                    <p className="text-sm text-white/80">Quizzes Played</p>
+                    <Play className="h-4 w-4 md:h-6 md:w-6 text-white mb-1 md:mb-1" />
+                    <p className="text-lg md:text-2xl font-bold text-white">{stats.total_games_played}</p>
+                    <p className="text-[10px] md:text-sm text-white/80">Quizzes Played</p>
                   </div>
                   <div className="flex flex-col items-center text-center">
-                    <Target className="h-6 w-6 md:h-8 md:w-8 text-success-light mb-1 md:mb-1" />
-                    <p className="text-2xl md:text-3xl font-bold text-white">{stats.accuracy}%</p>
-                    <p className="text-sm text-white/80">Accuracy</p>
+                    <Target className="h-4 w-4 md:h-6 md:w-6 text-success-light mb-1 md:mb-1" />
+                    <p className="text-lg md:text-2xl font-bold text-white">{stats.accuracy}%</p>
+                    <p className="text-[10px] md:text-sm text-white/80">Accuracy</p>
                   </div>
                 </div>
               )}
@@ -155,9 +155,9 @@ const Index = () => {
               <Button
                 size="lg"
                 onClick={() => navigate("/game")}
-                className="h-16 md:h-18 px-10 text-lg font-bold shadow-elevated hover:shadow-floating bg-white text-primary hover:bg-white/95 touch-target"
+                className="h-12 md:h-14 px-6 md:px-8 text-base font-bold shadow-elevated hover:shadow-floating bg-white text-primary hover:bg-white/95 touch-target"
               >
-                <Clock className="h-5 w-5 md:h-6 md:w-6" />
+                <Clock className="h-4 w-4 md:h-5 md:w-5" />
                 Start Today's Quiz
               </Button>
             </div>
