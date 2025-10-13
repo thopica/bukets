@@ -165,7 +165,7 @@ export default function AlreadyCompleted() {
       <main className="flex-1 container max-w-2xl mx-auto px-4 py-8 flex flex-col items-center justify-center">
         <div className="w-full space-y-6">
           {/* Score Display */}
-          <div className="text-center space-y-4">
+          <Card className="p-6 md:p-8 text-center space-y-4 bg-card/80 backdrop-blur">
             <h1 className="text-6xl font-bold text-primary">
               {scoreData?.total_score || 0} POINTS
             </h1>
@@ -173,7 +173,7 @@ export default function AlreadyCompleted() {
               <h2 className="text-3xl font-bold">{scoreMessage.title}</h2>
               <p className="text-xl opacity-80">{scoreMessage.message}</p>
             </div>
-          </div>
+          </Card>
 
           {/* Score Breakdown */}
           <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
