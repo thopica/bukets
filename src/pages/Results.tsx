@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Loader2, Trophy, Flame, TrendingUp } from 'lucide-react';
+import { Loader2, Trophy, Flame, TrendingUp, CheckCircle, XCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -16,6 +16,7 @@ interface ResultsData {
   time_used: number;
   quiz_date: string;
   quiz_index: number;
+  answered_ranks?: number[]; // optional, from game navigation state
 }
 
 interface ScoreMessage {
@@ -25,11 +26,11 @@ interface ScoreMessage {
 }
 
 function getScoreMessage(totalScore: number): ScoreMessage {
-  if (totalScore === 30) return { title: "Goat", message: "Perfect game! You didn't just win, you dominated.", color: "text-yellow-400" };
-  if (totalScore >= 25) return { title: "Legend", message: "You proved you're elite. Now stay there.", color: "text-yellow-400" };
-  if (totalScore >= 19) return { title: "All-Star", message: "You just proved you belong at the top of the board.", color: "text-green-400" };
-  if (totalScore >= 13) return { title: "Starter Material", message: "You're in the rotation, keep grinding to reach the top.", color: "text-blue-400" };
-  return { title: "Bench Player", message: "Hit the film room and study up for tomorrow's quiz.", color: "text-orange-400" };
+  if (totalScore === 30) return { title: "Goat", message: "Perfect game! You didn't just win, you dominated.", color: "text-foreground/80" };
+  if (totalScore >= 25) return { title: "Legend", message: "You proved you're elite. Now stay there.", color: "text-foreground/80" };
+  if (totalScore >= 19) return { title: "All-Star", message: "You just proved you belong at the top of the board.", color: "text-foreground/80" };
+  if (totalScore >= 13) return { title: "Starter Material", message: "You're in the rotation, keep grinding to reach the top.", color: "text-foreground/80" };
+  return { title: "Bench Player", message: "Hit the film room and study up for tomorrow's quiz.", color: "text-foreground/80" };
 }
 
 export default function Results() {
@@ -42,6 +43,8 @@ export default function Results() {
   const [currentStreak, setCurrentStreak] = useState<number>(0);
   const [longestStreak, setLongestStreak] = useState<number>(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [answers, setAnswers] = useState<Array<{ rank: number; name: string; stat: string }>>([]);
+  const [correctRanks, setCorrectRanks] = useState<number[]>(resultsData.answered_ranks ?? []);
 
   useEffect(() => {
     if (!resultsData) {
@@ -49,7 +52,28 @@ export default function Results() {
       return;
     }
 
-    checkAuthAndSubmit();
+    // Load quiz answers for display from quizzes.json
+    (async () => {
+      try {
+        const { default: quizzes } = await import('../../quizzes.json');
+        const quiz = quizzes[resultsData.quiz_index];
+        if (quiz && Array.isArray(quiz.answers)) {
+          setAnswers(quiz.answers.map((a: any) => ({ rank: a.rank, name: a.name, stat: a.stat })));
+        }
+      } catch (e) {
+        console.error('Failed to load quiz answers', e);
+      }
+    })();
+
+    // Prefer answered_ranks from navigation state (works for logged-in and logged-out users)
+    if (Array.isArray(resultsData.answered_ranks)) {
+      setCorrectRanks(resultsData.answered_ranks);
+      // We can still try to submit score in background if logged in
+      checkAuthAndSubmit();
+    } else {
+      // Otherwise proceed with normal auth + optional fetch from quiz_sessions if logged in
+      checkAuthAndSubmit();
+    }
   }, []);
 
   const checkAuthAndSubmit = async () => {
@@ -82,6 +106,29 @@ export default function Results() {
         setRank(data.rank);
         setCurrentStreak(data.current_streak);
         setLongestStreak(data.longest_streak);
+
+        // If we didn't receive answered_ranks via state and user is logged in, try to fetch from quiz_sessions
+        if (!Array.isArray(resultsData.answered_ranks)) {
+          try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+              const { data: sessions, error: sessionsError } = await supabase
+                .from('quiz_sessions')
+                .select('correct_ranks, completed_at, updated_at')
+                .eq('quiz_date', resultsData.quiz_date)
+                .not('completed_at', 'is', null)
+                .order('updated_at', { ascending: false })
+                .limit(1);
+
+              if (!sessionsError && sessions && sessions.length > 0) {
+                const cr = sessions[0].correct_ranks || [];
+                if (Array.isArray(cr)) setCorrectRanks(cr);
+              }
+            }
+          } catch (e) {
+            // Non-fatal
+          }
+        }
       }
     } catch (error: any) {
       console.error('Failed to submit score:', error);
@@ -111,7 +158,7 @@ export default function Results() {
             </h1>
             <div className={`${scoreMessage.color}`}>
               <h2 className="text-3xl font-bold">{scoreMessage.title}</h2>
-              <p className="text-xl opacity-90">{scoreMessage.message}</p>
+              <p className="text-xl opacity-80">{scoreMessage.message}</p>
             </div>
           </Card>
 
@@ -153,6 +200,42 @@ export default function Results() {
               </div>
             </div>
           </Card>
+
+          {/* Answer Summary */}
+          {answers.length > 0 && (
+            <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold">Your Picks vs Answers</h3>
+                <span className="text-sm text-muted-foreground">All players for today</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {answers.map((a) => {
+                  const isCorrect = correctRanks.includes(a.rank);
+                  return (
+                    <div key={a.rank} className={`flex items-center gap-3 rounded-lg border p-3 ${isCorrect ? 'bg-success/10 border-success/30' : 'bg-destructive/10 border-destructive/30'}`}>
+                      <div className={`w-8 h-8 shrink-0 rounded-full flex items-center justify-center font-bold ${isCorrect ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'}`}>
+                        {a.rank}
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold leading-tight">{a.name}</div>
+                        <div className="text-sm text-muted-foreground">{a.stat}</div>
+                      </div>
+                      {isCorrect ? (
+                        <span className="inline-flex items-center gap-1 text-success text-sm font-medium">
+                          <CheckCircle className="w-4 h-4" /> Correct
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 text-destructive text-sm font-medium">
+                          <XCircle className="w-4 h-4" /> Missed
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </Card>
+          )}
 
           {/* Rank and Streak - or Sign Up Prompt */}
           <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">

@@ -110,52 +110,82 @@ function isFuzzyMatch(guess: string, target: string): boolean {
   // Very short names require exact match
   if (target.length < 4) return false;
   
-  // Check if guess is contained in target or vice versa (partial matches)
-  if (target.includes(guess) || guess.includes(target)) {
-    return true;
-  }
+  // Minimum length requirements for meaningful matching
+  if (guess.length < 2) return false;
   
-  // Check common substitution variations
-  const guessVariations = applyCommonSubstitutions(guess);
-  const targetVariations = applyCommonSubstitutions(target);
-  
-  for (const gVar of guessVariations) {
-    for (const tVar of targetVariations) {
-      if (gVar === tVar) return true;
-    }
-  }
-  
-  // Phonetic matching using Soundex
-  const guessSoundex = soundex(guess);
-  const targetSoundex = soundex(target);
-  if (guessSoundex === targetSoundex && target.length >= 5) {
-    return true;
-  }
-  
-  // Token-based matching for multi-word names
-  const guessTokens = guess.split(/\s+/).filter(t => t.length > 2);
-  const targetTokens = target.split(/\s+/).filter(t => t.length > 2);
+  // Token-based matching for multi-word names (first/last name matching)
+  const guessTokens = guess.split(/\s+/).filter(t => t.length >= 2);
+  const targetTokens = target.split(/\s+/).filter(t => t.length >= 2);
   
   if (guessTokens.length > 0 && targetTokens.length > 0) {
+    // Check if all guess tokens match target tokens (allows first name only, last name only, etc.)
     const matchingTokens = guessTokens.filter(gt => 
-      targetTokens.some(tt => tt === gt || tt.startsWith(gt) || gt.startsWith(tt))
+      targetTokens.some(tt => {
+        // Exact token match
+        if (tt === gt) return true;
+        // Token starts with guess (for partial names)
+        if (tt.startsWith(gt) && gt.length >= 3) return true;
+        // Guess starts with token (for abbreviations)
+        if (gt.startsWith(tt) && tt.length >= 3) return true;
+        return false;
+      })
     );
+    
+    // If all guess tokens have matches, it's a valid match
     if (matchingTokens.length === guessTokens.length) {
       return true;
     }
   }
   
-  // Levenshtein distance for general typos
-  const maxDistance = Math.max(1, Math.ceil(target.length * 0.25)); // Allow 25% error
+  // Meaningful substring matching (only for substantial partials)
+  if (guess.length >= 3) {
+    // Check if guess is a meaningful prefix of target
+    if (target.startsWith(guess)) {
+      return true;
+    }
+    // Check if target is a meaningful prefix of guess
+    if (guess.startsWith(target) && target.length >= 3) {
+      return true;
+    }
+    // Check if guess appears as a word boundary in target
+    const wordBoundaryRegex = new RegExp(`\\b${guess}\\b`, 'i');
+    if (wordBoundaryRegex.test(target)) {
+      return true;
+    }
+  }
+  
+  // Check common substitution variations (only for meaningful lengths)
+  if (guess.length >= 3) {
+    const guessVariations = applyCommonSubstitutions(guess);
+    const targetVariations = applyCommonSubstitutions(target);
+    
+    for (const gVar of guessVariations) {
+      for (const tVar of targetVariations) {
+        if (gVar === tVar) return true;
+      }
+    }
+  }
+  
+  // Phonetic matching using Soundex (only for longer names)
+  if (guess.length >= 4 && target.length >= 5) {
+    const guessSoundex = soundex(guess);
+    const targetSoundex = soundex(target);
+    if (guessSoundex === targetSoundex) {
+      return true;
+    }
+  }
+  
+  // Levenshtein distance for general typos (with stricter limits)
+  const maxDistance = Math.max(1, Math.ceil(target.length * 0.2)); // Reduced to 20% error
   const distance = levenshteinDistance(guess, target);
   
-  if (distance <= maxDistance) {
+  if (distance <= maxDistance && guess.length >= 3) {
     return true;
   }
   
-  // Prefix matching for longer names
-  if (target.length >= 6 && guess.length >= 4) {
-    const minPrefixLength = Math.min(4, Math.floor(target.length * 0.6));
+  // Prefix matching for longer names (more restrictive)
+  if (target.length >= 8 && guess.length >= 5) {
+    const minPrefixLength = Math.min(5, Math.floor(target.length * 0.5));
     if (target.startsWith(guess.substring(0, minPrefixLength))) {
       return true;
     }

@@ -192,7 +192,8 @@ const Index = () => {
               hints_used: hintsUsed,
               time_used: 144,
               quiz_date: today,
-              quiz_index: quizIndex
+              quiz_index: quizIndex,
+              // answered_ranks unknown on expired restore here; Results will fetch from quiz_sessions if logged-in
             }
           });
           return;
@@ -299,7 +300,8 @@ const Index = () => {
               hints_used: totalHintsUsed,
               time_used: 144,
               quiz_date: getQuizDateISO(),
-              quiz_index: quizIndex
+              quiz_index: quizIndex,
+              answered_ranks: userAnswers.filter(a => a.isCorrect).map(a => a.rank)
             }
           });
           return 0;
@@ -475,7 +477,8 @@ const Index = () => {
             hints_used: finalTotalHints,
             time_used: 144 - overallTimeRemaining,
             quiz_date: getQuizDateISO(),
-            quiz_index: quizIndex
+            quiz_index: quizIndex,
+            answered_ranks: newAnswers.filter(a => a.isCorrect).map(a => a.rank)
           }
         });
       }
