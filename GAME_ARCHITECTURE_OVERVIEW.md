@@ -14,9 +14,9 @@
 
 ### Scoring System
 - **Base points**: 3 points per correct answer
-- **Speed bonuses**:
+- **Speed bonuses** (inclusive boundaries):
   - 0-10 seconds: +2 bonus (5 total points) - Golden
-  - 10-15 seconds: +1 bonus (4 total points) - Orange  
+  - 10.01-15 seconds: +1 bonus (4 total points) - Orange  
   - 15+ seconds: +0 bonus (3 total points) - Green
 - **Hint penalty**: -1 point per hint used (minimum 1 point per correct answer)
 - **Maximum possible score**: 30 points (6 correct × 5 points each)

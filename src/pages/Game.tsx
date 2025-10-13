@@ -114,6 +114,13 @@ const Index = () => {
   // initializedTurnTimer removed - no per-player timer anymore
   const scrollRef = useRef<HTMLDivElement>(null);
   const INPUT_BAR_HEIGHT = 72;
+  
+  // Track start time for current answer
+  const [currentAnswerStartTime, setCurrentAnswerStartTime] = useState(Date.now());
+  
+  // Track last answer's points and time for AnswerGrid animation
+  const [lastAnswerPoints, setLastAnswerPoints] = useState<number | undefined>();
+  const [lastAnswerTime, setLastAnswerTime] = useState<number | undefined>();
 
   const maxHintsPerPlayer = 2;
   const totalQuizTime = 144; // 2:24 minutes in seconds (6 × 24 seconds)
@@ -276,6 +283,7 @@ const Index = () => {
       timings.set(i, { startTime: Date.now() });
     }
     setAnswerTimings(timings);
+    setCurrentAnswerStartTime(Date.now());
   }, []);
 
   // Per-player timer countdown - REMOVED
@@ -383,10 +391,15 @@ const Index = () => {
     }
   };
 
-  const calculateTimeBonus = () => {
-    // Time bonus removed - using only overall timer now
-    // All correct guesses get base 3 points
-    return 0;
+  const calculateTimeBonus = (timeTaken: number) => {
+    // Calculate time-based bonus points with inclusive boundaries
+    if (timeTaken <= 10) {
+      return 2; // +2 bonus for 5 total points (golden) - 0 to 10 seconds inclusive
+    } else if (timeTaken <= 15) {
+      return 1; // +1 bonus for 4 total points (orange) - 10.01 to 15 seconds inclusive
+    } else {
+      return 0; // +0 bonus for 3 total points (green) - 15+ seconds
+    }
   };
 
   const handleGuess = async (guess: string) => {
@@ -400,7 +413,20 @@ const Index = () => {
     const matchedAnswer = result;
     
     if (matchedAnswer) {
-      const pointsEarned = 3; // Base points for correct guess
+      // Calculate time taken for this answer
+      const timeTaken = (Date.now() - currentAnswerStartTime) / 1000; // in seconds
+      
+      // Calculate base points (3) + time bonus
+      const timeBonus = calculateTimeBonus(timeTaken);
+      const basePoints = 3;
+      const pointsBeforeHints = basePoints + timeBonus;
+      
+      // Apply hint penalty (1 point per hint used, minimum 1 point)
+      const pointsEarned = Math.max(1, pointsBeforeHints - hintsUsed);
+      
+      // Store points and time for AnswerGrid animation
+      setLastAnswerPoints(pointsEarned);
+      setLastAnswerTime(timeTaken);
       
       const newAnswers = [...userAnswers];
       const index = matchedAnswer.rank - 1;
@@ -421,6 +447,9 @@ const Index = () => {
       // Accumulate hints used before resetting for next player
       setTotalHintsUsed((prev) => prev + hintsUsed);
       setTimeout(() => setHintsUsed(0), 800);
+      
+      // Reset timer for next answer
+      setCurrentAnswerStartTime(Date.now());
       
       // Save progress to database after each correct answer
       const newScore = score + pointsEarned;
@@ -570,6 +599,8 @@ const Index = () => {
                 disabled={isCompleted}
                 hintsUsed={hintsUsed}
                 currentHint={currentHint}
+                lastAnswerPoints={lastAnswerPoints}
+                lastAnswerTime={lastAnswerTime}
               />
             </div>
 
@@ -629,6 +660,8 @@ const Index = () => {
               disabled={isCompleted}
               hintsUsed={hintsUsed}
               currentHint={currentHint}
+              lastAnswerPoints={lastAnswerPoints}
+              lastAnswerTime={lastAnswerTime}
             />
           </div>
 

@@ -18,25 +18,16 @@ interface AnswerGridProps {
   disabled?: boolean;
   hintsUsed?: number;
   currentHint?: string;
+  lastAnswerPoints?: number;
+  lastAnswerTime?: number;
 }
 
-const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, currentHint }: AnswerGridProps) => {
+const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, currentHint, lastAnswerPoints, lastAnswerTime }: AnswerGridProps) => {
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
   const startTimeRef = useRef(Date.now());
   const lastProcessedGuessRef = useRef<number | undefined>();
 
-  // Reset timer when moving to a new player (when a correct answer is given)
-  useEffect(() => {
-    if (lastGuessRank && lastGuessRank !== lastProcessedGuessRef.current) {
-      const answer = answers.find(a => a.rank === lastGuessRank);
-      if (answer?.isCorrect) {
-        // Reset start time for next player after a short delay
-        setTimeout(() => {
-          startTimeRef.current = Date.now();
-        }, 800);
-      }
-    }
-  }, [lastGuessRank, answers]);
+  // Timer reset logic removed - now handled in Game.tsx
 
   // Trigger animations when a guess is made
   useEffect(() => {
@@ -44,18 +35,8 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
       lastProcessedGuessRef.current = lastGuessRank;
       const answer = answers.find(a => a.rank === lastGuessRank);
       if (answer?.isCorrect && cardRefs.current[lastGuessRank]) {
-        // Calculate time taken and points
-        const timeTaken = (Date.now() - startTimeRef.current) / 1000; // in seconds
-        let points = 3;
-        
-        if (timeTaken <= 10) {
-          points = 5;
-        } else if (timeTaken <= 15) {
-          points = 4;
-        }
-        
-        // Apply hint penalty (1 point per hint used)
-        points = Math.max(1, points - hintsUsed);
+        // Use the points calculated in Game.tsx to ensure consistency
+        const points = lastAnswerPoints || 3; // fallback to 3 if not provided
         
         // Assign color based on final points (using design system colors)
         let color = '#22C55E'; // success-light
