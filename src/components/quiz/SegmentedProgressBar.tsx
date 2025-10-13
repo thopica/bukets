@@ -24,7 +24,7 @@ const SegmentedProgressBar: React.FC<SegmentedProgressBarProps> = ({
   
   return (
     <div className={`relative h-2.5 rounded-full bg-white/30 border-2 border-white/40 shadow-inner overflow-hidden ${className}`}>
-      {/* Progress fill - depletes from right to left */}
+      {/* Progress fill - depletes from right to left using RTL direction */}
       <div 
         className={`h-full rounded-full transition-all duration-1000 ${
           timeRemaining > 60 
@@ -35,9 +35,7 @@ const SegmentedProgressBar: React.FC<SegmentedProgressBarProps> = ({
         }`}
         style={{ 
           width: `${Math.min(100, Math.max(0, progressPercentage))}%`,
-          position: 'absolute',
-          right: 0,
-          top: 0,
+          direction: 'rtl', // Right-to-left direction makes bar shrink from right
           transition: 'width 1s linear, background-color 0.3s ease-out, box-shadow 0.3s ease-out'
         }}
       />

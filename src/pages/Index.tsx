@@ -178,11 +178,11 @@ const Index = () => {
               </p>
 
               {/* Primary CTA */}
-              <div className="pt-2 md:pt-4">
+              <div className="pt-2 md:pt-4 relative z-10">
                 <Button
                   size="lg"
                   onClick={() => navigate("/game")}
-                  className="h-12 md:h-18 px-8 md:px-12 text-base md:text-xl font-bold shadow-elevated hover:shadow-floating bg-white text-primary hover:bg-white/95 touch-target"
+                  className="px-8 md:px-12 text-base md:text-xl font-bold shadow-elevated hover:shadow-floating bg-white text-primary hover:bg-white/95 touch-target-lg cursor-pointer"
                 >
                   <Play className="h-5 w-5 md:h-7 md:w-7" />
                   Start Playing
@@ -190,7 +190,7 @@ const Index = () => {
               </div>
 
               {/* Basketball Image (50% bigger visually) */}
-              <div className="inline-flex items-center justify-center w-48 h-48 md:w-120 md:h-120 my-2 md:my-4">
+              <div className="inline-flex items-center justify-center w-48 h-48 md:w-120 md:h-120 my-2 md:my-4 relative z-0 pointer-events-none">
                 <img
                   src={basketballPlayer}
                   alt="Basketball player"
