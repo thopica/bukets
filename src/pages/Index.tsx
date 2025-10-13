@@ -152,14 +152,16 @@ const Index = () => {
               )}
 
               {/* CTA Button - White button with blue text like non-logged-in */}
-              <Button
-                size="lg"
-                onClick={() => navigate("/game")}
-                className="h-12 md:h-14 px-6 md:px-8 text-base font-bold shadow-elevated hover:shadow-floating bg-white text-primary hover:bg-white/95 touch-target"
-              >
-                <Clock className="h-4 w-4 md:h-5 md:w-5" />
-                Start Today's Quiz
-              </Button>
+              <div>
+                <Button
+                  size="lg"
+                  onClick={() => navigate("/game")}
+                  className="h-12 md:h-14 px-6 md:px-8 text-base font-bold shadow-elevated hover:shadow-floating bg-white text-primary hover:bg-white/95 touch-target"
+                >
+                  <Clock className="h-4 w-4 md:h-5 md:w-5" />
+                  Start Today's Quiz
+                </Button>
+              </div>
 
               {/* Basketball Image (50% bigger visually) */}
               <div className="inline-flex items-center justify-center w-48 h-48 md:w-120 md:h-120 my-2 md:my-4 relative z-0 pointer-events-none">
