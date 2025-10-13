@@ -246,27 +246,6 @@ export default function AlreadyCompleted() {
             </Card>
           )}
 
-          {/* Rank and Streaks */}
-          <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
-            <div className="flex items-center justify-center gap-2 text-xl">
-              <Trophy className="w-6 h-6 text-yellow-400" />
-              <span>You're ranked <span className="font-bold text-primary">#{scoreData?.rank || 0}</span> today!</span>
-            </div>
-            <div className="flex items-center justify-center gap-6 text-lg flex-wrap">
-              <div className="flex items-center gap-2">
-                <Flame className="w-5 h-5 text-orange-400" />
-                <span>Current streak: <span className="font-semibold">{scoreData?.current_streak || 0}</span></span>
-              </div>
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-green-400" />
-                <span>Best: <span className="font-semibold">{scoreData?.longest_streak || 0}</span></span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Target className="w-5 h-5 text-blue-400" />
-                <span>Accuracy: <span className="font-semibold">{accuracy}%</span></span>
-              </div>
-            </div>
-          </Card>
 
           {/* Countdown */}
           <Card className="p-6 bg-card/80 backdrop-blur">
