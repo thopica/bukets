@@ -27,7 +27,31 @@ serve(async (req) => {
       throw new Error('Unauthorized');
     }
 
-    const { quiz_date, quiz_index, total_score, correct_guesses, hints_used, time_used } = await req.json();
+    const { quiz_date, quiz_index } = await req.json();
+
+    // Get the user's quiz session to verify their answers and get accurate data
+    const { data: session, error: sessionError } = await supabaseClient
+      .from('quiz_sessions')
+      .select('correct_ranks, hints_used, started_at, completed_at, score')
+      .eq('user_id', user.id)
+      .eq('quiz_date', quiz_date)
+      .maybeSingle();
+
+    if (sessionError || !session) {
+      throw new Error('No quiz session found');
+    }
+
+    // Use verified data from quiz_sessions
+    const correct_guesses = (session.correct_ranks || []).length;
+    const hints_used = session.hints_used || 0;
+    const total_score = session.score || 0;
+
+    // Calculate time used
+    const startedAt = new Date(session.started_at);
+    const completedAt = session.completed_at ? new Date(session.completed_at) : new Date();
+    const time_used = Math.floor((completedAt.getTime() - startedAt.getTime()) / 1000);
+
+    console.log(`Server-verified score for ${user.id}: ${total_score} points (${correct_guesses} correct, ${hints_used} hints)`);
 
     // Check if user already has a session for today
     const { data: existing, error: checkError } = await supabaseClient

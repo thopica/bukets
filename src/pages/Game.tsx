@@ -336,7 +336,7 @@ const Index = () => {
             quiz_date: getQuizDateISO(),
             current_score: score,
             correct_guesses: answeredRanks.length,
-            hints_used: hintsUsed,
+            hints_used: totalHintsUsed + hintsUsed,
             answered_ranks: answeredRanks,
             revealed_ranks: revealedRanks,
           }
@@ -469,7 +469,7 @@ const Index = () => {
               quiz_date: getQuizDateISO(),
               current_score: newScore,
               correct_guesses: newCorrectCount,
-              hints_used: hintsUsed,
+              hints_used: totalHintsUsed + hintsUsed,
               answered_ranks: answeredRanks,
               revealed_ranks: revealedRanks,
               reset_turn: true
