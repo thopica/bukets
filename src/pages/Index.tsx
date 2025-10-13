@@ -115,7 +115,7 @@ const Index = () => {
 
       <Header />
 
-      <main className="container max-w-5xl mx-auto px-4 py-8 md:py-16 flex-1 flex flex-col justify-center section-gap relative z-10">
+      <main className="container max-w-5xl mx-auto px-4 py-4 md:py-8 flex-1 flex flex-col justify-center section-gap relative z-10">
         {user ?
       // Logged-in view - Matching non-logged-in design
       <>
@@ -127,7 +127,7 @@ const Index = () => {
 
               {/* Statistics Grid - Inside blue circle with white text */}
               {stats && (
-                <div className="grid grid-cols-4 gap-1.5 md:gap-4 max-w-4xl mx-auto py-2 md:py-3">
+                <div className="grid grid-cols-4 gap-1.5 md:gap-4 max-w-2xl md:max-w-3xl mx-auto py-2 md:py-3">
                   <div className="flex flex-col items-center text-center">
                     <Trophy className="h-4 w-4 md:h-6 md:w-6 text-gold-bright mb-1 md:mb-1" />
                     <p className="text-lg md:text-2xl font-bold text-white">{stats.total_score}</p>
