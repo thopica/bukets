@@ -141,7 +141,7 @@ export default function Results() {
   if (!resultsData) return null;
 
   const scoreMessage = getScoreMessage(resultsData.total_score);
-  const speedBonus = resultsData.total_score - (resultsData.correct_guesses * 3);
+  const speedBonus = resultsData.total_score - (resultsData.correct_guesses * 3) + resultsData.hints_used;
   const timedOut = 6 - resultsData.correct_guesses;
   const accuracy = ((resultsData.correct_guesses / 6) * 100).toFixed(0);
 

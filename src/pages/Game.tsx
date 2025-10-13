@@ -532,7 +532,7 @@ const Index = () => {
       if (hintToShow) {
         setCurrentHint(hintToShow.text);
         setHintsUsed((prev) => prev + 1);
-        setScore((prev) => Math.max(0, prev - 1));
+        // Hint penalty is already applied in pointsEarned calculation in handleGuess
         
         // Clear hint - first hint after 10 seconds, second hint after 5 seconds
         const displayDuration = hintsUsed === 0 ? 10000 : 5000;

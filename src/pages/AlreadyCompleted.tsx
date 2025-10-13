@@ -155,7 +155,7 @@ export default function AlreadyCompleted() {
   }
 
   const scoreMessage = scoreData ? getScoreMessage(scoreData.total_score) : { title: "Outstanding!", message: "The league scouts are watching!", color: "text-green-400" };
-  const speedBonus = scoreData ? scoreData.total_score - (scoreData.correct_guesses * 3) : 0;
+  const speedBonus = scoreData ? scoreData.total_score - (scoreData.correct_guesses * 3) + scoreData.hints_used : 0;
   const timedOut = scoreData ? 6 - scoreData.correct_guesses : 0;
 
   return (
