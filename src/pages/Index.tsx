@@ -115,7 +115,7 @@ const Index = () => {
 
       <Header />
 
-      <main className="container max-w-5xl mx-auto px-4 py-4 md:py-8 flex-1 flex flex-col justify-center section-gap relative z-10">
+      <main className="container max-w-5xl mx-auto px-4 pt-4 md:pt-8 pb-8 md:pb-16 flex-1 flex flex-col relative z-10">
         {user ?
       // Logged-in view - Matching non-logged-in design
       <>
