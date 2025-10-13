@@ -101,24 +101,16 @@ const CarouselSingle = () => {
         </div>
 
 {/* Next Question Button */}
-<Card className={`p-4 transition-all duration-500 ${
-          showAnswer 
-            ? 'bg-gradient-to-r from-emerald-100 to-green-100 dark:from-emerald-900 dark:to-green-900 border-2 border-emerald-200 dark:border-emerald-800 shadow-lg' 
-            : 'bg-card/50 backdrop-blur'
-        }`}>
+<Card className="p-4 bg-card/50 backdrop-blur border border-border">
           <div className="flex justify-center">
             <Button
               variant="default"
               size="lg"
               onClick={handleRandom}
-              className={`transition-all duration-300 transform ${
-                showAnswer 
-                  ? 'bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white shadow-lg hover:shadow-xl scale-105' 
-                  : 'bg-primary text-white hover:bg-primary/90'
-              }`}
+              className="bg-primary text-white hover:bg-primary/90"
             >
               <Shuffle className="h-4 w-4 mr-2" />
-              {showAnswer ? 'Next Question' : 'Next Question'}
+              Next Question
             </Button>
           </div>
         </Card>
