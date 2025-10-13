@@ -160,6 +160,16 @@ const Index = () => {
                 <Clock className="h-4 w-4 md:h-5 md:w-5" />
                 Start Today's Quiz
               </Button>
+
+              {/* Basketball Image (50% bigger visually) */}
+              <div className="inline-flex items-center justify-center w-48 h-48 md:w-120 md:h-120 my-2 md:my-4 relative z-0 pointer-events-none">
+                <img
+                  src={basketballPlayer}
+                  alt="Basketball player"
+                  className="w-full h-full object-contain drop-shadow-lg"
+                  style={{ transform: 'scale(1.5)', transformOrigin: 'center' }}
+                />
+              </div>
             </div>
           </> :
       // Not logged-in view
