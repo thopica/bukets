@@ -13,12 +13,12 @@ const HowToPlay = () => {
     {
       icon: <Trophy className="h-8 w-8 text-gold" />,
       title: "Scoring System",
-      description: "Earn points for each correct answer. Speed matters: answer within 10 seconds for +5 points (golden), 10-15 seconds for +4 points (orange), or 15+ seconds for +3 points (green). Each hint used reduces your score by 1 point.",
+      description: "Earn points for each correct answer. Speed matters: answer within 10 seconds for +5 points (golden), 10-15 seconds for +4 points (orange), or 15+ seconds for +3 points (green).",
     },
     {
       icon: <Timer className="h-8 w-8 text-orange" />,
       title: "Time Pressure",
-      description: "You have 24 seconds per player. After 3 incorrect guesses, the answer is revealed automatically (you get no points).",
+      description: "You’ve got 90 seconds on the clock. Six answers, one ticking timer. Move fast, trust your gut, and lock in as many as you can before it hits zero.",
     },
     {
       icon: <Lightbulb className="h-8 w-8 text-gold" />,
@@ -30,11 +30,7 @@ const HowToPlay = () => {
       title: "Build Your Streak",
       description: "Complete quizzes on consecutive days to build your streak. Get all 6 correct (hints allowed) to maintain your streak. Missing a day breaks it!",
     },
-    {
-      icon: <Share2 className="h-8 w-8 text-success" />,
-      title: "Share & Compete",
-      description: "After completing a quiz, share your spoiler-free results with friends. Climb the leaderboards across today, weekly, monthly, 82-day, and all-time rankings.",
-    },
+    
   ];
 
   return (

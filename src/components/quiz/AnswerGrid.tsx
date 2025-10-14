@@ -18,11 +18,12 @@ interface AnswerGridProps {
   disabled?: boolean;
   hintsUsed?: number;
   currentHint?: string;
+  currentHintRank?: number;
   lastAnswerPoints?: number;
   lastAnswerTime?: number;
 }
 
-const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, currentHint, lastAnswerPoints, lastAnswerTime }: AnswerGridProps) => {
+const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, currentHint, currentHintRank, lastAnswerPoints, lastAnswerTime }: AnswerGridProps) => {
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
   const startTimeRef = useRef(Date.now());
   const lastProcessedGuessRef = useRef<number | undefined>();
@@ -74,7 +75,7 @@ const AnswerGrid = ({ answers, lastGuessRank, disabled = false, hintsUsed = 0, c
         const isCorrect = answer.isCorrect;
         const isTimedOut = answer.isRevealed && !answer.isCorrect;
         const isLastGuess = lastGuessRank === answer.rank;
-        const showHintOnThisCard = !isRevealed && currentHint && index === firstUnansweredIndex;
+        const showHintOnThisCard = !isRevealed && !!currentHint && (typeof currentHintRank === 'number' && answer.rank === currentHintRank);
 
         return (
           <div

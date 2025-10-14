@@ -97,8 +97,16 @@ const Index = () => {
   const [hintsUsed, setHintsUsed] = useState(0);
   const [totalHintsUsed, setTotalHintsUsed] = useState(0);
   const [currentHint, setCurrentHint] = useState<string | undefined>();
+  // Per-player hint usage tracking (0-2 per rank)
+  const [hintsUsedByRank, setHintsUsedByRank] = useState<number[]>([0, 0, 0, 0, 0, 0]);
+  // Track which rank the current hint belongs to (1-6)
+  const [currentHintRank, setCurrentHintRank] = useState<number | undefined>(undefined);
+  // Remember where we last targeted a hint so we can cycle to the next unanswered card
+  const [lastHintTargetIndex, setLastHintTargetIndex] = useState<number>(-1);
+  // Manage a single active timeout for hint display to avoid older timers clearing newer hints
+  const hintTimeoutRef = useRef<number | null>(null);
   // timeRemaining state removed - using only overall timer now
-  const [overallTimeRemaining, setOverallTimeRemaining] = useState(144);
+  const [overallTimeRemaining, setOverallTimeRemaining] = useState(90);
   const [isCompleted, setIsCompleted] = useState(false);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [incorrectGuess, setIncorrectGuess] = useState<number | null>(null);
@@ -123,7 +131,7 @@ const Index = () => {
   const [lastAnswerTime, setLastAnswerTime] = useState<number | undefined>();
 
   const maxHintsPerPlayer = 2;
-  const totalQuizTime = 144; // 2:24 minutes in seconds (6 × 24 seconds)
+  const totalQuizTime = 90; // 1:30 minutes in seconds
 
   // Fetch quiz metadata on mount
   useEffect(() => {
@@ -197,7 +205,7 @@ const Index = () => {
               total_score: partialScore,
               correct_guesses: correctGuesses,
               hints_used: hintsUsed,
-              time_used: 144,
+              time_used: totalQuizTime,
               quiz_date: today,
               quiz_index: quizIndex,
               // answered_ranks unknown on expired restore here; Results will fetch from quiz_sessions if logged-in
@@ -208,7 +216,7 @@ const Index = () => {
 
         // Restore existing session
         if (sessionData?.session_exists || sessionData?.session_started) {
-          const remaining = sessionData.remaining_seconds || 144;
+          const remaining = sessionData.remaining_seconds || totalQuizTime;
           console.log(`Restoring quiz with ${remaining} seconds remaining`);
           setOverallTimeRemaining(remaining);
           
@@ -220,6 +228,7 @@ const Index = () => {
             console.log(`Restored score: ${sessionData.saved_score}`);
           }
           if (typeof sessionData.saved_hints === 'number') {
+            // Keep total for analytics display if needed; per-rank distribution is unknown
             setHintsUsed(sessionData.saved_hints);
           }
           
@@ -306,7 +315,7 @@ const Index = () => {
               total_score: score,
               correct_guesses: correctCount,
               hints_used: totalHintsUsed,
-              time_used: 144,
+              time_used: totalQuizTime,
               quiz_date: getQuizDateISO(),
               quiz_index: quizIndex,
               answered_ranks: userAnswers.filter(a => a.isCorrect).map(a => a.rank)
@@ -330,13 +339,14 @@ const Index = () => {
 
       const answeredRanks = userAnswers.filter(a => a.isCorrect).map(a => a.rank);
       const revealedRanks = userAnswers.filter(a => a.isRevealed && !a.isCorrect).map(a => a.rank);
-      if (answeredRanks.length > 0 || revealedRanks.length > 0 || hintsUsed > 0 || score > 0) {
+      const totalPerPlayerHints = hintsUsedByRank.reduce((a, b) => a + b, 0);
+      if (answeredRanks.length > 0 || revealedRanks.length > 0 || totalPerPlayerHints > 0 || score > 0) {
         api.invoke('save-quiz-progress', {
           body: {
             quiz_date: getQuizDateISO(),
             current_score: score,
             correct_guesses: answeredRanks.length,
-            hints_used: totalHintsUsed + hintsUsed,
+            hints_used: totalPerPlayerHints,
             answered_ranks: answeredRanks,
             revealed_ranks: revealedRanks,
           }
@@ -344,10 +354,10 @@ const Index = () => {
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [userAnswers, hintsUsed, score, isCompleted, user]);
+  }, [userAnswers, hintsUsedByRank, score, isCompleted, user]);
 
   // handleTimeUp function removed - no more auto-reveals
-  // Users now have full control over their 2:24 time
+  // Users now have full control over their 1:30 time
 
   const normalizeGuess = (guess: string) => {
     return guess.toLowerCase().trim().replace(/[^a-z\s]/g, '');
@@ -420,9 +430,9 @@ const Index = () => {
       const timeBonus = calculateTimeBonus(timeTaken);
       const basePoints = 3;
       const pointsBeforeHints = basePoints + timeBonus;
-      
-      // Apply hint penalty (1 point per hint used, minimum 1 point)
-      const pointsEarned = Math.max(1, pointsBeforeHints - hintsUsed);
+      // Apply hint penalty based on per-player hints used on this rank (0-2)
+      const hintPenalty = hintsUsedByRank[matchedAnswer.rank - 1] || 0;
+      const pointsEarned = Math.max(1, pointsBeforeHints - hintPenalty);
       
       // Store points and time for AnswerGrid animation
       setLastAnswerPoints(pointsEarned);
@@ -439,14 +449,19 @@ const Index = () => {
       
       setUserAnswers(newAnswers);
       setScore((prev) => prev + pointsEarned);
-      setCurrentHint(undefined);
+      // Only clear the hint if the guessed rank is the one being hinted
+      if (typeof currentHintRank === 'number' && currentHintRank === matchedAnswer.rank) {
+        setCurrentHint(undefined);
+        setCurrentHintRank(undefined);
+        if (hintTimeoutRef.current) {
+          clearTimeout(hintTimeoutRef.current);
+          hintTimeoutRef.current = null;
+        }
+      }
       setIncorrectGuess(null);
       setLastGuessRank(matchedAnswer.rank);
       setShowInputError(false);
       setShowInputSuccess(true);
-      // Accumulate hints used before resetting for next player
-      setTotalHintsUsed((prev) => prev + hintsUsed);
-      setTimeout(() => setHintsUsed(0), 800);
       
       // Reset timer for next answer
       setCurrentAnswerStartTime(Date.now());
@@ -460,6 +475,7 @@ const Index = () => {
       const revealedRanks = newAnswers
         .filter((a) => a.isRevealed && !a.isCorrect)
         .map((a) => a.rank);
+      const totalPerPlayerHints = hintsUsedByRank.reduce((a, b) => a + b, 0);
       
       // Only save progress for logged-in users
       if (user) {
@@ -469,7 +485,7 @@ const Index = () => {
               quiz_date: getQuizDateISO(),
               current_score: newScore,
               correct_guesses: newCorrectCount,
-              hints_used: totalHintsUsed + hintsUsed,
+              hints_used: totalPerPlayerHints,
               answered_ranks: answeredRanks,
               revealed_ranks: revealedRanks,
               reset_turn: true
@@ -497,14 +513,14 @@ const Index = () => {
         // Navigate to results page with score data
         const correctCount = newAnswers.filter((a) => a.isCorrect).length;
         const finalScore = score + pointsEarned; // Use updated score including this answer
-        const finalTotalHints = totalHintsUsed + hintsUsed; // Include current player's hints
+        const finalTotalHints = hintsUsedByRank.reduce((a, b) => a + b, 0);
         
         navigate('/results', {
           state: {
             total_score: finalScore,
             correct_guesses: correctCount,
             hints_used: finalTotalHints,
-            time_used: 144 - overallTimeRemaining,
+            time_used: totalQuizTime - overallTimeRemaining,
             quiz_date: getQuizDateISO(),
             quiz_index: quizIndex,
             answered_ranks: newAnswers.filter(a => a.isCorrect).map(a => a.rank)
@@ -520,30 +536,68 @@ const Index = () => {
     }
   };
 
-  const handleRequestHint = () => {
-    if (hintsUsed >= maxHintsPerPlayer || !quizData) return;
+  // Helper to get the target rank index (0-5) for the next hint press.
+  // Prefer continuing on the current target if it still has hints and is unanswered; otherwise, advance to the next eligible unanswered card.
+  const getTargetIndexForNextPress = (currentIndex: number) => {
+    const isEligible = (idx: number) => {
+      const answer = userAnswers[idx];
+      const used = hintsUsedByRank[idx] || 0;
+      return !answer.isCorrect && !answer.isRevealed && used < maxHintsPerPlayer;
+    };
 
-    const unansweredIndex = userAnswers.findIndex((a) => !a.isCorrect && !a.isRevealed);
-    if (unansweredIndex !== -1) {
-      // Find the correct hint for this player based on hintsUsed (0 or 1)
-      const playerHints = quizData.quiz.hints.filter(h => h.rank === unansweredIndex + 1);
-      const hintToShow = playerHints[hintsUsed];
-      
-      if (hintToShow) {
-        setCurrentHint(hintToShow.text);
-        setHintsUsed((prev) => prev + 1);
-        // Hint penalty is already applied in pointsEarned calculation in handleGuess
-        
-        // Clear hint - first hint after 10 seconds, second hint after 5 seconds
-        const displayDuration = hintsUsed === 0 ? 10000 : 5000;
-        setTimeout(() => {
-          setCurrentHint(undefined);
-        }, displayDuration);
+    if (currentIndex >= 0 && currentIndex < 6 && isEligible(currentIndex)) {
+      return currentIndex; // continue on same card until its two hints are used
+    }
+
+    for (let offset = 0; offset < 6; offset++) {
+      const idx = ((currentIndex < 0 ? -1 : currentIndex) + 1 + offset) % 6;
+      if (isEligible(idx)) return idx;
+    }
+    return -1;
+  };
+
+  const handleRequestHint = () => {
+    if (!quizData) return;
+
+    const targetIndex = getTargetIndexForNextPress(lastHintTargetIndex);
+    if (targetIndex === -1) {
+      // No eligible cards left for hints
+      return;
+    }
+
+    const currentCount = hintsUsedByRank[targetIndex] || 0;
+    const playerHints = quizData.quiz.hints.filter(h => h.rank === targetIndex + 1);
+    const hintToShow = playerHints[currentCount];
+
+    if (hintToShow) {
+      setCurrentHint(hintToShow.text);
+      setCurrentHintRank(targetIndex + 1);
+      setLastHintTargetIndex(targetIndex);
+      // Increment per-player hint count (cap at 2)
+      setHintsUsedByRank(prev => {
+        const next = [...prev];
+        next[targetIndex] = Math.min(2, (next[targetIndex] || 0) + 1);
+        return next;
+      });
+
+      // Clear hint after duration: first hint 10s, second hint 5s
+      const displayDuration = currentCount === 0 ? 10000 : 5000;
+      if (hintTimeoutRef.current) {
+        clearTimeout(hintTimeoutRef.current);
+        hintTimeoutRef.current = null;
       }
+      hintTimeoutRef.current = window.setTimeout(() => {
+        setCurrentHint(undefined);
+        setCurrentHintRank(undefined);
+        hintTimeoutRef.current = null;
+      }, displayDuration);
     }
   };
 
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
+  // Compute current target and remaining hints for the next press (continue same card until exhausted)
+  const nextPressTargetIndex = getTargetIndexForNextPress(lastHintTargetIndex);
+  const nextEligibleHintsRemaining = nextPressTargetIndex === -1 ? 0 : (maxHintsPerPlayer - (hintsUsedByRank[nextPressTargetIndex] || 0));
 
   // Show loading spinner while checking completion or loading quiz
   if (isCheckingCompletion || !quizData) {
@@ -599,6 +653,7 @@ const Index = () => {
                 disabled={isCompleted}
                 hintsUsed={hintsUsed}
                 currentHint={currentHint}
+                currentHintRank={currentHintRank}
                 lastAnswerPoints={lastAnswerPoints}
                 lastAnswerTime={lastAnswerTime}
               />
@@ -610,7 +665,7 @@ const Index = () => {
                 onGuess={handleGuess}
                 onRequestHint={handleRequestHint}
                 disabled={isCompleted}
-                hintsRemaining={maxHintsPerPlayer - hintsUsed}
+                hintsRemaining={nextEligibleHintsRemaining}
                 currentHint={currentHint}
                 showError={showInputError}
                 showSuccess={showInputSuccess}
@@ -660,6 +715,7 @@ const Index = () => {
               disabled={isCompleted}
               hintsUsed={hintsUsed}
               currentHint={currentHint}
+              currentHintRank={currentHintRank}
               lastAnswerPoints={lastAnswerPoints}
               lastAnswerTime={lastAnswerTime}
             />
@@ -671,7 +727,7 @@ const Index = () => {
               onGuess={handleGuess}
               onRequestHint={handleRequestHint}
               disabled={isCompleted}
-              hintsRemaining={maxHintsPerPlayer - hintsUsed}
+              hintsRemaining={nextEligibleHintsRemaining}
               currentHint={currentHint}
               showError={showInputError}
               showSuccess={showInputSuccess}

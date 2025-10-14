@@ -144,7 +144,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
     { path: "/", label: "Home" },
     { path: "/game", label: "Today's Quiz" },
     { path: "/leaderboard", label: "Leaderboard" },
-    { path: "/carousel", label: "Playground" },
+    { path: "/carousel/single", label: "Playground" },
     { path: "/how-to-play", label: "How to Play" },
   ];
 

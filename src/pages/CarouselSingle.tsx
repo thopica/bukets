@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Shuffle, Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { Eye, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import carouselData from "@/data/carousel_questions.json";
 
@@ -109,7 +109,7 @@ const CarouselSingle = () => {
               onClick={handleRandom}
               className="bg-primary text-white hover:bg-primary/90"
             >
-              <Shuffle className="h-4 w-4 mr-2" />
+    
               Next Question
             </Button>
           </div>

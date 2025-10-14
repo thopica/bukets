@@ -62,7 +62,7 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       const startedAt = new Date(existingSession.started_at);
       const now = new Date();
       const elapsedSeconds = Math.floor((now.getTime() - startedAt.getTime()) / 1000);
-      const totalQuizTime = 160; // 2:40 in seconds
+      const totalQuizTime = 90; // 1:30 in seconds
 
       // Per-turn timer remaining based on when this turn started
       const turnStartedAt = existingSession.turn_started_at ? new Date(existingSession.turn_started_at) : startedAt;
@@ -148,7 +148,7 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       session_started: true,
       started_at: now,
       elapsed_seconds: 0,
-      remaining_seconds: 160,
+      remaining_seconds: 90,
       per_turn_remaining_seconds: 24
     });
 
