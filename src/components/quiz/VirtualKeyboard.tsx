@@ -241,8 +241,7 @@ const VirtualKeyboard = ({
     event.preventDefault();
     setPressedKey(null);
     onKeyPress(' ');
-    // Activate shift after space (new word) but don't reset first char tracking
-    setIsShiftActive(true);
+    // Don't activate shift after space - keep current case state
   };
 
   const handleShiftToggle = () => {
@@ -309,8 +308,10 @@ const VirtualKeyboard = ({
           <div className="flex items-center px-3 flex-1">
             {currentValue ? (
               <>
-                <span>{currentValue}</span>
-                <span className="inline-block w-0.5 h-5 bg-foreground ml-0.5 animate-pulse" />
+                <span className="whitespace-pre">{currentValue}</span>
+                <span className={`inline-block w-0.5 h-5 bg-foreground animate-pulse transition-all duration-150 ease-out ${
+                  currentValue.endsWith(' ') ? 'ml-1' : 'ml-0.5'
+                }`} />
               </>
             ) : (
               <span className="inline-block w-0.5 h-5 bg-foreground animate-pulse" />
