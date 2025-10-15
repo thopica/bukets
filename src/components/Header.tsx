@@ -172,7 +172,7 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
     <header className={`sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md transition-all duration-300 ${hideOnMobile ? 'md:translate-y-0 -translate-y-full' : 'translate-y-0'} ${isScrolled ? 'shadow-md border-b border-border/50' : 'border-b border-transparent'}`}>
       <div className="container flex h-20 md:h-24 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <img src={logo} alt="NBA Quiz Logo" className="h-8 w-14 md:h-16 md:w-24" />
+          <img src={logo} alt="NBA Quiz Logo" className="h-8 w-14 md:h-12 md:w-24" />
         </Link>
 
         {/* Desktop Navigation */}
