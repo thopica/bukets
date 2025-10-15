@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Send, Lightbulb, Shuffle } from "lucide-react";
+import { Send, Lightbulb, Shuffle, Flag } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import VirtualKeyboard from "./VirtualKeyboard";
 interface GuessInputProps {
   onGuess: (guess: string) => void;
   onRequestHint?: () => void;
   onShuffle?: () => void;
+  onGiveUp?: () => void;
   disabled?: boolean;
   hintsRemaining?: number;
   currentHint?: string;
@@ -21,6 +22,7 @@ const GuessInput = ({
   onGuess,
   onRequestHint,
   onShuffle,
+  onGiveUp,
   disabled = false,
   hintsRemaining = 0,
   currentHint,
@@ -85,6 +87,7 @@ const GuessInput = ({
         onBackspace={handleBackspace}
         onSubmit={handleSubmit}
         onHint={onRequestHint}
+        onGiveUp={onGiveUp}
         disabled={disabled}
         hintsRemaining={hintsRemaining}
         currentValue={input}
@@ -111,6 +114,9 @@ const GuessInput = ({
             </Button>}
           {onShuffle && <Button onClick={onShuffle} disabled={disabled} variant="outline" size="icon" className="h-7 w-7 md:h-12 md:w-12 rounded-md md:rounded-xl shrink-0 border md:border-2" title="Random quiz">
               <Shuffle className="h-3 w-3 md:h-5 md:w-5" />
+            </Button>}
+          {onGiveUp && <Button onClick={onGiveUp} disabled={disabled} variant="destructive" size="icon" className="h-7 w-7 md:h-12 md:w-12 rounded-md md:rounded-xl shrink-0 border md:border-2" title="Give up">
+              <Flag className="h-3 w-3 md:h-5 md:w-5" />
             </Button>}
           <Button onClick={handleSubmit} disabled={disabled || !input.trim()} size="icon" className="h-7 w-7 md:h-12 md:w-12 rounded-md md:rounded-xl shrink-0 font-bold">
             <Send className="h-3 w-3 md:h-5 md:w-5" />

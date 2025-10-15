@@ -8,6 +8,16 @@ import GuessInput from "@/components/quiz/GuessInput";
 import HintBar from "@/components/quiz/HintBar";
 
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { api } from "@/lib/api";
 import { fetchTodaysQuiz, getQuizDateISO, type Quiz, type QuizMetadataResponse } from "@/utils/quizDate";
@@ -119,6 +129,7 @@ const Index = () => {
   const [quizStartTime] = useState(Date.now());
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [isCheckingCompletion, setIsCheckingCompletion] = useState(true);
+  const [showGiveUpDialog, setShowGiveUpDialog] = useState(false);
   // initializedTurnTimer removed - no per-player timer anymore
   const scrollRef = useRef<HTMLDivElement>(null);
   const INPUT_BAR_HEIGHT = 72;
@@ -594,6 +605,32 @@ const Index = () => {
     }
   };
 
+  const handleGiveUpClick = () => {
+    setShowGiveUpDialog(true);
+  };
+
+  const handleConfirmGiveUp = () => {
+    setIsCompleted(true);
+    setShowGiveUpDialog(false);
+    
+    // Calculate current score and correct count
+    const correctCount = userAnswers.filter((a) => a.isCorrect).length;
+    const finalTotalHints = hintsUsedByRank.reduce((a, b) => a + b, 0);
+    
+    // Navigate to results page with current score
+    navigate('/results', {
+      state: {
+        total_score: score,
+        correct_guesses: correctCount,
+        hints_used: finalTotalHints,
+        time_used: totalQuizTime - overallTimeRemaining,
+        quiz_date: getQuizDateISO(),
+        quiz_index: quizIndex,
+        answered_ranks: userAnswers.filter(a => a.isCorrect).map(a => a.rank)
+      }
+    });
+  };
+
   const correctCount = userAnswers.filter((a) => a.isCorrect).length;
   // Compute current target and remaining hints for the next press (continue same card until exhausted)
   const nextPressTargetIndex = getTargetIndexForNextPress(lastHintTargetIndex);
@@ -664,6 +701,7 @@ const Index = () => {
               <GuessInput
                 onGuess={handleGuess}
                 onRequestHint={handleRequestHint}
+                onGiveUp={handleGiveUpClick}
                 disabled={isCompleted}
                 hintsRemaining={nextEligibleHintsRemaining}
                 currentHint={currentHint}
@@ -726,6 +764,7 @@ const Index = () => {
             <GuessInput
               onGuess={handleGuess}
               onRequestHint={handleRequestHint}
+              onGiveUp={handleGiveUpClick}
               disabled={isCompleted}
               hintsRemaining={nextEligibleHintsRemaining}
               currentHint={currentHint}
@@ -741,6 +780,24 @@ const Index = () => {
       <div className="hidden md:block">
         <Footer />
       </div>
+
+      {/* Give Up Confirmation Dialog */}
+      <AlertDialog open={showGiveUpDialog} onOpenChange={setShowGiveUpDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Give Up?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to end the quiz? Your current score will be submitted.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Keep Playing</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirmGiveUp} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Give Up
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

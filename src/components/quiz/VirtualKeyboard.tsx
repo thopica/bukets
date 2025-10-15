@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Delete, Lightbulb, ArrowUp } from "lucide-react";
+import { Delete, Lightbulb, ArrowUp, Flag } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { haptics } from "@/lib/haptics";
 
@@ -9,6 +9,7 @@ interface VirtualKeyboardProps {
   onBackspace: () => void;
   onSubmit: () => void;
   onHint?: () => void;
+  onGiveUp?: () => void;
   disabled?: boolean;
   hintsRemaining?: number;
   currentValue: string;
@@ -20,6 +21,7 @@ const VirtualKeyboard = ({
   onBackspace,
   onSubmit,
   onHint,
+  onGiveUp,
   disabled = false,
   hintsRemaining = 0,
   currentValue,
@@ -464,6 +466,17 @@ const VirtualKeyboard = ({
                 <Lightbulb className="h-4 w-4" />
                 <span className="text-xs font-bold">{hintsRemaining}</span>
               </div>
+            </Button>
+          )}
+          
+          {onGiveUp && (
+            <Button
+              onClick={onGiveUp}
+              disabled={disabled}
+              variant="destructive"
+              className="h-10 w-[calc((100%-9*4px)/10*1.5)] min-w-0 p-0 rounded-md border-2"
+            >
+              <Flag className="h-4 w-4" />
             </Button>
           )}
           
