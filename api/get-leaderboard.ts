@@ -127,7 +127,7 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       const streak = streaks?.find(s => s.user_id === profile.user_id);
       const totalScore = userScores.get(profile.user_id) || 0;
       const gamesPlayed = userGames.get(profile.user_id) || 0;
-      const accuracy = gamesPlayed > 0 ? Math.round((totalScore / (gamesPlayed * 30)) * 100) : 0;
+      const avgScore = gamesPlayed > 0 ? Math.round((totalScore / gamesPlayed) * 10) / 10 : 0;
 
       return {
         user_id: profile.user_id,
@@ -135,8 +135,7 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
         country_code: profile.country_code || 'US',
         total_score: totalScore,
         current_streak: streak?.current_streak || 0,
-        accuracy: accuracy,
-        is_bot: false
+        avg_score: avgScore
       };
     });
 

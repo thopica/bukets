@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,17 +13,36 @@ const CarouselSingle = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [shownQuestions, setShownQuestions] = useState<number[]>([]);
   
   const totalQuestions = carouselData.singleQuestions.length;
   const currentQuestion = carouselData.singleQuestions[currentIndex];
 
+  // Mark the initial question as shown when component mounts
+  useEffect(() => {
+    setShownQuestions([currentIndex]);
+  }, []);
 
   const handleRandom = () => {
     // Reset states immediately without animation
     setShowAnswer(false);
     setIsFlipped(false);
-    const randomIndex = Math.floor(Math.random() * totalQuestions);
+    
+    // Get available questions (not shown yet)
+    let availableIndices = Array.from({ length: totalQuestions }, (_, i) => i)
+      .filter(i => !shownQuestions.includes(i));
+    
+    // If all questions shown, reset the pool
+    if (availableIndices.length === 0) {
+      availableIndices = Array.from({ length: totalQuestions }, (_, i) => i);
+      setShownQuestions([]);
+    }
+    
+    // Select random from available
+    const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+    
     setCurrentIndex(randomIndex);
+    setShownQuestions([...shownQuestions, randomIndex]);
   };
 
   const toggleAnswer = () => {

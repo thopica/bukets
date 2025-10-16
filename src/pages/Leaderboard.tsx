@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trophy, Flame, Target, ArrowUpDown, ArrowUp, ArrowDown, Award } from "lucide-react";
+import { Trophy, Flame, Target, ArrowUpDown, ArrowUp, ArrowDown, Award, TrendingUp } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -64,11 +64,10 @@ interface LeaderboardEntry {
   country_code: string;
   total_score: number;
   current_streak: number;
-  accuracy: number;
-  is_bot: boolean;
+  avg_score: number;
 }
 
-type SortColumn = 'rank' | 'score' | 'accuracy' | 'streak';
+type SortColumn = 'rank' | 'score' | 'avg_score' | 'streak';
 type SortDirection = 'asc' | 'desc';
 
 const LeaderboardTable = ({ 
@@ -102,9 +101,9 @@ const LeaderboardTable = ({
         aValue = a.total_score;
         bValue = b.total_score;
         break;
-      case 'accuracy':
-        aValue = a.accuracy;
-        bValue = b.accuracy;
+      case 'avg_score':
+        aValue = a.avg_score;
+        bValue = b.avg_score;
         break;
       case 'streak':
         aValue = a.current_streak;
@@ -184,13 +183,13 @@ const LeaderboardTable = ({
                     <SortIcon column="score" />
                   </button>
 
-                  {/* Accuracy Header */}
+                  {/* Avg Score Header */}
                   <button
-                    onClick={() => handleSort('accuracy')}
+                    onClick={() => handleSort('avg_score')}
                     className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
                   >
-                    <Target className="h-3 w-3 text-primary" />
-                    <SortIcon column="accuracy" />
+                    <TrendingUp className="h-3 w-3 text-success" />
+                    <SortIcon column="avg_score" />
                   </button>
 
                   {/* Streak Header */}
@@ -235,7 +234,7 @@ const LeaderboardTable = ({
                         <p className="font-bold text-lg md:text-xl text-foreground">{player.total_score}</p>
                       </div>
                       <div className="text-center min-w-[50px]">
-                        <p className="font-semibold text-sm md:text-base text-foreground">{player.accuracy}%</p>
+                        <p className="font-semibold text-sm md:text-base text-foreground">{player.avg_score.toFixed(1)}</p>
                       </div>
                       <div className="text-center min-w-[50px]">
                         <p className="font-bold text-base md:text-lg text-foreground">{player.current_streak}</p>
@@ -276,7 +275,7 @@ const LeaderboardTable = ({
                         <p className="font-bold text-base md:text-lg text-foreground">{player.total_score}</p>
                       </div>
                       <div className="text-center min-w-[50px]">
-                        <p className="font-medium text-sm text-foreground">{player.accuracy}%</p>
+                        <p className="font-medium text-sm text-foreground">{player.avg_score.toFixed(1)}</p>
                       </div>
                       <div className="text-center min-w-[50px]">
                         <p className="font-semibold text-sm md:text-base text-foreground">{player.current_streak}</p>

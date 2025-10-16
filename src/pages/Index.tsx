@@ -14,7 +14,7 @@ type Stats = {
   total_score: number;
   total_games_played: number;
   current_streak: number;
-  accuracy: number;
+  avg_score: number;
 };
 const Index = () => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const Index = () => {
       // Load stats from daily_scores and user_streaks
       const { data: scoresData } = await supabase
         .from('daily_scores')
-        .select('total_score, correct_guesses')
+        .select('total_score')
         .eq('user_id', userId);
 
       const { data: streakData } = await supabase
@@ -62,15 +62,15 @@ const Index = () => {
       // Calculate aggregate stats
       const totalScore = scoresData?.reduce((sum, s) => sum + s.total_score, 0) || 0;
       const totalGames = scoresData?.length || 0;
-      const accuracy = totalGames > 0 
-        ? Math.round((totalScore / (totalGames * 30)) * 100) 
+      const avgScore = totalGames > 0 
+        ? Math.round((totalScore / totalGames) * 10) / 10 
         : 0;
 
       setStats({
         total_score: totalScore,
         total_games_played: totalGames,
         current_streak: streakData?.current_streak || 0,
-        accuracy: accuracy,
+        avg_score: avgScore,
       });
     } catch (error) {
       console.error('Error loading user stats:', error);
@@ -145,8 +145,8 @@ const Index = () => {
                   </div>
                   <div className="flex flex-col items-center text-center">
                     <Target className="h-4 w-4 md:h-6 md:w-6 text-success-light mb-1 md:mb-1" />
-                    <p className="text-lg md:text-2xl font-bold text-white">{stats.accuracy}%</p>
-                    <p className="text-[10px] md:text-sm text-white/80">Accuracy</p>
+                    <p className="text-lg md:text-2xl font-bold text-white">{stats.avg_score.toFixed(1)}</p>
+                    <p className="text-[10px] md:text-sm text-white/80">Avg Score</p>
                   </div>
                 </div>
               )}

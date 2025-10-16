@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Trophy, Target, Lightbulb, Timer, Flame, Share2 } from "lucide-react";
+import { Trophy, Target, Lightbulb, Timer, Flame, Share2, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const HowToPlay = () => {
@@ -32,6 +32,11 @@ const HowToPlay = () => {
       icon: <Flame className="h-8 w-8 text-orange" />,
       title: "Build Your Streak",
       description: "Complete quizzes on consecutive days to build your streak. Get all 6 correct (hints allowed) to maintain your streak. Missing a day breaks it!",
+    },
+    {
+      icon: <TrendingUp className="h-8 w-8 text-success" />,
+      title: "Track Your Performance",
+      description: "Compete on the leaderboard with your average score per game. This metric rewards speed, accuracy, and smart hint usage. The higher your average, the better your overall performance!",
     },
     
   ];

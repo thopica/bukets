@@ -54,7 +54,7 @@ const Account = () => {
       // Load stats from daily_scores and user_streaks
       const { data: scoresData } = await supabase
         .from('daily_scores')
-        .select('total_score, correct_guesses')
+        .select('total_score')
         .eq('user_id', user.id);
 
       const { data: streakData } = await supabase
@@ -66,14 +66,14 @@ const Account = () => {
       // Calculate aggregate stats
       const totalScore = scoresData?.reduce((sum, s) => sum + s.total_score, 0) || 0;
       const totalGames = scoresData?.length || 0;
-      const totalCorrect = scoresData?.reduce((sum, s) => sum + s.correct_guesses, 0) || 0;
+      const avgScore = totalGames > 0 ? Math.round((totalScore / totalGames) * 10) / 10 : 0;
 
       setStats({
         total_score: totalScore,
         total_games_played: totalGames,
         current_streak: streakData?.current_streak || 0,
         longest_streak: streakData?.longest_streak || 0,
-        total_correct: totalCorrect,
+        avg_score: avgScore,
       });
     } catch (error) {
       console.error('Error loading user data:', error);
@@ -124,9 +124,7 @@ const Account = () => {
   }
 
   const country = countryCode ? getCountryByCode(countryCode) : null;
-  const accuracy = stats && stats.total_games_played > 0
-    ? Math.round((stats.total_score / (stats.total_games_played * 30)) * 100)
-    : 0;
+  const avgScore = stats?.avg_score || 0;
 
   return (
     <div className="min-h-screen">
@@ -226,8 +224,8 @@ const Account = () => {
               </div>
               <div className="flex flex-col items-center text-center">
                 <TrendingUp className="h-8 w-8 text-success mb-2" />
-                <p className="text-3xl font-bold">{accuracy}%</p>
-                <p className="text-sm text-muted-foreground">Accuracy</p>
+                <p className="text-3xl font-bold">{avgScore.toFixed(1)}</p>
+                <p className="text-sm text-muted-foreground">Avg Score</p>
               </div>
             </div>
           </Card>

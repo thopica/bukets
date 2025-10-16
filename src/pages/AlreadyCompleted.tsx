@@ -32,7 +32,7 @@ export default function AlreadyCompleted() {
   const [scoreData, setScoreData] = useState<any>(null);
   const [countdown, setCountdown] = useState('');
   const [loading, setLoading] = useState(true);
-  const [accuracy, setAccuracy] = useState<number>(0);
+  const [avgScore, setAvgScore] = useState<number>(0);
   const [answers, setAnswers] = useState<Array<{ rank: number; name: string; stat: string }>>([]);
   const [correctRanks, setCorrectRanks] = useState<number[]>([]);
 
@@ -97,8 +97,8 @@ export default function AlreadyCompleted() {
         console.error('Failed to fetch correct ranks:', e);
       }
       
-      // Calculate accuracy from all daily scores
-      await calculateAccuracy();
+      // Calculate average score from all daily scores
+      await calculateAvgScore();
     } catch (error) {
       console.error('Failed to check completion:', error);
     } finally {
@@ -106,7 +106,7 @@ export default function AlreadyCompleted() {
     }
   };
 
-  const calculateAccuracy = async () => {
+  const calculateAvgScore = async () => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
@@ -121,11 +121,11 @@ export default function AlreadyCompleted() {
       if (scores && scores.length > 0) {
         const totalScore = scores.reduce((sum, s) => sum + s.total_score, 0);
         const gamesPlayed = scores.length;
-        const calculatedAccuracy = Math.round((totalScore / (gamesPlayed * 30)) * 100);
-        setAccuracy(calculatedAccuracy);
+        const calculatedAvgScore = Math.round((totalScore / gamesPlayed) * 10) / 10;
+        setAvgScore(calculatedAvgScore);
       }
     } catch (error) {
-      console.error('Failed to calculate accuracy:', error);
+      console.error('Failed to calculate average score:', error);
     }
   };
 
