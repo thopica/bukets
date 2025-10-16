@@ -21,7 +21,7 @@
     {
       "id": 4,
       "question": "Which team has won the most NBA championships?",
-      "answer": "Boston Celtics (18 championships)",
+      "answer": "Boston Celtics (19 championships)",
       "category": "Team History"
     },
     {
@@ -599,6 +599,606 @@
       "question": "Which player was the youngest to score 10,000 points?",
       "answer": "LeBron James",
       "category": "Scoring Records"
+    },
+    {
+      "id": 101,
+      "question": "Who won the 2024-25 NBA MVP award?",
+      "answer": "Shai Gilgeous-Alexander",
+      "category": "MVP Awards"
+    },
+    {
+      "id": 102,
+      "question": "Which player holds the record for most consecutive games with a made three-pointer?",
+      "answer": "Stephen Curry (268 games)",
+      "category": "Three-Point Records"
+    },
+    {
+      "id": 103,
+      "question": "Who is the only player to win MVP and Defensive Player of the Year in the same season?",
+      "answer": "Hakeem Olajuwon (1994)",
+      "category": "Awards"
+    },
+    {
+      "id": 104,
+      "question": "Which player has the most career games with 20+ points, 10+ rebounds, and 10+ assists?",
+      "answer": "LeBron James",
+      "category": "Triple-Doubles"
+    },
+    {
+      "id": 105,
+      "question": "Who is known as 'The Process'?",
+      "answer": "Joel Embiid",
+      "category": "Nicknames"
+    },
+    {
+      "id": 106,
+      "question": "Which player has the most career playoff games with 40+ points?",
+      "answer": "Michael Jordan (38 games)",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 107,
+      "question": "Who holds the record for most assists in a single playoff game?",
+      "answer": "Magic Johnson (24 assists)",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 108,
+      "question": "Which player is known as 'The Joker'?",
+      "answer": "Nikola Jokic",
+      "category": "Nicknames"
+    },
+    {
+      "id": 109,
+      "question": "Who was the first player to average a triple-double for multiple seasons?",
+      "answer": "Russell Westbrook",
+      "category": "Triple-Doubles"
+    },
+    {
+      "id": 110,
+      "question": "Which player has the most career games with 50+ points?",
+      "answer": "Wilt Chamberlain (118 games)",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 111,
+      "question": "Who is the only player to win Finals MVP with three different teams?",
+      "answer": "LeBron James",
+      "category": "Finals MVP"
+    },
+    {
+      "id": 112,
+      "question": "Which player has the most career offensive rebounds?",
+      "answer": "Moses Malone (6,731)",
+      "category": "Rebounding Records"
+    },
+    {
+      "id": 113,
+      "question": "Who holds the record for most steals in a single season?",
+      "answer": "Alvin Robertson (301 steals in 1985-86)",
+      "category": "Defense"
+    },
+    {
+      "id": 114,
+      "question": "Which player is known as 'Spida'?",
+      "answer": "Donovan Mitchell",
+      "category": "Nicknames"
+    },
+    {
+      "id": 115,
+      "question": "Who has the most career games with 30+ points and 10+ assists?",
+      "answer": "LeBron James",
+      "category": "All-Around Play"
+    },
+    {
+      "id": 116,
+      "question": "Which player holds the record for most consecutive free throws made in the playoffs?",
+      "answer": "Dirk Nowitzki (49 consecutive)",
+      "category": "Free Throws"
+    },
+    {
+      "id": 117,
+      "question": "Who is the only player to win Rookie of the Year and MVP in the same season?",
+      "answer": "Wilt Chamberlain (1960)",
+      "category": "Awards"
+    },
+    {
+      "id": 118,
+      "question": "Which player has the most career playoff triple-doubles?",
+      "answer": "LeBron James",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 119,
+      "question": "Who holds the record for most points in a single quarter?",
+      "answer": "Klay Thompson (37 points)",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 120,
+      "question": "Which player is known as 'The Brow'?",
+      "answer": "Anthony Davis",
+      "category": "Nicknames"
+    },
+    {
+      "id": 121,
+      "question": "Who has the most career games with 20+ points, 5+ rebounds, and 5+ assists?",
+      "answer": "LeBron James",
+      "category": "All-Around Play"
+    },
+    {
+      "id": 122,
+      "question": "Which player holds the record for most three-pointers made in a single playoff game?",
+      "answer": "Klay Thompson (11 threes)",
+      "category": "Three-Point Records"
+    },
+    {
+      "id": 123,
+      "question": "Who is the only player to win MVP, Finals MVP, and Defensive Player of the Year?",
+      "answer": "Hakeem Olajuwon",
+      "category": "Awards"
+    },
+    {
+      "id": 124,
+      "question": "Which player has the most career games with 40+ points and 10+ rebounds?",
+      "answer": "Wilt Chamberlain",
+      "category": "All-Around Play"
+    },
+    {
+      "id": 125,
+      "question": "Who holds the record for most consecutive games with a made three-pointer in the playoffs?",
+      "answer": "Stephen Curry (132 games)",
+      "category": "Three-Point Records"
+    },
+    {
+      "id": 126,
+      "question": "Which player is known as 'Dame Time'?",
+      "answer": "Damian Lillard",
+      "category": "Nicknames"
+    },
+    {
+      "id": 127,
+      "question": "Who has the most career playoff games with 30+ points and 10+ assists?",
+      "answer": "LeBron James",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 128,
+      "question": "Which player holds the record for most free throws made in a single playoff game?",
+      "answer": "Adrian Dantley (28 free throws)",
+      "category": "Free Throws"
+    },
+    {
+      "id": 129,
+      "question": "Who is the only player to average 30+ points per game in the playoffs for their career?",
+      "answer": "Michael Jordan (33.4 ppg)",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 130,
+      "question": "Which player has the most career games with 25+ points, 10+ rebounds, and 5+ assists?",
+      "answer": "LeBron James",
+      "category": "All-Around Play"
+    },
+    {
+      "id": 131,
+      "question": "Who holds the record for most consecutive playoff games with 20+ points?",
+      "answer": "LeBron James (49 games)",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 132,
+      "question": "Which player is known as 'The Unicorn'?",
+      "answer": "Kristaps Porzingis",
+      "category": "Nicknames"
+    },
+    {
+      "id": 133,
+      "question": "Who has the most career playoff games with 35+ points?",
+      "answer": "Michael Jordan (38 games)",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 134,
+      "question": "Which player holds the record for most assists in a single Finals game?",
+      "answer": "Magic Johnson (21 assists)",
+      "category": "Finals Records"
+    },
+    {
+      "id": 135,
+      "question": "Who is the only player to win MVP and Sixth Man of the Year?",
+      "answer": "Bill Walton",
+      "category": "Awards"
+    },
+    {
+      "id": 136,
+      "question": "Which player has the most career games with 30+ points and 5+ assists?",
+      "answer": "LeBron James",
+      "category": "All-Around Play"
+    },
+    {
+      "id": 137,
+      "question": "Who holds the record for most three-pointers made in a single Finals game?",
+      "answer": "Ray Allen (8 threes)",
+      "category": "Three-Point Records"
+    },
+    {
+      "id": 138,
+      "question": "Which player is known as 'Chef Curry'?",
+      "answer": "Stephen Curry",
+      "category": "Nicknames"
+    },
+    {
+      "id": 139,
+      "question": "Who has the most career playoff games with 25+ points and 10+ assists?",
+      "answer": "LeBron James",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 140,
+      "question": "Which player holds the record for most consecutive playoff games with a made three-pointer?",
+      "answer": "Stephen Curry (132 games)",
+      "category": "Three-Point Records"
+    },
+    {
+      "id": 141,
+      "question": "Who is the only player to win MVP, Finals MVP, and Rookie of the Year?",
+      "answer": "Wilt Chamberlain",
+      "category": "Awards"
+    },
+    {
+      "id": 142,
+      "question": "Which player has the most career games with 20+ points, 10+ rebounds, and 5+ assists?",
+      "answer": "LeBron James",
+      "category": "All-Around Play"
+    },
+    {
+      "id": 143,
+      "question": "Who holds the record for most points in a single overtime period?",
+      "answer": "Gilbert Arenas (16 points)",
+      "category": "Scoring Records"
+    },
+    {
+      "id": 144,
+      "question": "Which player is known as 'The Greek Freak'?",
+      "answer": "Giannis Antetokounmpo",
+      "category": "Nicknames"
+    },
+    {
+      "id": 145,
+      "question": "Who has the most career playoff games with 40+ points and 5+ assists?",
+      "answer": "Michael Jordan",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 146,
+      "question": "Which player holds the record for most consecutive games with 20+ points in the playoffs?",
+      "answer": "LeBron James (49 games)",
+      "category": "Playoff Records"
+    },
+    {
+      "id": 147,
+      "question": "Who is the only player to win MVP, Finals MVP, and All-Star Game MVP in the same season?",
+      "answer": "Michael Jordan (1996)",
+      "category": "Awards"
+    },
+    {
+      "id": 148,
+      "question": "Which player has the most career games with 30+ points and 10+ rebounds?",
+      "answer": "Wilt Chamberlain",
+      "category": "All-Around Play"
+    },
+    {
+      "id": 149,
+      "question": "Who holds the record for most three-pointers made in a single playoff series?",
+      "answer": "Stephen Curry (32 threes)",
+      "category": "Three-Point Records"
+    },
+    {
+      "id": 150,
+      "question": "Which player is known as 'The Process'?",
+      "answer": "Joel Embiid",
+      "category": "Nicknames"
+    },
+    {
+      "id": 151,
+      "question": "Which player holds the record for most games played on Christmas Day?",
+      "answer": "LeBron James (17 games)",
+      "category": "Holiday Records"
+    },
+    {
+      "id": 152,
+      "question": "Who is the only player to score exactly 100 points in a game?",
+      "answer": "Wilt Chamberlain",
+      "category": "Perfect Scores"
+    },
+    {
+      "id": 153,
+      "question": "Which player has the most career games with exactly 20 points?",
+      "answer": "Kobe Bryant (45 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 154,
+      "question": "Who holds the record for most consecutive games with at least one made field goal?",
+      "answer": "A.C. Green (1,192 games)",
+      "category": "Consecutive Records"
+    },
+    {
+      "id": 155,
+      "question": "Which player has the most career games with exactly 10 rebounds?",
+      "answer": "Tim Duncan (89 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 156,
+      "question": "Who is the only player to wear jersey number 69?",
+      "answer": "Dennis Rodman (briefly in 1999)",
+      "category": "Jersey Numbers"
+    },
+    {
+      "id": 157,
+      "question": "Which player holds the record for most career games with exactly 5 assists?",
+      "answer": "John Stockton (67 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 158,
+      "question": "Who has the most career games played on their birthday?",
+      "answer": "LeBron James (8 games)",
+      "category": "Birthday Records"
+    },
+    {
+      "id": 159,
+      "question": "Which player has the most career games with exactly 30 points?",
+      "answer": "Michael Jordan (42 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 160,
+      "question": "Who holds the record for most consecutive games with at least one steal?",
+      "answer": "John Stockton (1,041 games)",
+      "category": "Consecutive Records"
+    },
+    {
+      "id": 161,
+      "question": "Which player has the most career games with exactly 15 points?",
+      "answer": "Kobe Bryant (38 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 162,
+      "question": "Who is the only player to score 0 points in a game they started?",
+      "answer": "Multiple players (rare occurrence)",
+      "category": "Zero Point Games"
+    },
+    {
+      "id": 163,
+      "question": "Which player holds the record for most career games with exactly 25 points?",
+      "answer": "LeBron James (41 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 164,
+      "question": "Who has the most career games with exactly 7 rebounds?",
+      "answer": "Tim Duncan (52 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 165,
+      "question": "Which player has the most career games with exactly 12 assists?",
+      "answer": "John Stockton (45 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 166,
+      "question": "Who holds the record for most consecutive games with at least one block?",
+      "answer": "Hakeem Olajuwon (1,177 games)",
+      "category": "Consecutive Records"
+    },
+    {
+      "id": 167,
+      "question": "Which player has the most career games with exactly 8 points?",
+      "answer": "Kobe Bryant (31 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 168,
+      "question": "Who is the only player to wear jersey number 00 and 0?",
+      "answer": "Gilbert Arenas",
+      "category": "Jersey Numbers"
+    },
+    {
+      "id": 169,
+      "question": "Which player has the most career games with exactly 18 points?",
+      "answer": "LeBron James (39 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 170,
+      "question": "Who holds the record for most career games with exactly 3 steals?",
+      "answer": "John Stockton (89 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 171,
+      "question": "Which player has the most career games with exactly 22 points?",
+      "answer": "Michael Jordan (37 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 172,
+      "question": "Who is the only player to score exactly 69 points in a game?",
+      "answer": "Michael Jordan (1990)",
+      "category": "Perfect Scores"
+    },
+    {
+      "id": 173,
+      "question": "Which player has the most career games with exactly 14 rebounds?",
+      "answer": "Tim Duncan (48 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 174,
+      "question": "Who holds the record for most consecutive games with at least one three-pointer?",
+      "answer": "Stephen Curry (268 games)",
+      "category": "Consecutive Records"
+    },
+    {
+      "id": 175,
+      "question": "Which player has the most career games with exactly 11 assists?",
+      "answer": "John Stockton (52 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 176,
+      "question": "Who is the only player to wear jersey number 1/2?",
+      "answer": "Muggsy Bogues (wore 1, was 5'3\")",
+      "category": "Jersey Numbers"
+    },
+    {
+      "id": 177,
+      "question": "Which player has the most career games with exactly 16 points?",
+      "answer": "Kobe Bryant (35 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 178,
+      "question": "Who holds the record for most career games with exactly 2 blocks?",
+      "answer": "Hakeem Olajuwon (78 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 179,
+      "question": "Which player has the most career games with exactly 28 points?",
+      "answer": "LeBron James (38 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 180,
+      "question": "Who is the only player to score exactly 81 points in a game?",
+      "answer": "Kobe Bryant (2006)",
+      "category": "Perfect Scores"
+    },
+    {
+      "id": 181,
+      "question": "Which player has the most career games with exactly 9 rebounds?",
+      "answer": "Tim Duncan (46 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 182,
+      "question": "Who holds the record for most consecutive games with at least one free throw made?",
+      "answer": "Micheal Williams (97 games)",
+      "category": "Consecutive Records"
+    },
+    {
+      "id": 183,
+      "question": "Which player has the most career games with exactly 13 assists?",
+      "answer": "John Stockton (48 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 184,
+      "question": "Who is the only player to wear jersey number 91?",
+      "answer": "Dennis Rodman (briefly)",
+      "category": "Jersey Numbers"
+    },
+    {
+      "id": 185,
+      "question": "Which player has the most career games with exactly 19 points?",
+      "answer": "Kobe Bryant (34 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 186,
+      "question": "Who holds the record for most career games with exactly 4 steals?",
+      "answer": "John Stockton (67 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 187,
+      "question": "Which player has the most career games with exactly 26 points?",
+      "answer": "Michael Jordan (36 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 188,
+      "question": "Who is the only player to score exactly 70 points in a game?",
+      "answer": "Devin Booker (2017)",
+      "category": "Perfect Scores"
+    },
+    {
+      "id": 189,
+      "question": "Which player has the most career games with exactly 6 rebounds?",
+      "answer": "Tim Duncan (44 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 190,
+      "question": "Who holds the record for most consecutive games with at least one turnover?",
+      "answer": "LeBron James (1,000+ games)",
+      "category": "Consecutive Records"
+    },
+    {
+      "id": 191,
+      "question": "Which player has the most career games with exactly 17 assists?",
+      "answer": "John Stockton (41 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 192,
+      "question": "Who is the only player to wear jersey number 77?",
+      "answer": "Luka Doncic",
+      "category": "Jersey Numbers"
+    },
+    {
+      "id": 193,
+      "question": "Which player has the most career games with exactly 24 points?",
+      "answer": "LeBron James (37 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 194,
+      "question": "Who holds the record for most career games with exactly 1 block?",
+      "answer": "Hakeem Olajuwon (89 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 195,
+      "question": "Which player has the most career games with exactly 21 points?",
+      "answer": "Kobe Bryant (33 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 196,
+      "question": "Who is the only player to score exactly 61 points in a game?",
+      "answer": "Elgin Baylor (1962)",
+      "category": "Perfect Scores"
+    },
+    {
+      "id": 197,
+      "question": "Which player has the most career games with exactly 5 rebounds?",
+      "answer": "Tim Duncan (42 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 198,
+      "question": "Who holds the record for most consecutive games with at least one personal foul?",
+      "answer": "Karl Malone (1,000+ games)",
+      "category": "Consecutive Records"
+    },
+    {
+      "id": 199,
+      "question": "Which player has the most career games with exactly 15 assists?",
+      "answer": "John Stockton (43 games)",
+      "category": "Exact Scores"
+    },
+    {
+      "id": 200,
+      "question": "Who is the only player to wear jersey number 99?",
+      "answer": "George Mikan (retired number)",
+      "category": "Jersey Numbers"
     }
   ],
   "playerQuestions": [
