@@ -1,9 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Trophy, Target, Lightbulb, Timer, Flame, Share2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HowToPlay = () => {
+  const navigate = useNavigate();
   const features = [
     {
       icon: <Target className="h-8 w-8 text-primary" />,
@@ -87,12 +90,13 @@ const HowToPlay = () => {
 
           <div className="text-center">
             <p className="text-muted-foreground mb-4">Ready to test your knowledge?</p>
-            <a
-              href="/"
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-light shadow-md hover:shadow-lg h-11 px-8 transition-all touch-target"
+            <Button
+              onClick={() => navigate('/game')}
+              size="lg"
+              className="h-11 px-8"
             >
               Play Today's Quiz
-            </a>
+            </Button>
           </div>
         </div>
       </main>
