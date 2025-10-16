@@ -144,7 +144,7 @@ const Index = () => {
                     <p className="text-[10px] md:text-sm text-white/80">Quizzes Played</p>
                   </div>
                   <div className="flex flex-col items-center text-center">
-                    <Target className="h-4 w-4 md:h-6 md:w-6 text-success-light mb-1 md:mb-1" />
+                    <TrendingUp className="h-4 w-4 md:h-6 md:w-6 text-success-light mb-1 md:mb-1" />
                     <p className="text-lg md:text-2xl font-bold text-white">{stats.avg_score.toFixed(1)}</p>
                     <p className="text-[10px] md:text-sm text-white/80">Avg Score</p>
                   </div>
