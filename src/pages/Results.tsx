@@ -237,9 +237,9 @@ export default function Results() {
             </Card>
           )}
 
-          {/* Rank and Streak - or Sign Up Prompt */}
-          <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
-            {!isLoggedIn ? (
+          {/* Sign Up Prompt - only show for non-logged in users */}
+          {!isLoggedIn && (
+            <Card className="p-6 space-y-4 bg-card/80 backdrop-blur">
               <div className="space-y-3 text-center">
                 <p className="text-muted-foreground">
                   🏆 Your score wasn't saved because you're not logged in.
@@ -255,30 +255,8 @@ export default function Results() {
                   Create Account or Log In
                 </Button>
               </div>
-            ) : isSubmitting ? (
-              <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                <Loader2 className="w-5 h-5 animate-spin" />
-                <span>Calculating your rank...</span>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <div className="flex items-center justify-center gap-2">
-                  <Trophy className="w-5 h-5 text-yellow-400" />
-                  <span className="text-lg">You're ranked <span className="font-bold text-primary">#{rank}</span> today!</span>
-                </div>
-                <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Flame className="w-4 h-4 text-orange-400" />
-                    <span>Current streak: <span className="font-semibold text-foreground">{currentStreak}</span></span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <TrendingUp className="w-4 h-4 text-green-400" />
-                    <span>Best: <span className="font-semibold text-foreground">{longestStreak}</span></span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </Card>
+            </Card>
+          )}
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-3">
@@ -292,7 +270,7 @@ export default function Results() {
               </Button>
             )}
             <Button
-              onClick={() => navigate('/training')}
+              onClick={() => navigate('/carousel/single')}
               variant="outline"
               size="lg"
               className="w-full text-lg"
