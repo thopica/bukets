@@ -268,7 +268,7 @@ export default function AlreadyCompleted() {
               View Leaderboard
             </Button>
             <Button
-              onClick={() => navigate('/training')}
+              onClick={() => navigate('/carousel/single')}
               variant="outline"
               size="lg"
               className="w-full text-lg"
