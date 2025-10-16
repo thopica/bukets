@@ -55,6 +55,11 @@ const Auth = () => {
         return;
       }
 
+      if (isSignUp && !countryCode) {
+        toast.error("Please select your country");
+        return;
+      }
+
       const redirectUrl = `${window.location.origin}/`;
 
       if (isSignUp) {
@@ -386,7 +391,7 @@ const Auth = () => {
                     )}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="country">Country (Optional)</Label>
+                    <Label htmlFor="country">Country</Label>
                     <Select value={countryCode} onValueChange={setCountryCode} disabled={loading}>
                       <SelectTrigger id="country">
                         <SelectValue placeholder="Select your country" />
@@ -404,7 +409,7 @@ const Auth = () => {
                     className="w-full h-11 touch-target"
                     onClick={() => handleEmailAuth(true)}
                     onKeyDown={(e) => e.key === "Enter" && handleEmailAuth(true)}
-                    disabled={loading || !isPasswordValid}
+                    disabled={loading || !isPasswordValid || !countryCode}
                   >
                     {loading ? "Creating account..." : "Create Account"}
                   </Button>
