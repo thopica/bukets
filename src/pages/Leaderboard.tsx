@@ -57,6 +57,44 @@ const COUNTRY_FLAGS: Record<string, string> = {
   RS: "🇷🇸",
 };
 
+const COUNTRY_NAMES: Record<string, string> = {
+  US: "United States",
+  CA: "Canada",
+  GB: "United Kingdom",
+  PH: "Philippines",
+  AU: "Australia",
+  MX: "Mexico",
+  ES: "Spain",
+  FR: "France",
+  DE: "Germany",
+  CN: "China",
+  BR: "Brazil",
+  JP: "Japan",
+  IT: "Italy",
+  NO: "Norway",
+  FI: "Finland",
+  BE: "Belgium",
+  NL: "Netherlands",
+  SE: "Sweden",
+  DK: "Denmark",
+  AT: "Austria",
+  CH: "Switzerland",
+  HR: "Croatia",
+  HU: "Hungary",
+  NZ: "New Zealand",
+  GR: "Greece",
+  RO: "Romania",
+  PT: "Portugal",
+  SI: "Slovenia",
+  BG: "Bulgaria",
+  IE: "Ireland",
+  SK: "Slovakia",
+  UA: "Ukraine",
+  PL: "Poland",
+  CZ: "Czech Republic",
+  RS: "Serbia",
+};
+
 interface LeaderboardEntry {
   rank: number;
   user_id: string;
@@ -423,15 +461,13 @@ const Leaderboard = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Countries</SelectItem>
-                <SelectItem value="US">🇺🇸 United States</SelectItem>
-                <SelectItem value="CA">🇨🇦 Canada</SelectItem>
-                <SelectItem value="GB">🇬🇧 United Kingdom</SelectItem>
-                <SelectItem value="PH">🇵🇭 Philippines</SelectItem>
-                <SelectItem value="AU">🇦🇺 Australia</SelectItem>
-                <SelectItem value="MX">🇲🇽 Mexico</SelectItem>
-                <SelectItem value="ES">🇪🇸 Spain</SelectItem>
-                <SelectItem value="FR">🇫🇷 France</SelectItem>
-                <SelectItem value="DE">🇩🇪 Germany</SelectItem>
+                {Object.entries(COUNTRY_FLAGS)
+                  .sort(([codeA], [codeB]) => COUNTRY_NAMES[codeA]?.localeCompare(COUNTRY_NAMES[codeB]) || 0)
+                  .map(([code, flag]) => (
+                    <SelectItem key={code} value={code}>
+                      {flag} {COUNTRY_NAMES[code]}
+                    </SelectItem>
+                  ))}
               </SelectContent>
             </Select>
           </div>
