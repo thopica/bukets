@@ -4,7 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trophy, Flame, Target, ArrowUpDown, ArrowUp, ArrowDown, Award, TrendingUp } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Trophy, Flame, Target, ArrowUpDown, ArrowUp, ArrowDown, Award } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -169,9 +170,10 @@ const LeaderboardTable = ({
   };
 
   return (
-    <div className="space-y-0 relative">
-      {/* Wrapper for synchronized horizontal scrolling */}
-      <div className="flex">
+    <TooltipProvider>
+      <div className="space-y-0 relative">
+        {/* Wrapper for synchronized horizontal scrolling */}
+        <div className="flex">
         {/* Fixed Rank Column */}
         <div className="flex-shrink-0 w-16 md:w-20 bg-background z-10">
           {/* Header */}
@@ -213,31 +215,52 @@ const LeaderboardTable = ({
                 {/* Stats Headers */}
                 <div className="flex items-center gap-4">
                   {/* Score Header */}
-                  <button
-                    onClick={() => handleSort('score')}
-                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
-                  >
-                    <Award className="h-3 w-3 text-gold" />
-                    <SortIcon column="score" />
-                  </button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={() => handleSort('score')}
+                        className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
+                      >
+                        <Award className="h-3 w-3 text-gold" />
+                        <SortIcon column="score" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Total points earned</p>
+                    </TooltipContent>
+                  </Tooltip>
 
                   {/* Avg Score Header */}
-                  <button
-                    onClick={() => handleSort('avg_score')}
-                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
-                  >
-                    <TrendingUp className="h-3 w-3 text-success" />
-                    <SortIcon column="avg_score" />
-                  </button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={() => handleSort('avg_score')}
+                        className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
+                      >
+                        <span className="text-success font-bold text-sm">⟨x⟩</span>
+                        <SortIcon column="avg_score" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Average points per quiz</p>
+                    </TooltipContent>
+                  </Tooltip>
 
                   {/* Streak Header */}
-                  <button
-                    onClick={() => handleSort('streak')}
-                    className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
-                  >
-                    <Flame className="h-3 w-3 text-orange" />
-                    <SortIcon column="streak" />
-                  </button>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={() => handleSort('streak')}
+                        className="flex items-center justify-center gap-1 hover:text-primary transition-colors min-w-[50px] touch-target-sm"
+                      >
+                        <Flame className="h-3 w-3 text-orange" />
+                        <SortIcon column="streak" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Consecutive days played</p>
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
               </div>
             </div>
@@ -328,7 +351,8 @@ const LeaderboardTable = ({
           <div className="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-background to-transparent pointer-events-none md:hidden"></div>
         </div>
       </div>
-    </div>
+      </div>
+    </TooltipProvider>
   );
 };
 
