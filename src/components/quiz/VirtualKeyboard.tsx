@@ -311,12 +311,12 @@ const VirtualKeyboard = ({
             {currentValue ? (
               <>
                 <span className="whitespace-pre">{currentValue}</span>
-                <span className={`inline-block w-0.5 h-5 bg-foreground animate-pulse transition-all duration-150 ease-out ${
-                  currentValue.endsWith(' ') ? 'ml-1' : 'ml-0.5'
+                <span className={`inline-block w-0.5 h-5 bg-foreground transition-all duration-150 ease-out ${
+                  currentValue.endsWith(' ') ? 'ml-1' : 'ml-[1px]'
                 }`} />
               </>
             ) : (
-              <span className="inline-block w-0.5 h-5 bg-foreground animate-pulse" />
+              <span className="inline-block w-0.5 h-5 bg-foreground" />
             )}
           </div>
           
