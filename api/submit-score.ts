@@ -180,9 +180,9 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
 
     if (streakData) {
       // Calculate day difference using UTC noon to avoid timezone issues
-      const lastDate = new Date(streakData.last_play_date + 'T12:00:00Z');
-      const quizDate = new Date(quiz_date + 'T12:00:00Z');
-      const dayDifference = Math.floor((quizDate - lastDate) / 86400000);
+      const lastDate = new Date((streakData.last_play_date as string) + 'T12:00:00Z');
+      const quizDate = new Date((quiz_date as string) + 'T12:00:00Z');
+      const dayDifference = Math.floor((quizDate.getTime() - lastDate.getTime()) / 86400000);
       
       if (dayDifference === 1) {
         // Consecutive days - increment streak
