@@ -17,6 +17,7 @@ import Auth from "./pages/Auth";
 import Results from "./pages/Results";
 import AlreadyCompleted from "./pages/AlreadyCompleted";
 import Training from "./pages/Training";
+import Feedback from "./pages/Feedback";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -85,6 +86,7 @@ const App = () => {
             <Route path="/training" element={<Training />} />
             <Route path="/how-to-play" element={<HowToPlay />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/feedback" element={<Feedback />} />
             <Route path="/auth" element={<Auth />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

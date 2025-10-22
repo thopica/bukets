@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, LogOut, User, RotateCcw } from "lucide-react";
+import { Menu, LogOut, User, RotateCcw, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -148,6 +148,10 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
     { path: "/how-to-play", label: "How to Play" },
   ];
 
+  const userNavLinks = [
+    { path: "/feedback", label: "Feedback" },
+  ];
+
   const NavLinks = ({ mobile = false }: { mobile?: boolean }) => {
     return (
       <>
@@ -178,6 +182,19 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-4">
           <NavLinks />
+          {user && userNavLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`${
+                isActive(link.path) 
+                  ? "text-blue-600 font-semibold" 
+                  : "text-blue-500 hover:text-blue-600"
+              } transition-colors text-base`}
+            >
+              {link.label}
+            </Link>
+          ))}
           {isAdmin && (
             <Button
               variant="ghost"
@@ -269,6 +286,19 @@ const Header = ({ hideOnMobile = false }: HeaderProps) => {
                 </div>
               )}
               <NavLinks mobile />
+              {user && userNavLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`${
+                    isActive(link.path) 
+                      ? "text-blue-600 font-semibold" 
+                      : "text-blue-500 hover:text-blue-600"
+                  } transition-colors text-xl py-3 touch-target`}
+                >
+                  {link.label}
+                </Link>
+              ))}
               {isAdmin && (
                 <Button 
                   variant="ghost" 
