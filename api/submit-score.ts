@@ -198,7 +198,7 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
         longestStreak = streakData.longest_streak;
       }
 
-      await supabaseClient
+      const { error: updateError } = await supabaseClient
         .from('user_streaks')
         .update({
           current_streak: currentStreak,
@@ -207,8 +207,13 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
           updated_at: new Date().toISOString()
         })
         .eq('user_id', user.id);
+
+      if (updateError) {
+        console.error('Failed to update user streak:', updateError);
+        throw new Error(`Failed to update streak: ${updateError.message}`);
+      }
     } else {
-      await supabaseClient
+      const { error: insertError } = await supabaseClient
         .from('user_streaks')
         .insert({
           user_id: user.id,
@@ -216,6 +221,11 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
           longest_streak: 1,
           last_play_date: quiz_date
         });
+
+      if (insertError) {
+        console.error('Failed to insert user streak:', insertError);
+        throw new Error(`Failed to create streak: ${insertError.message}`);
+      }
     }
 
     // Calculate rank
