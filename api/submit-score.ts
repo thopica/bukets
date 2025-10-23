@@ -197,6 +197,9 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       .eq('user_id', user.id)
       .maybeSingle();
 
+    console.log(`[STREAK DEBUG] User ${user.id}, quiz_date: ${quiz_date}`);
+    console.log(`[STREAK DEBUG] Existing streak data:`, streakData);
+
     let currentStreak = 1;
     let longestStreak = 1;
 
@@ -206,20 +209,29 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
       const quizDate = new Date((quiz_date as string) + 'T12:00:00Z');
       const dayDifference = Math.floor((quizDate.getTime() - lastDate.getTime()) / 86400000);
       
+      console.log(`[STREAK DEBUG] lastDate: ${lastDate.toISOString()}, quizDate: ${quizDate.toISOString()}`);
+      console.log(`[STREAK DEBUG] dayDifference: ${dayDifference}`);
+      console.log(`[STREAK DEBUG] Previous streak: current=${streakData.current_streak}, longest=${streakData.longest_streak}`);
+      
       if (dayDifference === 1) {
         // Consecutive days - increment streak
         currentStreak = streakData.current_streak + 1;
         longestStreak = Math.max(streakData.longest_streak, currentStreak);
+        console.log(`[STREAK DEBUG] Consecutive day - incrementing streak to ${currentStreak}`);
       } else if (dayDifference === 0) {
         // Same day - maintain current streak
         currentStreak = streakData.current_streak;
         longestStreak = streakData.longest_streak;
+        console.log(`[STREAK DEBUG] Same day - maintaining streak at ${currentStreak}`);
       } else {
         // Streak broken (dayDifference > 1 or < 0) - reset to 1
         currentStreak = 1;
         longestStreak = streakData.longest_streak;
+        console.log(`[STREAK DEBUG] Streak broken (gap=${dayDifference}) - resetting to 1`);
       }
 
+      console.log(`[STREAK DEBUG] Updating streak: current=${currentStreak}, longest=${longestStreak}, last_play_date=${quiz_date}`);
+      
       const { error: updateError } = await supabaseClient
         .from('user_streaks')
         .update({
@@ -234,7 +246,11 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
         console.error('Failed to update user streak:', updateError);
         throw new Error(`Failed to update streak: ${updateError.message}`);
       }
+      
+      console.log(`[STREAK DEBUG] Successfully updated streak for user ${user.id}`);
     } else {
+      console.log(`[STREAK DEBUG] No existing streak - creating new streak for user ${user.id}`);
+      
       const { error: insertError } = await supabaseClient
         .from('user_streaks')
         .insert({
@@ -248,6 +264,8 @@ module.exports = async function handler(req: VercelRequest, res: VercelResponse)
         console.error('Failed to insert user streak:', insertError);
         throw new Error(`Failed to create streak: ${insertError.message}`);
       }
+      
+      console.log(`[STREAK DEBUG] Successfully created new streak for user ${user.id}`);
     }
 
     // Calculate rank
