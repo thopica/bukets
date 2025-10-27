@@ -19,7 +19,7 @@ export function getAllowedOrigins(): string[] {
     ];
   }
   
-  // Production - only allow your actual domain
+  // Production - allow both domains to ensure compatibility
   return [
     'https://bukets.net',        // Production domain
     'https://www.bukets.net',    // Production with www
@@ -31,7 +31,12 @@ export function isOriginAllowed(origin: string | undefined): boolean {
   if (!origin) return false;
   
   const allowedOrigins = getAllowedOrigins();
-  return allowedOrigins.includes(origin);
+  const isAllowed = allowedOrigins.includes(origin);
+  
+  // Debug logging
+  console.log(`[CORS DEBUG] Origin: ${origin}, Environment: ${process.env.NODE_ENV}, Allowed origins:`, allowedOrigins, `Is allowed: ${isAllowed}`);
+  
+  return isAllowed;
 }
 
 export function getCorsHeaders(origin: string | undefined) {
