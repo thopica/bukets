@@ -1,6 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-const { readFileSync } = require('fs');
-const { join } = require('path');
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { withRateLimit } from './_middleware';
+import { getCorsHeaders, isOriginAllowed } from './_cors';
 
 const START_DATE = new Date('2025-10-02');
 
@@ -11,13 +13,33 @@ function getTodaysQuizIndex(quizzesLength: number): number {
   return quizIndex >= 0 ? quizIndex : 0;
 }
 
-module.exports = function handler(req: VercelRequest, res: VercelResponse) {
-  // Handle CORS first
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'authorization, x-client-info, apikey, content-type');
+const securityHeaders = {
+  'X-Frame-Options': 'DENY',
+  'X-Content-Type-Options': 'nosniff',
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'Content-Security-Policy': "default-src 'self'; frame-ancestors 'none'"
+};
+
+const handler = async function(req: VercelRequest, res: VercelResponse) {
+  // Set security headers
+  Object.entries(securityHeaders).forEach(([key, value]) => {
+    res.setHeader(key, value);
+  });
+
+  // Handle CORS with origin validation
+  const origin = req.headers.origin;
+  const corsHeaders = getCorsHeaders(origin);
+  Object.entries(corsHeaders).forEach(([key, value]) => {
+    res.setHeader(key, value as string);
+  });
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  }
+
+  // Reject requests from disallowed origins
+  if (!isOriginAllowed(origin)) {
+    return res.status(403).json({ error: 'Origin not allowed' });
   }
 
   try {
@@ -55,4 +77,6 @@ module.exports = function handler(req: VercelRequest, res: VercelResponse) {
     console.error('Error getting quiz metadata:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
-}
+};
+
+module.exports = withRateLimit('get-quiz-metadata')(handler);
