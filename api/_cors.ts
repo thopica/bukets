@@ -30,8 +30,11 @@ export function isOriginAllowed(origin: string | undefined): boolean {
 export function getCorsHeaders(origin: string | undefined) {
   const allowedOrigins = getAllowedOrigins();
   
+  // Handle undefined origin properly
+  const allowOrigin = origin && isOriginAllowed(origin) ? origin : allowedOrigins[0];
+  
   return {
-    'Access-Control-Allow-Origin': isOriginAllowed(origin) ? origin : allowedOrigins[0],
+    'Access-Control-Allow-Origin': allowOrigin,
     'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Max-Age': '86400', // 24 hours
