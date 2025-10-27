@@ -1,10 +1,9 @@
 // CORS configuration for API endpoints
-// In production, replace with your actual domain
 const ALLOWED_ORIGINS = [
   'http://localhost:8080',     // Development
   'http://localhost:3000',     // Development alternative
-  'https://bukets.vercel.app', // Production domain (replace with your actual domain)
-  'https://www.bukets.vercel.app', // Production with www (if applicable)
+  'https://bukets.net',        // Production domain
+  'https://www.bukets.net',    // Production with www
 ];
 
 // Environment-based CORS configuration
@@ -22,8 +21,8 @@ export function getAllowedOrigins(): string[] {
   
   // Production - only allow your actual domain
   return [
-    'https://bukets.vercel.app', // Replace with your actual production domain
-    'https://www.bukets.vercel.app', // Replace with your actual production domain with www
+    'https://bukets.net',        // Production domain
+    'https://www.bukets.net',    // Production with www
   ];
 }
 
