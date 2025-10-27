@@ -8,19 +8,13 @@ const ALLOWED_ORIGINS = [
 
 // Environment-based CORS configuration
 export function getAllowedOrigins(): string[] {
-  const env = process.env.NODE_ENV || 'development';
-  
-  if (env === 'development') {
-    return [
-      'http://localhost:8080',
-      'http://localhost:3000',
-      'http://127.0.0.1:8080',
-      'http://127.0.0.1:3000',
-    ];
-  }
-  
-  // Production - allow both domains to ensure compatibility
+  // Always return all allowed origins regardless of environment
+  // This ensures compatibility across all deployment scenarios
   return [
+    'http://localhost:8080',     // Development
+    'http://localhost:3000',     // Development alternative
+    'http://127.0.0.1:8080',     // Development alternative
+    'http://127.0.0.1:3000',     // Development alternative
     'https://bukets.net',        // Production domain
     'https://www.bukets.net',    // Production with www
     'https://bukets.vercel.app', // Vercel deployment URL
