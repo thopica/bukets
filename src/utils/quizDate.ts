@@ -73,10 +73,13 @@ export const fetchQuizByIndex = async (index: number): Promise<QuizMetadataRespo
 };
 
 /**
- * Returns current date in ISO format (YYYY-MM-DD)
+ * Returns current date in ISO format (YYYY-MM-DD) in UTC
+ * This ensures consistency with backend date calculations
  */
 export const getQuizDateISO = (): string => {
-  return new Date().toISOString().split('T')[0];
+  const isoDate = new Date().toISOString().split('T')[0];
+  console.log(`[FRONTEND DATE] Quiz date: ${isoDate}`);
+  return isoDate;
 };
 
 /**

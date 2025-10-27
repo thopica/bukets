@@ -4,12 +4,19 @@ import { join } from 'path';
 import { withRateLimit } from './_middleware';
 import { getCorsHeaders, isOriginAllowed } from './_cors';
 
-const START_DATE = new Date('2025-10-02');
+// Use UTC midnight for consistent calculations across all timezones
+const START_DATE = new Date('2025-10-02T00:00:00Z');
 
 function getTodaysQuizIndex(quizzesLength: number): number {
-  const today = new Date();
-  const daysPassed = Math.floor((today.getTime() - START_DATE.getTime()) / (1000 * 60 * 60 * 24));
+  // Get today's date at UTC midnight
+  const now = new Date();
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  
+  const daysPassed = Math.floor((today - START_DATE.getTime()) / (1000 * 60 * 60 * 24));
   const quizIndex = daysPassed % quizzesLength;
+  
+  console.log(`[DATE DEBUG] Today UTC: ${new Date(today).toISOString()}, Days passed: ${daysPassed}, Quiz index: ${quizIndex}`);
+  
   return quizIndex >= 0 ? quizIndex : 0;
 }
 
