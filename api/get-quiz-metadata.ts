@@ -52,7 +52,18 @@ const handler = async function(req: VercelRequest, res: VercelResponse) {
   try {
     // Load quiz data at runtime using fs.readFileSync
     const quizzesPath = join(process.cwd(), 'quizzes.json');
-    const quizzes = JSON.parse(readFileSync(quizzesPath, 'utf-8'));
+    console.log(`[DEBUG] Looking for quizzes.json at: ${quizzesPath}`);
+    
+    let quizzes;
+    try {
+      const fileContent = readFileSync(quizzesPath, 'utf-8');
+      console.log(`[DEBUG] File content length: ${fileContent.length}`);
+      quizzes = JSON.parse(fileContent);
+      console.log(`[DEBUG] Successfully loaded ${quizzes.length} quizzes`);
+    } catch (fileError) {
+      console.error(`[ERROR] Failed to read quizzes.json:`, fileError);
+      return res.status(500).json({ error: 'Failed to load quiz data' });
+    }
 
     const quizIndexParam = req.query.index as string | undefined;
     const quizIndex = quizIndexParam !== undefined ? parseInt(quizIndexParam) : getTodaysQuizIndex(quizzes.length);
