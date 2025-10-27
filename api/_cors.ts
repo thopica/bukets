@@ -23,6 +23,7 @@ export function getAllowedOrigins(): string[] {
   return [
     'https://bukets.net',        // Production domain
     'https://www.bukets.net',    // Production with www
+    'https://bukets.vercel.app', // Vercel deployment URL
   ];
 }
 
