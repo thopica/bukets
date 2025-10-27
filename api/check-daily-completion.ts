@@ -56,7 +56,7 @@ const handler = async function(req: VercelRequest, res: VercelResponse) {
     // Check if user completed this quiz
     const { data: scoreData, error: scoreError } = await supabaseClient
       .from('daily_scores')
-      .select('total_score, correct_guesses, hints_used, time_used, completed_at')
+      .select('total_score, correct_guesses, hints_used, time_used, completed_at, quiz_index')
       .eq('user_id', user.id)
       .eq('quiz_date', dateToCheck)
       .maybeSingle();
@@ -95,6 +95,7 @@ const handler = async function(req: VercelRequest, res: VercelResponse) {
       hints_used: scoreData.hints_used,
       time_used: scoreData.time_used,
       completed_at: scoreData.completed_at,
+      quiz_index: scoreData.quiz_index,
       rank,
       current_streak: streakData?.current_streak || 0,
       longest_streak: streakData?.longest_streak || 0

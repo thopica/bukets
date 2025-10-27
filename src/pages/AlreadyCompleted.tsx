@@ -15,16 +15,11 @@ interface ScoreMessage {
 }
 
 function getScoreMessage(totalScore: number): ScoreMessage {
-  // Keep typography consistent regardless of score
-  return {
-    title: totalScore >= 18 ? 'Starter Material' : totalScore >= 12 ? 'Bench Player' : 'Keep Going',
-    message: totalScore >= 18
-      ? "You're in the rotation, keep grinding to reach the top."
-      : totalScore >= 12
-        ? "Hit the film room and study up for tomorrow's quiz."
-        : "Tomorrow's a new chance.",
-    color: 'text-foreground/80'
-  };
+  if (totalScore === 30) return { title: "Goat", message: "Perfect game! You didn't just win, you dominated.", color: "text-foreground/80" };
+  if (totalScore >= 25) return { title: "Legend", message: "You proved you're elite. Now stay there.", color: "text-foreground/80" };
+  if (totalScore >= 19) return { title: "All-Star", message: "You just proved you belong at the top of the board.", color: "text-foreground/80" };
+  if (totalScore >= 13) return { title: "Starter Material", message: "You're in the rotation, keep grinding to reach the top.", color: "text-foreground/80" };
+  return { title: "Bench Player", message: "Hit the film room and study up for tomorrow's quiz.", color: "text-foreground/80" };
 }
 
 export default function AlreadyCompleted() {
@@ -61,15 +56,11 @@ export default function AlreadyCompleted() {
 
       setScoreData(data);
 
-      // Load today's quiz answers and user's correct ranks
+      // Load the actual quiz that was completed
       try {
-        // Get today's quiz index
         const { default: quizzes } = await import('../../quizzes.json');
-        // Reuse server's index logic by asking metadata if available is complex; instead infer index by date like API
-        // Prefer fetching index from get-quiz-metadata to match server start date calculation
-        const { data: meta } = await api.invoke('get-quiz-metadata');
-        const quizIndex = meta?.index ?? 0;
-
+        const quizIndex = data.quiz_index ?? 0; // Use quiz_index from API response
+        
         const quiz = quizzes[quizIndex];
         if (quiz && Array.isArray(quiz.answers)) {
           setAnswers(quiz.answers.map((a: any) => ({ rank: a.rank, name: a.name, stat: a.stat })));
