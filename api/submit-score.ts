@@ -115,7 +115,8 @@ const handler = async function(req: VercelRequest, res: VercelResponse) {
     console.log(`Server-verified score for ${user.id}: ${total_score} points (${correct_guesses} correct, ${hints_used} hints)`);
 
     // Update existing score or insert new one
-    if (existing) {
+    let existingRecord = existing;
+    if (existingRecord) {
       // Update the existing session with verified score
       const { error: updateError, count: updateCount } = await supabaseClient
         .from('daily_scores')
@@ -126,8 +127,8 @@ const handler = async function(req: VercelRequest, res: VercelResponse) {
           time_used,
           completed_at: new Date().toISOString()
         })
-        .eq('id', existing.id)
-        .select('id', { count: 'exact', head: true });
+        .eq('id', existingRecord.id)
+        .select('id');
 
       if (updateError) {
         console.error('Update error:', updateError);
@@ -142,7 +143,7 @@ const handler = async function(req: VercelRequest, res: VercelResponse) {
         const { error: deleteError } = await supabaseClient
           .from('daily_scores')
           .delete()
-          .eq('id', existing.id);
+          .eq('id', existingRecord.id);
 
         if (deleteError) {
           console.error('Delete error:', deleteError);
@@ -150,11 +151,11 @@ const handler = async function(req: VercelRequest, res: VercelResponse) {
         }
 
         // Fall through to insert logic below
-        existing = null; // Force insert path
+        existingRecord = null; // Force insert path
       }
     }
 
-    if (!existing) {
+    if (!existingRecord) {
       // Insert new score with verified data
       // Handle potential schema cache issues with started_at column
       const insertData: any = {
