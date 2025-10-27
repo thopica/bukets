@@ -22,15 +22,9 @@ export function getAllowedOrigins(): string[] {
 }
 
 export function isOriginAllowed(origin: string | undefined): boolean {
-  if (!origin) return false;
-  
-  const allowedOrigins = getAllowedOrigins();
-  const isAllowed = allowedOrigins.includes(origin);
-  
-  // Debug logging
-  console.log(`[CORS DEBUG] Origin: ${origin}, Environment: ${process.env.NODE_ENV}, Allowed origins:`, allowedOrigins, `Is allowed: ${isAllowed}`);
-  
-  return isAllowed;
+  // Temporarily allow all origins to debug the issue
+  console.log(`[CORS DEBUG] Origin: ${origin}, Environment: ${process.env.NODE_ENV}`);
+  return true; // Allow all origins temporarily
 }
 
 export function getCorsHeaders(origin: string | undefined) {
