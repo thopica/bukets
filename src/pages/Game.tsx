@@ -719,7 +719,7 @@ const Index = () => {
 
       {/* Desktop Layout: Centered with better spacing */}
       <div className="hidden md:flex md:flex-col md:items-center md:justify-center" style={{ minHeight: 'calc(100 * var(--vh))' }}>
-        <Header hideOnMobile={isInputFocused && !isCompleted} />
+        <Header hideOnMobile={false} />
         
         {/* Centered Content Container - Desktop */}
         <main className="container max-w-3xl mx-auto px-6 py-8 flex-1 flex flex-col gap-6 w-full">
