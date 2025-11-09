@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { supabase } from "@/integrations/supabase/client";
 import CountrySelectionModal from "@/components/CountrySelectionModal";
 import Index from "./pages/Index";
@@ -102,6 +103,7 @@ const App = () => {
           />
         )}
         <Analytics />
+        <SpeedInsights />
       </TooltipProvider>
     </QueryClientProvider>
   );
