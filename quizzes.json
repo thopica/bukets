@@ -266,7 +266,7 @@
       {
         "rank": 1,
         "name": "Stephen Curry",
-        "stat": "3,867 threes",
+        "stat": "4,093 threes",
         "aliases": [
           "curry",
           "steph",
@@ -278,6 +278,18 @@
       },
       {
         "rank": 2,
+        "name": "James Harden",
+        "stat": "3,200 threes",
+        "aliases": [
+          "harden",
+          "james",
+          "beard",
+          "the beard",
+          "james harden"
+        ]
+      },
+      {
+        "rank": 3,
         "name": "Ray Allen",
         "stat": "2,973 threes",
         "aliases": [
@@ -289,21 +301,9 @@
         ]
       },
       {
-        "rank": 3,
-        "name": "James Harden",
-        "stat": "2,986 threes",
-        "aliases": [
-          "harden",
-          "james",
-          "beard",
-          "the beard",
-          "james harden"
-        ]
-      },
-      {
         "rank": 4,
         "name": "Damian Lillard",
-        "stat": "2,673 threes",
+        "stat": "2,804 threes",
         "aliases": [
           "lillard",
           "dame",
@@ -341,23 +341,23 @@
       },
       {
         "rank": 1,
-        "text": "4× champion with Golden State, 2× MVP, holds record with over 3,800 career threes"
+        "text": "4× champion with Golden State, 2× MVP, holds record with over 4,000 career threes"
       },
       {
         "rank": 2,
-        "text": "Shooting guard from 1996-2014, known for pure shooting stroke"
-      },
-      {
-        "rank": 2,
-        "text": "2× champion, hit crucial Finals three-pointer in 2013, 10× All-Star"
-      },
-      {
-        "rank": 3,
         "text": "Guard who debuted in 2009, known for signature step-back three-pointer"
       },
       {
-        "rank": 3,
+        "rank": 2,
         "text": "2018 MVP with Houston, led league in scoring 3 times, prolific from distance"
+      },
+      {
+        "rank": 3,
+        "text": "Shooting guard from 1996-2014, known for pure shooting stroke"
+      },
+      {
+        "rank": 3,
+        "text": "2× champion, hit crucial Finals three-pointer in 2013, 10× All-Star"
       },
       {
         "rank": 4,
@@ -1059,6 +1059,19 @@
       },
       {
         "rank": 3,
+        "name": "Nikola Jokic",
+        "stat": "145 triple-doubles",
+        "aliases": [
+          "jokic",
+          "nikola",
+          "joker",
+          "the joker",
+          "nikola jokic",
+          "jokić"
+        ]
+      },
+      {
+        "rank": 4,
         "name": "Magic Johnson",
         "stat": "138 triple-doubles",
         "aliases": [
@@ -1069,7 +1082,7 @@
         ]
       },
       {
-        "rank": 4,
+        "rank": 5,
         "name": "LeBron James",
         "stat": "117 triple-doubles",
         "aliases": [
@@ -1079,19 +1092,6 @@
           "bron",
           "the king",
           "lebron james"
-        ]
-      },
-      {
-        "rank": 5,
-        "name": "Nikola Jokic",
-        "stat": "145 triple-doubles",
-        "aliases": [
-          "jokic",
-          "nikola",
-          "joker",
-          "the joker",
-          "nikola jokic",
-          "jokić"
         ]
       },
       {
@@ -1125,27 +1125,27 @@
       },
       {
         "rank": 3,
-        "text": "Point guard from 1979-1996, known for passing and showmanship"
-      },
-      {
-        "rank": 3,
-        "text": "138 triple-doubles, 5× champion with Lakers, 3× MVP and Finals MVP"
-      },
-      {
-        "rank": 4,
-        "text": "Forward active since 2003, known for all-around excellence and longevity"
-      },
-      {
-        "rank": 4,
-        "text": "117 triple-doubles, 4× champion with three franchises, all-time leading scorer"
-      },
-      {
-        "rank": 5,
         "text": "Center active since 2015, known for exceptional passing and basketball IQ"
       },
       {
-        "rank": 5,
+        "rank": 3,
         "text": "145 triple-doubles, 3× MVP with Denver, revolutionized center position with playmaking"
+      },
+      {
+        "rank": 4,
+        "text": "Point guard from 1979-1996, known for passing and showmanship"
+      },
+      {
+        "rank": 4,
+        "text": "138 triple-doubles, 5× champion with Lakers, 3× MVP and Finals MVP"
+      },
+      {
+        "rank": 5,
+        "text": "Forward active since 2003, known for all-around excellence and longevity"
+      },
+      {
+        "rank": 5,
+        "text": "117 triple-doubles, 4× champion with three franchises, all-time leading scorer"
       },
       {
         "rank": 6,
@@ -1174,6 +1174,19 @@
       },
       {
         "rank": 2,
+        "name": "LeBron James",
+        "stat": "1,562 games",
+        "aliases": [
+          "lebron",
+          "lbj",
+          "king james",
+          "bron",
+          "the king",
+          "lebron james"
+        ]
+      },
+      {
+        "rank": 3,
         "name": "Kareem Abdul-Jabbar",
         "stat": "1,560 games",
         "aliases": [
@@ -1185,7 +1198,7 @@
         ]
       },
       {
-        "rank": 3,
+        "rank": 4,
         "name": "Vince Carter",
         "stat": "1,541 games",
         "aliases": [
@@ -1197,7 +1210,7 @@
         ]
       },
       {
-        "rank": 4,
+        "rank": 5,
         "name": "Dirk Nowitzki",
         "stat": "1,522 games",
         "aliases": [
@@ -1208,26 +1221,13 @@
         ]
       },
       {
-        "rank": 5,
+        "rank": 6,
         "name": "John Stockton",
         "stat": "1,504 games",
         "aliases": [
           "stockton",
           "john",
           "john stockton"
-        ]
-      },
-      {
-        "rank": 6,
-        "name": "LeBron James",
-        "stat": "1,492 games",
-        "aliases": [
-          "lebron",
-          "lbj",
-          "king james",
-          "bron",
-          "the king",
-          "lebron james"
         ]
       }
     ],
@@ -1242,43 +1242,43 @@
       },
       {
         "rank": 2,
-        "text": "Center who played 1969-1989, known for signature unstoppable hook shot"
-      },
-      {
-        "rank": 2,
-        "text": "1,560 games across 20 seasons, 6× MVP, won championships with two franchises"
-      },
-      {
-        "rank": 3,
-        "text": "Guard/forward from 1998-2020, known for athleticism and dunking ability"
-      },
-      {
-        "rank": 3,
-        "text": "Record 22 seasons with 1,541 games, 8× All-Star, played for eight different franchises"
-      },
-      {
-        "rank": 4,
-        "text": "Power forward from 1998-2019, known for shooting touch and one-legged fadeaway"
-      },
-      {
-        "rank": 4,
-        "text": "1,522 games all with Dallas, 2011 champion, 2007 MVP, franchise icon"
-      },
-      {
-        "rank": 5,
-        "text": "Point guard from 1984-2003, known for durability and exceptional assist skills"
-      },
-      {
-        "rank": 5,
-        "text": "1,504 games all with Utah, all-time assists leader, never missed playoffs in 19 seasons"
-      },
-      {
-        "rank": 6,
         "text": "Forward active since 2003, known for all-around excellence and longevity"
       },
       {
+        "rank": 2,
+        "text": "1,562 games and counting, 4× champion, all-time leading scorer"
+      },
+      {
+        "rank": 3,
+        "text": "Center who played 1969-1989, known for signature unstoppable hook shot"
+      },
+      {
+        "rank": 3,
+        "text": "1,560 games across 20 seasons, 6× MVP, won championships with two franchises"
+      },
+      {
+        "rank": 4,
+        "text": "Guard/forward from 1998-2020, known for athleticism and dunking ability"
+      },
+      {
+        "rank": 4,
+        "text": "Record 22 seasons with 1,541 games, 8× All-Star, played for eight different franchises"
+      },
+      {
+        "rank": 5,
+        "text": "Power forward from 1998-2019, known for shooting touch and one-legged fadeaway"
+      },
+      {
+        "rank": 5,
+        "text": "1,522 games all with Dallas, 2011 champion, 2007 MVP, franchise icon"
+      },
+      {
         "rank": 6,
-        "text": "1,492 games and counting at age 40, 4× champion, all-time leading scorer"
+        "text": "Point guard from 1984-2003, known for durability and exceptional assist skills"
+      },
+      {
+        "rank": 6,
+        "text": "1,504 games all with Utah, all-time assists leader, never missed playoffs in 19 seasons"
       }
     ]
   },
@@ -1287,6 +1287,19 @@
     "answers": [
       {
         "rank": 1,
+        "name": "LeBron James",
+        "stat": "59,041 minutes",
+        "aliases": [
+          "lebron",
+          "lbj",
+          "king james",
+          "bron",
+          "the king",
+          "lebron james"
+        ]
+      },
+      {
+        "rank": 2,
         "name": "Kareem Abdul-Jabbar",
         "stat": "57,446 minutes",
         "aliases": [
@@ -1295,19 +1308,6 @@
           "abdul-jabbar",
           "kareem abdul jabbar",
           "jabbar"
-        ]
-      },
-      {
-        "rank": 2,
-        "name": "LeBron James",
-        "stat": "57,979 minutes",
-        "aliases": [
-          "lebron",
-          "lbj",
-          "king james",
-          "bron",
-          "the king",
-          "lebron james"
         ]
       },
       {
@@ -1359,19 +1359,19 @@
     "hints": [
       {
         "rank": 1,
-        "text": "Center who played 1969-1989, known for signature unstoppable hook shot"
-      },
-      {
-        "rank": 1,
-        "text": "57,446 minutes across 20 seasons, 6× MVP, won championships with two franchises"
-      },
-      {
-        "rank": 2,
         "text": "Forward active since 2003, known for all-around excellence and longevity"
       },
       {
+        "rank": 1,
+        "text": "59,041 minutes and counting, passed Kareem in 2024, 4× champion with three franchises"
+      },
+      {
         "rank": 2,
-        "text": "57,979 minutes and counting, passed Kareem in 2024, 4× champion with three franchises"
+        "text": "Center who played 1969-1989, known for signature unstoppable hook shot"
+      },
+      {
+        "rank": 2,
+        "text": "57,446 minutes across 20 seasons, 6× MVP, won championships with two franchises"
       },
       {
         "rank": 3,
@@ -4315,7 +4315,7 @@
       {
         "rank": 1,
         "name": "Stephen Curry",
-        "stat": "3,832 3-pointers",
+        "stat": "4,093 3-pointers",
         "aliases": [
           "stephen",
           "curry",
@@ -4331,7 +4331,7 @@
       {
         "rank": 2,
         "name": "James Harden",
-        "stat": "3,151 3-pointers",
+        "stat": "3,200 3-pointers",
         "aliases": [
           "james",
           "harden",
@@ -4356,6 +4356,19 @@
       },
       {
         "rank": 4,
+        "name": "Damian Lillard",
+        "stat": "2,804 3-pointers",
+        "aliases": [
+          "lillard",
+          "dame",
+          "damian",
+          "dame time",
+          "damian lillard",
+          "dame dolla"
+        ]
+      },
+      {
+        "rank": 5,
         "name": "Reggie Miller",
         "stat": "2,560 3-pointers",
         "aliases": [
@@ -4363,21 +4376,6 @@
           "miller",
           "reggie miller",
           "knick killer"
-        ]
-      },
-      {
-        "rank": 5,
-        "name": "LeBron James",
-        "stat": "2,549 3-pointers",
-        "aliases": [
-          "lebron",
-          "james",
-          "lebron james",
-          "king james",
-          "lbj",
-          "bron",
-          "the king",
-          "king"
         ]
       },
       {
@@ -4403,43 +4401,43 @@
       },
       {
         "rank": 2,
-        "text": "UConn product who won championships with Boston (2008) and Miami (2013)"
-      },
-      {
-        "rank": 2,
-        "text": "Made the most famous shot in NBA Finals history in Game 6 of the 2013 Finals"
-      },
-      {
-        "rank": 3,
         "text": "Left-handed shooting guard who won MVP in 2018 with Houston Rockets"
       },
       {
-        "rank": 3,
+        "rank": 2,
         "text": "Known as 'The Beard', he holds the record for most 3-pointers in a season not by Curry (378)"
       },
       {
+        "rank": 3,
+        "text": "UConn product who won championships with Boston (2008) and Miami (2013)"
+      },
+      {
+        "rank": 3,
+        "text": "Made the most famous shot in NBA Finals history in Game 6 of the 2013 Finals"
+      },
+      {
         "rank": 4,
+        "text": "Point guard active since 2012, known for deep range and clutch shooting"
+      },
+      {
+        "rank": 4,
+        "text": "6× All-Star known for game-winners, spent first 11 seasons in Pacific Northwest"
+      },
+      {
+        "rank": 5,
         "text": "Indiana Pacers shooting guard who played his entire 18-year career with one team"
       },
       {
-        "rank": 4,
+        "rank": 5,
         "text": "Famous for his battles with the Knicks and his '8 points in 9 seconds' performance"
       },
       {
-        "rank": 5,
+        "rank": 6,
         "text": "Creighton sharpshooter who led the league in 3-point percentage once and played for 6 teams"
       },
       {
-        "rank": 5,
+        "rank": 6,
         "text": "Made at least one 3-pointer in 127 consecutive games from 2012-2014"
-      },
-      {
-        "rank": 6,
-        "text": "Small forward who is the NBA's all-time leading scorer with over 40,000 points"
-      },
-      {
-        "rank": 6,
-        "text": "Only player in top 10 for points, rebounds, assists, steals, and 3-pointers made"
       }
     ]
   },
@@ -4449,7 +4447,7 @@
       {
         "rank": 1,
         "name": "LeBron James",
-        "stat": "40,474 points",
+        "stat": "42,184 points",
         "aliases": [
           "lebron",
           "james",
@@ -4540,7 +4538,7 @@
       },
       {
         "rank": 1,
-        "text": "Only player with 40,000 points, 10,000 rebounds, and 10,000 assists in NBA history"
+        "text": "Only player with 42,000+ points, 10,000 rebounds, and 10,000 assists in NBA history"
       },
       {
         "rank": 2,
@@ -6836,35 +6834,35 @@
       },
       {
         "rank": 3,
-        "text": "Lakers point guard who had 138 in just 906 career games"
-      },
-      {
-        "rank": 3,
-        "text": "5-time champion who retired early due to HIV in 1991"
-      },
-      {
-        "rank": 4,
         "text": "Denver Nuggets center who won MVP in 2021, 2022, and 2024"
       },
       {
-        "rank": 4,
+        "rank": 3,
         "text": "Serbian center nicknamed 'The Joker' who was a second-round pick"
       },
       {
-        "rank": 5,
-        "text": "Nets/Suns/Mavericks point guard who ranks 2nd all-time in steals"
+        "rank": 4,
+        "text": "Lakers point guard who had 138 in just 906 career games"
+      },
+      {
+        "rank": 4,
+        "text": "5-time champion who retired early due to HIV in 1991"
       },
       {
         "rank": 5,
-        "text": "Won championship with Dallas in 2011 and later coached the Bucks"
-      },
-      {
-        "rank": 6,
         "text": "Forward who has triple-doubles with points, rebounds, and assists"
       },
       {
-        "rank": 6,
+        "rank": 5,
         "text": "Only forward in top 6, achieved milestone in 2024"
+      },
+      {
+        "rank": 6,
+        "text": "Nets/Suns/Mavericks point guard who ranks 2nd all-time in steals"
+      },
+      {
+        "rank": 6,
+        "text": "Won championship with Dallas in 2011 and later coached the Bucks"
       }
     ]
   },
@@ -7396,6 +7394,1227 @@
       {
         "rank": 6,
         "text": "Dominated weaker Clippers teams throughout 1980s-1990s"
+      }
+    ]
+  },
+  {
+    "title": "NBA All-Time Career Rebounds Per Game Leaders",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "Wilt Chamberlain",
+        "stat": "22.9 RPG",
+        "aliases": [
+          "wilt",
+          "chamberlain",
+          "wilt chamberlain",
+          "the stilt",
+          "wilt the stilt"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Bill Russell",
+        "stat": "22.5 RPG",
+        "aliases": [
+          "russell",
+          "bill",
+          "bill russell",
+          "mr russell",
+          "mr. russell"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Bob Pettit",
+        "stat": "16.2 RPG",
+        "aliases": [
+          "pettit",
+          "bob",
+          "bob pettit"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Jerry Lucas",
+        "stat": "15.6 RPG",
+        "aliases": [
+          "lucas",
+          "jerry",
+          "jerry lucas",
+          "memory man"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Nate Thurmond",
+        "stat": "15.0 RPG",
+        "aliases": [
+          "thurmond",
+          "nate",
+          "nate thurmond",
+          "nate the great"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Wes Unseld",
+        "stat": "14.0 RPG",
+        "aliases": [
+          "unseld",
+          "wes",
+          "wes unseld"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Center from 1959-1973, known for overwhelming physical dominance"
+      },
+      {
+        "rank": 1,
+        "text": "Averaged 22.9 RPG, once grabbed 55 rebounds in a single game, scored 100 points"
+      },
+      {
+        "rank": 2,
+        "text": "Defensive center from 1956-1969, known for championships and leadership"
+      },
+      {
+        "rank": 2,
+        "text": "Averaged 22.5 RPG, won 11 championships with Boston, 5× MVP"
+      },
+      {
+        "rank": 3,
+        "text": "Power forward from 1954-1965, known for scoring and rebounding"
+      },
+      {
+        "rank": 3,
+        "text": "Averaged 16.2 RPG, 2× MVP, spent entire career with St. Louis Hawks"
+      },
+      {
+        "rank": 4,
+        "text": "Forward/center from 1962-1974, known for basketball IQ and memory"
+      },
+      {
+        "rank": 4,
+        "text": "Averaged 15.6 RPG, 7× All-Star, won championship with Knicks in 1973"
+      },
+      {
+        "rank": 5,
+        "text": "Center from 1963-1977, known for defensive presence and rebounding"
+      },
+      {
+        "rank": 5,
+        "text": "Averaged 15.0 RPG, 7× All-Star, spent most of career with Warriors and Cavaliers"
+      },
+      {
+        "rank": 6,
+        "text": "Center from 1968-1981, known for outlet passing and rebounding"
+      },
+      {
+        "rank": 6,
+        "text": "Averaged 14.0 RPG, 1978 Finals MVP, won championship with Washington Bullets"
+      }
+    ]
+  },
+  {
+    "title": "NBA All-Time Career Assists Per Game Leaders",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "Magic Johnson",
+        "stat": "11.2 APG",
+        "aliases": [
+          "magic",
+          "johnson",
+          "magic johnson",
+          "earvin",
+          "earvin johnson"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "John Stockton",
+        "stat": "10.5 APG",
+        "aliases": [
+          "stockton",
+          "john",
+          "john stockton"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Oscar Robertson",
+        "stat": "9.5 APG",
+        "aliases": [
+          "robertson",
+          "oscar",
+          "oscar robertson",
+          "big o",
+          "the big o"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Chris Paul",
+        "stat": "9.4 APG",
+        "aliases": [
+          "paul",
+          "chris",
+          "chris paul",
+          "cp3",
+          "point god"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Isiah Thomas",
+        "stat": "9.3 APG",
+        "aliases": [
+          "thomas",
+          "isiah",
+          "isiah thomas",
+          "zeke"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Steve Nash",
+        "stat": "8.5 APG",
+        "aliases": [
+          "nash",
+          "steve",
+          "steve nash"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Point guard from 1979-1996, known for passing and showmanship"
+      },
+      {
+        "rank": 1,
+        "text": "Averaged 11.2 APG, 5× champion with Lakers, 3× MVP, 'Showtime' era leader"
+      },
+      {
+        "rank": 2,
+        "text": "Point guard from 1984-2003, known for durability and assist skills"
+      },
+      {
+        "rank": 2,
+        "text": "Averaged 10.5 APG, all-time assists leader, spent entire career with Utah"
+      },
+      {
+        "rank": 3,
+        "text": "Guard from 1960-1974, known for complete all-around excellence"
+      },
+      {
+        "rank": 3,
+        "text": "Averaged 9.5 APG, averaged triple-double in 1961-62, 1964 MVP"
+      },
+      {
+        "rank": 4,
+        "text": "Point guard active since 2005, known for court vision and leadership"
+      },
+      {
+        "rank": 4,
+        "text": "Averaged 9.4 APG, 12× All-Star, led league in assists 5 times"
+      },
+      {
+        "rank": 5,
+        "text": "Point guard from 1981-1994, known for leadership and clutch play"
+      },
+      {
+        "rank": 5,
+        "text": "Averaged 9.3 APG, 2× champion with Detroit, 12× All-Star"
+      },
+      {
+        "rank": 6,
+        "text": "Point guard from 1996-2014, known for shooting and playmaking"
+      },
+      {
+        "rank": 6,
+        "text": "Averaged 8.5 APG, 2× MVP with Phoenix, 8× All-Star, Canadian"
+      }
+    ]
+  },
+  {
+    "title": "NBA All-Time Career Steals Per Game Leaders",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "Alvin Robertson",
+        "stat": "2.71 SPG",
+        "aliases": [
+          "robertson",
+          "alvin",
+          "alvin robertson"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Michael Ray Richardson",
+        "stat": "2.63 SPG",
+        "aliases": [
+          "richardson",
+          "michael ray",
+          "michael ray richardson",
+          "sugar"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Michael Jordan",
+        "stat": "2.35 SPG",
+        "aliases": [
+          "mj",
+          "jordan",
+          "goat",
+          "mike",
+          "michael",
+          "michael jordan",
+          "air jordan"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Mookie Blaylock",
+        "stat": "2.33 SPG",
+        "aliases": [
+          "blaylock",
+          "mookie",
+          "mookie blaylock"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "John Stockton",
+        "stat": "2.17 SPG",
+        "aliases": [
+          "stockton",
+          "john",
+          "john stockton"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Chris Paul",
+        "stat": "2.14 SPG",
+        "aliases": [
+          "paul",
+          "chris",
+          "chris paul",
+          "cp3",
+          "point god"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Guard from 1984-1996, known for defensive prowess"
+      },
+      {
+        "rank": 1,
+        "text": "Averaged 2.71 SPG, 1986 Defensive Player of Year, recorded quadruple-double"
+      },
+      {
+        "rank": 2,
+        "text": "Guard from 1978-1986, known for defensive intensity"
+      },
+      {
+        "rank": 2,
+        "text": "Averaged 2.63 SPG, played for Knicks and Nets, known as 'Sugar'"
+      },
+      {
+        "rank": 3,
+        "text": "Shooting guard from 1984-2003, known for scoring and defense"
+      },
+      {
+        "rank": 3,
+        "text": "Averaged 2.35 SPG, 6× champion, 3× steals leader, all-time steals leader"
+      },
+      {
+        "rank": 4,
+        "text": "Point guard from 1989-2002, known for defensive skills"
+      },
+      {
+        "rank": 4,
+        "text": "Averaged 2.33 SPG, led league in steals twice, spent most of career with Hawks"
+      },
+      {
+        "rank": 5,
+        "text": "Point guard from 1984-2003, known for durability and steals"
+      },
+      {
+        "rank": 5,
+        "text": "Averaged 2.17 SPG, all-time steals leader, led league in steals 2 times"
+      },
+      {
+        "rank": 6,
+        "text": "Point guard active since 2005, known for defensive awareness"
+      },
+      {
+        "rank": 6,
+        "text": "Averaged 2.14 SPG, 6× steals leader, 9× All-Defensive Team"
+      }
+    ]
+  },
+  {
+    "title": "NBA All-Time Career Blocks Per Game Leaders",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "Mark Eaton",
+        "stat": "3.50 BPG",
+        "aliases": [
+          "eaton",
+          "mark",
+          "mark eaton"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Elmore Smith",
+        "stat": "3.40 BPG",
+        "aliases": [
+          "smith",
+          "elmore",
+          "elmore smith"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Manute Bol",
+        "stat": "3.34 BPG",
+        "aliases": [
+          "bol",
+          "manute",
+          "manute bol"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "David Robinson",
+        "stat": "2.99 BPG",
+        "aliases": [
+          "robinson",
+          "david",
+          "admiral",
+          "the admiral",
+          "david robinson"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Hakeem Olajuwon",
+        "stat": "3.09 BPG",
+        "aliases": [
+          "hakeem",
+          "olajuwon",
+          "dream",
+          "the dream",
+          "hakeem olajuwon",
+          "akeem"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Alonzo Mourning",
+        "stat": "2.81 BPG",
+        "aliases": [
+          "mourning",
+          "alonzo",
+          "alonzo mourning",
+          "zo"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Center from 1982-1993, known for elite rim protection"
+      },
+      {
+        "rank": 1,
+        "text": "Averaged 3.50 BPG, 7'4\" center, led league in blocks 4 times, spent entire career with Utah"
+      },
+      {
+        "rank": 2,
+        "text": "Center from 1971-1979, known for shot-blocking dominance"
+      },
+      {
+        "rank": 2,
+        "text": "Averaged 3.40 BPG, holds record for 17 blocks in single game, played for Lakers and Bucks"
+      },
+      {
+        "rank": 3,
+        "text": "Center from 1985-1995, known for exceptional height and shot-blocking"
+      },
+      {
+        "rank": 3,
+        "text": "Averaged 3.34 BPG, 7'7\" tall, defensive specialist from Sudan"
+      },
+      {
+        "rank": 4,
+        "text": "Athletic center from 1989-2003, Naval Academy graduate"
+      },
+      {
+        "rank": 4,
+        "text": "Averaged 2.99 BPG, 1995 MVP, 2× champion with San Antonio, 2× Defensive Player of Year"
+      },
+      {
+        "rank": 5,
+        "text": "Center from 1984-2002, known for footwork and defensive dominance"
+      },
+      {
+        "rank": 5,
+        "text": "Averaged 3.09 BPG, all-time blocks leader, 2× Defensive Player of Year, 2× champion"
+      },
+      {
+        "rank": 6,
+        "text": "Center from 1992-2008, known for defensive intensity"
+      },
+      {
+        "rank": 6,
+        "text": "Averaged 2.81 BPG, 2× Defensive Player of Year, 2006 champion with Miami"
+      }
+    ]
+  },
+  {
+    "title": "NBA All-Time Career Free Throw Percentage Leaders",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "Stephen Curry",
+        "stat": "90.8%",
+        "aliases": [
+          "curry",
+          "steph",
+          "stephen",
+          "stephen curry",
+          "chef curry",
+          "wardell"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Steve Nash",
+        "stat": "90.4%",
+        "aliases": [
+          "nash",
+          "steve",
+          "steve nash"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Mark Price",
+        "stat": "90.4%",
+        "aliases": [
+          "price",
+          "mark",
+          "mark price"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Peja Stojakovic",
+        "stat": "89.5%",
+        "aliases": [
+          "stojakovic",
+          "peja",
+          "peja stojakovic"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Chauncey Billups",
+        "stat": "89.4%",
+        "aliases": [
+          "billups",
+          "chauncey",
+          "chauncey billups",
+          "mr big shot"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Ray Allen",
+        "stat": "89.4%",
+        "aliases": [
+          "allen",
+          "ray",
+          "jesus shuttlesworth",
+          "ray allen",
+          "shuttlesworth"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Point guard active since 2009, known for exceptional shooting"
+      },
+      {
+        "rank": 1,
+        "text": "90.8% free throw shooter, 4× champion, 2× MVP, revolutionized three-point shooting"
+      },
+      {
+        "rank": 2,
+        "text": "Point guard from 1996-2014, known for shooting and playmaking"
+      },
+      {
+        "rank": 2,
+        "text": "90.4% free throw shooter, 2× MVP with Phoenix, 8× All-Star, Canadian"
+      },
+      {
+        "rank": 3,
+        "text": "Point guard from 1986-1998, known for shooting accuracy"
+      },
+      {
+        "rank": 3,
+        "text": "90.4% free throw shooter, 4× All-Star with Cleveland, excellent three-point shooter"
+      },
+      {
+        "rank": 4,
+        "text": "Forward from 1998-2011, known for three-point shooting"
+      },
+      {
+        "rank": 4,
+        "text": "89.5% free throw shooter, 3× All-Star, won championship with Dallas in 2011"
+      },
+      {
+        "rank": 5,
+        "text": "Point guard from 1997-2014, known for clutch shooting"
+      },
+      {
+        "rank": 5,
+        "text": "89.4% free throw shooter, 2004 Finals MVP with Detroit, 5× All-Star"
+      },
+      {
+        "rank": 6,
+        "text": "Shooting guard from 1996-2014, known for pure shooting stroke"
+      },
+      {
+        "rank": 6,
+        "text": "89.4% free throw shooter, 2× champion, hit crucial Finals three-pointer in 2013"
+      }
+    ]
+  },
+  {
+    "title": "NBA All-Time Career Field Goal Percentage Leaders",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "DeAndre Jordan",
+        "stat": "67.4%",
+        "aliases": [
+          "jordan",
+          "deandre",
+          "deandre jordan",
+          "dj"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Rudy Gobert",
+        "stat": "65.4%",
+        "aliases": [
+          "gobert",
+          "rudy",
+          "rudy gobert",
+          "the stifle tower",
+          "french rejection"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Artis Gilmore",
+        "stat": "59.9%",
+        "aliases": [
+          "gilmore",
+          "artis",
+          "artis gilmore"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Tyson Chandler",
+        "stat": "59.7%",
+        "aliases": [
+          "chandler",
+          "tyson",
+          "tyson chandler"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Dwight Howard",
+        "stat": "58.7%",
+        "aliases": [
+          "howard",
+          "dwight",
+          "dwight howard",
+          "superman",
+          "d12"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Shaquille O'Neal",
+        "stat": "58.2%",
+        "aliases": [
+          "shaq",
+          "shaquille",
+          "oneal",
+          "o'neal",
+          "shaquille oneal",
+          "shaquille o'neal",
+          "diesel",
+          "superman"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Center active since 2008, known for dunking and rebounding"
+      },
+      {
+        "rank": 1,
+        "text": "67.4% field goal shooter, 2× All-Star, led league in FG% multiple times"
+      },
+      {
+        "rank": 2,
+        "text": "Center active since 2013, known for defensive presence"
+      },
+      {
+        "rank": 2,
+        "text": "65.4% field goal shooter, 3× Defensive Player of Year, French center"
+      },
+      {
+        "rank": 3,
+        "text": "Center from 1971-1988, known for size and efficiency"
+      },
+      {
+        "rank": 3,
+        "text": "59.9% field goal shooter, ABA and NBA star, 7'2\" center"
+      },
+      {
+        "rank": 4,
+        "text": "Center from 2001-2020, known for defense and rebounding"
+      },
+      {
+        "rank": 4,
+        "text": "59.7% field goal shooter, 2011 champion with Dallas, 2012 Defensive Player of Year"
+      },
+      {
+        "rank": 5,
+        "text": "Center from 2004-2022, known for athleticism and defense"
+      },
+      {
+        "rank": 5,
+        "text": "58.7% field goal shooter, 3× Defensive Player of Year, 2020 champion with Lakers"
+      },
+      {
+        "rank": 6,
+        "text": "Center from 1992-2011, known for dominant low-post play"
+      },
+      {
+        "rank": 6,
+        "text": "58.2% field goal shooter, 4× champion, 3× Finals MVP, unstoppable in the paint"
+      }
+    ]
+  },
+  {
+    "title": "NBA All-Time Career 3-Point Percentage Leaders",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "Steve Kerr",
+        "stat": "45.4%",
+        "aliases": [
+          "kerr",
+          "steve",
+          "steve kerr"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Hubert Davis",
+        "stat": "44.1%",
+        "aliases": [
+          "davis",
+          "hubert",
+          "hubert davis"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Seth Curry",
+        "stat": "43.5%",
+        "aliases": [
+          "curry",
+          "seth",
+          "seth curry"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Drazen Petrovic",
+        "stat": "43.7%",
+        "aliases": [
+          "petrovic",
+          "drazen",
+          "drazen petrovic"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Jason Kapono",
+        "stat": "43.4%",
+        "aliases": [
+          "kapono",
+          "jason",
+          "jason kapono"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Kyle Korver",
+        "stat": "42.9%",
+        "aliases": [
+          "korver",
+          "kyle",
+          "kyle korver"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Guard from 1988-2003, known for shooting accuracy"
+      },
+      {
+        "rank": 1,
+        "text": "45.4% three-point shooter, 5× champion, now head coach of Warriors"
+      },
+      {
+        "rank": 2,
+        "text": "Guard from 1992-2004, known for three-point shooting"
+      },
+      {
+        "rank": 2,
+        "text": "44.1% three-point shooter, played for Knicks, Mavericks, and Wizards"
+      },
+      {
+        "rank": 3,
+        "text": "Guard active since 2013, known for shooting"
+      },
+      {
+        "rank": 3,
+        "text": "43.5% three-point shooter, brother of Stephen Curry, sharpshooter"
+      },
+      {
+        "rank": 4,
+        "text": "Guard from 1989-1993, known for shooting and scoring"
+      },
+      {
+        "rank": 4,
+        "text": "43.7% three-point shooter, Croatian legend, tragically died in car accident"
+      },
+      {
+        "rank": 5,
+        "text": "Forward from 2003-2012, known for three-point shooting"
+      },
+      {
+        "rank": 5,
+        "text": "43.4% three-point shooter, won three-point contest twice, played for multiple teams"
+      },
+      {
+        "rank": 6,
+        "text": "Sharpshooter from 2003-2020, known for exceptional accuracy"
+      },
+      {
+        "rank": 6,
+        "text": "42.9% three-point shooter, led league in 3P% 4 times, career 2,450 threes"
+      }
+    ]
+  },
+  {
+    "title": "NBA Players With Most Teams Played For",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "Ish Smith",
+        "stat": "13 teams",
+        "aliases": [
+          "smith",
+          "ish",
+          "ish smith"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Chucky Brown",
+        "stat": "12 teams",
+        "aliases": [
+          "brown",
+          "chucky",
+          "chucky brown"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Tony Massenburg",
+        "stat": "12 teams",
+        "aliases": [
+          "massenburg",
+          "tony",
+          "tony massenburg"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Jim Jackson",
+        "stat": "12 teams",
+        "aliases": [
+          "jackson",
+          "jim",
+          "jim jackson"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Joe Smith",
+        "stat": "12 teams",
+        "aliases": [
+          "smith",
+          "joe",
+          "joe smith"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Mike James",
+        "stat": "11 teams",
+        "aliases": [
+          "james",
+          "mike",
+          "mike james"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Point guard active since 2010, known for speed"
+      },
+      {
+        "rank": 1,
+        "text": "Played for 13 different teams, holds record for most teams"
+      },
+      {
+        "rank": 2,
+        "text": "Forward from 1989-2002, known as journeyman"
+      },
+      {
+        "rank": 2,
+        "text": "Played for 12 different teams, won championship with Rockets in 1995"
+      },
+      {
+        "rank": 3,
+        "text": "Forward/center from 1990-2005, known for longevity"
+      },
+      {
+        "rank": 3,
+        "text": "Played for 12 different teams, 2005 champion with San Antonio"
+      },
+      {
+        "rank": 4,
+        "text": "Guard from 1992-2006, known for scoring ability"
+      },
+      {
+        "rank": 4,
+        "text": "Played for 12 different teams, 13-year career across multiple franchises"
+      },
+      {
+        "rank": 5,
+        "text": "Forward from 1995-2011, known as journeyman"
+      },
+      {
+        "rank": 5,
+        "text": "Played for 12 different teams, #1 overall pick in 1995 draft"
+      },
+      {
+        "rank": 6,
+        "text": "Point guard from 2001-2014, known for journeyman career"
+      },
+      {
+        "rank": 6,
+        "text": "Played for 11 different teams, played for multiple franchises throughout career"
+      }
+    ]
+  },
+  {
+    "title": "NBA All-Time Career Playoff Games Played Leaders",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "LeBron James",
+        "stat": "292 games",
+        "aliases": [
+          "lebron",
+          "lbj",
+          "king james",
+          "bron",
+          "the king",
+          "lebron james",
+          "king"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Derek Fisher",
+        "stat": "259 games",
+        "aliases": [
+          "fisher",
+          "derek",
+          "derek fisher"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Tim Duncan",
+        "stat": "251 games",
+        "aliases": [
+          "duncan",
+          "tim",
+          "tim duncan",
+          "big fundamental",
+          "the big fundamental",
+          "timmy"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Robert Horry",
+        "stat": "244 games",
+        "aliases": [
+          "horry",
+          "robert",
+          "robert horry",
+          "big shot rob"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Kareem Abdul-Jabbar",
+        "stat": "237 games",
+        "aliases": [
+          "kareem",
+          "abdul-jabbar",
+          "kareem abdul-jabbar",
+          "lew alcindor",
+          "kaj",
+          "cap",
+          "kareem abdul jabbar",
+          "alcindor"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Manu Ginobili",
+        "stat": "226 games",
+        "aliases": [
+          "ginobili",
+          "manu",
+          "manu ginobili",
+          "ginóbili"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Forward active since 2003, known for deep playoff runs"
+      },
+      {
+        "rank": 1,
+        "text": "292 playoff games, 10 Finals appearances, 4× champion with three franchises"
+      },
+      {
+        "rank": 2,
+        "text": "Point guard from 1996-2014, known for clutch playoff performances"
+      },
+      {
+        "rank": 2,
+        "text": "259 playoff games, 5× champion with Lakers, known for 0.4 second shot"
+      },
+      {
+        "rank": 3,
+        "text": "Power forward/center from 1997-2016, known for consistency"
+      },
+      {
+        "rank": 3,
+        "text": "251 playoff games, 5× champion with San Antonio, 3× Finals MVP"
+      },
+      {
+        "rank": 4,
+        "text": "Forward from 1992-2008, known for clutch playoff shots"
+      },
+      {
+        "rank": 4,
+        "text": "244 playoff games, 7× champion with three teams, nicknamed 'Big Shot Rob'"
+      },
+      {
+        "rank": 5,
+        "text": "Center who played 1969-1989, known for sustained playoff success"
+      },
+      {
+        "rank": 5,
+        "text": "237 playoff games, 6× champion with two franchises, all-time scoring leader until 2023"
+      },
+      {
+        "rank": 6,
+        "text": "Guard from 2002-2018, known for creativity and playoff success"
+      },
+      {
+        "rank": 6,
+        "text": "226 playoff games, 4× champion with San Antonio, 2008 Sixth Man of Year"
+      }
+    ]
+  },
+  {
+    "title": "NBA Players With Most All-Defensive Team Selections",
+    "answers": [
+      {
+        "rank": 1,
+        "name": "Tim Duncan",
+        "stat": "15 selections",
+        "aliases": [
+          "duncan",
+          "tim",
+          "tim duncan",
+          "big fundamental",
+          "the big fundamental",
+          "timmy"
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "Kobe Bryant",
+        "stat": "12 selections",
+        "aliases": [
+          "kobe",
+          "bryant",
+          "kobe bryant",
+          "black mamba",
+          "mamba",
+          "bean"
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "Kevin Garnett",
+        "stat": "12 selections",
+        "aliases": [
+          "garnett",
+          "kevin",
+          "kevin garnett",
+          "kg",
+          "the big ticket"
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "Scottie Pippen",
+        "stat": "10 selections",
+        "aliases": [
+          "pippen",
+          "scottie",
+          "pip",
+          "scottie pippen",
+          "scotty"
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "Gary Payton",
+        "stat": "9 selections",
+        "aliases": [
+          "payton",
+          "gary",
+          "gary payton",
+          "the glove"
+        ]
+      },
+      {
+        "rank": 6,
+        "name": "Michael Jordan",
+        "stat": "9 selections",
+        "aliases": [
+          "mj",
+          "jordan",
+          "goat",
+          "mike",
+          "michael",
+          "michael jordan",
+          "air jordan"
+        ]
+      }
+    ],
+    "hints": [
+      {
+        "rank": 1,
+        "text": "Power forward/center from 1997-2016, known for defensive fundamentals"
+      },
+      {
+        "rank": 1,
+        "text": "15 All-Defensive Team selections, 5× champion with San Antonio, defensive anchor"
+      },
+      {
+        "rank": 2,
+        "text": "Shooting guard from 1996-2016, known for defensive intensity"
+      },
+      {
+        "rank": 2,
+        "text": "12 All-Defensive Team selections, 5× champion with Lakers, elite two-way player"
+      },
+      {
+        "rank": 3,
+        "text": "Forward/center from 1995-2016, known for defensive versatility"
+      },
+      {
+        "rank": 3,
+        "text": "12 All-Defensive Team selections, 2008 Defensive Player of Year, 2008 champion"
+      },
+      {
+        "rank": 4,
+        "text": "Small forward from 1987-2004, known for defensive excellence"
+      },
+      {
+        "rank": 4,
+        "text": "10 All-Defensive Team selections, 6× champion with Chicago, elite perimeter defender"
+      },
+      {
+        "rank": 5,
+        "text": "Point guard from 1990-2007, known for defensive prowess"
+      },
+      {
+        "rank": 5,
+        "text": "9 All-Defensive Team selections, 1996 Defensive Player of Year, nicknamed 'The Glove'"
+      },
+      {
+        "rank": 6,
+        "text": "Shooting guard from 1984-2003, known for elite defense"
+      },
+      {
+        "rank": 6,
+        "text": "9 All-Defensive Team selections, 6× champion, 1988 Defensive Player of Year"
       }
     ]
   }
